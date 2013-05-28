@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Metaphor</title>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700&subset=latin,greek' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "admin/manifest", :media => "all" %>
+  <%= javascript_include_tag "admin/manifest" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	
+	<!-- BEGIN HEADER -->
+	
+	<header>
+		<div class="top">
+            Metaphor
+            <div class="nav" style="float: right">
+                <ul>
+                    <li><%= link_to "Articles", admin_articles_path %></li>
+                    <li><%= link_to "Categories", admin_categories_path %></li>
+                    <li><%= link_to "Series", admin_series_index_path %></li>
+                </ul>
+            </div>
+		</div>
+	</header>
+
+    <%= yield %>
+
+	<footer class="">
+	</footer>
+    
+</body>
+</html>

@@ -1,0 +1,21 @@
+<div class="content">
+
+    <div class="page-title">
+        Categories
+    </div>
+    
+    <div class="breadcrumb">
+        <%= link_to "« Back", admin_categories_path %> // Edit Category: <%= @category.name %>
+    </div>
+    
+    <div class="form">
+        <%= form_for [:admin, @category] do |f| %>
+          <%= f.label :slug %>:
+          <%= f.text_field :slug %><br />
+          <%= f.label :name %>:
+          <%= f.text_field :name %><br />
+          <%= f.submit "Update" %>
+        <% end %>
+    </div>
+    
+</div>

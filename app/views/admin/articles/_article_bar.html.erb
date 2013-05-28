@@ -1,0 +1,13 @@
+<div id="articles-bar">
+    <div class="header">
+        Articles
+    </div>
+
+    <div class="new">
+        <%= link_to "New Article »", new_admin_article_path %>
+    </div>
+    
+    <% @articles.each do |article| %>
+        <div class="item"><%= link_to article.title, admin_article_path(article) %></div>
+    <% end %>
+</div>

@@ -1,0 +1,23 @@
+<div class="content">
+
+    <div class="page-title">
+        Series
+    </div>
+    
+    <div id="list" class="clearfix">
+        <% @series.each do |series| %>
+            <div class="list-item"><%= link_to series.name, admin_series_path(series) %></div>
+        <% end %>
+    </div>
+    
+    <div class="form">
+        <%= form_for [:admin, @new_series] do |f| %>
+          <%= f.label :slug %>:
+          <%= f.text_field :slug %><br />
+          <%= f.label :name %>:
+          <%= f.text_field :name %><br />
+          <%= f.submit "Create" %>
+        <% end %>
+    </div>
+    
+</div>

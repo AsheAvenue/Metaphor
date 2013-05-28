@@ -1,0 +1,23 @@
+<div class="content">
+
+    <div class="page-title">
+        Categories
+    </div>
+    
+    <div id="list" class="clearfix">
+        <% @categories.each do |category| %>
+            <div class="list-item"><%= link_to category.name, admin_category_path(category) %></div>
+        <% end %>
+    </div>
+    
+    <div class="form">
+        <%= form_for [:admin, @category] do |f| %>
+          <%= f.label :slug %>:
+          <%= f.text_field :slug %><br />
+          <%= f.label :name %>:
+          <%= f.text_field :name %><br />
+          <%= f.submit "Create" %>
+        <% end %>
+    </div>
+    
+</div>

@@ -1,0 +1,18 @@
+<div id="stage">
+    
+    <%= render "article_bar" %>
+    
+    <%= form_for [:admin, @article] do |f| %>
+        <div id="content">
+            <div id="edit-article-form">
+              <%= f.label :title %>:
+              <%= f.text_field :title %><br />
+              <%= f.label :body %>:
+              <%= f.text_area :body %><br />
+            </div>
+        </div>
+                
+        <%= render :partial => 'settings_bar', :locals => {:f => f, :action => 'create'} %>
+        
+    <% end %>
+</div>
