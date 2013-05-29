@@ -12,8 +12,10 @@
         <div class="item-title">Categories</div>
         <%= hidden_field_tag "article[category_ids][]", nil %>
         <% Category.all.each do |category| %>
-            <%= check_box_tag "article[category_ids][]", category.id, @article.category_ids.include?(category.id) %>
-            <%= category.name %><br/>
+            <label class="checkbox">
+                <%= check_box_tag "article[category_ids][]", category.id, @article.category_ids.include?(category.id) %>
+                <%= category.name %>
+            </label>
         <% end %> 
     </div>
     
@@ -21,16 +23,18 @@
         <div class="item-title">Series</div>
         <%= hidden_field_tag "article[series_ids][]", nil%>
         <% Series.all.each do |series| %>
-            <%= check_box_tag "article[series_ids][]", series.id, @article.series_ids.include?(series.id) %>
-            <%= series.name %><br/>
+            <label class="checkbox">
+                <%= check_box_tag "article[series_ids][]", series.id, @article.series_ids.include?(series.id) %>
+                <%= series.name %><br/>
+            </label>
         <% end %>  
     </div>
 
     <div id="actions">
         <% if action == 'create' %>
-            <%= f.submit "Create Article", :class => "button" %>
+            <%= f.submit "Create Article", :class => "btn" %>
         <% elsif action == 'update'%>
-            <%= f.submit "Update Article", :class => "button" %>
+            <%= f.submit "Update Article", :class => "btn" %>
         <% end %>
     </div>
     

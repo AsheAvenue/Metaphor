@@ -12,12 +12,12 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video{
+time, mark, audio, video, input, textarea {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	vertical-align: baseline;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif !important;
 }
 
 article, aside, details, figcaption, figure, 
@@ -38,7 +38,7 @@ a{
 	text-decoration: none;
 }
 
-nav li{
+.navigation li{
 	list-style-type: none;
 	display: inline-block;
 }
@@ -89,27 +89,6 @@ html, body {
 	float: right;
 }
 
-.button {
-    background-color: white;
-    font-weight: 100;
-    font-size: 12px;
-    color: #7f8c8d !important;
-    cursor: pointer;
-    border: none;
-    padding: 8px 15px;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    -webkit-transition: 0.25s;
-    -moz-transition: 0.25s;
-    -o-transition: 0.25s;
-    transition: 0.25s;
-    -webkit-backface-visibility: hidden;
-}
-
 /* ------ HEADER ------ */
 
 header .top {
@@ -123,7 +102,7 @@ header .top {
     font-style: italic;
 }
 
-header .nav {
+header .navigation {
     padding: 5px 0px 5px 10px;
     height: 14px;
     background: #c0392b;
@@ -131,15 +110,21 @@ header .nav {
     font-size: 14px;
     line-height: 14px;
     font-weight: 100;
+    float: right;
 }
 
-header .nav li {
+header .navigation ul {
+    margin: 0;
+}
+
+header .navigation li {
     display: inline;
     list-style-type: none;
     margin-right: 10px;
+    line-height: 0;
 }
 
-header .nav li a {
+header .navigation li a {
     color: white;
     text-decoration: none;
 }
@@ -178,6 +163,22 @@ header .nav li a {
 
 .form {
     padding-top: 20px;
+}
+
+#article-title,
+#article-body {
+    width: 100%;
+    
+}
+
+#article-title {
+    font-size: 46px;
+    line-height: 52px;
+    height: 50px;
+}
+
+#article-body {
+    font-size: 16px;
 }
 
 /* ------ ARTICLE STAGE ------ */
@@ -236,6 +237,7 @@ header .nav li a {
 #content {
     position: absolute;
     left: 270px;
+    min-width: 800px;
 }
 
 #settings-bar {
@@ -264,13 +266,14 @@ header .nav li a {
 #settings-bar .item {
     border-bottom: 1px solid rgba(0,0,0,0.5);
     color: white;
-    font-size: 12px;
+    font-size: 13px;
     padding: 10px;
 }
 
 #settings-bar .item .item-title {
     font-weight: 100;
     font-size: 18px;
+    line-height: 24px;
     font-style: italic;
 }
 
@@ -278,5 +281,5 @@ header .nav li a {
     position: relative;
     bottom: 0px;
     padding: 10px;
-    background-color: #2ecc71;
+    background-color: #bdc3c7;
 }
