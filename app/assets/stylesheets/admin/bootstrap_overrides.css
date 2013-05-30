@@ -1,0 +1,15 @@
+.label {
+    font-weight: normal !important;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+input {
+    margin-bottom: 0px !important;
+}
+
+.input-medium {
+    width: 130px !important;
+}

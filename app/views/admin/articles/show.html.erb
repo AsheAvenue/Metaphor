@@ -5,8 +5,9 @@
     <%= form_for [:admin, @article] do |f| %>
         <div id="content">
             <div id="edit-article-form">
-                <%= f.text_field :title, :placeholder => 'Title', :id => 'article-title' %><br />
-                <%= f.text_area :body, :placeholder => 'Body', :id => 'article-body' %><br />
+                <%= f.text_field :title, :placeholder => 'Title', :id => 'article-title' %>
+                <hr />
+                <%= f.text_area :body, :placeholder => 'Body', :id => 'article-body' %>
             </div>
         </div>
                 

@@ -116,7 +116,9 @@ CREATE TABLE articles (
     title character varying(255),
     body text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    publish_at timestamp without time zone,
+    published boolean
 );
 
 
@@ -309,3 +311,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130527200831');
 INSERT INTO schema_migrations (version) VALUES ('20130527233045');
 
 INSERT INTO schema_migrations (version) VALUES ('20130527233101');
+
+INSERT INTO schema_migrations (version) VALUES ('20130530203952');
+
+INSERT INTO schema_migrations (version) VALUES ('20130530210336');

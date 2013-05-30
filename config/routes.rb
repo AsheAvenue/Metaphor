@@ -6,6 +6,7 @@ Metaphor::Application.routes.draw do
 
   root :to => 'home#index'
   match '/admin' => 'admin/home#index'
+  match "/admin/articles/checkslug" => 'admin/articles#checkslug'
   
   namespace :admin do
     resources :articles

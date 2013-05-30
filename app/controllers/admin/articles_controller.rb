@@ -26,4 +26,13 @@ class Admin::ArticlesController < Admin::AdminController
     redirect_to admin_articles_path
   end
   
+  def checkslug
+    article = Article.find_by_slug(params[:slug])
+    if article
+      render :text => 'TRUE'
+    else
+      render :text => 'FALSE'
+    end
+  end
+  
 end
