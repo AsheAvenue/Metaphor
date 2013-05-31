@@ -12,7 +12,7 @@
     <div id="schedule">
         <div class="top">
             Publish at
-            <div class="input-append pull-right date form_datetime">
+            <div class="input-append pull-right date" id="article-publish-at">
                 <%= f.text_field :publish_at, :id => 'article-publish-at', :class => "input-medium", :readonly => true, 'data-date' => @article.publish_at, 'data-date-format' => "dd MM yyyy - hh:ii" %>
                 <span class="add-on"><i class="icon-time"></i></span>
             </div>
@@ -30,36 +30,48 @@
             <%= f.text_field :slug, :id => 'article-slug', :placeholder => 'Slug', :class => "input-xlarge", 'data-original-slug' => @article.slug %>
         </div>
         <div id="article-slug-check"><span class="label"><i class='icon-search icon-large icon-white'></i> Checking</span></div>
-        <div id="article-slug-reset"><a href="#" id="article-slug-change">Change</a></div>
+        <div id="article-slug-reset"><a href="#" id="article-slug-change" class="settings-bar-link">Change</a></div>
     </div>
     
     <div class="item">
         <div class="item-title">Categories</div>
-        <%= hidden_field_tag "article[category_ids][]", nil %>
-        <% Category.all.each do |category| %>
-            <label class="checkbox">
-                <%= check_box_tag "article[category_ids][]", category.id, @article.category_ids.include?(category.id) %>
-                <%= category.name %>
-            </label>
-        <% end %> 
+        <div id="article-category-display">
+            <%= @article.categories.map(&:name).join(', ')%>
+        </div>
+        <div id="article-category-container">
+            <%= hidden_field_tag "article[category_ids][]", nil %>
+            <% Category.all.each do |category| %>
+                <label class="checkbox">
+                    <%= check_box_tag "article[category_ids][]", category.id, @article.category_ids.include?(category.id) %>
+                    <%= category.name %>
+                </label>
+            <% end %>
+        </div>
+        <div id="article-category-reset"><a href="#" id="article-category-change" class="settings-bar-link">Change</a></div>
     </div>
     
     <div class="item">
         <div class="item-title">Series</div>
-        <%= hidden_field_tag "article[series_ids][]", nil%>
-        <% Series.all.each do |series| %>
-            <label class="checkbox">
-                <%= check_box_tag "article[series_ids][]", series.id, @article.series_ids.include?(series.id) %>
-                <%= series.name %><br/>
-            </label>
-        <% end %>  
+        <div id="article-series-display">
+            <%= @article.series.map(&:name).join(', ')%>
+        </div>
+        <div id="article-series-container">
+            <%= hidden_field_tag "article[series_ids][]", nil%>
+            <% Series.all.each do |series| %>
+                <label class="checkbox">
+                    <%= check_box_tag "article[series_ids][]", series.id, @article.series_ids.include?(series.id) %>
+                    <%= series.name %><br/>
+                </label>
+            <% end %>
+        </div>
+        <div id="article-series-reset"><a href="#" id="article-series-change" class="settings-bar-link">Change</a></div>
     </div>
     
     <div id="actions">
         <% if action == 'create' %>
             <%= f.submit "Create Article", :class => "btn" %>
         <% elsif action == 'update'%>
-            <%= f.submit "Update Article", :class => "btn" %>
+            <%= f.submit "Save Article", :class => "btn" %>
         <% end %>
     </div>
     

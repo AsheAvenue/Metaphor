@@ -8,6 +8,6 @@
     </div>
     
     <% @articles.each do |article| %>
-        <div class="item"><%= link_to article.title, admin_article_path(article) %></div>
+        <div class="item"><%= link_to article.title, edit_admin_article_path(article) %></div>
     <% end %>
 </div>

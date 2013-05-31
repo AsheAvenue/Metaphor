@@ -3,9 +3,9 @@ class Admin::ArticlesController < Admin::AdminController
     @articles = Article.all
   end
 
-  def show
+  def edit
     @articles = Article.all
-    @article = Article.find(params[:id])
+    @article = Article.includes(:categories, :series).find(params[:id])
   end
 
   def new
@@ -23,7 +23,7 @@ class Admin::ArticlesController < Admin::AdminController
     article = Article.find(params[:id])
     article.update_attributes(params[:article])
     article.save
-    redirect_to admin_articles_path
+    redirect_to edit_admin_article_path(params[:id])
   end
   
   def checkslug

@@ -13,3 +13,10 @@ input {
 .input-medium {
     width: 130px !important;
 }
+
+input[type="submit"].btn {
+    font-size: 18px !important;
+    line-height: 18px !important;
+    font-weight: 100 !important;
+    height: 32px !important;
+}
