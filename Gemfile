@@ -6,7 +6,14 @@ gem 'pg'
 gem 'turbolinks'
 gem 'activerecord-postgres-hstore'
 #gem 'rack-mini-profiler'
+gem "sorcery"
 
 group :assets do
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end

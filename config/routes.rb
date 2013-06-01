@@ -1,8 +1,4 @@
 Metaphor::Application.routes.draw do
-  
-  get "article/index"
-
-  get "article/show"
 
   root :to => 'home#index'
   match '/admin' => 'admin/home#index'
@@ -13,5 +9,12 @@ Metaphor::Application.routes.draw do
     resources :categories
     resources :series
   end
+  
+  # auth
+  get "signout" => "sessions#destroy", :as => "signout"
+  get "signin" => "sessions#new", :as => "signin"
+  get "signup" => "users#new", :as => "signup"
+  resources :users
+  resources :sessions
   
 end
