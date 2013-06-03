@@ -1,6 +1,6 @@
 <div id="stage">
     
-    <%= render "article_bar" %>
+    <%= render "left_bar" %>
     
     <%= form_for [:admin, @article] do |f| %>
         <div id="content">
@@ -11,7 +11,7 @@
             </div>
         </div>
                 
-        <%= render :partial => 'settings_bar', :locals => {:f => f, :action => 'update'} %>
+        <%= render :partial => 'right_bar', :locals => {:f => f, :action => 'update'} %>
         
     <% end %>
 </div>

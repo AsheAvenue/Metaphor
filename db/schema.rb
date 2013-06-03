@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(:version => 20130602192920) do
     t.datetime "updated_at",        :null => false
     t.datetime "publish_at"
     t.boolean  "published"
-    t.integer  "user_id"
     t.string   "author_other_name"
   end
 

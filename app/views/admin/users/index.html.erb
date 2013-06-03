@@ -1,0 +1,29 @@
+<div id="list">
+    
+    <div class="header">
+        Users
+        <div class="header-link pull-right">
+            <%= link_to "New User »", new_admin_user_url %>
+        </div>
+    </div>
+    
+    <div id="fields" class="fields clearfix">
+        <div class="half">
+            Display Name
+        </div>
+    </div>
+
+    <ul id="items" class="items">
+        <% @users.each do |user| %>
+            <li class="item mix not_scheduled clearfix" data-status="not_scheduled" data-created="<%= user.created_at.to_time.to_i %>">
+                <div class="half">
+                    <%= link_to (user.display_name || user.email), edit_admin_user_path(user) %>
+                </div>
+            </li>
+        <% end %>
+        <div class="fail_element">
+            :( Sorry, no users meet the selected criteria.
+        </div>
+    </ul>
+    
+</div>

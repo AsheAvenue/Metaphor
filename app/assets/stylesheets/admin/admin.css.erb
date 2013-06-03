@@ -197,6 +197,15 @@ header .navigation li a {
     font-weight: 100;
 }
 
+#list .header .header-link a {
+    color: white;
+    background-color: #2ecc71;
+    font-size: 32px;
+    line-height: 32px;
+    font-weight: 100;
+    padding: 5px 10px;
+}
+
 #list .criteria {
     margin: 10px 10px 0px;
     padding: 0px 5px 5px 0px;
@@ -283,9 +292,31 @@ header .navigation li a {
     opacity: 1;
 }
 
+
+/* ------ USER ------ */
+
+#user-username,
+#user-email,
+#user-password,
+#user-password-confirmation {
+    font-size: 46px;
+    line-height: 52px;
+    height: 50px;
+    width: 100%;
+    border: 0px;
+    -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,0.075);
+    -moz-box-shadow: inset 0 1px 0px rgba(0,0,0,0.075);
+    box-shadow: inset 0 0px 0px rgba(0,0,0,0.075);
+    margin-bottom: 0px;
+}
+
+#user-display-name-container {
+    display: none;
+}
+
 /* ------ ARTICLE ------ */
 
-#articles-bar {
+#left-bar {
     position: absolute;
     width: 250px;
     background: #333;
@@ -299,7 +330,7 @@ header .navigation li a {
     transition: left .5s ease-in-out,background .4s ease-in-out;
 }
 
-#articles-bar .header {
+#left-bar .header {
     color: white;
     padding: 10px;
     font-size: 42px;
@@ -308,24 +339,24 @@ header .navigation li a {
     border-bottom: 1px solid rgba(0,0,0,0.5);
 }
 
-#articles-bar .new {
+#left-bar .new {
     background-color: #2ecc71;
 }
 
-#articles-bar .new a {
+#left-bar .new a {
     color: white;
     font-size: 18px;
     line-height: 18px;
     font-weight: 100;
 }
 
-#articles-bar .item,
-#articles-bar .new {
+#left-bar .item,
+#left-bar .new {
     padding: 10px;
     border-bottom: 1px solid rgba(0,0,0,0.5);
 }
 
-#articles-bar .item a {
+#left-bar .item a {
     color: white;
     text-decoration: none;
     font-weight: 100;
@@ -337,7 +368,7 @@ header .navigation li a {
     min-width: 800px;
 }
 
-#settings-bar {
+#right-bar {
     position: absolute;
     width: 350px;
     background: #333;
@@ -351,7 +382,7 @@ header .navigation li a {
     transition: left .5s ease-in-out,background .4s ease-in-out;
 }
 
-#settings-bar .header {
+#right-bar .header {
     color: white;
     padding: 10px;
     font-size: 24px;
@@ -360,21 +391,21 @@ header .navigation li a {
     border-bottom: 1px solid rgba(0,0,0,0.5);
 }
 
-#settings-bar .item {
+#right-bar .item {
     border-bottom: 1px solid rgba(0,0,0,0.5);
     color: white;
     padding: 10px;
 }
 
-#settings-bar .item .item-title {
+#right-bar .item .item-title {
     font-weight: 100;
     font-size: 18px;
     line-height: 24px;
     font-style: italic;
 }
 
-.settings-bar-link,
-.settings-bar-link:hover {
+.right-bar-link,
+.right-bar-link:hover {
     color: #bdc3c7;
     text-decoration: none;
     font-size: 11px;

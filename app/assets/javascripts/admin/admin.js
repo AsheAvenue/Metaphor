@@ -7,7 +7,28 @@ $(function(){
         effects: ['fade','blur'],  
         listEffects: ['fade','rotateX']
     }); 
-       
+    
+    /************ New/Edit User ***********/
+    
+    //show the display name if this is a new article
+    if($.trim($('#user-display-name-display').html()).length == 0) {
+        $('#user-display-name-container').show('fast');
+        $('#user-display-name-reset, #user-display-name-display').hide('fast');
+    }
+    
+    //handle the display name change button
+    $('#user-display-name-change').click(function(){
+        $('#user-display-name-container').show('fast');
+        $('#user-display-name-reset, #user-display-name-display').hide('fast');
+    });
+    
+    //set the display name to the email address if it's not set
+    $('#user-email').focusout(function(){
+        if($('#user-display-name').val() == '') {
+            $('#user-display-name').val($('#user-email').val());
+        }
+    });
+    
     /************ New/Edit Article ************/
     
     var slug_is_set = false;
@@ -74,9 +95,9 @@ $(function(){
     
     //handle the author change button
     $('#article-author-change').click(function(){
-        $('#article-author-container').show('fast');
-        $('#article-author-other').show('fast');
+        $('#article-author-container, #article-author-other').show('fast');
         $('#article-author-display, #article-author-change').hide('fast');
+        $('#article-author-other-name').val('');
     });
     
     //handle the author use other name button
@@ -89,6 +110,7 @@ $(function(){
     $('#article-author-use-existing').click(function(){
         $('#article-author-other-name, #article-author-other-cancel').hide('fast');
         $('#article-author-container, #article-author-use-other').show('fast');
+        $('#article-author-other-name').val('');
     });
     
     //show the author list if this is a new article

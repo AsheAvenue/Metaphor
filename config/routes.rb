@@ -8,13 +8,13 @@ Metaphor::Application.routes.draw do
     resources :articles
     resources :categories
     resources :series
+    resources :users
   end
   
   # auth
   get "signout" => "sessions#destroy", :as => "signout"
   get "signin" => "sessions#new", :as => "signin"
   get "signup" => "users#new", :as => "signup"
-  resources :users
   resources :sessions
   
 end
