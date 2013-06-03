@@ -1,8 +1,51 @@
-<div id="stage">
+<div id="list">
     
-    <%= render "article_bar" %>
-    
-    <div id="content">
+    <div class="header">
+        Articles
     </div>
+    
+    <div class="criteria">
+        Status:
+		<ul>
+			<li class="filter" data-filter="all">All</li>
+			<li class="filter" data-filter="published">Published</li>
+			<li class="filter" data-filter="scheduled">Scheduled</li>
+			<li class="filter" data-filter="not_scheduled">Not Scheduled</li>
+			<li class="filter" data-filter="retired">Retired</li>
+		</ul>    
+    </div>
+    
+    <div class="criteria">
+        Order:
+		<ul>
+            <li class="sort active" data-sort="data-created" data-order="asc">Newer</li>
+            <li class="sort" data-sort="data-created" data-order="desc">Older</li>
+		</ul>    
+    </div>
+    
+    <div id="fields" class="fields clearfix">
+        <div class="half">
+            Title
+        </div>
+        <div class="quarter">
+            Author
+        </div>
+    </div>
+
+    <ul id="items" class="items">
+        <% @articles.each do |article| %>
+            <li class="item mix not_scheduled clearfix" data-status="not_scheduled" data-created="<%= article.created_at.to_time.to_i %>">
+                <div class="half">
+                    <%= link_to article.title, edit_admin_article_path(article) %>
+                </div>
+                <div class="quarter">
+                    <%= article.author_name %>
+                </div>
+            </li>
+        <% end %>
+        <div class="fail_element">
+            :( Sorry, no articles meet the selected criteria.
+        </div>
+    </ul>
     
 </div>

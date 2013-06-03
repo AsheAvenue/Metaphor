@@ -1,7 +1,24 @@
 $(function(){
     
+    /************ List ************/
+    
+    $('#items').mixitup({
+        layoutMode: 'list',
+        effects: ['fade','blur'],  
+        listEffects: ['fade','rotateX']
+    }); 
+       
+    /************ New/Edit Article ************/
+    
     var slug_is_set = false;
     
+    // don't let the slug be changed right off the bat if it's already been set
+    var slug = $('#article-slug-display').text();
+    if(slug != '' && slug != 'Awaiting article title...') {
+        slug_is_set = true;
+    }
+    
+    // create a slug if necessary when the article title is provided or the change button has been clicked
     $('#article-title, #article-slug').focusout(function(){
         if(!slug_is_set) {
             
@@ -55,15 +72,35 @@ $(function(){
         $('#article-slug-reset').hide('fast');
     });
     
+    //handle the author change button
+    $('#article-author-change').click(function(){
+        $('#article-author-container').show('fast');
+        $('#article-author-other').show('fast');
+        $('#article-author-display, #article-author-change').hide('fast');
+    });
+    
+    //handle the author use other name button
+    $('#article-author-use-other').click(function(){
+        $('#article-author-container, #article-author-reset, #article-author-use-other').hide('fast');
+        $('#article-author-other-name, #article-author-other-cancel').show('fast');
+    });
+    
+    //go back to the author list if the user doesn't want to input an other author name after all
+    $('#article-author-use-existing').click(function(){
+        $('#article-author-other-name, #article-author-other-cancel').hide('fast');
+        $('#article-author-container, #article-author-use-other').show('fast');
+    });
+    
+    //show the author list if this is a new article
+    if($.trim($('#article-author-display').html()).length == 0) {
+        $('#article-author-container, #article-author-other, #article-author-use-other').show('fast');
+        $('#article-author-display, #article-author-reset').hide('fast');
+    }
+    
     //handle the category change button
     $('#article-category-change').click(function(){
-        if($('#article-category-container').is(':visible')) {
-            $('#article-category-container').hide('fast');
-            $('#article-category-display, #article-category-change').show('fast');
-        } else {
-            $('#article-category-container').show('fast');
-            $('#article-category-display, #article-category-change').hide('fast');
-        }
+        $('#article-category-container').show('fast');
+        $('#article-category-display, #article-category-change').hide('fast');
     });
     
     //show the category list if this is a new article
@@ -74,13 +111,8 @@ $(function(){
     
     //handle the series change button
     $('#article-series-change').click(function(){
-        if($('#article-series-container').is(':visible')) {
-            $('#article-series-container').hide('fast');
-            $('#article-series-display, #article-series-change').show('fast');
-        } else {
-            $('#article-series-container').show('fast');
-            $('#article-series-display, #article-series-change').hide('fast');
-        }
+        $('#article-series-container').show('fast');
+        $('#article-series-display, #article-series-change').hide('fast');
     });
     
     //show the series list if this is a new article

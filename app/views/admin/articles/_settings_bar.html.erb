@@ -34,6 +34,21 @@
     </div>
     
     <div class="item">
+        <div class="item-title">Author</div>
+        <div id="article-author-display"><%= @article.author_name %></div>
+        <div id="article-author-container">
+            <%= hidden_field_tag "article[user_ids][]", nil %>
+            <%= collection_select(:article, :user_ids, User.all, :id, :display_name, {:multiple => false})%>
+        </div>
+        <div id="article-author-reset"><a href="#" id="article-author-change" class="settings-bar-link">Change</a></div>
+        <div id="article-author-other">
+            <a href="#" id="article-author-use-other" class="settings-bar-link">Manually enter Author name</a>
+            <%= f.text_field :author_other_name, :id => 'article-author-other-name', :placeholder => 'Author name', :class => "input-xlarge", 'data-original-author-other-name' => @article.author_other_name %>
+        </div>
+        <div id="article-author-other-cancel"><a href="#" id="article-author-use-existing" class="settings-bar-link">Use existing Author</a></div>
+    </div>
+    
+    <div class="item">
         <div class="item-title">Categories</div>
         <div id="article-category-display">
             <%= @article.categories.map(&:name).join(', ')%>

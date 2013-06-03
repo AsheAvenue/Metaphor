@@ -6,7 +6,8 @@ a {
     text-decoration: none !important;
 }
 
-input {
+input,
+select {
     margin-bottom: 0px !important;
 }
 

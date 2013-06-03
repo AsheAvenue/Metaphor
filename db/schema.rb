@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601010047) do
+ActiveRecord::Schema.define(:version => 20130602192920) do
 
   create_table "article_categories", :force => true do |t|
     t.integer  "article_id"
@@ -27,14 +27,23 @@ ActiveRecord::Schema.define(:version => 20130601010047) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "article_users", :force => true do |t|
+    t.integer  "article_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "articles", :force => true do |t|
     t.string   "slug"
     t.string   "title"
     t.text     "body"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.datetime "publish_at"
     t.boolean  "published"
+    t.integer  "user_id"
+    t.string   "author_other_name"
   end
 
   create_table "categories", :force => true do |t|
@@ -63,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20130601010047) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.string   "display_name"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

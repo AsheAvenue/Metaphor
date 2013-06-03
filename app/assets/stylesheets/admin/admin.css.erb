@@ -142,10 +142,6 @@ header .navigation li a {
     border-bottom: 1px solid #bdc3c7;
 }
 
-#list {
-    padding-top: 20px;
-}
-
 #list .list-item {
     min-width: 150px;
     min-height: 30px;
@@ -185,12 +181,109 @@ header .navigation li a {
     font-size: 16px;
 }
 
-/* ------ ARTICLE STAGE ------ */
+/* ------ LIST ------- */
 
-#stage {
-    left: 60px;
-    background-image: url('<%= asset_path "debut_light.png" %>');
+#list {
+    background: #333;
+    padding: 20px 30px;
+    height: 100%;
 }
+
+#list .header {
+    color: white;
+    padding: 10px;
+    font-size: 42px;
+    line-height: 42px;
+    font-weight: 100;
+}
+
+#list .criteria {
+    margin: 10px 10px 0px;
+    padding: 0px 5px 5px 0px;
+    color: white;
+    font-size: 21px;
+    font-weight: 100;
+    font-style: italic;
+}
+
+#list .criteria ul {
+    display: inline;
+    list-style-type: none;
+    margin: 0px 3px; 
+}
+
+#list .criteria li {
+    display: inline;
+    padding: 0px 3px;
+    text-decoration: underline !important;
+    font-style: normal;
+    cursor: pointer;
+}
+
+#list .criteria li.active {
+    background-color: #ecf0f1;
+    color: black;
+}
+
+#list .fields {
+    margin: 20px 10px 10px;
+    padding: 0px 5px 3px 5px;
+    border-bottom: 1px solid #bdc3c7;
+}
+
+#list .items {
+    margin: 10px 0px 0px 0px;
+}
+
+
+#list .item {
+    margin: 10px 10px 0px;
+    padding: 0px 5px 0px 5px;
+    border-left: 1px solid #e74c3c;
+}
+
+#list .fields,
+#list .item,
+#list .item a,
+#list .item a:hover {
+    color: white;
+    font-size: 21px;
+    line-height: 25px;
+    font-weight: 100;
+    font-style: italic;
+}
+
+#list .item.mix {
+    display: none;
+    opacity: 0;
+}
+
+#list .half {
+    float: left;
+    width: 50%;
+}
+
+#list .quarter {
+    float: left;
+    width: 25%;
+}
+
+
+.fail_element {
+    opacity: 0;
+    margin: 10px 10px 0px;
+    padding: 0px 5px 5px 0px;
+    color: white;
+    font-size: 21px;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.fail .fail_element {
+    opacity: 1;
+}
+
+/* ------ ARTICLE ------ */
 
 #articles-bar {
     position: absolute;
@@ -289,6 +382,10 @@ header .navigation li a {
 
 #article-slug-check,
 #article-slug-container,
+#article-author-container,
+#article-author-other,
+#article-author-other-name,
+#article-author-other-cancel,
 #article-category-container,
 #article-series-container {
     display: none;
