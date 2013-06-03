@@ -5,8 +5,7 @@ gem 'jquery-rails'
 gem 'pg'
 gem 'turbolinks'
 gem 'activerecord-postgres-hstore'
-#gem 'rack-mini-profiler'
-gem "sorcery"
+gem 'sorcery'
 
 group :assets do
   gem 'uglifier', '>= 1.0.3'

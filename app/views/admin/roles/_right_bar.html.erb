@@ -1,0 +1,15 @@
+<div id="right-bar">
+
+    <div class="header">
+        Settings
+    </div>
+    
+    <div id="actions">
+        <% if action == 'create' %>
+            <%= f.submit "Create Role", :class => "btn" %>
+        <% elsif action == 'update'%>
+            <%= f.submit "Save Role", :class => "btn" %>
+        <% end %>
+    </div>
+    
+</div>

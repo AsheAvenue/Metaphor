@@ -11,6 +11,12 @@
         <div class="half">
             Display Name
         </div>
+        <div class="quarter">
+            Username
+        </div>        
+        <div class="quarter">
+            Email
+        </div>
     </div>
 
     <ul id="items" class="items">
@@ -18,6 +24,12 @@
             <li class="item mix not_scheduled clearfix" data-status="not_scheduled" data-created="<%= user.created_at.to_time.to_i %>">
                 <div class="half">
                     <%= link_to (user.display_name || user.email), edit_admin_user_path(user) %>
+                </div>
+                <div class="quarter">
+                    <%= link_to user.username, edit_admin_user_path(user) %>
+                </div>                
+                <div class="quarter">
+                    <%= link_to user.email, edit_admin_user_path(user) %>
                 </div>
             </li>
         <% end %>

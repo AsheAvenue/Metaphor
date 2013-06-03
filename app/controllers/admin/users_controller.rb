@@ -4,7 +4,8 @@ class Admin::UsersController < ApplicationController
   before_filter :require_login
   
   def index
-    @users = User.all
+    @users = User.where(true)
+    @users = @users.alphabetical
   end
   
   def show
@@ -14,17 +15,20 @@ class Admin::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @users = User.all
+    @users = User.where(true)
+    @users = @users.alphabetical
   end
   
   def new
     @user = User.new
-    @users = User.all
+    @users = User.where(true)
+    @users = @users.alphabetical
   end
 
   def create
     @user = User.new(params[:user])
-    @users = User.all
+    @users = User.where(true)
+    @users = @users.alphabetical
     if @user.save
       flash[:alert] = "User successfully created"
       redirect_to edit_admin_user_path(@user)
@@ -38,7 +42,8 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
     if @user.save
-      @users = User.all
+      @users = User.where(true)
+      @users = @users.alphabetical
       flash[:alert] = "User successfully updated"
       redirect_to edit_admin_user_path(@user)
     else

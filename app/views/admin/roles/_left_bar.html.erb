@@ -1,0 +1,13 @@
+<div id="left-bar">
+    <div class="header">
+        Roles
+    </div>
+
+    <div class="new">
+        <%= link_to "New Role »", new_admin_role_path %>
+    </div>
+    
+    <% @roles.each do |role| %>
+        <div class="item"><%= link_to role.name, edit_admin_role_path(role) %></div>
+    <% end %>
+</div>

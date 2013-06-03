@@ -9,6 +9,7 @@ Metaphor::Application.routes.draw do
     resources :categories
     resources :series
     resources :users
+    resources :roles
   end
   
   # auth

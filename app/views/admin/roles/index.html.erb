@@ -1,0 +1,35 @@
+<div id="list">
+    
+    <div class="header">
+        Roles
+        <div class="header-link pull-right">
+            <%= link_to "New Role »", new_admin_role_url %>
+        </div>
+    </div>
+    
+    <div id="fields" class="fields clearfix">
+        <div class="half">
+            Name
+        </div>
+        <div class="quarter">
+            Key
+        </div>
+    </div>
+
+    <ul id="items" class="items">
+        <% @roles.each do |role| %>
+            <li class="item mix not_scheduled clearfix" data-status="not_scheduled" data-created="<%= role.created_at.to_time.to_i %>">
+                <div class="half">
+                    <%= link_to role.name, edit_admin_role_path(role) %>
+                </div>
+                <div class="quarter">
+                    <%= link_to role.key, edit_admin_role_path(role) %>
+                </div>    
+            </li>
+        <% end %>
+        <div class="fail_element">
+            :( Sorry, no roles meet the selected criteria.
+        </div>
+    </ul>
+    
+</div>

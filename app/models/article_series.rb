@@ -1,4 +1,4 @@
-class ArticleSeries < ActiveRecord::Base
-  belongs_to :article  
-  belongs_to :series
+class UserRoles < ActiveRecord::Base
+  belongs_to :user  
+  belongs_to :role
 end

@@ -1,0 +1,21 @@
+<div id="stage">
+    
+    <%= render "left_bar" %>
+    
+    <%= form_for [:admin, @role], :html => {:autocomplete=>"off"} do |f| %>
+        <div id="content">
+            <% if flash[:alert] %>
+                <div class="alert">
+                    <%= flash[:alert] %>
+                </div>
+            <% end %>
+            <%= f.text_field :name, :placeholder => "Name", :id => 'role-name', :autocomplete=>"off" %>
+            <hr />
+            <%= f.text_field :key, :placeholder => "Key", :id => 'role-key', :autocomplete=>"off" %>
+            <hr />
+        </div>
+                
+        <%= render :partial => 'right_bar', :locals => {:f => f, :action => 'create'} %>
+        
+    <% end %>
+</div>
