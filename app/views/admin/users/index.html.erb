@@ -8,7 +8,7 @@
     </div>
     
     <div id="fields" class="fields clearfix">
-        <div class="half">
+        <div class="quarter">
             Display Name
         </div>
         <div class="quarter">
@@ -16,13 +16,16 @@
         </div>        
         <div class="quarter">
             Email
+        </div>       
+        <div class="quarter">
+            Role
         </div>
     </div>
 
     <ul id="items" class="items">
         <% @users.each do |user| %>
             <li class="item mix not_scheduled clearfix" data-status="not_scheduled" data-created="<%= user.created_at.to_time.to_i %>">
-                <div class="half">
+                <div class="quarter">
                     <%= link_to (user.display_name || user.email), edit_admin_user_path(user) %>
                 </div>
                 <div class="quarter">
@@ -30,6 +33,9 @@
                 </div>                
                 <div class="quarter">
                     <%= link_to user.email, edit_admin_user_path(user) %>
+                </div>                
+                <div class="quarter">
+                    <%= link_to user.role.name, edit_admin_role_path(user.role.id) %>
                 </div>
             </li>
         <% end %>

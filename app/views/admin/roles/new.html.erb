@@ -9,13 +9,24 @@
                     <%= flash[:alert] %>
                 </div>
             <% end %>
-            <%= f.text_field :name, :placeholder => "Name", :id => 'role-name', :autocomplete=>"off" %>
-            <hr />
-            <%= f.text_field :key, :placeholder => "Key", :id => 'role-key', :autocomplete=>"off" %>
-            <hr />
+            <div class="form-section clearfix">
+                <div class="form-section-left">
+                    Role Info
+                </div>
+                <div class="form-section-right">
+                    <div class="form-line">
+                        <%= f.text_field :name, :placeholder => "Name", :id => 'role-name', :autocomplete=>"off" %>
+                    </div>
+                    <div class="form-line">
+                        <%= f.text_field :key, :placeholder => "Key", :id => 'role-key', :autocomplete=>"off" %>
+                    </div>
+                </div>
+            </div>
+            <div id="actions">
+                <%= f.submit "Create Role", :class => "btn" %>
+            </div>
         </div>
-                
-        <%= render :partial => 'right_bar', :locals => {:f => f, :action => 'create'} %>
         
     <% end %>
+
 </div>

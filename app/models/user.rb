@@ -13,4 +13,9 @@ class User < ActiveRecord::Base
   has_many :roles, :through => :user_roles
   
   scope :alphabetical, order("users.display_name asc")
+  
+  def role
+    roles.first
+  end
+  
 end

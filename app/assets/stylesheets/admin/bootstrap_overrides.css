@@ -1,3 +1,7 @@
+body {
+    background: #333 !important;
+}
+
 .label {
     font-weight: normal !important;
 }
@@ -20,4 +24,8 @@ input[type="submit"].btn {
     line-height: 18px !important;
     font-weight: 100 !important;
     height: 32px !important;
+}
+
+form {
+    height: 100% !important;
 }

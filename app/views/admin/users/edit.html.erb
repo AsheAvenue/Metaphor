@@ -2,24 +2,6 @@
     
     <%= render "left_bar" %>
     
-    <%= form_for [:admin, @user], :html => {:autocomplete=>"off"} do |f| %>
-        <div id="content">
-            <% if flash[:alert] %>
-                <div class="alert">
-                    <%= flash[:alert] %>
-                </div>
-            <% end %>
-            <%= f.text_field :username, :placeholder => "Username", :id => 'user-username', :autocomplete=>"off" %>
-            <hr />
-            <%= f.text_field :email, :placeholder => "Email", :id => 'user-email', :autocomplete=>"off" %>
-            <hr />
-            <%= f.password_field :password, :placeholder => "Password", :id => 'user-password', :autocomplete=>"off" %>
-            <hr />
-            <%= f.password_field :password_confirmation, :placeholder => "Confirm Password", :id => 'user-password-confirmation', :autocomplete=>"off" %>
-            <hr />
-        </div>
-                
-        <%= render :partial => 'right_bar', :locals => {:f => f, :action => 'update'} %>
-        
-    <% end %>
+    <%= render :partial => "form", :locals => {:action => 'update'} %>
+    
 </div>

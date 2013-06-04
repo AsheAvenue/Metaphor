@@ -3,7 +3,7 @@
     <%= render "left_bar" %>
     
     <%= form_for [:admin, @article] do |f| %>
-        <div id="content">
+        <div id="content" class="white has-right-bar">
             <div id="edit-article-form">
               <%= f.text_field :title, :placeholder => 'Title', :id => 'article-title' %>
               <hr />

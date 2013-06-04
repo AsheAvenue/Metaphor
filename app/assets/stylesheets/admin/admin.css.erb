@@ -81,12 +81,8 @@ html, body {
 	text-transform: uppercase;
 }
 
-.left{
-	float: left;
-}
-
-.right{
-	float: right;
+.white {
+    background-color: white;
 }
 
 /* ------ HEADER ------ */
@@ -131,6 +127,10 @@ header .navigation li a {
 }
 
 /* ------ CONTENT ------ */
+
+#stage {
+    height: 100%;
+}
 
 .content {
     padding: 10px;
@@ -293,41 +293,74 @@ header .navigation li a {
 }
 
 
-/* ------ USER ------ */
+/* ------ USER and ROLE forms------ */
 
 #user-username,
 #user-email,
+#user-display-name,
 #user-password,
-#user-password-confirmation {
-    font-size: 46px;
-    line-height: 52px;
-    height: 50px;
-    width: 100%;
+#user-password-confirmation,
+#role-name,
+#role-key {
+    color: white;
+    font-size: 24px;
+    font-weight: 100;
+    line-height: 30px;
+    height: 30px;
+    width: 300px;
     border: 0px;
-    -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,0.075);
-    -moz-box-shadow: inset 0 1px 0px rgba(0,0,0,0.075);
-    box-shadow: inset 0 0px 0px rgba(0,0,0,0.075);
+    background: none;
+    border-bottom: 1px solid white;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-border-radios: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
     margin-bottom: 0px;
+}
+
+#user_role_ids {
+    margin-top: 17px;
+    margin-left: 10px;
 }
 
 #user-display-name-container {
     display: none;
 }
 
-/* ------ ROLE ------ */
-
-#role-name,
-#role-key {
-    font-size: 46px;
-    line-height: 52px;
-    height: 50px;
-    width: 100%;
-    border: 0px;
-    -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,0.075);
-    -moz-box-shadow: inset 0 1px 0px rgba(0,0,0,0.075);
-    box-shadow: inset 0 0px 0px rgba(0,0,0,0.075);
-    margin-bottom: 0px;
+.form-section {
+    margin-bottom: 30px;
 }
+
+.form-section-left {
+    float: left;
+    padding: 15px 0px 0px 10px;
+    color: white;
+    font-size: 30px;
+    font-weight: 100;
+    font-style: italic;
+    line-height: 32px;
+    width: 200px;
+}
+
+.form-section-right {
+    float: left;
+}
+
+.form-line {
+    padding: 10px;
+    color: white;
+    font-size: 24px;
+    font-weight: 100;
+    line-height: 24px;
+}
+
+.form-line a,
+.form-line a:hover {
+    color: white;
+}
+
 
 /* ------ ARTICLE ------ */
 
@@ -378,9 +411,13 @@ header .navigation li a {
 }
 
 #content {
-    position: absolute;
-    left: 270px;
-    min-width: 800px;
+    height: 100%;
+    margin-left: 251px;
+    padding: 10px;
+}
+
+#content.has-right-bar {
+    margin-right: 350px;
 }
 
 #right-bar {

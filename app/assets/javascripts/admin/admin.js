@@ -23,9 +23,9 @@ $(function(){
     });
     
     //set the display name to the email address if it's not set
-    $('#user-email').focusout(function(){
+    $('#user-username').focusout(function(){
         if($('#user-display-name').val() == '') {
-            $('#user-display-name').val($('#user-email').val());
+            $('#user-display-name').val($('#user-username').val());
         }
     });
     
