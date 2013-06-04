@@ -1,23 +1,32 @@
-<div class="content">
-
-    <div class="page-title">
+<div id="list">
+    
+    <div class="header">
         Categories
+        <div class="header-link pull-right">
+            <%= link_to "New Category »", new_admin_category_url %>
+        </div>
     </div>
     
-    <div id="list" class="clearfix">
+    <div id="fields" class="fields clearfix">
+        <div class="half">
+            Name
+        </div>
+        <div class="quarter">
+            Slug
+        </div>
+    </div>
+
+    <ul id="items" class="items">
         <% @categories.each do |category| %>
-            <div class="list-item"><%= link_to category.name, admin_category_path(category) %></div>
+            <li class="item mix not_scheduled clearfix">
+                <div class="half">
+                    <%= link_to category.name, edit_admin_category_path(category) %>
+                </div>
+                <div class="quarter">
+                    <%= link_to category.slug, edit_admin_category_path(category) %>
+                </div>
+            </li>
         <% end %>
-    </div>
-    
-    <div class="form">
-        <%= form_for [:admin, @category] do |f| %>
-          <%= f.label :slug %>:
-          <%= f.text_field :slug %><br />
-          <%= f.label :name %>:
-          <%= f.text_field :name %><br />
-          <%= f.submit "Create" %>
-        <% end %>
-    </div>
+    </ul>
     
 </div>

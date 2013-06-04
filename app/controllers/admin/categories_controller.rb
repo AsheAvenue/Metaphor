@@ -4,22 +4,40 @@ class Admin::CategoriesController < Admin::AdminController
     @categories = Category.all
     @category = Category.new
   end
-    
-  def create
-    category = Category.create(params[:category])
-    category.save
-    redirect_to admin_categories_path
-  end
   
-  def show
+  def edit
     @category = Category.find(params[:id])
+    @categories = Category.all
+  end
+    
+  def new
+    @category = Category.new
+    @categories = Category.all
+  end
+    
+  def create    
+    @category = Category.create(params[:category])
+    @categories = Category.where(true)
+    if @category.save
+      flash[:alert] = "Category successfully created"
+      redirect_to edit_admin_category_path(@category)
+    else
+      flash[:alert] = "All fields are required"
+      render :new
+    end
   end
   
   def update
-    category = Category.find(params[:id])
-    category.update_attributes(params[:category])
-    category.save
-    redirect_to admin_categories_path
+    @category = Category.find(params[:id])
+    @category.update_attributes(params[:category])
+    if @category.save
+      @categories = Category.where(true)
+      flash[:alert] = "Category successfully updated"
+      redirect_to edit_admin_category_path(@category)
+    else
+      flash[:alert] = "All fields are required"
+      render :edit
+    end
   end
   
 end

@@ -35,7 +35,7 @@
     
     <div class="item">
         <div class="item-title">Author</div>
-        <div id="article-author-display"><%= @article.author_name %></div>
+        <div id="article-author-display"><%= @article.author_display_name %></div>
         <div id="article-author-container">
             <%= collection_select(:article, :user_ids, User.all, :id, :display_name, {}, {:multiple => false, :name => 'article[user_ids][]'})%>
         </div>

@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   def create
     user = login(params[:username], params[:password], params[:remember_me])
     if user
-      redirect_back_or_to root_url, :notice => "Logged in!"
+      redirect_back_or_to admin_path
     else
       flash[:alert] = "Invalid username or password"
       render :new
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   
   def destroy
     logout
-    redirect_to root_url, :notice => "Logged out!"
+    redirect_to "/"
   end
   
 end

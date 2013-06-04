@@ -1,23 +1,32 @@
-<div class="content">
-
-    <div class="page-title">
+<div id="list">
+    
+    <div class="header">
         Series
+        <div class="header-link pull-right">
+            <%= link_to "New Series »", new_admin_series_url %>
+        </div>
     </div>
     
-    <div id="list" class="clearfix">
-        <% @series.each do |series| %>
-            <div class="list-item"><%= link_to series.name, admin_series_path(series) %></div>
-        <% end %>
+    <div id="fields" class="fields clearfix">
+        <div class="half">
+            Name
+        </div>
+        <div class="quarter">
+            Slug
+        </div>
     </div>
-    
-    <div class="form">
-        <%= form_for [:admin, @new_series] do |f| %>
-          <%= f.label :slug %>:
-          <%= f.text_field :slug %><br />
-          <%= f.label :name %>:
-          <%= f.text_field :name %><br />
-          <%= f.submit "Create" %>
+
+    <ul id="items" class="items">
+        <% @serieses.each do |series| %>
+            <li class="item mix not_scheduled clearfix">
+                <div class="half">
+                    <%= link_to series.name, edit_admin_series_path(series) %>
+                </div>
+                <div class="quarter">
+                    <%= link_to series.slug, edit_admin_series_path(series) %>
+                </div>
+            </li>
         <% end %>
-    </div>
+    </ul>
     
 </div>
