@@ -1,16 +1,22 @@
 class Admin::ArticlesController < Admin::AdminController
 
+  layout :resolve_layout
+
   def index
     @articles = Article.where(true).newest
   end
 
+  def show
+    redirect_to edit_admin_article_path(params[:id])
+  end
+  
   def edit
-    @articles = Article.all
+    @articles = Article.where(true).newest
     @article = Article.includes(:categories, :series).find(params[:id])
   end
 
   def new
-    @articles = Article.all
+    @articles = Article.where(true).newest
     @article = Article.new
   end
   
@@ -36,4 +42,22 @@ class Admin::ArticlesController < Admin::AdminController
     end
   end
   
+  def default_image_sizes
+    @article = Article.find(params[:id])
+  end
+  
+  def preview
+    @article = Article.find(params[:id])
+  end
+  
+  private
+
+  def resolve_layout
+    case action_name
+    when "default_image_sizes"
+      "admin_popup"
+    else
+      "admin"
+    end
+  end
 end

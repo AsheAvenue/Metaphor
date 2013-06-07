@@ -19,13 +19,19 @@ select {
     width: 130px !important;
 }
 
-input[type="submit"].btn {
+input[type="submit"].btn,
+.btn {
     font-size: 18px !important;
     line-height: 18px !important;
     font-weight: 100 !important;
     height: 32px !important;
+    font-family: 'Source Sans Pro', sans-serif !important;
 }
 
 form {
     height: 100% !important;
+}
+
+button {
+  font-family: 'Source Sans Pro', sans-serif !important;
 }

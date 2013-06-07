@@ -41,14 +41,10 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.0.4)
     callsite (0.0.11)
+    carrierwave (0.6.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
     coderay (1.0.9)
-    coffee-rails (3.2.2)
-      coffee-script (>= 2.2.0)
-      railties (~> 3.2.0)
-    coffee-script (2.2.0)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.6.2)
     debug_inspector (0.0.2)
     em-websocket (0.5.0)
       eventmachine (>= 0.12.9)
@@ -129,6 +125,8 @@ GEM
       activesupport (= 3.2.13)
       bundler (~> 1.0)
       railties (= 3.2.13)
+    rails_config (0.3.3)
+      activesupport (>= 3.0)
     railties (3.2.13)
       actionpack (= 3.2.13)
       activesupport (= 3.2.13)
@@ -144,6 +142,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    rmagick (2.13.2)
     slop (3.4.5)
     sorcery (0.8.1)
       bcrypt-ruby (~> 3.0.0)
@@ -159,8 +158,6 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (1.1.1)
-      coffee-rails
     tzinfo (0.3.37)
     uglifier (2.1.1)
       execjs (>= 0.3.0)
@@ -173,11 +170,13 @@ DEPENDENCIES
   activerecord-postgres-hstore
   better_errors
   binding_of_caller
+  carrierwave
   guard-livereload
   jquery-rails
   meta_request
   pg
   rails (= 3.2.13)
+  rails_config
+  rmagick
   sorcery
-  turbolinks
   uglifier (>= 1.0.3)

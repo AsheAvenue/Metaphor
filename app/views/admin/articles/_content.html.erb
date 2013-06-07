@@ -1,0 +1,63 @@
+<div id="content" class="has-right-bar">
+    <div class="header">
+        <% if action == "create" %>
+            New
+        <% elsif action == "update" %>
+            Edit
+        <% end %>
+        <%= Settings.articles.singular %>
+    </div>
+    <div class="form-section clearfix">
+        <div class="form-section-left">
+            Title
+        </div>
+        <div class="form-section-right">
+            <div class="form-line">
+                <%= f.text_area :title, :id => 'article-title', :autocomplete=>"off" %>
+            </div>
+        </div>
+    </div>
+    <div class="form-section clearfix">
+        <div class="form-section-left">
+            Summary
+        </div>
+        <div class="form-section-right">
+            <div class="form-line">
+                <%= f.text_area :summary, :id => 'article-summary', :autocomplete=>"off" %>
+            </div>
+        </div>
+    </div>
+    <div class="form-section clearfix">
+        <div class="form-section-left">
+            Default Image
+        </div>
+        <div class="form-section-right">
+            <div class="form-line">
+                <div id="article-default-image">
+                    <% if !@article.default_image.blank? %>
+                        <div class="display">
+                            <%= image_tag @article.default_image_url(:thumb).to_s %>
+                            <%= link_to 'View all sizes', admin_article_default_image_sizes_path(@article), :class => "button", :id => "article-default-image-view-all-sizes" %>
+                            <a href="#" id="article-default-image-view-remove-image" class="button">Remove image</a>
+                            <%= f.check_box :remove_default_image, :id => 'article-default-image-remove-checkbox' %>
+                        </div>
+                    <% end %>
+                    <div class="upload">
+                        <%= f.file_field :default_image, :id => 'article-default-image' %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-section clearfix">
+        <div class="form-section-left">
+            Body
+        </div>
+        <div class="form-section-right">
+            <div class="form-line">
+                <%= f.text_area :body, :id => 'article-body', :autocomplete=>"off" %>
+            </div>
+        </div>
+    </div>
+</div>
+

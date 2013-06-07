@@ -1,9 +1,9 @@
 <div id="list">
     
     <div class="header">
-        Categories
+        <%= Settings.categories.plural %>
         <div class="header-link pull-right">
-            <%= link_to "New Category »", new_admin_category_url %>
+            <%= link_to "New #{Settings.categories.singular} »", new_admin_category_url %>
         </div>
     </div>
     

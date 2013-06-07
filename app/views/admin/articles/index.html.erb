@@ -1,9 +1,9 @@
 <div id="list">
     
     <div class="header">
-        Articles
+        <%= Settings.articles.plural %>
         <div class="header-link pull-right">
-            <%= link_to "New Article »", new_admin_article_url %>
+            <%= link_to "New #{Settings.articles.singular} »", new_admin_article_url %>
         </div>
     </div>
     
@@ -31,7 +31,7 @@
             Title
         </div>
         <div class="onefifth">
-            Author
+            <%= Settings.authors.singular %>
         </div>
         <div class="onefifth">
             Created at

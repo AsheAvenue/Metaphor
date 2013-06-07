@@ -20,12 +20,12 @@
     </div>
     
     <div class="header">
-        Settings
+        Other settings
     </div>
 
     <div class="item">
         <div class="item-title">Slug</div>
-        <div id="article-slug-display"><%= @article.slug || "Awaiting article title..." %></div>
+        <div id="article-slug-display"><%= @article.slug || "Awaiting #{Settings.articles.singular.downcase} title..." %></div>
         <div id="article-slug-container">
             <%= f.text_field :slug, :id => 'article-slug', :placeholder => 'Slug', :class => "input-xlarge", 'data-original-slug' => @article.slug %>
         </div>
@@ -34,21 +34,21 @@
     </div>
     
     <div class="item">
-        <div class="item-title">Author</div>
+        <div class="item-title"><%= Settings.authors.singular %></div>
         <div id="article-author-display"><%= @article.author_display_name %></div>
         <div id="article-author-container">
             <%= collection_select(:article, :user_ids, User.all, :id, :display_name, {}, {:multiple => false, :name => 'article[user_ids][]'})%>
         </div>
         <div id="article-author-reset"><a href="#" id="article-author-change" class="right-bar-link">Change</a></div>
         <div id="article-author-other">
-            <a href="#" id="article-author-use-other" class="right-bar-link">Manually enter Author name</a>
-            <%= f.text_field :author_other_name, :id => 'article-author-other-name', :placeholder => 'Author name', :class => "input-xlarge", 'data-original-author-other-name' => @article.author_other_name %>
+            <a href="#" id="article-author-use-other" class="right-bar-link">Manually enter <%= Settings.authors.singular %> name</a>
+            <%= f.text_field :author_other_name, :id => 'article-author-other-name', :placeholder => "#{Settings.authors.singular} name", :class => "input-xlarge", 'data-original-author-other-name' => @article.author_other_name %>
         </div>
-        <div id="article-author-other-cancel"><a href="#" id="article-author-use-existing" class="right-bar-link">Use existing Author</a></div>
+        <div id="article-author-other-cancel"><a href="#" id="article-author-use-existing" class="right-bar-link">Use existing <%= Settings.authors.singular %></a></div>
     </div>
     
     <div class="item">
-        <div class="item-title">Categories</div>
+        <div class="item-title"><%= Settings.categories.plural %></div>
         <div id="article-category-display">
             <%= @article.categories.map(&:name).join(', ')%>
         </div>
@@ -65,7 +65,7 @@
     </div>
     
     <div class="item">
-        <div class="item-title">Series</div>
+        <div class="item-title"><%= Settings.series.plural %></div>
         <div id="article-series-display">
             <%= @article.series.map(&:name).join(', ')%>
         </div>
@@ -83,9 +83,10 @@
     
     <div id="actions">
         <% if action == 'create' %>
-            <%= f.submit "Create Article", :class => "btn" %>
+            <%= link_to "Create #{Settings.articles.singular}", '#', :class => "button green" %>
         <% elsif action == 'update'%>
-            <%= f.submit "Save Article", :class => "btn" %>
+            <%= link_to "Save #{Settings.articles.singular}", '#', :class => "button green" %>
+            <a id="article-preview" href="<%= admin_article_preview_path(@article) %>" class="button yellow">Preview <%= Settings.articles.singular %></a>
         <% end %>
     </div>
     

@@ -1,0 +1,14 @@
+site:
+  name: "Metaphor"
+articles:
+  singular: "Article"
+  plural: "Articles"
+categories:
+  singular: "Category"
+  plural: "Categories"
+series:
+  singular: "Series"
+  plural: "Series"
+authors:
+  singular: "Author"
+  plural: "Authors"

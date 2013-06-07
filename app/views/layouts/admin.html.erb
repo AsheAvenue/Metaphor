@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Metaphor</title>
+  <title><%= Settings.site.name %></title>
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700&subset=latin,greek' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "admin/manifest", :media => "all" %>
   <%= javascript_include_tag "admin/manifest" %>
@@ -12,35 +12,35 @@
 	<!-- BEGIN HEADER -->
 	
 	<header>
-		<div class="top">
-            Metaphor
-            <div class="navigation">
-                <ul>
-                    <li>Site:</li>
-                    <li><%= link_to "Users", admin_users_path %></li>
-                    <li><%= link_to "Roles", admin_roles_path %></li>
-                </ul>
-            </div>
-            <div class="navigation">
-                <ul>
-                    <li>Editorial:</li>
-                    <li><%= link_to "Articles", admin_articles_path %></li>
-                    <li><%= link_to "Categories", admin_categories_path %></li>
-                    <li><%= link_to "Series", admin_series_index_path %></li>
-                </ul>
+		<div class="top clearfix">
+            <div class="navigation-wrapper clearfix">
+                <%= Settings.site.name %>
+                <div class="navigation">
+                    <ul>
+                        <li>Signed in as <strong><%= current_user.display_name %></strong></li>
+                        <li><a href="/signout">Sign out</a></li>
+                    </ul>
+                </div>
+                <div class="navigation">
+                    <ul>
+                        <li>Site:</li>
+                        <li><%= link_to "Users", admin_users_path %></li>
+                        <li><%= link_to "Roles", admin_roles_path %></li>
+                    </ul>
+                </div>
+                <div class="navigation">
+                    <ul>
+                        <li>Editorial:</li>
+                        <li><%= link_to Settings.articles.plural, admin_articles_path %></li>
+                        <li><%= link_to Settings.categories.plural, admin_categories_path %></li>
+                        <li><%= link_to Settings.series.plural, admin_series_index_path %></li>
+                    </ul>
+                </div>
             </div>
 		</div>
 	</header>
 
     <%= yield %>
-
-	<footer>
-		<div class="links">
-            Signed in as <%= current_user.username %>
-			&nbsp;&nbsp;&nbsp;
-			<a href="/signout">Sign out</a>
-		</div>
-	</footer>
     
 </body>
 </html>

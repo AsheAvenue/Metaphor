@@ -1,5 +1,5 @@
 class Article < ActiveRecord::Base
-  attr_accessible :slug, :title, :body, :category_ids, :series_ids, :user_ids, :publish_at, :published, :author_other_name
+  attr_accessible :slug, :title, :summary, :body, :category_ids, :series_ids, :user_ids, :publish_at, :published, :author_other_name, :default_image, :remove_default_image
   
   has_many :article_categories, :dependent => :destroy
   has_many :categories, :through => :article_categories
@@ -10,6 +10,9 @@ class Article < ActiveRecord::Base
   
   scope :newest, order("articles.created_at desc")
   
+  mount_uploader :default_image, DefaultImageUploader
+  
+  # convenience methods
   def author
     users.first
   end
@@ -22,6 +25,7 @@ class Article < ActiveRecord::Base
     end
   end
   
+  # TODO: move the following three methods to a helper at some point
   def status 
     if published
       "Published"

@@ -7,7 +7,7 @@
         <% end %>
         <div class="form-section clearfix">
             <div class="form-section-left">
-                Series
+                <%= Settings.series.singular %>
             </div>
             <div class="form-section-right">
                 <div class="form-line">
@@ -20,9 +20,9 @@
         </div>
         <div id="actions">
             <% if action == 'update' %>
-                <%= f.submit "Save Series", :class => "btn" %>
+                <%= f.submit "Save #{Settings.series.singular}", :class => "btn" %>
             <% else %>
-                <%= f.submit "Create Series", :class => "btn" %>
+                <%= f.submit "Create #{Settings.series.singular}", :class => "btn" %>
             <% end %>
         </div>
     </div>

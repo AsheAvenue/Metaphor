@@ -31,6 +31,32 @@ $(function(){
     
     /************ New/Edit Article ************/
     
+    //autosize the article textareas
+    $('#article-title').autosize();
+    $('#article-summary').autosize();
+    $('#article-body').autosize();
+    
+    //hide the default image file form field on page load if we already have an image
+    if($('#article-default-image .display').is(':visible')) {
+        $('#article-default-image .upload').hide();
+    }
+    
+    $('#article-default-image-view-all-sizes').magnificPopup({ 
+        type: 'ajax',
+        alignTop: true,
+        overflowY: 'scroll',
+        width: 400
+    });
+
+    //handle the remove image button
+    $('#article-default-image-view-remove-image').click(function(e){
+        e.preventDefault();
+        $('#article-default-image .display').hide('fast');
+        $('#article-default-image .upload').show('fast');
+        $("#article-default-image-remove-checkbox").prop('checked', true);
+    });
+    
+    //track the slug
     var slug_is_set = false;
     
     // don't let the slug be changed right off the bat if it's already been set
@@ -47,7 +73,7 @@ $(function(){
             var original_slug = $(this).data('original-slug');
             var new_slug = $(this).val();
             
-            if(original_slug != new_slug) {
+            if(new_slug != '' && original_slug != new_slug) {
                 var slug = slugify(new_slug); //slugify
         
                 //set the slug display
@@ -169,6 +195,16 @@ $(function(){
         }
     });
     
+    //handle the preview button
+    $('#article-preview').click(function(e){
+      e.preventDefault();
+      window.location.href = $('#article-preview').attr('href');
+    });
+    
+    $('#article-submit').click(function(e){
+      e.preventDefault();
+      $('#article-form').submit();
+    });
 });
 
 function slugify(t){

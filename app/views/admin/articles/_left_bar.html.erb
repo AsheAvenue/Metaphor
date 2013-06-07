@@ -1,10 +1,10 @@
 <div id="left-bar">
     <div class="header">
-        Articles
+        <%= Settings.articles.plural %>
     </div>
 
     <div class="new">
-        <%= link_to "New Article »", new_admin_article_path %>
+        <%= link_to "New #{Settings.articles.singular} »", new_admin_article_path %>
     </div>
     
     <% @articles.each do |article| %>
