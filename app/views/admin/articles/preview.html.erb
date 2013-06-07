@@ -1,0 +1,26 @@
+<div id="stage">
+    
+  <div id="preview-content" class="clearfix">
+    <div class="pane left">
+      <div class="header">
+        List view
+      </div>
+      <iframe src="http://www.hightimes.com/news?page=3" id="preview-list-iframe"></iframe>
+    </div>
+    <div class="pane right">
+      <div class="header">
+        Article view
+      </div>
+      <iframe src="http://www.hightimes.com/read/uncle-sam-flunks-out" id="preview-article-iframe"></iframe>
+    </div>
+  </div>
+    
+  <%= render "bottom_bar" %>
+    
+</div>
+
+<script>
+  $(function(){
+    //$('#preview-list-iframe').contents().('header').hide();
+  });
+</script>

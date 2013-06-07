@@ -2,43 +2,6 @@
     
     <%= render "left_bar" %>
     
-    <%= form_for [:admin, @role], :html => {:autocomplete=>"off"} do |f| %>
-        <div id="content">
-            <% if flash[:alert] %>
-                <div class="alert">
-                    <%= flash[:alert] %>
-                </div>
-            <% end %>
-            <div class="form-section clearfix">
-                <div class="form-section-left">
-                    Role Info
-                </div>
-                <div class="form-section-right">
-                    <div class="form-line">
-                        <%= f.text_field :name, :placeholder => "Name", :id => 'role-name', :autocomplete=>"off" %>
-                    </div>
-                    <div class="form-line">
-                        <%= f.text_field :key, :placeholder => "Key", :id => 'role-key', :autocomplete=>"off" %>
-                    </div>
-                </div>
-            </div>
-            <div class="form-section clearfix">
-                <div class="form-section-left">
-                    Users
-                </div>
-                <div class="form-section-right">
-                    <% @role.users.each do |user| %>
-                        <div class="form-line">
-                            <%= link_to user.display_name, edit_admin_user_path(user) %>
-                        </div>
-                    <% end %>
-                </div>
-            </div>
-            <div id="actions">
-                <%= f.submit "Save Role", :class => "btn" %>
-            </div>
-        </div>
-        
-    <% end %>
+    <%= render :partial => "form", :locals => {:action => 'update'} %>
 
 </div>

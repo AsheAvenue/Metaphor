@@ -42,13 +42,20 @@
                 <%= collection_select(:user, :role_ids, Role.all, :id, :name, {}, {:multiple => false, :name => 'user[role_ids][]'})%>
             </div>
         </div>
-        <div id="actions">
-            <% if action == 'update' %>
-                <%= f.submit "Save User", :class => "btn" %>
-            <% else %>
-                <%= f.submit "Create User", :class => "btn" %>
-            <% end %>
+
+        <div class="form-section clearfix">
+            <div class="form-section-left"></div>
+            <div class="form-section-right">
+                <div class="form-line">
+                  <% if action == 'update' %>
+                      <%= f.submit "Save #{Settings.users.singular}", :class => "button" %>
+                  <% else %>
+                      <%= f.submit "Create #{Settings.users.singular}", :class => "button" %>
+                  <% end %>
+                </div>
+            </div>
         </div>
+
     </div>
     
 <% end %>

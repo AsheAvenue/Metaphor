@@ -18,12 +18,17 @@
                 </div>
             </div>
         </div>
-        <div id="actions">
-            <% if action == 'update' %>
-                <%= f.submit "Save #{Settings.categories.singular}", :class => "btn" %>
-            <% else %>
-                <%= f.submit "Create #{Settings.categories.singular}", :class => "btn" %>
-            <% end %>
+        <div class="form-section clearfix">
+            <div class="form-section-left"></div>
+            <div class="form-section-right">
+                <div class="form-line">
+                  <% if action == 'update' %>
+                      <%= f.submit "Save #{Settings.categories.singular}", :class => "button" %>
+                  <% else %>
+                      <%= f.submit "Create #{Settings.categories.singular}", :class => "button" %>
+                  <% end %>
+                </div>
+            </div>
         </div>
     </div>
     

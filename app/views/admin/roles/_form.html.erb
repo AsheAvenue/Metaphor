@@ -1,4 +1,4 @@
-<%= form_for [:admin, @series], :html => {:autocomplete=>"off"} do |f| %>
+<%= form_for [:admin, @role], :html => {:autocomplete=>"off"} do |f| %>
     <div id="content">
         <% if flash[:alert] %>
             <div class="alert">
@@ -7,17 +7,31 @@
         <% end %>
         <div class="form-section clearfix">
             <div class="form-section-left">
-                <%= Settings.series.singular %>
+                Role Info
             </div>
             <div class="form-section-right">
                 <div class="form-line">
-                    <%= f.text_field :name, :placeholder => "Name", :id => 'series-name', :autocomplete=>"off" %>
+                    <%= f.text_field :name, :placeholder => "Name", :id => 'role-name', :autocomplete=>"off" %>
                 </div>
                 <div class="form-line">
-                    <%= f.text_field :slug, :placeholder => "Slug", :id => 'series-slug', :autocomplete=>"off" %>
+                    <%= f.text_field :key, :placeholder => "Key", :id => 'role-key', :autocomplete=>"off" %>
                 </div>
             </div>
         </div>
+        <% if !@role.users.empty? %>
+          <div class="form-section clearfix">
+              <div class="form-section-left">
+                  Users
+              </div>
+              <div class="form-section-right">
+                  <% @role.users.each do |user| %>
+                      <div class="form-line">
+                          <%= link_to user.display_name, edit_admin_user_path(user) %>
+                      </div>
+                  <% end %>
+              </div>
+          </div>
+        <% end %>
         <div class="form-section clearfix">
             <div class="form-section-left"></div>
             <div class="form-section-right">
@@ -30,7 +44,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     
 <% end %>

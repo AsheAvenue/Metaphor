@@ -34,17 +34,17 @@
     </div>
     
     <div class="item">
-        <div class="item-title"><%= Settings.authors.singular %></div>
+        <div class="item-title"><%= Settings.users.singular %></div>
         <div id="article-author-display"><%= @article.author_display_name %></div>
         <div id="article-author-container">
             <%= collection_select(:article, :user_ids, User.all, :id, :display_name, {}, {:multiple => false, :name => 'article[user_ids][]'})%>
         </div>
         <div id="article-author-reset"><a href="#" id="article-author-change" class="right-bar-link">Change</a></div>
         <div id="article-author-other">
-            <a href="#" id="article-author-use-other" class="right-bar-link">Manually enter <%= Settings.authors.singular %> name</a>
-            <%= f.text_field :author_other_name, :id => 'article-author-other-name', :placeholder => "#{Settings.authors.singular} name", :class => "input-xlarge", 'data-original-author-other-name' => @article.author_other_name %>
+            <a href="#" id="article-author-use-other" class="right-bar-link">Manually enter <%= Settings.users.singular %> name</a>
+            <%= f.text_field :author_other_name, :id => 'article-author-other-name', :placeholder => "#{Settings.users.singular} name", :class => "input-xlarge", 'data-original-author-other-name' => @article.author_other_name %>
         </div>
-        <div id="article-author-other-cancel"><a href="#" id="article-author-use-existing" class="right-bar-link">Use existing <%= Settings.authors.singular %></a></div>
+        <div id="article-author-other-cancel"><a href="#" id="article-author-use-existing" class="right-bar-link">Use existing <%= Settings.users.singular %></a></div>
     </div>
     
     <div class="item">
@@ -86,7 +86,7 @@
             <%= link_to "Create #{Settings.articles.singular}", '#', :class => "button green" %>
         <% elsif action == 'update'%>
             <%= link_to "Save #{Settings.articles.singular}", '#', :class => "button green" %>
-            <a id="article-preview" href="<%= admin_article_preview_path(@article) %>" class="button yellow">Preview <%= Settings.articles.singular %></a>
+            <a id="article-preview" href="<%= admin_article_preview_path(@article) %>" class="button">Preview <%= Settings.articles.singular %></a>
         <% end %>
     </div>
     

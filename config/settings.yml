@@ -9,6 +9,6 @@ categories:
 series:
   singular: "Series"
   plural: "Series"
-authors:
-  singular: "Author"
-  plural: "Authors"
+users:
+  singular: "User"
+  plural: "Users"

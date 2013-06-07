@@ -3,8 +3,8 @@
 <head>
   <title><%= Settings.site.name %></title>
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700&subset=latin,greek' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag    "admin/manifest", :media => "all" %>
-  <%= javascript_include_tag "admin/manifest" %>
+  <%= stylesheet_link_tag    "admin/admin_manifest", :media => "all" %>
+  <%= javascript_include_tag "admin/admin_manifest" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -24,7 +24,7 @@
                 <div class="navigation">
                     <ul>
                         <li>Site:</li>
-                        <li><%= link_to "Users", admin_users_path %></li>
+                        <li><%= link_to Settings.users.plural, admin_users_path %></li>
                         <li><%= link_to "Roles", admin_roles_path %></li>
                     </ul>
                 </div>
