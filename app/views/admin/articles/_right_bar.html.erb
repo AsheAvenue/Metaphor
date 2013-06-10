@@ -83,9 +83,9 @@
     
     <div id="actions">
         <% if action == 'create' %>
-            <%= link_to "Create #{Settings.articles.singular}", '#', :class => "button green" %>
+            <%= link_to "Create #{Settings.articles.singular}", '#', :class => "button green", :id => 'article-submit' %>
         <% elsif action == 'update'%>
-            <%= link_to "Save #{Settings.articles.singular}", '#', :class => "button green" %>
+            <%= link_to "Save #{Settings.articles.singular}", '#', :class => "button green", :id => 'article-submit' %>
             <a id="article-preview" href="<%= admin_article_preview_path(@article) %>" class="button">Preview <%= Settings.articles.singular %></a>
         <% end %>
     </div>
