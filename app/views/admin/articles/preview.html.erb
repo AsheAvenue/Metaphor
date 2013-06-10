@@ -5,13 +5,13 @@
       <div class="header">
         List view
       </div>
-      <iframe src="http://www.hightimes.com/news?page=3" id="preview-list-iframe"></iframe>
+      <iframe src="<%= index_preview_path(@article) %>" id="preview-list-iframe"></iframe>
     </div>
     <div class="pane right">
       <div class="header">
         Article view
       </div>
-      <iframe src="http://www.hightimes.com/read/uncle-sam-flunks-out" id="preview-article-iframe"></iframe>
+      <iframe src="<%= article_preview_path(@article) %>" id="preview-article-iframe"></iframe>
     </div>
   </div>
     
@@ -20,7 +20,40 @@
 </div>
 
 <script>
-  $(function(){
-    //$('#preview-list-iframe').contents().('header').hide();
-  });
+  var listRemovals = ['header', '#fb-root', '.item-list', '.sidebar', '.comments', '.bd-social']; 
+  var articleRemovals = ['header', '#fb-root', '.sidebar', '.comments', '.bd-social']; 
+
+  function listPreviewLoaded() {
+    //remove the non-preview elements
+    $.each(listRemovals, function(index, value) {
+      $('#preview-list-iframe').contents().find(value).remove();
+    });     
+         
+    //custom dom mods below
+    
+    //remove the 3rd and 4th items in the article list
+    $('#preview-list-iframe').contents().find('.main .summary:nth-child(3)').remove(); 
+    $('#preview-list-iframe').contents().find('.main .summary:nth-child(3)').remove(); 
+    
+    //set the first and second items' text and images to whatever the video feature's text is
+    $('#preview-list-iframe').contents().find('.summary .headline').html(
+      $.trim($('#preview-list-iframe').contents().find('.video-feature .headline').html())
+    ); 
+    $('#preview-list-iframe').contents().find('.summary .byline').html(
+      $.trim($('#preview-list-iframe').contents().find('.video-feature .byline').html())
+    ); 
+    $('#preview-list-iframe').contents().find('.summary .description').html(
+      $.trim($('#preview-list-iframe').contents().find('.video-feature .description').html())
+    ); 
+    $('#preview-list-iframe').contents().find('.summary img').attr('src',
+      $.trim($('#preview-list-iframe').contents().find('.video-feature img').attr('src'))
+    ); 
+  }
+
+  function articlePreviewLoaded() {
+    //remove the non-preview elements
+    $.each(articleRemovals, function(index, value) {
+      $('#preview-article-iframe').contents().find(value).remove();
+    });
+  }
 </script>

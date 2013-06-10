@@ -16,7 +16,7 @@ time, mark, audio, video, input, textarea {
 	padding: 0;
 	border: 0;
 	vertical-align: baseline;
-  font-family: 'Source Sans Pro', sans-serif !important;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 article, aside, details, figcaption, figure, 
@@ -581,8 +581,32 @@ header .navigation li a {
 #bottom-bar .title {
     color: white;
     font-size: 30px;
-    line-height: 32px;
+    line-height: 30px;
     font-weight: 100;
+}
+
+#bottom-bar .screen-sizes {
+    color: white;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 100;
+    margin-left: 15px;
+    padding-left: 10px;
+    border-left: 1px solid #bdc3c7;
+}
+
+#bottom-bar .screen-sizes span {
+    margin: 3px 10px 0px;
+    cursor: pointer;
+}
+
+#bottom-bar .screen-sizes span.active {
+    color: #f1c40f;
+}
+
+#bottom-bar .done-previewing {
+  margin-right: 25px;
+  margin-top: 3px;
 }
 
 #preview-content {
@@ -623,5 +647,7 @@ header .navigation li a {
 #preview-list-iframe,
 #preview-article-iframe {
   width: 100%;
-  height: 100%;
+  height: 94%;
+  margin: 0 auto;
+  display: block;
 }

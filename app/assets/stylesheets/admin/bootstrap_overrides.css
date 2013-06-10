@@ -2,6 +2,9 @@ body {
     background: #333 !important;
 }
 
+input, textarea {
+  font-family: 'Source Sans Pro', sans-serif !important;
+}
 .label {
     font-weight: normal !important;
 }

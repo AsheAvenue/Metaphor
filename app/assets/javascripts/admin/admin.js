@@ -205,6 +205,24 @@ $(function(){
       e.preventDefault();
       $('#article-form').submit();
     });
+    
+    //preview size selection
+    $('.preview-size').click(function(e){
+      e.preventDefault();
+      if(!$(this).hasClass('active')) {
+        if($(this).attr('id') == "preview-size-screen") {
+          $('#preview-size-mobile').removeClass('active');
+          $(this).addClass('active');
+          $('#preview-list-iframe').animate({width:'100%'}, 'fast')
+          $('#preview-article-iframe').animate({width:'100%'}, 'fast')
+        } else if($(this).attr('id') == "preview-size-mobile") {
+          $('#preview-size-screen').removeClass('active');
+          $(this).addClass('active');
+          $('#preview-list-iframe').animate({width:'320px'}, 'fast')
+          $('#preview-article-iframe').animate({width:'320px'}, 'fast')
+        }
+      }
+    });
 });
 
 function slugify(t){
