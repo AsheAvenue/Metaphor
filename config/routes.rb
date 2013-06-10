@@ -1,5 +1,7 @@
 Metaphor::Application.routes.draw do
 
+  mount RedactorRails::Engine => '/redactor_rails'
+
   root :to => 'home#index'
   
   #Admin routes
@@ -7,6 +9,7 @@ Metaphor::Application.routes.draw do
     resources :articles
     resources :categories
     resources :series
+    resources :pages
     resources :users
     resources :roles
   end
@@ -15,7 +18,6 @@ Metaphor::Application.routes.draw do
   match 'admin/articles/checkslug' => 'admin/articles#checkslug'
   match 'admin/articles/:id/default_image_sizes' => 'admin/articles#default_image_sizes', :as => 'admin_article_default_image_sizes'
   match 'admin/articles/:id/preview' => 'admin/articles#preview', :as => 'admin_article_preview'
-  
   
   # Public routes
   resources :articles, :only => [:index, :show]  
@@ -32,5 +34,5 @@ Metaphor::Application.routes.draw do
   get "signin" => "sessions#new", :as => "signin"
   
   # Glob for pages
-  
+  get '/:id' => 'pages#show', :as => 'page'
 end

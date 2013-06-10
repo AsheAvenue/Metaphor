@@ -19,7 +19,7 @@ class Admin::SeriesController < Admin::AdminController
     @series = Series.create(params[:series])
     @serieses = Series.where(true)
     if @series.save
-      flash[:alert] = "Series successfully created"
+      flash[:alert] = "#{Settings.series.singular} successfully created"
       redirect_to edit_admin_series_path(@series)
     else
       flash[:alert] = "All fields are required"
@@ -32,7 +32,7 @@ class Admin::SeriesController < Admin::AdminController
     @serieses.update_attributes(params[:series])
     if @series.save
       @serieses = Series.where(true)
-      flash[:alert] = "Series successfully updated"
+      flash[:alert] = "#{Settings.series.singular} successfully updated"
       redirect_to edit_admin_series_path(@series)
     else
       flash[:alert] = "All fields are required"

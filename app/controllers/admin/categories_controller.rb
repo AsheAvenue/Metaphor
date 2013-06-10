@@ -19,7 +19,7 @@ class Admin::CategoriesController < Admin::AdminController
     @category = Category.create(params[:category])
     @categories = Category.where(true)
     if @category.save
-      flash[:alert] = "Category successfully created"
+      flash[:alert] = "#{Settings.categories.singular} successfully created"
       redirect_to edit_admin_category_path(@category)
     else
       flash[:alert] = "All fields are required"
@@ -32,7 +32,7 @@ class Admin::CategoriesController < Admin::AdminController
     @category.update_attributes(params[:category])
     if @category.save
       @categories = Category.where(true)
-      flash[:alert] = "Category successfully updated"
+      flash[:alert] = "#{Settings.categories.singular} successfully updated"
       redirect_to edit_admin_category_path(@category)
     else
       flash[:alert] = "All fields are required"

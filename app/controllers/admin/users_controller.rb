@@ -1,7 +1,4 @@
-class Admin::UsersController < ApplicationController
-  
-  layout 'admin'
-  before_filter :require_login
+class Admin::UsersController < Admin::AdminController
   
   def index
     @users = User.where(true)

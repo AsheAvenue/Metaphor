@@ -9,6 +9,9 @@ categories:
 series:
   singular: "Series"
   plural: "Series"
+pages:
+  singular: "Static Page"
+  plural: "Static Pages"
 users:
   singular: "User"
   plural: "Users"

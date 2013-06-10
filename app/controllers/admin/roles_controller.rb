@@ -1,8 +1,5 @@
-class Admin::RolesController < ApplicationController
-  
-  layout 'admin'
-  before_filter :require_login
-  
+class Admin::RolesController < Admin::AdminController
+
   def index
     @roles = Role.where(true)
     @roles = @roles.alphabetical

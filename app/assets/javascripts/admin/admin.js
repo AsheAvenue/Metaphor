@@ -29,6 +29,13 @@ $(function(){
         }
     });
     
+    /************ New/Edit Page ***********/
+
+    $('#page-submit').click(function(e){
+      e.preventDefault();
+      $('#page-form').submit();
+    });
+    
     /************ New/Edit Article ************/
     
     //autosize the article textareas
@@ -205,6 +212,8 @@ $(function(){
       e.preventDefault();
       $('#article-form').submit();
     });
+    
+    /************ Preview Article ************/
     
     //preview size selection
     $('.preview-size').click(function(e){

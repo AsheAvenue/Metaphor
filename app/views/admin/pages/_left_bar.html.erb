@@ -1,0 +1,13 @@
+<div id="left-bar">
+    <div class="header">
+        <%= Settings.pages.plural %>
+    </div>
+
+    <div class="new">
+        <%= link_to "New #{Settings.pages.singular} »", new_admin_page_path %>
+    </div>
+    
+    <% @pages.each do |page| %>
+        <div class="item"><%= link_to page.name, edit_admin_page_path(page) %></div>
+    <% end %>
+</div>
