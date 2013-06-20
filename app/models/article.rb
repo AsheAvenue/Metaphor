@@ -3,6 +3,8 @@ class Article < ActiveRecord::Base
   
   has_many :article_categories, :dependent => :destroy
   has_many :categories, :through => :article_categories
+  has_many :article_related_parties, :dependent => :destroy
+  has_many :related_parties, :through => :article_related_parties
   has_many :article_series, :dependent => :destroy
   has_many :series, :through => :article_series
   has_many :article_users, :dependent => :destroy
