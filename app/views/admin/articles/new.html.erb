@@ -2,7 +2,7 @@
     
     <%= render "left_bar" %>
     
-    <%= form_for [:admin, @article], :id => 'article-form' do |f| %>
+    <%= form_for [:admin, @article], :html => {:id => 'article-form'} do |f| %>
     
         <%= render :partial => 'content', :locals => {:f => f, :action => 'create'}%>
             

@@ -10,6 +10,9 @@ class Article < ActiveRecord::Base
   has_many :article_users, :dependent => :destroy
   has_many :users, :through => :article_users
   
+  validates_presence_of :title, :slug
+  validates_uniqueness_of :slug
+  
   scope :newest, order("articles.created_at desc")
   
   mount_uploader :default_image, DefaultImageUploader
