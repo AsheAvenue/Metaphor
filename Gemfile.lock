@@ -37,6 +37,7 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.0.4)
     callsite (0.0.11)
+    cancan (1.6.10)
     carrierwave (0.6.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -176,6 +177,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
+  cancan
   carrierwave
   guard-livereload
   jquery-rails

@@ -8,6 +8,7 @@ gem 'redactor-rails'
 gem 'sorcery'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'cancan'
 
 group :assets do
   gem 'uglifier', '>= 1.0.3'
