@@ -9,6 +9,7 @@ Metaphor::Application.routes.draw do
     resources :articles
     resources :categories
     resources :series
+    resources :related_parties
     resources :pages
     resources :users
     resources :roles
