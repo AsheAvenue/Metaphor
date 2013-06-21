@@ -11,9 +11,6 @@
         <div class="quarter">
             Name
         </div>
-        <div class="quarter">
-            Key
-        </div>
         <div class="halt">
             Users
         </div>
@@ -24,9 +21,6 @@
             <li class="item mix not_scheduled clearfix" data-status="not_scheduled" data-created="<%= role.created_at.to_time.to_i %>">
                 <div class="quarter">
                     <%= link_to role.name, edit_admin_role_path(role) %>
-                </div>
-                <div class="quarter">
-                    <%= link_to role.key, edit_admin_role_path(role) %>
                 </div>
                 <div class="half">
                     <%= role.users.map { |user| user.display_name }.join(", ") %>

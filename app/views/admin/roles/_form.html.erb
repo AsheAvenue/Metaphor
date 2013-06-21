@@ -13,9 +13,6 @@
                 <div class="form-line">
                     <%= f.text_field :name, :placeholder => "Name", :id => 'role-name', :autocomplete=>"off" %>
                 </div>
-                <div class="form-line">
-                    <%= f.text_field :key, :placeholder => "Key", :id => 'role-key', :autocomplete=>"off" %>
-                </div>
             </div>
         </div>
         <% if !@role.users.empty? %>

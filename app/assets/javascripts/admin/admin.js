@@ -210,7 +210,7 @@ $(function(){
     
     $('#article-submit').click(function(e){
       e.preventDefault();
-      $('#article-form').submit();
+      $('#new_article').submit();
     });
     
     /************ Preview Article ************/
