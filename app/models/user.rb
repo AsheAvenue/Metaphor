@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  rolify
   attr_accessible :username, :email, :password, :password_confirmation, :display_name, :role_ids
   
   authenticates_with_sorcery!
@@ -9,13 +10,8 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username
   
-  has_many :user_roles, :dependent => :destroy
-  has_many :roles, :through => :user_roles
+  has_and_belongs_to_many :roles, :join_table => :users_roles
   
   scope :alphabetical, order("users.display_name asc")
-  
-  def role
-    roles.first
-  end
   
 end

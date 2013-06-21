@@ -8,6 +8,7 @@ gem 'redactor-rails'
 gem 'sorcery'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'rolify'
 gem 'cancan'
 
 group :assets do

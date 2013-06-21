@@ -149,6 +149,7 @@ GEM
       mime-types
       orm_adapter
     rmagick (2.13.2)
+    rolify (3.2.0)
     slop (3.4.5)
     sorcery (0.8.1)
       bcrypt-ruby (~> 3.0.0)
@@ -187,5 +188,6 @@ DEPENDENCIES
   rails_config
   redactor-rails
   rmagick
+  rolify
   sorcery
   uglifier (>= 1.0.3)

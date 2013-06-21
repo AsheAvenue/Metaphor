@@ -1,9 +1,6 @@
 class Role < ActiveRecord::Base
-  attr_accessible :key, :name
+  has_and_belongs_to_many :users, :join_table => :users_roles
+  belongs_to :resource, :polymorphic => true
   
-  scope :alphabetical, order("roles.name asc")
-  
-  has_many :user_roles, :dependent => :destroy
-  has_many :users, :through => :user_roles
-  
+  scopify
 end
