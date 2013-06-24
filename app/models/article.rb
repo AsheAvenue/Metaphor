@@ -9,6 +9,8 @@ class Article < ActiveRecord::Base
   has_many :series, :through => :article_series
   has_many :article_users, :dependent => :destroy
   has_many :users, :through => :article_users
+  has_many :content_widgets,
+           :as => :entity
   
   validates_presence_of :title, :slug
   validates_uniqueness_of :slug
