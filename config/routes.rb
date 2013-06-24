@@ -10,6 +10,8 @@ Metaphor::Application.routes.draw do
     resources :categories
     resources :series
     resources :related_parties
+    resources :collections
+    resources :pinned_articles
     resources :pages
     resources :users
     resources :roles
@@ -19,7 +21,7 @@ Metaphor::Application.routes.draw do
   match 'admin/articles/checkslug' => 'admin/articles#checkslug'
   match 'admin/articles/:id/default_image_sizes' => 'admin/articles#default_image_sizes', :as => 'admin_article_default_image_sizes'
   match 'admin/articles/:id/preview' => 'admin/articles#preview', :as => 'admin_article_preview'
-  
+
   # Public routes
   resources :articles, :only => [:index, :show]  
   match 'articles/:id/preview' => 'articles#preview', :as => 'article_preview'

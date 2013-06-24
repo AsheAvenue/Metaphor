@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130621191230) do
+ActiveRecord::Schema.define(:version => 20130624194206) do
 
   create_table "article_categories", :force => true do |t|
     t.integer  "article_id"
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(:version => 20130621191230) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "collections", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.string   "article_type"
+    t.string   "order"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "pages", :force => true do |t|
     t.string   "name"
     t.string   "slug"
@@ -63,6 +72,14 @@ ActiveRecord::Schema.define(:version => 20130621191230) do
   end
 
   add_index "pages", ["slug"], :name => "index_pages_on_slug"
+
+  create_table "pinned_articles", :force => true do |t|
+    t.integer  "collection_id"
+    t.integer  "article_id"
+    t.integer  "order"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "redactor_assets", :force => true do |t|
     t.integer  "user_id"

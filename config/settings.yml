@@ -12,9 +12,24 @@ categories:
 series:
   singular: "Series"
   plural: "Series"
+collections:
+  singular: "Collection"
+  plural: "Collections"
 pages:
   singular: "Static Page"
   plural: "Static Pages"
 users:
   singular: "User"
   plural: "Users"
+  
+query:
+  types:
+    all: All
+    video: Video
+    sound: Sound
+    gallery: Gallery
+    event: Event
+  order:
+    newest: Newest
+    oldest: Oldest
+    hottest: Hottest
