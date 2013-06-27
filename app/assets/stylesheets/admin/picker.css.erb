@@ -1,0 +1,38 @@
+#picker {
+    display: none;
+    position:absolute;
+    top: 50px;
+    right: 0px;
+    width: 350px;
+    height: 90%;
+    background: #333;
+    border-left: 1px solid rgba(0,0,0,0.5);
+    box-shadow: 2px 0 3px 0 rgba(0,0,0,0.2);
+    -webkit-transition: left .5s ease-in-out,background .4s ease-in-out;
+    transition: left .5s ease-in-out,background .4s ease-in-out;
+}
+.pickercontent .header {
+    color: white;
+    padding: 10px;
+    font-size: 42px;
+    line-height: 42px;
+    font-weight: 100;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    background-color: #95a5a6;
+}
+
+.pickercontent .new,
+.pickercontent .item {
+    padding: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+}
+
+.pickercontent .item {
+    cursor: pointer;
+}
+
+.pickercontent .item a {
+    color: white;
+    text-decoration: none;
+    font-weight: 100;
+}

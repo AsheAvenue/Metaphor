@@ -1,0 +1,9 @@
+<div class="pickercontent">
+    <div class="header">
+        <%= Settings.articles.plural %>
+    </div>
+
+    <% @articles.each do |article| %>
+        <div class="item"><%= link_to article.title, "" %></div>
+    <% end %>
+</div>

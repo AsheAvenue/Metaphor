@@ -35,14 +35,14 @@ query:
     hottest: Hottest
     
 templates:
-  video:
+  info:
     name: Video
     image: http://nicenicejpg.com/72/128
     widgets:
       topvideo: topvideo
       meta: meta
       body: body
-  sound:
+  info:
     name: Sound
     image: http://nicenicejpg.com/72/128
     widgets:
@@ -50,14 +50,14 @@ templates:
       meta: meta
       sound: sound
       body: body
-  gallery:
+  info:
     name: Gallery
     image: http://nicenicejpg.com/72/128
     widgets:
       topgallery: topgallery
       meta: meta
       body: body
-  text:
+  info:
     name: Text
     image: http://nicenicejpg.com/72/128
     widgets:

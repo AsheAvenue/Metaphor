@@ -51,11 +51,13 @@
     </div>
     <div class="form-section clearfix">
         <div class="form-section-left">
-            Body
+            Template
         </div>
         <div class="form-section-right">
             <div class="form-line">
-                <%= f.text_area :body, :id => 'article-body', :autocomplete=>"off", :class => 'redactor' %>
+                <% Settings.templates.each do |template| %>
+                    <%= template.name %>
+                <% end %>
             </div>
         </div>
     </div>
