@@ -232,6 +232,19 @@ $(function(){
         }
       }
     });
+    
+    /************ Collections ************/
+    $('#content .pinned-articles').sortable(
+        {
+            axis: 'y',
+            update: function(){
+                $.post(
+                    $(this).data('update-url'), 
+                    $(this).sortable('serialize')
+                );
+            }
+        }
+    );
 });
 
 function slugify(t){

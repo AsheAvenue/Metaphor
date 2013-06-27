@@ -15,13 +15,19 @@ Metaphor::Application.routes.draw do
     resources :pages
     resources :users
     resources :roles
+  
+    #generic admin routes
+    match '/' => 'articles#index'
+    match 'articles/checkslug' => 'articles#checkslug'
+    match 'articles/:id/default_image_sizes' => 'articles#default_image_sizes', :as => 'article_default_image_sizes'
+    match 'articles/:id/preview' => 'articles#preview', :as => 'article_preview'
+    match 'collections/:id/sort' => 'collections#sort', :as => 'collection_sort'
+    
+    #picker
+    match 'picker/:action' => 'picker#:action'
   end
   
-  match 'admin' => 'admin/articles#index'
-  match 'admin/articles/checkslug' => 'admin/articles#checkslug'
-  match 'admin/articles/:id/default_image_sizes' => 'admin/articles#default_image_sizes', :as => 'admin_article_default_image_sizes'
-  match 'admin/articles/:id/preview' => 'admin/articles#preview', :as => 'admin_article_preview'
-
+  
   # Public routes
   resources :articles, :only => [:index, :show]  
   match 'articles/:id/preview' => 'articles#preview', :as => 'article_preview'

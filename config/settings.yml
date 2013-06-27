@@ -33,3 +33,34 @@ query:
     newest: Newest
     oldest: Oldest
     hottest: Hottest
+    
+templates:
+  video:
+    name: Video
+    image: http://nicenicejpg.com/72/128
+    widgets:
+      topvideo: topvideo
+      meta: meta
+      body: body
+  sound:
+    name: Sound
+    image: http://nicenicejpg.com/72/128
+    widgets:
+      topimage: topimage
+      meta: meta
+      sound: sound
+      body: body
+  gallery:
+    name: Gallery
+    image: http://nicenicejpg.com/72/128
+    widgets:
+      topgallery: topgallery
+      meta: meta
+      body: body
+  text:
+    name: Text
+    image: http://nicenicejpg.com/72/128
+    widgets:
+      topimage: topimage
+      meta: meta
+      body: body

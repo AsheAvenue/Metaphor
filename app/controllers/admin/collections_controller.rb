@@ -8,13 +8,11 @@ class Admin::CollectionsController < Admin::AdminController
   def edit
     @collection = Collection.find(params[:id])
     @collections = Collection.all
-    @collection.pinned_articles.new
   end
     
   def new
     @collection = Collection.new
     @collections = Collection.all
-    @collection.pinned_articles.new
   end
     
   def create    
@@ -40,6 +38,13 @@ class Admin::CollectionsController < Admin::AdminController
       flash[:alert] = "All fields are required"
       render :edit
     end
+  end
+  
+  def sort
+    params[:pinned_articles].each_with_index do |id, index|
+      PinnedArticle.update_all({order: index+1}, {id: id})
+    end 
+    render nothing: true
   end
   
 end

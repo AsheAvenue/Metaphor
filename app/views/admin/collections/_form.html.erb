@@ -44,9 +44,19 @@
             </div>
             <div class="form-section-right">
                 <div class="form-line">
-                    <%= f.fields_for :pinned_articles do |p| %>
-                        <%= p.text_field :article_id %>
-                    <% end %>
+                    <div class="pinned-articles" data-update-url="<%= admin_collection_sort_url(@collection) %>">
+                        <% @collection.pinned_articles.each do |p| %>
+                            <div id="pinned_articles_<%= p.id %>" class="pinned-article clearfix">
+                                <div class="title">
+                                    <%= p.article.title %>
+                                </div>
+                                <div class="meta">
+                                    <%= link_to "/#{p.article.slug}", p.article.slug %>
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+                    <a href="#" class="button" data-picker="article">Add Article</a>
                 </div>
             </div>
         </div>
