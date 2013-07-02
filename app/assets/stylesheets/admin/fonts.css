@@ -27,8 +27,8 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-screen, .icon-mobile, .icon-tablet {
-	font-family: 'icomoon' !important;
+.icon-screen, .icon-mobile, .icon-tablet, .icon-search {
+	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
@@ -45,4 +45,7 @@ you can use the generic selector below, but it's slower:
 }
 .icon-tablet:before {
 	content: "\29";
+}
+.icon-search:before {
+	content: "\21";
 }

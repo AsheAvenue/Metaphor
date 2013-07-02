@@ -55,9 +55,18 @@
         </div>
         <div class="form-section-right">
             <div class="form-line">
-                <% Settings.templates.each do |template| %>
-                    <%= template.name %>
-                <% end %>
+                <div id="templates" class="clearfix">
+                    <% @templates.each do |template| %>
+                        <div class="template">
+                            <div>
+                                <img src="<%= template[:image] %>">
+                            </div>
+                            <div>
+                                <%= template[:name] %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
             </div>
         </div>
     </div>

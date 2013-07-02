@@ -1,9 +1,10 @@
 <div class="pickercontent">
     <div class="header">
-        <%= Settings.articles.plural %>
+        <span aria-hidden="true" class="icon-search"></span>
+        <input type="text" id="picker-search">
     </div>
 
     <% @articles.each do |article| %>
-        <div class="item"><%= link_to article.title, "" %></div>
+        <div class="item"><%= link_to article.title, "", 'data-picker-item' => article.id %></div>
     <% end %>
 </div>

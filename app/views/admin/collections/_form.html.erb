@@ -1,3 +1,6 @@
+<div id="collection" data-id="<%= @collection.id %>" />
+<div id="add_pinned_article" data-path="<%= admin_collection_add_pinned_article_url(@collection) %>" />
+
 <%= form_for [:admin, @collection], :html => {:autocomplete=>"off"} do |f| %>
     <div id="content">
         <% if flash[:alert] %>
@@ -46,17 +49,10 @@
                 <div class="form-line">
                     <div class="pinned-articles" data-update-url="<%= admin_collection_sort_url(@collection) %>">
                         <% @collection.pinned_articles.each do |p| %>
-                            <div id="pinned_articles_<%= p.id %>" class="pinned-article clearfix">
-                                <div class="title">
-                                    <%= p.article.title %>
-                                </div>
-                                <div class="meta">
-                                    <%= link_to "/#{p.article.slug}", p.article.slug %>
-                                </div>
-                            </div>
+                            <%= render :partial => 'pinned_article', :locals => {:p => p} %>
                         <% end %>
                     </div>
-                    <a href="#" class="button" data-picker="article">Add Article</a>
+                    <a href="#" class="button" data-picker="article" data-picker-callback="collections#add_pinned_article">Add Article</a>
                 </div>
             </div>
         </div>

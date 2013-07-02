@@ -13,6 +13,13 @@ class Admin::ArticlesController < Admin::AdminController
   def edit
     @articles = Article.where(true).newest
     @article = Article.includes(:categories, :series).find(params[:id])
+    
+    #set up the templates
+    @templates = []
+    Settings.templates.each do |template|
+      template = Hash[ [:name, :image, :components].zip(template[1].split('*',3)) ]
+      @templates.push template
+    end
   end
 
   def new

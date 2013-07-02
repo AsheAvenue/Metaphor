@@ -47,4 +47,16 @@ class Admin::CollectionsController < Admin::AdminController
     render nothing: true
   end
   
+  def add_pinned_article
+    @collection = Collection.find(params[:id])
+    @p = @collection.pinned_articles.build
+    @p.article_id = params[:article_id]
+    @p.save!
+  end
+  
+  def remove_pinned_article
+    @p = PinnedArticle.find(params[:pinned_article_id])
+    @p.destroy
+  end
+  
 end
