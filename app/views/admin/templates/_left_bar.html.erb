@@ -1,0 +1,13 @@
+<div id="left-bar">
+    <div class="header">
+        <%= Settings.templates.plural %>
+    </div>
+
+    <div class="new">
+        <%= link_to "New #{Settings.templates.singular} »", new_admin_template_path %>
+    </div>
+    
+    <% @templates.each do |template| %>
+        <div class="item"><%= link_to template.name, edit_admin_template_path(template) %></div>
+    <% end %>
+</div>
