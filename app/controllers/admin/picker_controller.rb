@@ -7,4 +7,8 @@ class Admin::PickerController < Admin::AdminController
     @articles = Article.where(true).newest
   end
 
+  def component
+    @components = Component.all
+  end
+
 end

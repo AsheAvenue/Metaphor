@@ -17,6 +17,9 @@ end
 
 module Metaphor
   class Application < Rails::Application
+    
+    config.filepicker_rails.api_key = "Ab8n6gmUMTmOATLDKSBD2z"
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

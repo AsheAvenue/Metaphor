@@ -21,6 +21,12 @@ pages:
 users:
   singular: "User"
   plural: "Users"
+templates:
+  singular: "Template"
+  plural: "Templates"
+components:
+  singular: "Component"
+  plural: "Components"
   
 query:
   types:
@@ -32,9 +38,6 @@ query:
   order:
     newest: Newest
     oldest: Oldest
-
-templates:
-  video: Video*http://nicenicejpg.com/180/250*topvideo|meta|body
-  sound: Sound*http://nicenicejpg.com/180/250*topimage|meta|sound|body
-  gallery: Gallery*http://nicenicejpg.com/180/250*topgallery|meta|body
-  text: Text*http://nicenicejpg.com/180/250*topimage|meta|body
+    
+filepicker:
+  api_key: AwNqm5aUTTlm1dHUs8kGtz

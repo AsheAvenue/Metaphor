@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130703011735) do
+ActiveRecord::Schema.define(:version => 20130703141228) do
 
   create_table "article_categories", :force => true do |t|
     t.integer  "article_id"
@@ -70,6 +70,13 @@ ActiveRecord::Schema.define(:version => 20130703011735) do
     t.string   "order"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "components", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "content_widgets", :force => true do |t|
@@ -156,6 +163,22 @@ ActiveRecord::Schema.define(:version => 20130703011735) do
   create_table "series", :force => true do |t|
     t.string   "slug"
     t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "template_components", :id => false, :force => true do |t|
+    t.integer  "template_id"
+    t.integer  "component_id"
+    t.integer  "order"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "templates", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.string   "image_url"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

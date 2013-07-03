@@ -10,6 +10,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'rolify'
 gem 'cancan'
+gem 'filepicker-rails'
 
 group :assets do
   gem 'uglifier', '>= 1.0.3'

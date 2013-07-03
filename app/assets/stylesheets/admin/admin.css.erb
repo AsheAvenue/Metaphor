@@ -371,6 +371,10 @@ header .navigation li a {
 #role-key,
 #page-name,
 #page-slug,
+#template-name,
+#template-slug,
+#component-name,
+#component-slug,
 #related-party-name,
 #related-party-slug,
 #category-name,
@@ -577,25 +581,6 @@ header .navigation li a {
     width: 100%;
 }
 
-#templates .template {
-    float: left;
-    border: 5px solid transparent;
-    padding: 5px;
-    cursor: pointer;
-}
-
-#templates .template img {
-    margin-bottom: 5px;
-}
-
-#templates .template:hover {
-    border: 5px solid #f39c12;
-}
-
-#templates .template.active {
-    border: 5px solid #f1c40f;
-}
-
 /******* PREVIEW ********/
 
 #bottom-bar {
@@ -707,6 +692,52 @@ header .navigation li a {
 }
 
 .pinned-article .meta {
+    font-size: 12px;
+    line-height: 12px;
+}
+
+
+/* ------- TEMPLATES -------- */
+
+#templates .template {
+    float: left;
+    border: 5px solid transparent;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#templates .template img {
+    margin-bottom: 5px;
+}
+
+#templates .template:hover {
+    border: 5px solid #f39c12;
+}
+
+#templates .template.active {
+    border: 5px solid #f1c40f;
+}
+
+.components {
+    margin-bottom: 6px;
+}
+.component {
+    width: 500px;
+    height: 60px;
+    background-color: #7f8c8d;
+    color: white;
+    padding-left: 3px;  
+    margin-bottom: 3px; 
+    cursor: move;
+}
+
+.component .title {
+    font-size: 36px;
+    line-height: 36px;
+    margin-top: 3px;
+}
+
+.component .meta {
     font-size: 12px;
     line-height: 12px;
 }
