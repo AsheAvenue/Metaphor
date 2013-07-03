@@ -369,6 +369,8 @@ header .navigation li a {
 #user-password-confirmation,
 #role-name,
 #role-key,
+#page-name,
+#page-slug,
 #related-party-name,
 #related-party-slug,
 #category-name,
@@ -577,8 +579,21 @@ header .navigation li a {
 
 #templates .template {
     float: left;
-    margin-right: 10px;
+    border: 5px solid transparent;
+    padding: 5px;
     cursor: pointer;
+}
+
+#templates .template img {
+    margin-bottom: 5px;
+}
+
+#templates .template:hover {
+    border: 5px solid #f39c12;
+}
+
+#templates .template.active {
+    border: 5px solid #f1c40f;
 }
 
 /******* PREVIEW ********/

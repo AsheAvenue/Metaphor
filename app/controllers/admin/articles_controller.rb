@@ -17,8 +17,9 @@ class Admin::ArticlesController < Admin::AdminController
     #set up the templates
     @templates = []
     Settings.templates.each do |template|
-      template = Hash[ [:name, :image, :components].zip(template[1].split('*',3)) ]
-      @templates.push template
+      t = Hash[ [:name, :image, :components].zip(template[1].split('*',3)) ]
+      t[:key] = template[0];
+      @templates.push t
     end
   end
 

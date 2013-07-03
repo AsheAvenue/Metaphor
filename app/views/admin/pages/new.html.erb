@@ -2,7 +2,7 @@
     
     <%= render "left_bar" %>
     
-    <%= form_for [:admin, @page], :html => {:id => 'page-form'} do |f| %>
+    <%= form_for [:admin, @page], :html => {:id => 'page-form', :autocomplete=>"off"} do |f| %>
     
         <%= render :partial => 'content', :locals => {:f => f, :action => 'create'}%>
                 

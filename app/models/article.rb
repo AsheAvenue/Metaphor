@@ -1,5 +1,17 @@
 class Article < ActiveRecord::Base
-  attr_accessible :slug, :title, :summary, :body, :category_ids, :series_ids, :user_ids, :publish_at, :published, :author_other_name, :default_image, :remove_default_image
+  attr_accessible :slug, 
+    :title, 
+    :summary, 
+    :body, 
+    :category_ids, 
+    :series_ids, 
+    :user_ids, 
+    :publish_at, 
+    :published, 
+    :author_other_name, 
+    :default_image, 
+    :remove_default_image,
+    :template
   
   has_many :article_categories, :dependent => :destroy
   has_many :categories, :through => :article_categories

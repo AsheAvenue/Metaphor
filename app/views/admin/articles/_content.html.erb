@@ -56,8 +56,9 @@
         <div class="form-section-right">
             <div class="form-line">
                 <div id="templates" class="clearfix">
+                    <%= f.hidden_field :template, :id => 'article-template' %>
                     <% @templates.each do |template| %>
-                        <div class="template">
+                        <div id="template-<%= template[:key] %>" class="template" data-template="<%= template[:key] %>">
                             <div>
                                 <img src="<%= template[:image] %>">
                             </div>

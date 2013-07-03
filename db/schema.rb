@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130624194206) do
+ActiveRecord::Schema.define(:version => 20130703011735) do
 
   create_table "article_categories", :force => true do |t|
     t.integer  "article_id"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20130624194206) do
     t.string   "author_other_name"
     t.text     "summary"
     t.string   "default_image"
+    t.string   "template"
   end
 
   create_table "audios", :force => true do |t|
