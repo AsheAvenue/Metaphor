@@ -22,16 +22,18 @@
                         <li><a href="/signout">Sign out</a></li>
                     </ul>
                 </div>
-                <div class="navigation">
-                    <ul>
-                        <li>Site:</li>
-                        <li><%= link_to Settings.templates.plural, admin_templates_path %></li>
-                        <li><%= link_to Settings.components.plural, admin_components_path %></li>
-                        <li><%= link_to Settings.pages.plural, admin_pages_path %></li>
-                        <li><%= link_to Settings.users.plural, admin_users_path %></li>
-                        <li><%= link_to "Roles", admin_roles_path %></li>
-                    </ul>
-                </div>
+                <% if current_user.has_role?(:superadmin) %>
+                    <div class="navigation">
+                        <ul>
+                            <li>Site:</li>
+                            <li><%= link_to Settings.templates.plural, admin_templates_path %></li>
+                            <li><%= link_to Settings.components.plural, admin_components_path %></li>
+                            <li><%= link_to Settings.pages.plural, admin_pages_path %></li>
+                            <li><%= link_to Settings.users.plural, admin_users_path %></li>
+                            <li><%= link_to "Roles", admin_roles_path %></li>
+                        </ul>
+                    </div>
+                <% end %>
                 <div class="navigation">
                     <ul>
                         <li>Music:</li>

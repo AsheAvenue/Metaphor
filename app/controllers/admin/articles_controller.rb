@@ -15,12 +15,7 @@ class Admin::ArticlesController < Admin::AdminController
     @article = Article.includes(:categories, :series).find(params[:id])
     
     #set up the templates
-    @templates = []
-    Settings.templates.each do |template|
-      t = Hash[ [:name, :image, :components].zip(template[1].split('*',3)) ]
-      t[:key] = template[0];
-      @templates.push t
-    end
+    @templates = Template.all
   end
 
   def new

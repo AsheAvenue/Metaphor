@@ -58,9 +58,9 @@
                 <div id="templates" class="clearfix">
                     <%= f.hidden_field :template, :id => 'article-template' %>
                     <% @templates.each do |template| %>
-                        <div id="template-<%= template[:key] %>" class="template" data-template="<%= template[:key] %>">
+                        <div id="template-<%= template.slug %>" class="template" data-template="<%= template.slug %>">
                             <div>
-                                <img src="<%= template[:image] %>">
+                                <%= filepicker_image_tag(template.image_url, w: 180, h: 250)%>
                             </div>
                             <div>
                                 <%= template[:name] %>
