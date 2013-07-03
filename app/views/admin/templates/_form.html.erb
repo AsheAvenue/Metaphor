@@ -1,5 +1,8 @@
 <div id="template" data-id="<%= @template.id %>" />
-<div id="add_component" data-path="<%= admin_template_add_component_url(@template) %>" />
+    
+<% if @template.id != nil %>
+    <div id="add_component" data-path="<%= admin_template_add_component_url(@template) %>" />
+<% end %>
 
 <%= form_for [:admin, @template], :html => {:autocomplete=>"off"} do |f| %>
     <div id="content">
@@ -27,26 +30,33 @@
             </div>
             <div class="form-section-right">
                 <div class="form-line">
-                    <%= filepicker_image_tag(@template.image_url, w: 180, h: 250) %>
+                    <% if !@template.image_url.blank? %>
+                        <%= filepicker_image_tag(@template.image_url, w: 180, h: 250) %>
+                    <% end %>
+                    
                     <%= f.filepicker_field :image_url, :class => "button", :button_text => 'Select image', :extensions => ".png,.jpg,.jpeg" %>
                 </div>
             </div>
         </div>
-        <div class="form-section clearfix">
-            <div class="form-section-left">
-                <%= Settings.components.plural %>
-            </div>
-            <div class="form-section-right">
-                <div class="form-line">
-                    <div class="components" data-update-url="<%= admin_template_sort_url(@template) %>">
-                        <% @template.components.order("template_components.order ASC").each do |component| %>
-                            <%= render :partial => 'component', :locals => {:component => component} %>
-                        <% end %>
+        
+        <% if @template.id != nil %>
+            <div class="form-section clearfix">
+                <div class="form-section-left">
+                    <%= Settings.components.plural %>
+                </div>
+                <div class="form-section-right">
+                    <div class="form-line">
+                        <div class="components" data-update-url="<%= admin_template_sort_url(@template) %>">
+                            <% @template.components.order("template_components.order ASC").each do |component| %>
+                                <%= render :partial => 'component', :locals => {:component => component} %>
+                            <% end %>
+                        </div>
+                        <a href="#" class="button" data-picker="component" data-picker-callback="templates#add_component">Add Component</a>
                     </div>
-                    <a href="#" class="button" data-picker="component" data-picker-callback="templates#add_component">Add Component</a>
                 </div>
             </div>
-        </div>
+        <% end %>
+        
         <div class="form-section clearfix">
             <div class="form-section-left"></div>
             <div class="form-section-right">
