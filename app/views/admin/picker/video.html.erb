@@ -18,13 +18,16 @@
     </div>
     <div class="content add">
         <div>
-            <%= text_field_tag :name, "", :placeholder => "Name", :id => 'video-name', :autocomplete=>"off" %>
+            <%= text_field_tag :name, "", :placeholder => "Name", :id => 'video-name', :class => "picker-new-name", :autocomplete=>"off" %>
+        </div>
+        <div>
+            <%= text_field_tag :slug, "", :placeholder => "Slug", :id => 'video-slug', :class => "picker-new-slug", :autocomplete=>"off" %>
         </div>
         <div>
             <%= text_field_tag :code, "", :placeholder => "Youtube ID", :id => 'video-code', :autocomplete=>"off" %>
         </div>
         <div class="buttons">
-            <a href="" class="button">Add Video</a>
+            <a href="" class="button" id="picker-add-video">Add Video</a>
         </div>
     </div>
 

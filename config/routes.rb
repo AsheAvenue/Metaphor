@@ -23,6 +23,7 @@ Metaphor::Application.routes.draw do
     match 'articles/checkslug' => 'articles#checkslug'
     match 'articles/:id/default_image_sizes' => 'articles#default_image_sizes', :as => 'article_default_image_sizes'
     match 'articles/:id/editor' => 'article_editor#index', :as => 'article_editor'
+    match 'articles/:id/editor/select_top_video' => 'article_editor#select_top_video', :as => 'article_editor_select_top_video'
     match 'collections/:id/sort' => 'collections#sort', :as => 'collection_sort'
     match 'collections/:id/add_pinned_article' => 'collections#add_pinned_article', :as => 'collection_add_pinned_article'
     match 'collections/:id/remove_pinned_article/:pinned_article_id' => 'collections#remove_pinned_article', :as => 'collection_remove_pinned_article'
@@ -31,6 +32,8 @@ Metaphor::Application.routes.draw do
     match 'templates/:id/remove_component/:component_id' => 'templates#remove_component', :as => 'template_remove_component'
     
     #picker
+    match 'picker/addVideo' => 'picker#addVideo'
+    match 'picker/addSound' => 'picker#addSound'
     match 'picker/:action' => 'picker#:action'
   end
   

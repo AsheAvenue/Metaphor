@@ -48,15 +48,6 @@ ActiveRecord::Schema.define(:version => 20130703141228) do
     t.string   "template"
   end
 
-  create_table "audios", :force => true do |t|
-    t.string   "name"
-    t.string   "slug"
-    t.string   "code"
-    t.string   "length"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "categories", :force => true do |t|
     t.string   "slug"
     t.string   "name"
@@ -164,6 +155,14 @@ ActiveRecord::Schema.define(:version => 20130703141228) do
   create_table "series", :force => true do |t|
     t.string   "slug"
     t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "sounds", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.string   "code"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

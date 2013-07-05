@@ -1,5 +1,9 @@
-<% @template.components.each do |component| %>
-    <div class="<%= component.slug %>">
-        <%= render :partial => component.slug %>
+<div id="article" data-id="<%= @article.id %>" />
+
+<% @template.components.each_with_index do |component, index| %>
+    <div class="<%= component.slug %>" data-position="<%= index %>">
+        <%= render :partial => component.slug, :locals => {:position => index} %>
     </div>
 <% end %>
+
+</div>

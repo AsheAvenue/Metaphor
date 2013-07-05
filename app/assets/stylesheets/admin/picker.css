@@ -96,6 +96,7 @@
 }
 
 #video-name,
+#video-slug,
 #video-code {
     color: white;
     font-size: 24px;

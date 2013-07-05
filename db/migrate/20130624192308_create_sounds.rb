@@ -1,10 +1,9 @@
-class CreateAudios < ActiveRecord::Migration
+class CreateSounds < ActiveRecord::Migration
   def change
-    create_table :audios do |t|
+    create_table :sounds do |t|
       t.string :name
       t.string :slug
       t.string :code
-      t.string :length
 
       t.timestamps
     end

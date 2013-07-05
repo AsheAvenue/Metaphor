@@ -3,7 +3,9 @@
         <%= Settings.components.plural %>
     </div>
 
-    <% @components.each do |component| %>
-        <div class="item"><%= link_to component.name, "", 'data-picker-item' => component.id %></div>
-    <% end %>
+    <div class="content select">
+        <% @components.each do |component| %>
+            <div class="item"><%= link_to component.name, "", 'data-picker-item' => component.id %></div>
+        <% end %>
+    </div>
 </div>

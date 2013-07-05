@@ -15,4 +15,24 @@ class Admin::PickerController < Admin::AdminController
     @videos = Video.all
   end
 
+  def addVideo
+    @v = Video.new
+    @v.name = params[:video_name]
+    @v.slug = params[:video_slug]
+    @v.code = params[:video_code]
+    @v.save!
+  end
+
+  def sound
+    @sounds = Sound.all
+  end
+
+  def addSound
+    @s = Sound.new
+    @s.name = params[:sound_name]
+    @s.slug = params[:sound_slug]
+    @s.code = params[:sound_code]
+    @s.save!
+  end
+  
 end

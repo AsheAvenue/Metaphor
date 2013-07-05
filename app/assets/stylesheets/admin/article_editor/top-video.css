@@ -3,8 +3,8 @@
 }
 
 #article_editor .top-video .video-container {
-    border: 1px solid #f1c40f;
-    min-height: 400px;
+    border: 1px solid white;
+    min-height: 387px;
     background-color: #bdc3c7;
     cursor: pointer;
 }
@@ -15,6 +15,15 @@
     font-weight: 200;
     width: 50%;
     text-align: center;
-    margin: 175px auto;
+    margin: 165px auto;
     color: white;
+}
+
+#article_editor .top-video .video-container .selected-video-buttons {
+    padding: 10px;
+    text-align: right;
+    color: white;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 100;
 }

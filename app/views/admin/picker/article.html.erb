@@ -4,7 +4,9 @@
         <input type="text" id="picker-search">
     </div>
 
-    <% @articles.each do |article| %>
-        <div class="item"><%= link_to article.title, "", 'data-picker-item' => article.id %></div>
-    <% end %>
+    <div class="content select">
+        <% @articles.each do |article| %>
+            <div class="item"><%= link_to article.title, "", 'data-picker-item' => article.id %></div>
+        <% end %>
+    </div>
 </div>
