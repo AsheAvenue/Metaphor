@@ -1,7 +1,8 @@
 class CreateAudios < ActiveRecord::Migration
   def change
     create_table :audios do |t|
-      t.string :description
+      t.string :name
+      t.string :slug
       t.string :code
       t.string :length
 

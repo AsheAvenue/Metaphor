@@ -1,0 +1,5 @@
+<% @template.components.each do |component| %>
+    <div class="<%= component.slug %>">
+        <%= render :partial => component.slug %>
+    </div>
+<% end %>

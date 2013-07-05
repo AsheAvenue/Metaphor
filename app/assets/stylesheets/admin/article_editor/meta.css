@@ -1,0 +1,15 @@
+#article_editor .meta {
+    padding: 5px;
+}
+
+#article_editor .meta .title {
+    font-size: 50px;
+    line-height: 54px;
+    font-weight: 200;
+}
+
+#article_editor .meta .byline {
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 100;
+}

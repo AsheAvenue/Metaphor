@@ -34,11 +34,27 @@ var picker = (function($) {
         
                 //get the value of this selected item
                 picker_item = $(this).data('picker-item');
-        
-                //call back to the method passed in as a callback
-                window[picker_callback_scope][picker_callback_function](picker_item);
+                
+                //now return
+                picker.select(picker_item);
+                
+            });
+            
+            $('#picker').on('click', '.pickercontent .tabs .tab', function(event){
+                
+                //hide all content
+                $('.pickercontent .content').hide();
+                
+                //show selected
+                var content = $(this).data('content');
+                $('.pickercontent .' + content).show();
             });
         },
+        
+        select: function(picker_item) {
+            //call back to the method passed in as a callback
+            window[picker_callback_scope][picker_callback_function](picker_item);
+        }, 
         
         close: function() {
             //remove the picker

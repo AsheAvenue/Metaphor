@@ -22,7 +22,7 @@ Metaphor::Application.routes.draw do
     match '/' => 'articles#index'
     match 'articles/checkslug' => 'articles#checkslug'
     match 'articles/:id/default_image_sizes' => 'articles#default_image_sizes', :as => 'article_default_image_sizes'
-    match 'articles/:id/preview' => 'articles#preview', :as => 'article_preview'
+    match 'articles/:id/editor' => 'article_editor#index', :as => 'article_editor'
     match 'collections/:id/sort' => 'collections#sort', :as => 'collection_sort'
     match 'collections/:id/add_pinned_article' => 'collections#add_pinned_article', :as => 'collection_add_pinned_article'
     match 'collections/:id/remove_pinned_article/:pinned_article_id' => 'collections#remove_pinned_article', :as => 'collection_remove_pinned_article'

@@ -13,11 +13,11 @@
 }
 .pickercontent .header {
     padding: 10px;
+    background-color: #95a5a6;
     font-size: 42px;
     line-height: 42px;
     font-weight: 100;
-    border-bottom: 1px solid rgba(0,0,0,0.5);
-    background-color: #95a5a6;
+    color: white;
 }
 
 .pickercontent .header span {
@@ -42,7 +42,7 @@
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    -webkit-border-radios: 0px;
+    -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
     margin-bottom: 0px;
@@ -65,3 +65,53 @@
     font-weight: 100;
 }
 
+.pickercontent .tabs {
+    width: 100%;
+}
+
+.pickercontent .tabs .tab {
+    float: left;
+    width:165px;
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 20px;
+    color: white;
+    background-color: #8e44ad;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.pickercontent .content {
+    display: none;
+}
+
+.pickercontent .add {
+    background-color: #9b59b6;
+    padding: 10px;
+}
+
+.pickercontent .buttons {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+#video-name,
+#video-code {
+    color: white;
+    font-size: 24px;
+    font-weight: 100;
+    line-height: 30px;
+    height: 30px;
+    width: 300px;
+    border: 0px;
+    background: none;
+    border-bottom: 1px solid white;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-border-radios: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    margin-bottom: 0px;
+    outline: none;
+}

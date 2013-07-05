@@ -1,0 +1,20 @@
+#article_editor .top-video {
+    padding: 5px;
+}
+
+#article_editor .top-video .video-container {
+    border: 1px solid #f1c40f;
+    min-height: 400px;
+    background-color: #bdc3c7;
+    cursor: pointer;
+}
+
+#article_editor .top-video .video-container .select-video {
+    font-size: 50px;
+    line-height: 50px;
+    font-weight: 200;
+    width: 50%;
+    text-align: center;
+    margin: 175px auto;
+    color: white;
+}

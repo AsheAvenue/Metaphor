@@ -1,0 +1,31 @@
+<div class="pickercontent">
+    <div class="header">
+        Videos
+    </div>
+
+    <div class="tabs">
+        <div class="tab" data-content="select">
+            Select a Video
+        </div>
+        <div class="tab" data-content="add">
+            Add a Video
+        </div>
+    </div>
+    <div class="content select">    
+        <% @videos.each do |video| %>
+            <div class="item"><%= link_to video.name, "", 'data-picker-item' => video.id %></div>
+        <% end %>
+    </div>
+    <div class="content add">
+        <div>
+            <%= text_field_tag :name, "", :placeholder => "Name", :id => 'video-name', :autocomplete=>"off" %>
+        </div>
+        <div>
+            <%= text_field_tag :code, "", :placeholder => "Youtube ID", :id => 'video-code', :autocomplete=>"off" %>
+        </div>
+        <div class="buttons">
+            <a href="" class="button">Add Video</a>
+        </div>
+    </div>
+
+</div>

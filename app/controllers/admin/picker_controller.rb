@@ -11,4 +11,8 @@ class Admin::PickerController < Admin::AdminController
     @components = Component.all
   end
 
+  def video
+    @videos = Video.all
+  end
+
 end
