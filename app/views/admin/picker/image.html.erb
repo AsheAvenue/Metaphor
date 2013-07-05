@@ -1,0 +1,42 @@
+<div class="pickercontent">
+    <div class="header">
+        Images
+    </div>
+
+    <div class="tabs">
+        <div class="tab" data-content="select">
+            Select an Image
+        </div>
+        <div class="tab" data-content="add">
+            Add an Image
+        </div>
+    </div>
+    <div class="content select">    
+        <% @images.each do |image| %>
+            <div class="item"><%= link_to image.name, "", 'data-picker-item' => image.id %></div>
+        <% end %>
+    </div>
+    <div class="content add">
+        <div>
+            <%= text_field_tag :name, "", :placeholder => "Name", :id => 'image-name', :class => "picker-new-name", :autocomplete=>"off" %>
+        </div>
+        <div>
+            <%= text_field_tag :slug, "", :placeholder => "Slug", :id => 'image-slug', :class => "picker-new-slug", :autocomplete=>"off" %>
+        </div>
+        <div>
+            <%= text_field_tag :caption, "", :placeholder => "Caption", :id => 'image-caption', :autocomplete=>"off" %>
+        </div>
+        <div>
+            <%= text_field_tag :credit, "", :placeholder => "Credit", :id => 'image-credit', :autocomplete=>"off" %>
+        </div>
+        <div>
+            <%= hidden_field_tag :image_url, "", :id => 'image-url' %>
+            <img id="image-display">
+            <div id="image-drop">Drag image here</div>
+        </div>
+        <div class="buttons">
+            <a href="" class="button" id="picker-add-image">Add Image</a>
+        </div>
+    </div>
+
+</div>

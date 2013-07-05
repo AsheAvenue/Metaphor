@@ -1,0 +1,1 @@
+$("#image_<%= @position %> .image-container").html('<%= escape_javascript(render(:partial => "image-embed", :locals => {:image => @image})) %>');

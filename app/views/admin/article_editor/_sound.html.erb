@@ -1,0 +1,16 @@
+<div id="select_sound" data-path="<%= admin_article_editor_select_sound_path(@article) %>"></div>
+
+<div class="sound-container" data-picker="sound" data-picker-callback="article_editor#select_sound" data-picker-position="<%= position %>">
+    <% 
+        if !@widgets.blank? && @widgets["#{position}"] && @widgets["#{position}"].content_type == "Sound"
+            @sound = @widgets["#{position}"].content
+        end
+    %>
+    <% if @sound %>
+        <%= render :partial => 'sound-embed' %>
+    <% else %>
+        <div class="select-sound">
+            Select a sound
+        </div>
+    <% end %>
+</div>

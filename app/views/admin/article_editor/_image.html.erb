@@ -1,0 +1,16 @@
+<div id="select_image" data-path="<%= admin_article_editor_select_image_path(@article) %>"></div>
+
+<div class="image-container" data-picker="image" data-picker-callback="article_editor#select_image" data-picker-position="<%= position %>">
+    <% 
+        if !@widgets.blank? && @widgets["#{position}"]&& @widgets["#{position}"].content_type == "Image"
+            @image = @widgets["#{position}"].content
+        end
+    %>
+    <% if @image %>
+        <%= render :partial => 'image-embed' %>
+    <% else %>
+        <div class="select-image">
+            Select an Image
+        </div>
+    <% end %>
+</div>

@@ -1,0 +1,1 @@
+$("#video_<%= @position %> .video-container").html('<%= escape_javascript(render(:partial => "video-embed", :locals => {:video => @video})) %>');

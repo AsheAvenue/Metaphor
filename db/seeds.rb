@@ -13,4 +13,4 @@ user.email    = 'admin@sitename.com'
 user.display_name = 'admin'
 user.save
 
-user.add_role :admin
+user.add_role :superadmin

@@ -1,0 +1,34 @@
+<div class="pickercontent">
+    <div class="header">
+        Sounds
+    </div>
+
+    <div class="tabs">
+        <div class="tab" data-content="select">
+            Select a Sound
+        </div>
+        <div class="tab" data-content="add">
+            Add a Sound
+        </div>
+    </div>
+    <div class="content select">    
+        <% @sounds.each do |sound| %>
+            <div class="item"><%= link_to sound.name, "", 'data-picker-item' => sound.id %></div>
+        <% end %>
+    </div>
+    <div class="content add">
+        <div>
+            <%= text_field_tag :name, "", :placeholder => "Name", :id => 'sound-name', :class => "picker-new-name", :autocomplete=>"off" %>
+        </div>
+        <div>
+            <%= text_field_tag :slug, "", :placeholder => "Slug", :id => 'sound-slug', :class => "picker-new-slug", :autocomplete=>"off" %>
+        </div>
+        <div>
+            <%= text_field_tag :code, "", :placeholder => "Soundcloud ID", :id => 'sound-code', :autocomplete=>"off" %>
+        </div>
+        <div class="buttons">
+            <a href="" class="button" id="picker-add-sound">Add Sound</a>
+        </div>
+    </div>
+
+</div>

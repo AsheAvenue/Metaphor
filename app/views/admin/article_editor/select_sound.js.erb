@@ -1,0 +1,1 @@
+$("#sound_<%= @position %> .sound-container").html('<%= escape_javascript(render(:partial => "sound-embed", :locals => {:sound => @sound})) %>');
