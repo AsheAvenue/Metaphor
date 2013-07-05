@@ -15,11 +15,7 @@
 	<header>
 		<div class="top clearfix">
             <div class="navigation-wrapper clearfix">
-                <%= Settings.articles.singular %> Editor
-
-                <div class="done-previewing pull-right">
-                  <a id="article-preview" href="<%= edit_admin_article_path(@article) %>" class="button">Back to Article Info</a>
-                </div>  
+                Content Editor
             </div>
 		</div>
 	</header>
@@ -28,6 +24,13 @@
         <div id="article_editor">
             <%= yield %>
         </div>
+    </div>
+    
+    <div id="bottom-bar">
+        <div class="buttons pull-right">
+            <a id="article-preview" href="#" class="button">Preview</a>
+            <a id="article-back" href="<%= edit_admin_article_path(@article) %>" class="button">Back to Article Info</a>
+        </div>  
     </div>
     
     <%= render :partial => 'admin/picker/frame'%>

@@ -21,19 +21,27 @@ class Admin::ArticlesController < Admin::AdminController
   def new
     @articles = Article.where(true).newest
     @article = Article.new
+    
+    #set up the templates
+    @templates = Template.all
   end
   
   def create
     article = Article.create(params[:article])
     article.save!
-    redirect_to admin_articles_path
+    redirect_to edit_admin_article_path(article.id)
   end
   
   def update
     article = Article.find(params[:id])
     article.update_attributes(params[:article])
     article.save
-    redirect_to edit_admin_article_path(params[:id])
+    
+    if(params["edit-content"] == "true")
+      redirect_to admin_article_editor_path(params[:id])
+    else
+      redirect_to edit_admin_article_path(params[:id])
+    end
   end
   
   def checkslug

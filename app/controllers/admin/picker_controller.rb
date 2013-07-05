@@ -23,6 +23,20 @@ class Admin::PickerController < Admin::AdminController
     @v.save!
   end
 
+  def image
+    @images = Image.all
+  end
+
+  def addImage
+    @i = Image.new
+    @i.name = params[:image_name]
+    @i.slug = params[:image_slug]
+    @i.caption = params[:image_caption]
+    @i.credit = params[:image_credit]
+    @i.image_url = params[:image_url]
+    @i.save!
+  end
+  
   def sound
     @sounds = Sound.all
   end

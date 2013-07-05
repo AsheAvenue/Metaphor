@@ -86,7 +86,7 @@
             <%= link_to "Create #{Settings.articles.singular}", '#', :class => "button green", :id => 'article-submit' %>
         <% elsif action == 'update'%>
             <%= link_to "Save #{Settings.articles.singular}", '#', :class => "button green", :id => 'article-submit' %>
-            <a id="article-edit" href="<%= admin_article_editor_path(@article) %>" class="button yellow">Edit <%= Settings.articles.singular %> Content</a>
+            <%= link_to "Edit #{Settings.articles.singular} Content", '#', :class => "button yellow", :id => 'article-edit' %>
         <% end %>
     </div>
     

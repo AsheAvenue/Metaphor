@@ -97,7 +97,14 @@
 
 #video-name,
 #video-slug,
-#video-code {
+#video-code,
+#image-name,
+#image-slug,
+#image-caption,
+#image-credit,
+#sound-name,
+#sound-slug,
+#sound-code {
     color: white;
     font-size: 24px;
     font-weight: 100;
@@ -115,4 +122,13 @@
     border-radius: 0px;
     margin-bottom: 0px;
     outline: none;
+}
+
+#image-drop {
+    text-align: center;
+    padding: 20px;
+    background-color: #F6F6F6;
+    border: 1px dashed #666;
+    border-radius: 6px;
+    margin-bottom: 20px;
 }

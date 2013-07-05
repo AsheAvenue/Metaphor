@@ -1,7 +1,7 @@
 <div id="article" data-id="<%= @article.id %>" />
 
-<% @template.components.each_with_index do |component, index| %>
-    <div class="<%= component.slug %>" data-position="<%= index %>">
+<% @template.components.order("template_components.order ASC").each_with_index do |component, index| %>
+    <div id="<%= component.slug %>_<%= index %>" class="<%= component.slug %>" data-position="<%= index %>">
         <%= render :partial => component.slug, :locals => {:position => index} %>
     </div>
 <% end %>

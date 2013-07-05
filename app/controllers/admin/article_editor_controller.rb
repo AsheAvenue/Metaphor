@@ -20,22 +20,67 @@ class Admin::ArticleEditorController < Admin::AdminController
     end
   end
   
-  def select_top_video
+  def select_video
     # get the data
     @article = Article.find(params[:article_id])
     @video = Video.find(params[:video_id])
-    position = params[:position]
+    @position = params[:position]
     
     # get the content widget if it already exists in that place and 
     # update it... or create a new one
-    c = ContentWidget.find_by_entity_id_and_entity_type_and_content_type_and_position(@article.id, 'Article', 'Video', position)
+    c = ContentWidget.find_by_entity_id_and_entity_type_and_content_type_and_position(@article.id, 'Article', 'Video', @position)
     if c
       c.content = @video
     else
       c = ContentWidget.new
       c.entity = @article
       c.content = @video
-      c.position = position
+      c.position = @position
+    end
+    
+    #save the content widget and continue to the js.erb portion
+    c.save!
+    
+  end  
+  
+  def select_image
+    # get the data
+    @article = Article.find(params[:article_id])
+    @image = Image.find(params[:image_id])
+    @position = params[:position]
+    
+    # get the content widget if it already exists in that place and 
+    # update it... or create a new one
+    c = ContentWidget.find_by_entity_id_and_entity_type_and_content_type_and_position(@article.id, 'Article', 'Image', @position)
+    if c
+      c.content = @image
+    else
+      c = ContentWidget.new
+      c.entity = @article
+      c.content = @image
+      c.position = @position
+    end
+    
+    #save the content widget and continue to the js.erb portion
+    c.save!
+    
+  end
+  def select_sound
+    # get the data
+    @article = Article.find(params[:article_id])
+    @sound = Sound.find(params[:sound_id])
+    @position = params[:position]
+    
+    # get the content widget if it already exists in that place and 
+    # update it... or create a new one
+    c = ContentWidget.find_by_entity_id_and_entity_type_and_content_type_and_position(@article.id, 'Article', 'Sound', @position)
+    if c
+      c.content = @sound
+    else
+      c = ContentWidget.new
+      c.entity = @article
+      c.content = @sound
+      c.position = @position
     end
     
     #save the content widget and continue to the js.erb portion

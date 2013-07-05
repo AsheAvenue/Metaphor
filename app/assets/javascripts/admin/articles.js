@@ -198,7 +198,13 @@ var articles = (function($) {
               e.preventDefault();
               $('#article-form').submit();
             });
-    
+
+            $('#article-edit').click(function(e){
+              e.preventDefault();
+              $('#article-form').append('<input type="hidden" name="edit-content" value="true" />');
+              $('#article-form').submit();
+            });
+                
             /************ Preview Article ************/
     
             //preview size selection

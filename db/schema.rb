@@ -88,13 +88,13 @@ ActiveRecord::Schema.define(:version => 20130703141228) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "gallery_images", :force => true do |t|
+  create_table "images", :force => true do |t|
     t.integer  "gallery_id"
     t.string   "name"
     t.string   "slug"
     t.string   "caption"
     t.string   "credit"
-    t.string   "image_path"
+    t.string   "image_url"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

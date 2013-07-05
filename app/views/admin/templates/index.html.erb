@@ -35,7 +35,7 @@
                     <%= link_to filepicker_image_tag(template.image_url, w: 90, h: 125), edit_admin_template_path(template) %>
                 </div>
                 <div class="quarter">
-                    <%= template.components.map { |component| component.name }.join(", ") %>
+                    <%= template.components.order("template_components.order ASC").map { |component| component.name }.join(", ") %>
                 </div>
             </li>
         <% end %>
