@@ -1,7 +1,3 @@
-body {
-    background: #333 !important;
-}
-
 input, textarea {
   font-family: 'Source Sans Pro', sans-serif !important;
 }
@@ -15,7 +11,7 @@ a {
 
 input,
 select {
-    margin-bottom: 0px !important;
+    margin-bottom:0 !important;
 }
 
 .input-medium {
