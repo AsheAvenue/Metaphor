@@ -1,5 +1,8 @@
 <div id="collection" data-id="<%= @collection.id %>" />
-<div id="add_pinned_article" data-path="<%= admin_collection_add_pinned_article_url(@collection) %>" />
+
+<% if @collection.id != nil %>
+    <div id="add_pinned_article" data-path="<%= admin_collection_add_pinned_article_url(@collection) %>" />
+<% end %>
 
 <%= form_for [:admin, @collection], :html => {:autocomplete=>"off"} do |f| %>
     <div id="content">
@@ -41,21 +44,23 @@
                 </div>
             </div>
         </div>
-        <div class="form-section clearfix">
-            <div class="form-section-left">
-                Pinned <%= Settings.articles.plural %>
-            </div>
-            <div class="form-section-right">
-                <div class="form-line">
-                    <div class="pinned-articles" data-update-url="<%= admin_collection_sort_url(@collection) %>">
-                        <% @collection.pinned_articles.each do |p| %>
-                            <%= render :partial => 'pinned_article', :locals => {:p => p} %>
-                        <% end %>
+        <% if @collection.id != nil %>
+            <div class="form-section clearfix">
+                <div class="form-section-left">
+                    Pinned <%= Settings.articles.plural %>
+                </div>
+                <div class="form-section-right">
+                    <div class="form-line">
+                        <div class="pinned-articles" data-update-url="<%= admin_collection_sort_url(@collection) %>">
+                            <% @collection.pinned_articles.each do |p| %>
+                                <%= render :partial => 'pinned_article', :locals => {:p => p} %>
+                            <% end %>
+                        </div>
+                        <a href="#" class="button" data-picker="article" data-picker-callback="collections#add_pinned_article">Add Article</a>
                     </div>
-                    <a href="#" class="button" data-picker="article" data-picker-callback="collections#add_pinned_article">Add Article</a>
                 </div>
             </div>
-        </div>
+        <% end %>
         <div class="form-section clearfix">
             <div class="form-section-left"></div>
             <div class="form-section-right">
