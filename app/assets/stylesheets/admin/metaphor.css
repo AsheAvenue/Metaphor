@@ -610,9 +610,7 @@ header .navigation li a {
          -o-border-radius: 0;
             border-radius: 0;
 }
-#actions a {
-    float: left;
-}
+
 .input-append input,
 .input-append select,
 .input-append .uneditable-input {
