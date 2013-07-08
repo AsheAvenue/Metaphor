@@ -1,6 +1,6 @@
 <% puts @image.image_url %>
 
-<img src="<%= @image.image_url %>" />
+<%= filepicker_image_tag(@image.image_url, w: 688, h: 500, fit: 'crop') %>
 <div class="selected-buttons">
     Select a different image
 </div>

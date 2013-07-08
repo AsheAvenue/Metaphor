@@ -13,7 +13,10 @@
     </div>
     <div class="content select">    
         <% @images.each do |image| %>
-            <div class="item"><%= link_to image.name, "", 'data-picker-item' => image.id %></div>
+            <div class="item">
+                <%= link_to filepicker_image_tag(image.image_url, w: 64, h: 64, fit: 'crop'), "", 'data-picker-item' => image.id %>
+                <%= link_to image.name, "", 'data-picker-item' => image.id %>
+            </div>
         <% end %>
     </div>
     <div class="content add">
@@ -29,6 +32,7 @@
         <div>
             <%= text_field_tag :credit, "", :placeholder => "Credit", :id => 'image-credit', :autocomplete=>"off" %>
         </div>
+        
         <div>
             <%= hidden_field_tag :image_url, "", :id => 'image-url' %>
             <img id="image-display">

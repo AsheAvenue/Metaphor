@@ -30,11 +30,13 @@
             </div>
             <div class="form-section-right">
                 <div class="form-line">
-                    <% if !@template.image_url.blank? %>
-                        <%= filepicker_image_tag(@template.image_url, w: 180, h: 250) %>
-                    <% end %>
+                    <div class="template-image-display">
+                        <% if !@template.image_url.blank? %>
+                            <%= filepicker_image_tag(@template.image_url, w: 180, h: 250, fit: 'crop') %>
+                        <% end %>
+                    </div>
                     
-                    <%= f.filepicker_field :image_url, :class => "button", :button_text => 'Select image', :extensions => ".png,.jpg,.jpeg" %>
+                    <%= f.filepicker_field :image_url, :class => "button", :button_text => 'Select image', :extensions => ".png,.jpg,.jpeg", :store_path => "templates/#{@template.id}/", :onchange => "$('.template-image-display').html('<img src=\"' + event.fpfile.url + '/convert?w=180&h=250&fit=crop\" />');" %>
                 </div>
             </div>
         </div>

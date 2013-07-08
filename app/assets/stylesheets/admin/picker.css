@@ -124,6 +124,10 @@
     outline: none;
 }
 
+#image-display {
+    margin-top: 5px;
+}
+
 #image-drop {
     text-align: center;
     padding: 20px;

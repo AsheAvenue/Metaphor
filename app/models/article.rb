@@ -29,8 +29,6 @@ class Article < ActiveRecord::Base
   
   scope :newest, order("articles.created_at desc")
   
-  mount_uploader :default_image, DefaultImageUploader
-  
   # convenience methods
   def author
     users.first

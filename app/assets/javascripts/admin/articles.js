@@ -138,30 +138,6 @@ var articles = (function($) {
                 $('#article-author-display, #article-author-reset').hide('fast');
             }
     
-            //handle the category change button
-            $('#article-category-change').click(function(){
-                $('#article-category-container').show('fast');
-                $('#article-category-display, #article-category-change').hide('fast');
-            });
-    
-            //show the category list if this is a new article
-            if($.trim($('#article-category-display').html()).length == 0) {
-                $('#article-category-container').show('fast');
-                $('#article-category-display, #article-category-change').hide('fast');
-            }
-    
-            //handle the series change button
-            $('#article-series-change').click(function(){
-                $('#article-series-container').show('fast');
-                $('#article-series-display, #article-series-change').hide('fast');
-            });
-    
-            //show the series list if this is a new article
-            if($.trim($('#article-series-display').html()).length == 0) {
-                $('#article-series-container').show('fast');
-                $('#article-series-display, #article-series-change').hide('fast');
-            }
-    
             $("#article-publish-at").datetimepicker({
                 format: "dd MM yyyy - hh:ii",
                 autoclose: true,

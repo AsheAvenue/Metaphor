@@ -10,7 +10,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'rolify'
 gem 'cancan'
-gem 'filepicker-rails'
+gem 'filepicker-rails', git: 'git://github.com/Filepicker/filepicker-rails.git'
 
 group :assets do
   gem 'uglifier', '>= 1.0.3'

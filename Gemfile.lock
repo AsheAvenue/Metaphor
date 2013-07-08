@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/Filepicker/filepicker-rails.git
+  revision: b1166c81a22a598c3cf790cd185ff544109e81e9
+  specs:
+    filepicker-rails (0.1)
+      multi_json (~> 1.6)
+      railties (>= 3.1.0, < 5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -58,9 +66,6 @@ GEM
     faraday (0.8.7)
       multipart-post (~> 1.1)
     ffi (1.9.0)
-    filepicker-rails (0.1)
-      multi_json (~> 1.6)
-      railties (>= 3.1.0, < 5.0)
     formatador (0.2.4)
     guard (1.8.1)
       formatador (>= 0.2.4)
@@ -183,7 +188,7 @@ DEPENDENCIES
   binding_of_caller
   cancan
   carrierwave
-  filepicker-rails
+  filepicker-rails!
   guard-livereload
   jquery-rails (~> 2.3.0)
   meta_request

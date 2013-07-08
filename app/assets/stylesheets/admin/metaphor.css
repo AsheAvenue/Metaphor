@@ -72,10 +72,15 @@ html, body {
 }
 
 .button.yellow {
-  background-color: #f1c40f;
-  -webkit-box-shadow: 0 2px 0 0 #f39c12;
-  -moz-box-shadow: 0 2px 0 0 #f39c12;
-  box-shadow: 0 2px 0 0 #f39c12;
+    background: #f1c40f;
+}
+.button.yellow:hover {
+    background: #f39c12;
+}
+
+.label-success,
+.badge-success {
+    background: #16a085;
 }
 .label-success,
 .badge-success {
@@ -535,9 +540,7 @@ header .navigation li a {
 #article-author-container,
 #article-author-other,
 #article-author-other-name,
-#article-author-other-cancel,
-#article-category-container,
-#article-series-container {
+#article-author-other-cancel {
     display: none;
 }
 
@@ -570,10 +573,42 @@ header .navigation li a {
 }
 #actions {
     position: fixed;
-    bottom:0;
-    padding: 10px 30px;
+    bottom: 0px;
+    padding: 13px 10px 10px;
     background: #bdc3c7;
     width: 100%;
+    height: 25px;
+    margin-left: -30px;
+    margin-bottom: 0px;
+}
+
+.input-append input,
+.input-append select,
+.input-append .uneditable-input {
+    border: 0;
+    -webkit-border-radius: 0;
+     -khtml-border-radius: 0;
+       -moz-border-radius: 0;
+         -o-border-radius: 0;
+            border-radius: 0;
+    -webkit-box-shadow: none;
+     -khtml-box-shadow: none;
+       -moz-box-shadow: none;
+         -o-box-shadow: none;
+            box-shadow: none;
+
+}
+.input-append .add-on,
+.input-append .add-on:last-child,
+.input-append .btn:last-child,
+.input-append .btn-group:last-child>.dropdown-toggle {
+    background: #16a085;
+    border: 0;
+    -webkit-border-radius: 0;
+     -khtml-border-radius: 0;
+       -moz-border-radius: 0;
+         -o-border-radius: 0;
+            border-radius: 0;
 }
 #actions a {
     float: left;

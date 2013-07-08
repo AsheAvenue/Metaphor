@@ -41,7 +41,7 @@ var picker = (function($) {
                     filepicker.setKey('<%= Settings.filepicker.api_key %>');
                     filepicker.makeDropPane($('#image-drop')[0], {
                         multiple: false,
-                        path: '/articles/' + $('#article').data('id'),
+                        path: 'images/',
                         dragEnter: function() {
                             $("#image-drop").html("Drop to upload").css({
                                 'backgroundColor': "#E0E0E0",
@@ -55,9 +55,16 @@ var picker = (function($) {
                             });
                         },
                         onSuccess: function(InkBlobs) {
-                            $("#image-drop").text("Drop to replace");
-                            $('#image-display').attr('src', InkBlobs[0].url);
+                            $("#image-drop").text("Converting...");
                             $('#image-url').val(InkBlobs[0].url);
+                            
+                            //show the image, but convert it first
+                            filepicker.convert(InkBlobs[0], {width: 320, height: 180, fit: 'crop'},
+                                function(converted_InkBlob){
+                                    $('#image-display').attr('src', converted_InkBlob.url);
+                                    $("#image-drop").text("Drop another image to replace");
+                                }
+                            );
                         },
                         onProgress: function(percentage) {
                             $("#image-drop").text("Uploading ("+percentage+"%)");

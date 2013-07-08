@@ -45,7 +45,11 @@
                         <li>Editorial:</li>
                         <li><%= link_to Settings.articles.plural, admin_articles_path %></li>
                         <li><%= link_to Settings.categories.plural, admin_categories_path %></li>
-                        <li><%= link_to Settings.series.plural, admin_series_index_path %></li>
+                        
+                        <% if Settings.series.enabled %>
+                            <li><%= link_to Settings.series.plural, admin_series_index_path %></li>
+                        <% end %>
+                        
                         <li><%= link_to Settings.collections.plural, admin_collections_path %></li>
                     </ul>
                 </div>

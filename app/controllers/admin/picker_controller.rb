@@ -25,6 +25,7 @@ class Admin::PickerController < Admin::AdminController
 
   def image
     @images = Image.all
+    @image = Image.new
   end
 
   def addImage

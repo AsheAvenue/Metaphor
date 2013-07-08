@@ -1,4 +1,4 @@
-<div id="content" class="has-right-bar">
+<div id="content" <% if @article.id != nil %>class="has-right-bar"<% end %>>
     <div class="header">
         <% if action == "create" %>
             New
@@ -13,42 +13,27 @@
         </div>
         <div class="form-section-right">
             <div class="form-line">
-                <%= f.text_area :title, :id => 'article-title', :autocomplete=>"off" %>
+                <%= f.text_area :title, :id => 'article-title', :autocomplete=>"off", :placeholder => 'Title' %>
             </div>
         </div>
     </div>
+    
     <div class="form-section clearfix">
         <div class="form-section-left">
-            Summary
+            Slug
         </div>
         <div class="form-section-right">
             <div class="form-line">
-                <%= f.text_area :summary, :id => 'article-summary', :autocomplete=>"off" %>
-            </div>
-        </div>
-    </div>
-    <div class="form-section clearfix">
-        <div class="form-section-left">
-            Default Image
-        </div>
-        <div class="form-section-right">
-            <div class="form-line">
-                <div id="article-default-image">
-                    <% if !@article.default_image.blank? %>
-                        <div class="display">
-                            <%= image_tag @article.default_image_url(:thumb).to_s %>
-                            <%= link_to 'View all sizes', admin_article_default_image_sizes_path(@article), :class => "button", :id => "article-default-image-view-all-sizes" %>
-                            <a href="#" id="article-default-image-view-remove-image" class="button">Remove image</a>
-                            <%= f.check_box :remove_default_image, :id => 'article-default-image-remove-checkbox' %>
-                        </div>
-                    <% end %>
-                    <div class="upload">
-                        <%= f.file_field :default_image, :id => 'article-default-image' %>
-                    </div>
+                <div id="article-slug-display"><%= @article.slug || "Awaiting #{Settings.articles.singular.downcase} title..." %></div>
+                <div id="article-slug-container">
+                    <%= f.text_field :slug, :id => 'article-slug', :placeholder => 'Slug', :class => "input-xlarge", 'data-original-slug' => @article.slug %>
                 </div>
+                <div id="article-slug-check"><span class="label"><i class='icon-search icon-large icon-white'></i> Checking</span></div>
+                <div id="article-slug-reset"><a href="#" id="article-slug-change" class="right-bar-link">Change</a></div>
             </div>
         </div>
     </div>
+    
     <div class="form-section clearfix">
         <div class="form-section-left">
             Template
@@ -60,7 +45,7 @@
                     <% @templates.each do |template| %>
                         <div id="template-<%= template.slug %>" class="template" data-template="<%= template.slug %>">
                             <div>
-                                <%= filepicker_image_tag(template.image_url, w: 180, h: 250)%>
+                                <%= filepicker_image_tag(template.image_url, w: 90, h: 125, fit: 'crop')%>
                             </div>
                             <div>
                                 <%= template[:name] %>
@@ -71,5 +56,103 @@
             </div>
         </div>
     </div>
-</div>
+    
+    <% if @article.id != nil %>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                Default Image
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <div id="article-default-image">
+                        <div class="display">
+                            <% if !@article.default_image.blank? %>
+                                <%= filepicker_image_tag(@article.default_image, w: 100, h: 100, fit: 'crop') %>
+                            <% end %>
+                        </div>
+                
+                        <%= f.filepicker_field :default_image, :class => "button", :button_text => 'Select image', :extensions => ".png,.jpg,.jpeg", :multiple => false, :store_path => "articles/#{@article.id}/", :onchange => "$('#article-default-image .display').html('<img src=\"' + event.fpfile.url + '/convert?w=100&h=100&fit=crop\" />');" %>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                Summary
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= f.text_area :summary, :id => 'article-summary', :autocomplete=>"off" %>
+                </div>
+            </div>
+        </div>
+    
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                <%= Settings.categories.plural %>
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= hidden_field_tag "article[category_ids][]", nil %>
+                    <% Category.all.each do |category| %>
+                        <label class="checkbox">
+                            <%= check_box_tag "article[category_ids][]", category.id, @article.category_ids.include?(category.id) %>
+                            <%= category.name %>
+                        </label>
+                    <% end %>
+                </div>
+            </div>
+        </div>
 
+        <% if Settings.series.enabled %>
+            <div class="form-section clearfix">
+                <div class="form-section-left">
+                    <%= Settings.series.plural %>
+                </div>
+                <div class="form-section-right">
+                    <div class="form-line">
+                        <%= hidden_field_tag "article[series_ids][]", nil%>
+                        <% Series.all.each do |series| %>
+                            <label class="checkbox">
+                                <%= check_box_tag "article[series_ids][]", series.id, @article.series_ids.include?(series.id) %>
+                                <%= series.name %><br/>
+                            </label>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+        
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                <%= Settings.users.plural %>
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <div id="article-author-display"><%= @article.author_display_name %></div>
+                    <div id="article-author-container">
+                        <%= collection_select(:article, :user_ids, User.all, :id, :display_name, {}, {:multiple => false, :name => 'article[user_ids][]'})%>
+                    </div>
+                    <div id="article-author-reset"><a href="#" id="article-author-change" class="right-bar-link">Change</a></div>
+                    <div id="article-author-other">
+                        <a href="#" id="article-author-use-other" class="right-bar-link">Manually enter <%= Settings.users.singular %> name</a>
+                        <%= f.text_field :author_other_name, :id => 'article-author-other-name', :placeholder => "#{Settings.users.singular} name", :class => "input-xlarge", 'data-original-author-other-name' => @article.author_other_name %>
+                    </div>
+                    <div id="article-author-other-cancel"><a href="#" id="article-author-use-existing" class="right-bar-link">Use existing <%= Settings.users.singular %></a></div>
+                </div>
+            </div>
+        </div>
+    <% end %>
+    
+    <div id="actions" class="form-section clearfix has-right-bar">
+        <% if action == 'create' %>
+            <%= link_to "Create #{Settings.articles.singular} and Continue Editing", '#', :class => "button green", :id => 'article-submit' %>
+        <% elsif action == 'update'%>
+            <%= link_to "Save #{Settings.articles.singular}", '#', :class => "button green", :id => 'article-submit' %>
+            <%= link_to "Edit #{Settings.articles.singular} Content", '#', :class => "button yellow", :id => 'article-edit' %>
+        <% end %>
+    </div>
+    
+</div>

@@ -1,93 +1,27 @@
-<div id="right-bar">
-    
-    <div id="status">
-        <div class="top">
-            Currently Published
-            <div class="switch pull-right switch-small article-published" data-on-label="<i class='icon-ok icon-white'></i>" data-off-label="<i class='icon-remove icon-white'></i>" data-on="success" data-off="danger">
-                <%= f.check_box :published, :id => 'article-published' %>
+<% if @article.id != nil %>
+    <div id="right-bar">
+        <div id="status">
+            <div class="top">
+                Currently Published
+                <div class="switch pull-right switch-small article-published" data-on-label="<i class='icon-ok icon-white'></i>" data-off-label="<i class='icon-remove icon-white'></i>" data-on="success" data-off="danger">
+                    <%= f.check_box :published, :id => 'article-published' %>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <div id="schedule">
-        <div class="top">
-            Publish at
-            <div class="input-append pull-right date" id="article-publish-at">
-                <%= f.text_field :publish_at, :id => 'article-publish-at', :class => "input-medium", :readonly => true, 'data-date' => @article.publish_at, 'data-date-format' => "dd MM yyyy - hh:ii" %>
-                <span class="add-on"><i class="icon-time"></i></span>
-            </div>
-        </div>        
-    </div>
-    
-    <div class="header">
-        Other settings
-    </div>
 
-    <div class="item">
-        <div class="item-title">Slug</div>
-        <div id="article-slug-display"><%= @article.slug || "Awaiting #{Settings.articles.singular.downcase} title..." %></div>
-        <div id="article-slug-container">
-            <%= f.text_field :slug, :id => 'article-slug', :placeholder => 'Slug', :class => "input-xlarge", 'data-original-slug' => @article.slug %>
+        <div id="schedule">
+            <div class="top">
+                Publish at
+                <div class="input-append pull-right date" id="article-publish-at">
+                    <%= f.text_field :publish_at, :id => 'article-publish-at', :class => "input-medium", :readonly => true, 'data-date' => @article.publish_at, 'data-date-format' => "dd MM yyyy - hh:ii" %>
+                    <span class="add-on"><i class="icon-time"></i></span>
+                </div>
+            </div>        
         </div>
-        <div id="article-slug-check"><span class="label"><i class='icon-search icon-large icon-white'></i> Checking</span></div>
-        <div id="article-slug-reset"><a href="#" id="article-slug-change" class="right-bar-link">Change</a></div>
+
+        <div class="header">
+            Versions
+        </div>
+
     </div>
-    
-    <div class="item">
-        <div class="item-title"><%= Settings.users.singular %></div>
-        <div id="article-author-display"><%= @article.author_display_name %></div>
-        <div id="article-author-container">
-            <%= collection_select(:article, :user_ids, User.all, :id, :display_name, {}, {:multiple => false, :name => 'article[user_ids][]'})%>
-        </div>
-        <div id="article-author-reset"><a href="#" id="article-author-change" class="right-bar-link">Change</a></div>
-        <div id="article-author-other">
-            <a href="#" id="article-author-use-other" class="right-bar-link">Manually enter <%= Settings.users.singular %> name</a>
-            <%= f.text_field :author_other_name, :id => 'article-author-other-name', :placeholder => "#{Settings.users.singular} name", :class => "input-xlarge", 'data-original-author-other-name' => @article.author_other_name %>
-        </div>
-        <div id="article-author-other-cancel"><a href="#" id="article-author-use-existing" class="right-bar-link">Use existing <%= Settings.users.singular %></a></div>
-    </div>
-    
-    <div class="item">
-        <div class="item-title"><%= Settings.categories.plural %></div>
-        <div id="article-category-display">
-            <%= @article.categories.map(&:name).join(', ')%>
-        </div>
-        <div id="article-category-container">
-            <%= hidden_field_tag "article[category_ids][]", nil %>
-            <% Category.all.each do |category| %>
-                <label class="checkbox">
-                    <%= check_box_tag "article[category_ids][]", category.id, @article.category_ids.include?(category.id) %>
-                    <%= category.name %>
-                </label>
-            <% end %>
-        </div>
-        <div id="article-category-reset"><a href="#" id="article-category-change" class="right-bar-link">Change</a></div>
-    </div>
-    
-    <div class="item">
-        <div class="item-title"><%= Settings.series.plural %></div>
-        <div id="article-series-display">
-            <%= @article.series.map(&:name).join(', ')%>
-        </div>
-        <div id="article-series-container">
-            <%= hidden_field_tag "article[series_ids][]", nil%>
-            <% Series.all.each do |series| %>
-                <label class="checkbox">
-                    <%= check_box_tag "article[series_ids][]", series.id, @article.series_ids.include?(series.id) %>
-                    <%= series.name %><br/>
-                </label>
-            <% end %>
-        </div>
-        <div id="article-series-reset"><a href="#" id="article-series-change" class="right-bar-link">Change</a></div>
-    </div>
-    
-    <div id="actions">
-        <% if action == 'create' %>
-            <%= link_to "Create #{Settings.articles.singular}", '#', :class => "button green", :id => 'article-submit' %>
-        <% elsif action == 'update'%>
-            <%= link_to "Save #{Settings.articles.singular}", '#', :class => "button green", :id => 'article-submit' %>
-            <%= link_to "Edit #{Settings.articles.singular} Content", '#', :class => "button yellow", :id => 'article-edit' %>
-        <% end %>
-    </div>
-    
-</div>
+<% end %>

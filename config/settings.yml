@@ -1,3 +1,4 @@
+# CORE COMPONENTS
 site:
   name: "Metaphor"
 related_parties:
@@ -9,9 +10,6 @@ articles:
 categories:
   singular: "Category"
   plural: "Categories"
-series:
-  singular: "Series"
-  plural: "Series"
 collections:
   singular: "Collection"
   plural: "Collections"
@@ -27,7 +25,13 @@ templates:
 components:
   singular: "Component"
   plural: "Components"
-  
+
+# OPTIONAL COMPONENTS
+series:
+  enabled: false
+  singular: "Series"
+  plural: "Series"
+
 query:
   types:
     all: All
