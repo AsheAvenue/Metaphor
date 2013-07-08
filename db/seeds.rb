@@ -39,30 +39,27 @@ g.save!
 t = Template.new
 t.name = "Video"
 t.slug = "video"
-t.image_url = "http://nicenicejpg.com/180/250"
 t.save!
-t.template_components.create(:component => v)
-t.template_components.create(:component => m)
-t.template_components.create(:component => b)
+t.template_components.create(:component => v, :order => 0)
+t.template_components.create(:component => m, :order => 1)
+t.template_components.create(:component => b, :order => 2)
 t.save!
 t = Template.new
 t.name = "Sound"
 t.slug = "sound"
-t.image_url = "http://nicenicejpg.com/180/250"
 t.save!
-t.template_components.create(:component => i)
-t.template_components.create(:component => m)
-t.template_components.create(:component => s)
-t.template_components.create(:component => b)
+t.template_components.create(:component => i, :order => 0)
+t.template_components.create(:component => m, :order => 1)
+t.template_components.create(:component => s, :order => 2)
+t.template_components.create(:component => b, :order => 3)
 t.save!
 t = Template.new
 t.name = "Gallery"
 t.slug = "gallery"
-t.image_url = "http://nicenicejpg.com/180/250"
 t.save!
-t.template_components.create(:component => g)
-t.template_components.create(:component => m)
-t.template_components.create(:component => b)
+t.template_components.create(:component => g, :order => 0)
+t.template_components.create(:component => m, :order => 1)
+t.template_components.create(:component => b, :order => 2)
 t.save!
 
 # Create test categories
