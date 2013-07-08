@@ -50,4 +50,16 @@ class Admin::PickerController < Admin::AdminController
     @s.save!
   end
   
+  def gallery
+    @galleries = Gallery.all
+    @gallery = Gallery.new
+  end
+
+  def addGallery
+    @g = Gallery.new
+    @g.name = params[:gallery_name]
+    @g.slug = params[:gallery_slug]
+    @g.save!
+  end
+  
 end

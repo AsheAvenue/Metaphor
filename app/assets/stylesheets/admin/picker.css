@@ -104,7 +104,9 @@
 #image-credit,
 #sound-name,
 #sound-slug,
-#sound-code {
+#sound-code,
+#gallery-name,
+#gallery-slug {
     color: white;
     font-size: 24px;
     font-weight: 100;

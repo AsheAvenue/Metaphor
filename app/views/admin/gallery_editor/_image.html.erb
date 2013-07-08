@@ -1,0 +1,10 @@
+<% 
+if @position
+    position = @position 
+end
+%>
+<div id="image_<%= position %>" class="widget image image-container" data-position="<%= position %>">
+    <% if @image %>
+        <%= filepicker_image_tag(@image.image_url, w: 200, h: 200, fit: 'crop') %>
+    <% end %>
+</div>

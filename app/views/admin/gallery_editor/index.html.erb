@@ -1,0 +1,8 @@
+<div id="gallery" data-id="<%= @gallery.id %>" class="clearfix">
+    
+    <% @widgets.each_with_index do |widget, index| %>
+        <% @image = widget.content %>
+        <%= render :partial => widget.content_type.downcase, :locals => {:widget => widget, :position => index} %>
+    <% end %>
+    
+</div>

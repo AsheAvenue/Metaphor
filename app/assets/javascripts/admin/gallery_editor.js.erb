@@ -1,0 +1,85 @@
+var gallery_editor = (function($) {
+    
+    return {
+        
+        init: function() {
+            
+            if ($('#gallery-drop-bar').length) {
+                //droppable section for gallery images
+                filepicker.setKey('<%= Settings.filepicker.api_key %>');
+                filepicker.makeDropPane($('#gallery-drop-bar'), {
+                    multiple: true,
+                    path: 'images/',
+                    dragEnter: function() {
+                        $("#gallery-drop .title").text("Drop to Upload");
+                    },
+                    dragLeave: function() {
+                        $("#gallery-drop .title").text("Drop Images Here");
+                    },
+                    onSuccess: function(InkBlobs) {
+                        for (var i = 0; i < InkBlobs.length; i++) {
+                            gallery_editor.addImage(InkBlobs[i].url);
+                        }
+                        $("#gallery-drop .title").text("Drag more images to add to the gallery");
+                    },
+                    onProgress: function(percentage) {
+                        $("#gallery-drop .title").text("Uploading (" + percentage + "%)");
+                    }
+                });
+            
+                //make all images sortable
+                $('#gallery').sortable(
+                    {
+                        update: function(){
+                            $.post(
+                                $(this).data('update-url'), 
+                                $(this).sortable('serialize')
+                            );
+                        }
+                    }
+                );
+            }
+        }, 
+        
+        addImage: function(url) {
+            //get the values
+            var image_name = '';
+            var image_slug = '';
+            var image_caption = '';
+            var image_credit = '';
+            var image_url = url;
+            
+            //post to the galleries addImage method
+            $("#gallery-drop .title").text("Creating Image");
+            $.post(
+                '/admin/galleries/add_image',
+                {
+                    image_name:     image_name,
+                    image_slug:     image_slug,
+                    image_caption:  image_caption,
+                    image_credit:   image_credit,
+                    image_url:      image_url
+                },
+                function(data) {
+                    //the Image object has now been created
+                    //now add it to the gallery
+                    $("#gallery-drop .title").text("Adding Image to Gallery");
+                    $.post(
+                        '/admin/galleries/select_image',
+                        {
+                            gallery_id: $('#gallery').data('id'),
+                            image_id: data,
+                            position: $('#gallery .widget').length
+                        }
+                    );
+                }
+            );
+        }
+        
+        
+    };
+})(jQuery);
+
+jQuery(document).ready(function($) {
+    gallery_editor.init();
+});

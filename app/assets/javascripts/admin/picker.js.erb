@@ -115,6 +115,13 @@ var picker = (function($) {
                 picker.addSound();
             });
             
+            //enable the gallery create button
+            $('#picker').on('click', '#picker-add-gallery', function(event){
+                event.preventDefault();
+                picker.addGallery();
+            });
+                        
+            
         },
         
         select: function(picker_item) {
@@ -200,6 +207,27 @@ var picker = (function($) {
                     //Adding the new sound will return the id of the new Sound object
                     //now select it as if it hadn't been added
                     picker.select(data);
+                }
+            );
+        },
+        
+        addGallery: function() {
+            
+            //get the values
+            gallery_name = $('#gallery-name').val();
+            gallery_slug = $('#gallery-slug').val();
+            
+            //post to the picker's createGallery method
+            $.post(
+                '/admin/picker/addGallery',
+                {
+                    gallery_name: gallery_name,
+                    gallery_slug: gallery_slug
+                },
+                function(data) {
+                    //Adding the new sound will return the id of the new Gallery object
+                    //And redirect to the gallery editor
+                    window.location = '/admin/galleries/' + data + '/editor';
                 }
             );
         }

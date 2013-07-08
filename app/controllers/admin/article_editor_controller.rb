@@ -6,6 +6,7 @@ class Admin::ArticleEditorController < Admin::AdminController
   def index
     # Get the article
     @article = Article.find(params[:id])
+    session[:article_id] = @article.id
     
     # Get the template if it's been defined
     if @article.template
@@ -65,6 +66,7 @@ class Admin::ArticleEditorController < Admin::AdminController
     c.save!
     
   end
+  
   def select_sound
     # get the data
     @article = Article.find(params[:article_id])

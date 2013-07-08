@@ -15,21 +15,29 @@
 	<header>
 		<div class="top clearfix">
             <div class="navigation-wrapper clearfix">
-                Content Editor // <%= @article.title %>
+                Gallery Editor // <%= @gallery.name %>
             </div>
 		</div>
 	</header>
 
     <div id="stage">
-        <div id="article_editor">
+        <div id="gallery_editor">
             <%= yield %>
         </div>
     </div>
     
+    <div id="gallery-drop-bar">
+        <div id="gallery-drop">
+            <div class="title">
+                Drag Images Here
+            </div>
+        </div>  
+    </div>
+    
     <div id="bottom-bar">
         <div class="buttons pull-right">
-            <a id="article-preview" href="#" class="button">Preview</a>
-            <a id="article-back" href="<%= edit_admin_article_path(@article) %>" class="button">Back to Article</a>
+            <a id="gallery-preview" href="#" class="button">Preview</a>
+            <a id="gallery-preview" href="<%= admin_article_editor_path(@article) %>" class="button">Back to Article</a>
         </div>  
     </div>
     
