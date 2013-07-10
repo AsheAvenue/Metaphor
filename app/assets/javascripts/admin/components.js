@@ -4,8 +4,10 @@ var components = (function($) {
         
         init: function() {
     
-            $('#component-name').sluggo('#component-slug');
-            
+            $('#component-name').sluggo({
+                target:             '#component-slug',
+                makeTargetReadonly: true
+            });
         }
         
     };

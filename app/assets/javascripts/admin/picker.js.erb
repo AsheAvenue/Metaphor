@@ -35,7 +35,10 @@ var picker = (function($) {
                     $('.pickercontent .content.select').show();
                     
                     //enable any slug fields within the picker
-                    $('.pickercontent .picker-new-name').sluggo('.picker-new-slug');
+                    $('.pickercontent .picker-new-name').sluggo({
+                        target:             '.picker-new-slug',
+                        makeTargetReadonly: true
+                    });
                     
                     //draggable section for image
                     filepicker.setKey('<%= Settings.filepicker.api_key %>');

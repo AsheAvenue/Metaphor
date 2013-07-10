@@ -1,8 +1,35 @@
-<div id="gallery" data-id="<%= @gallery.id %>" class="clearfix">
+<div id="stage">
+    <div id="gallery_editor">
+        <div id="gallery" data-id="<%= @gallery.id %>" class="clearfix" data-update-url="<%= admin_gallery_sort_url(@gallery) %>">
     
-    <% @widgets.each_with_index do |widget, index| %>
-        <% @image = widget.content %>
-        <%= render :partial => widget.content_type.downcase, :locals => {:widget => widget, :position => index} %>
-    <% end %>
+            <% @widgets.each_with_index do |widget, index| %>
+                <% 
+                    if @widget 
+                        widget = @widget
+                    end
     
+                    @image = widget.content
+                %>
+                <%= render :partial => widget.content_type.downcase, :locals => {:widget => widget, :position => index} %>
+            <% end %>
+    
+        </div>
+    </div>
 </div>
+
+<div id="gallery-drop-bar">
+    <div id="gallery-drop">
+        <div class="title">
+            Drag Images Here
+        </div>
+    </div>  
+</div>
+
+<div id="bottom-bar">
+    <div class="buttons pull-right">
+        <a id="gallery-preview" href="#" class="button">Preview</a>
+        <a id="gallery-preview" href="<%= admin_article_editor_path(@article) %>" class="button">Back to Article</a>
+    </div>  
+</div>
+<%= render :partial => 'admin/picker/frame'%>
+<%= javascript_include_tag "admin/paneslide/jquery.paneslide" %>

@@ -1,0 +1,18 @@
+<div id="image_info">
+    <div class="image">
+        <%= filepicker_image_tag(@image.image_url, h: 500, fit: 'max') %>
+    </div>
+    <div class="info">
+        <div class="item">
+            <%= text_field_tag :caption, @image.caption, :placeholder => "Caption", :id => 'image-info-caption', :autocomplete=>"off" %>
+        </div>
+        <div class="item">
+            <%= text_field_tag :credit, @image.credit, :placeholder => "Credit", :id => 'image-info-credit', :autocomplete=>"off" %>
+        </div>
+        <div class="item buttons">
+            <a href="#" class="button" id="image-info-previous">Previous</a>
+            <a href="#" class="button" id="image-info-next">Next</a>
+        </div>
+    </div>
+    
+</div>

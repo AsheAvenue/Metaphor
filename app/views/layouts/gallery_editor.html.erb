@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= Settings.site.name %></title>
-  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700&subset=latin,greek' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag    "admin/admin_manifest", :media => "all" %>
-  <%= javascript_include_tag "admin/admin_manifest" %>
-  <%= filepicker_js_include_tag %>
-  <%= csrf_meta_tags %>
+    <% if @gallery %>
+      <title><%= Settings.site.name %></title>
+      <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700&subset=latin,greek' rel='stylesheet' type='text/css'>
+      <%= stylesheet_link_tag    "admin/admin_manifest", :media => "all" %>
+      <%= javascript_include_tag "admin/admin_manifest" %>
+      <%= filepicker_js_include_tag %>
+      <%= csrf_meta_tags %>
+    <% end %>
 </head>
 <body>
 	
@@ -15,33 +17,16 @@
 	<header>
 		<div class="top clearfix">
             <div class="navigation-wrapper clearfix">
-                Gallery Editor // <%= @gallery.name %>
+                <% if @gallery %>
+                    Gallery Editor // <%= @gallery.name %>
+                <% else %>
+                    Image Info
+                <% end %>
             </div>
 		</div>
 	</header>
 
-    <div id="stage">
-        <div id="gallery_editor">
-            <%= yield %>
-        </div>
-    </div>
-    
-    <div id="gallery-drop-bar">
-        <div id="gallery-drop">
-            <div class="title">
-                Drag Images Here
-            </div>
-        </div>  
-    </div>
-    
-    <div id="bottom-bar">
-        <div class="buttons pull-right">
-            <a id="gallery-preview" href="#" class="button">Preview</a>
-            <a id="gallery-preview" href="<%= admin_article_editor_path(@article) %>" class="button">Back to Article</a>
-        </div>  
-    </div>
-    
-    <%= render :partial => 'admin/picker/frame'%>
-    
+    <%= yield %>
+
 </body>
 </html>

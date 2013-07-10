@@ -3,9 +3,12 @@ var templates = (function($) {
     return {
         
         init: function() {
-    
-            $('#template-name').sluggo('#template-slug');
-
+            
+            $('#template-name').sluggo({
+                target:             '#template-slug',
+                makeTargetReadonly: true
+            });
+            
             $('#content .components').sortable(
                 {
                     axis: 'y',

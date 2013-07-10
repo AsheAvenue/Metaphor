@@ -4,7 +4,10 @@ var categories = (function($) {
         
         init: function() {
     
-            $('#category-name').sluggo('#category-slug');
+            $('#category-name').sluggo({
+                target:             '#category-slug',
+                makeTargetReadonly: true
+            });
             
         }
         

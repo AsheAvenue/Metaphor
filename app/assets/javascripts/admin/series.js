@@ -4,8 +4,10 @@ var series = (function($) {
         
         init: function() {
     
-            $('#series-name').sluggo('#series-slug');
-            
+            $('#series-name').sluggo({
+                target:             '#series-slug',
+                makeTargetReadonly: true
+            });
         }
         
     };

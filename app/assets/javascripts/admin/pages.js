@@ -3,7 +3,10 @@ var pages = (function($) {
     return {
         init: function() {
     
-            $('#page-name').sluggo('#page-slug');
+            $('#page-name').sluggo({
+                target:             '#page-slug',
+                makeTargetReadonly: true
+            });
             
             $('#page-submit').click(function(e){
               e.preventDefault();

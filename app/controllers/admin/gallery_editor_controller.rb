@@ -14,14 +14,25 @@ class Admin::GalleryEditorController < Admin::AdminController
     @article = Article.find(session[:article_id])
   end
   
+  def sort
+    params[:image].each_with_index do |id, index|
+      ContentWidget.update_all({position: index+1}, {id: id})
+    end 
+    render nothing: true
+  end
+  
   def add_image
     @i = Image.new
-    @i.name = params[:image_name]
-    @i.slug = params[:image_slug]
-    @i.caption = params[:image_caption]
-    @i.credit = params[:image_credit]
     @i.image_url = params[:image_url]
     @i.save!
+    
+    @i.slug = "gallery-#{params[:gallery_id]}-image-#{@i.id}"
+    @i.save!
+  end
+  
+  def remove_image
+    gi = ContentWidget.find(params[:id])
+    gi.destroy
   end
   
   def select_image
@@ -32,14 +43,19 @@ class Admin::GalleryEditorController < Admin::AdminController
     
     # get the content widget if it already exists in that place and 
     # update it... or create a new one
-    c = ContentWidget.new
-    c.entity = @gallery
-    c.content = @image
-    c.position = @position
+    @widget = ContentWidget.new
+    @widget.entity = @gallery
+    @widget.content = @image
+    @widget.position = @position
     
     #save the content widget and continue to the js.erb portion
-    c.save!
-    
+    @widget.save! 
+  end
+  
+  def image_info
+    widget = ContentWidget.find(params[:id])
+    puts widget
+    @image = widget.content
   end
   
 end
