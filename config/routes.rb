@@ -30,6 +30,7 @@ Metaphor::Application.routes.draw do
     match 'galleries/:id/sort' => 'gallery_editor#sort', :as => 'gallery_sort'
     match 'galleries/add_image' => 'gallery_editor#add_image', :as => 'gallery_editor_add_image'
     match 'galleries/remove_image' => 'gallery_editor#remove_image', :as => 'gallery_editor_remove_image'
+    match 'galleries/save_image' => 'gallery_editor#save_image', :as => 'gallery_editor_save_image'
     match 'galleries/select_image' => 'gallery_editor#select_image', :as => 'gallery_editor_select_image'
     match 'galleries/image_info/:id' => 'gallery_editor#image_info', :as => 'gallery_editor_image_info'
     match 'collections/:id/sort' => 'collections#sort', :as => 'collection_sort'
@@ -43,6 +44,7 @@ Metaphor::Application.routes.draw do
     match 'picker/addVideo' => 'picker#addVideo'
     match 'picker/addSound' => 'picker#addSound'
     match 'picker/:action' => 'picker#:action'
+    
   end
   
   

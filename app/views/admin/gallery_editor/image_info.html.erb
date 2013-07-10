@@ -1,18 +1,25 @@
-<div id="image_info">
+<div id="image-info">
     <div class="image">
-        <%= filepicker_image_tag(@image.image_url, h: 500, fit: 'max') %>
+        <%= filepicker_image_tag(@image.image_url, h: 400) %>
     </div>
-    <div class="info">
-        <div class="item">
-            <%= text_field_tag :caption, @image.caption, :placeholder => "Caption", :id => 'image-info-caption', :autocomplete=>"off" %>
+    <div class="info clearfix">
+        <div class="left">
+            <a href="#" class="button" id="image-info-previous">&lt;-</a>
         </div>
-        <div class="item">
-            <%= text_field_tag :credit, @image.credit, :placeholder => "Credit", :id => 'image-info-credit', :autocomplete=>"off" %>
+        <div class="items">
+            <div class="item">
+                <%= text_field_tag :caption, @image.caption, :placeholder => "Caption", :id => 'image-info-caption', :autocomplete=>"off" %>
+            </div>
+            <div class="item">
+                <%= text_field_tag :credit, @image.credit, :placeholder => "Credit", :id => 'image-info-credit', :autocomplete=>"off" %>
+            </div>
         </div>
-        <div class="item buttons">
-            <a href="#" class="button" id="image-info-previous">Previous</a>
-            <a href="#" class="button" id="image-info-next">Next</a>
+        <div class="right">
+            <a href="#" class="button" id="image-info-next">-&gt;</a>
         </div>
     </div>
-    
+    <div class="buttons">
+        <a href="#" class="button" id="image-info-save">Save Image</a>
+        <a href="#" class="button" id="image-info-done">Done Editing Images</a>
+    </div>
 </div>

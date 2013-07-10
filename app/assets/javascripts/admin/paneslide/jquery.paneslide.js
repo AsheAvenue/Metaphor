@@ -208,9 +208,9 @@
 	/* Events */
 	
 	// Don't let clicks to the paneslide close the window
-    $paneslide.click(function(e) {
-        e.stopPropagation();
-    });
+    // $paneslide.click(function(e) {
+    //     e.stopPropagation();
+    // });
 
 	// Close the paneslide if the document is clicked or the users presses the ESC key, unless the paneslide is modal
 	$(document).bind('click keyup', function(e) {

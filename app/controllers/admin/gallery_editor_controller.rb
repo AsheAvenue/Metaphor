@@ -31,8 +31,17 @@ class Admin::GalleryEditorController < Admin::AdminController
   end
   
   def remove_image
-    gi = ContentWidget.find(params[:id])
-    gi.destroy
+    w = ContentWidget.find(params[:id])
+    w.destroy
+  end
+  
+  def save_image
+    w = ContentWidget.find(params[:content_widget_id])
+    i = w.content
+    i.caption = params[:image_caption]
+    i.credit = params[:image_credit]
+    i.save!
+    render nothing: true
   end
   
   def select_image

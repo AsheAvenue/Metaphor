@@ -71,7 +71,7 @@
                             <% end %>
                         </div>
                 
-                        <%= f.filepicker_field :default_image, :class => "button", :button_text => 'Select image', :extensions => ".png,.jpg,.jpeg", :multiple => false, :store_path => "articles/#{@article.id}/", :onchange => "$('#article-default-image .display').html('<img src=\"' + event.fpfile.url + '/convert?w=100&h=100&fit=crop\" />');" %>
+                        <%= f.filepicker_field :default_image, :class => "button", :button_text => 'Select image', :extensions => ".png,.jpg,.jpeg,.gif", :multiple => false, :store_path => "articles/#{@article.id}/", :onchange => "$('#article-default-image .display').html('<img src=\"' + event.fpfile.url + '/convert?w=100&h=100&fit=crop\" />');" %>
                 
                     </div>
                 </div>
