@@ -26,7 +26,7 @@ var article_editor = (function($) {
                     position: position
                 },
                 function() {
-                    //Adding the video to the top video section is handled by the 
+                    //Adding the video to the video section is handled by the 
                     //Rails select_video.js.erb template.
                     //
                     //Just close the picker.
@@ -46,7 +46,27 @@ var article_editor = (function($) {
                     position: position
                 },
                 function() {
-                    //Adding the image to the top video section is handled by the 
+                    //Adding the image to the image section is handled by the 
+                    //Rails select_video.js.erb template.
+                    //
+                    //Just close the picker.
+                    picker.close();
+                }
+            );
+        },
+        
+        select_gallery: function(gallery_id, position) {
+            
+            //post the new video to 
+            $.post(
+                $('#select_gallery').data('path'),
+                {
+                    article_id: $('#article').data('id'),
+                    gallery_id: gallery_id,
+                    position: position
+                },
+                function() {
+                    //Adding the gallery to the gallery section is handled by the 
                     //Rails select_video.js.erb template.
                     //
                     //Just close the picker.
@@ -66,7 +86,7 @@ var article_editor = (function($) {
                     position: position
                 },
                 function() {
-                    //Adding the video to the top video section is handled by the 
+                    //Adding the sound to the sound section is handled by the 
                     //Rails select_video.js.erb template.
                     //
                     //Just close the picker.

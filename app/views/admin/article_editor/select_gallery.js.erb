@@ -1,0 +1,1 @@
+$("#gallery_<%= @position %> .gallery-container").html('<%= escape_javascript(render(:partial => "gallery-embed", :locals => {:gallery => @gallery})) %>');

@@ -8,11 +8,13 @@ class Article < ActiveRecord::Base
     :user_ids, 
     :publish_at, 
     :published, 
+    :default_image,
+    :default_image_original_filename,
     :author_other_name, 
-    :default_image, 
-    :remove_default_image,
     :template
   
+  attr_accessor :default_image_original_filename
+    
   has_many :article_categories, :dependent => :destroy
   has_many :categories, :through => :article_categories
   has_many :article_related_parties, :dependent => :destroy
@@ -29,6 +31,23 @@ class Article < ActiveRecord::Base
   
   scope :newest, order("articles.created_at desc")
   
+  has_attached_file :default_image,
+      :storage => :s3,
+      :bucket => 'metaphor-images',
+      :path => "article/:id/default_image/:style.:extension",
+      :s3_credentials => {
+        :access_key_id => 'AKIAJU2Z5ERW6USCRFNQ',
+        :secret_access_key => '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'
+      },
+      :styles => {
+        :large => '640x360>',
+        :medium => '320x180>',
+        :thumb => '100x100#'
+      },
+      :convert_options => {
+        :thumb => "-quality 75 -strip" 
+      }
+         
   # convenience methods
   def author
     users.first

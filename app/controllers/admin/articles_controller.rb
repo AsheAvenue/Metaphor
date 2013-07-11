@@ -1,3 +1,5 @@
+require "open-uri"
+
 class Admin::ArticlesController < Admin::AdminController
 
   layout :resolve_layout
@@ -34,6 +36,19 @@ class Admin::ArticlesController < Admin::AdminController
   
   def update
     article = Article.find(params[:id])
+    
+    # Open the url that's been returned by Filepicker.
+    # Then remove the default image from params so it doesn't get updated 
+    # via update_attributes, which will cause a validation error
+    if params[:article][:default_image] != '/default_images/original/missing.png'
+      url = params[:article][:default_image]
+      original_filename = params[:article][:default_image_original_filename]
+      article.default_image = open(url)
+      article.default_image.instance_write(:file_name, original_filename)
+    end
+    params[:article].delete :default_image
+    
+    # Proceed to update the object accordingly
     article.update_attributes(params[:article])
     article.save
     

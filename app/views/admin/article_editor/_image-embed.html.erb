@@ -1,4 +1,4 @@
-<%= filepicker_image_tag(@image.image_url, w: 688, h: 500, fit: 'crop') %>
+<%= image_tag @image.image.url(:extralarge) %>
 <div class="selected-buttons">
     Select a different image
 </div>

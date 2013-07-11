@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130703141228) do
+ActiveRecord::Schema.define(:version => 20130711202524) do
 
   create_table "article_categories", :force => true do |t|
     t.integer  "article_id"
@@ -38,14 +38,17 @@ ActiveRecord::Schema.define(:version => 20130703141228) do
     t.string   "slug"
     t.string   "title"
     t.text     "body"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.datetime "publish_at"
     t.boolean  "published"
     t.string   "author_other_name"
     t.text     "summary"
-    t.string   "default_image"
     t.string   "template"
+    t.string   "default_image_file_name"
+    t.string   "default_image_content_type"
+    t.integer  "default_image_file_size"
+    t.datetime "default_image_updated_at"
   end
 
   create_table "categories", :force => true do |t|
@@ -88,15 +91,18 @@ ActiveRecord::Schema.define(:version => 20130703141228) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "gallery_images", :force => true do |t|
+  create_table "images", :force => true do |t|
     t.integer  "gallery_id"
     t.string   "name"
     t.string   "slug"
     t.string   "caption"
     t.string   "credit"
-    t.string   "image_path"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "pages", :force => true do |t|
@@ -178,9 +184,12 @@ ActiveRecord::Schema.define(:version => 20130703141228) do
   create_table "templates", :force => true do |t|
     t.string   "name"
     t.string   "slug"
-    t.string   "image_url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "users", :force => true do |t|

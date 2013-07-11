@@ -14,7 +14,7 @@
     <div class="content select">    
         <% @images.each do |image| %>
             <div class="item">
-                <%= link_to filepicker_image_tag(image.image_url, w: 64, h: 64, fit: 'crop'), "", 'data-picker-item' => image.id %>
+                <%= image_tag image.image.url(:thumb), 'data-picker-item' => image.id %>
                 <%= link_to image.name, "", 'data-picker-item' => image.id %>
             </div>
         <% end %>
@@ -34,7 +34,9 @@
         </div>
         
         <div>
-            <%= hidden_field_tag :image_url, "", :id => 'image-url' %>
+            <%= hidden_field_tag :image, "", :id => "image-image-hidden-field" %>
+            <%= hidden_field_tag :image_original_filename, "", :id => "image-image-original-filename-hidden-field" %>
+            
             <img id="image-display">
             <div id="image-drop">Drag image here</div>
         </div>

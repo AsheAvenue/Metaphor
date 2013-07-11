@@ -59,7 +59,8 @@ var picker = (function($) {
                         },
                         onSuccess: function(InkBlobs) {
                             $("#image-drop").text("Converting...");
-                            $('#image-url').val(InkBlobs[0].url);
+                            $('#image-image-hidden-field').val(InkBlobs[0].url);
+                            $('#image-image-original-filename-hidden-field').val(InkBlobs[0].filename);
                             
                             //show the image, but convert it first
                             filepicker.convert(InkBlobs[0], {width: 320, height: 180, fit: 'crop'},
@@ -109,6 +110,7 @@ var picker = (function($) {
             //enable the image add button
             $('#picker').on('click', '#picker-add-image', function(event){
                 event.preventDefault();
+                $('#picker-add-image').text('Adding Image...');
                 picker.addImage();
             });
                         
@@ -169,18 +171,20 @@ var picker = (function($) {
             image_slug = $('#image-slug').val();
             image_caption = $('#image-caption').val();
             image_credit = $('#image-credit').val();
-            image_url = $('#image-url').val();
+            image_url = $('#image-image-hidden-field').val();
+            image_original_filename = $('#image-image-original-filename-hidden-field').val();
             
             //post to the picker's addImage method
             //post the new article
             $.post(
                 '/admin/picker/addImage',
                 {
-                    image_name:     image_name,
-                    image_slug:     image_slug,
-                    image_caption:  image_caption,
-                    image_credit:   image_credit,
-                    image_url:      image_url
+                    image_name:                 image_name,
+                    image_slug:                 image_slug,
+                    image_caption:              image_caption,
+                    image_credit:               image_credit,
+                    image_url:                  image_url,
+                    image_original_filename:    image_original_filename
                 },
                 function(data) {
                     //Adding the new image will return the id of the new Video object

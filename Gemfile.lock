@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/Filepicker/filepicker-rails.git
-  revision: b1166c81a22a598c3cf790cd185ff544109e81e9
+  revision: 35e02ec18c63a4519a2bae627db48c265d022896
   specs:
     filepicker-rails (0.1)
       multi_json (~> 1.6)
@@ -37,6 +37,10 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     arel (3.0.2)
+    aws-sdk (1.12.0)
+      json (~> 1.4)
+      nokogiri (< 1.6.0)
+      uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
     better_errors (0.9.0)
       coderay (>= 1.0.0)
@@ -46,9 +50,10 @@ GEM
     builder (3.0.4)
     callsite (0.0.11)
     cancan (1.6.10)
-    carrierwave (0.8.0)
+    carrierwave (0.9.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
+      json (>= 1.7)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.1)
@@ -96,7 +101,7 @@ GEM
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
-    lumberjack (1.0.3)
+    lumberjack (1.0.4)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -108,6 +113,7 @@ GEM
     mime-types (1.23)
     multi_json (1.7.7)
     multipart-post (1.2.0)
+    nokogiri (1.5.10)
     oauth (0.4.7)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -116,7 +122,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.2)
     orm_adapter (0.4.0)
-    paperclip (3.4.1)
+    paperclip (3.4.2)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -169,7 +175,7 @@ GEM
     rmagick (2.13.2)
     rolify (3.2.0)
     slop (3.4.5)
-    sorcery (0.8.1)
+    sorcery (0.8.2)
       bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
       oauth2 (~> 0.8.0)
@@ -187,6 +193,7 @@ GEM
     uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    uuidtools (2.1.4)
     warden (1.2.1)
       rack (>= 1.0)
 
@@ -194,6 +201,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk
   better_errors
   binding_of_caller
   cancan
@@ -202,7 +210,7 @@ DEPENDENCIES
   guard-livereload
   jquery-rails (~> 2.3.0)
   meta_request
-  paperclip (~> 3.0)
+  paperclip
   pg
   rails (= 3.2.13)
   rails_config

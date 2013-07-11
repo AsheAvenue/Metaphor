@@ -23,7 +23,16 @@ class Admin::GalleryEditorController < Admin::AdminController
   
   def add_image
     @i = Image.new
-    @i.image_url = params[:image_url]
+    
+    # Open the url that's been returned by Filepicker.
+    # Then remove the default image from params so it doesn't get updated 
+    # via update_attributes, which will cause a validation error
+    if params[:image_url] != '/default_images/original/missing.png'
+      url = params[:image_url]
+      original_filename = params[:image_original_filename]
+      @i.image = open(url)
+      @i.image.instance_write(:file_name, original_filename)
+    end
     @i.save!
     
     @i.slug = "gallery-#{params[:gallery_id]}-image-#{@i.id}"

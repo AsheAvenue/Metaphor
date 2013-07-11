@@ -1,15 +1,15 @@
-#article_editor .gallery {
+#article_editor .image {
     padding: 5px;
 }
 
-#article_editor .gallery .gallery-container {
+#article_editor .image .image-container {
     border: 1px solid white;
     min-height: 387px;
     background-color: #bdc3c7;
     cursor: pointer;
 }
 
-#article_editor .gallery .gallery-container .select-gallery {
+#article_editor .image .image-container .select-image {
     font-size: 50px;
     line-height: 50px;
     font-weight: 200;
@@ -19,7 +19,7 @@
     color: white;
 }
 
-#article_editor .gallery .gallery-container .selected-buttons {
+#article_editor .image .image-container .selected-buttons {
     padding: 10px;
     text-align: right;
     color: white;

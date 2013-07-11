@@ -1,6 +1,6 @@
 <div id="image-info">
     <div class="image">
-        <%= filepicker_image_tag(@image.image_url, h: 400) %>
+        <%= image_tag @image.image.url(:large) %>
     </div>
     <div class="info clearfix">
         <div class="left">

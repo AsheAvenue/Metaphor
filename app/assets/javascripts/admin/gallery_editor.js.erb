@@ -18,9 +18,10 @@ var gallery_editor = (function($) {
                     },
                     onSuccess: function(InkBlobs) {
                         for (var i = 0; i < InkBlobs.length; i++) {
-                            gallery_editor.addImage(InkBlobs[i].url);
+                            var img = InkBlobs[i];
+                            gallery_editor.addImage(img.url, img.filename);
                         }
-                        $("#gallery-drop .title").text("Drag more Images Here to Add to the Gallery");
+                        $("#gallery-drop .title").text("Converting to Multiple Sizes and Uploading...");
                     },
                     onProgress: function(percentage) {
                         $("#gallery-drop .title").text("Uploading (" + Math.round(percentage) + "%)");
@@ -159,17 +160,19 @@ var gallery_editor = (function($) {
             );
         },
         
-        addImage: function(url) {
+        addImage: function(url, original_filename) {
             //get the values
             var image_url = url;
+            var image_original_filename = original_filename;
             
             //post to the galleries addImage method
             $("#gallery-drop .title").text("Creating Image");
             $.post(
                 '/admin/galleries/add_image',
                 {
-                    gallery_id: $('#gallery').data('id'),
-                    image_url:  image_url
+                    gallery_id:                 $('#gallery').data('id'),
+                    image_url:                  image_url,
+                    image_original_filename:    image_original_filename
                 },
                 function(data) {
                     //the Image object has now been created

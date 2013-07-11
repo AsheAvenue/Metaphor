@@ -1,9 +1,9 @@
-<div id="select_image" data-path="<%= admin_article_editor_select_image_path(@article) %>"></div>
+<div id="select_gallery" data-path="<%= admin_article_editor_select_gallery_path(@article) %>"></div>
 
 <div class="gallery-container" data-picker="gallery" data-picker-callback="article_editor#select_gallery" data-picker-position="<%= position %>">
     <% 
         if !@widgets.blank? && @widgets["#{position}"]&& @widgets["#{position}"].content_type == "Gallery"
-            @image = @widgets["#{position}"].content
+            @gallery = @widgets["#{position}"].content
         end
     %>
     <% if @image %>

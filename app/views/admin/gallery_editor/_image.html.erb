@@ -10,7 +10,7 @@ end
 <div id="image_<%= widget.id %>" class="widget image image-container" data-position="<%= position %>" data-pane="<%= admin_gallery_editor_image_info_path(widget) %>" data-widget-id="<%= widget.id %>">
     <div class="image">
         <% if @image %>
-            <%= filepicker_image_tag(@image.image_url, w: 200, h: 200, fit: 'crop') %> 
+            <%= image_tag @image.image.url(:largethumb) %> 
         <% end %>
     </div>
     <div class="overlay">

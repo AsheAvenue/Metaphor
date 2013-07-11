@@ -29,6 +29,17 @@ class Admin::TemplatesController < Admin::AdminController
   
   def update
     @template = Template.find(params[:id])
+    
+    # Open the url that's been returned by Filepicker.
+    # Then remove the default image from params so it doesn't get updated 
+    # via update_attributes, which will cause a validation error
+    url = params[:template][:image]
+    original_filename = params[:template][:image_original_filename]
+    @template.image = open(url)
+    @template.image.instance_write(:file_name, original_filename)
+    params[:template].delete :image
+    
+    # Proceed to update the object accordingly
     @template.update_attributes(params[:template])
     if @template.save
       @templates = Template.where(true)

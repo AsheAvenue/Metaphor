@@ -45,7 +45,9 @@
                     <% @templates.each do |template| %>
                         <div id="template-<%= template.slug %>" class="template" data-template="<%= template.slug %>">
                             <div>
-                                <%= filepicker_image_tag(template.image_url, w: 90, h: 125, fit: 'crop')%>
+                                <% if !template.image.blank? %>
+                                    <%= image_tag template.image.url(:thumb) %>
+                                <% end %>
                             </div>
                             <div>
                                 <%= template[:name] %>
@@ -64,14 +66,26 @@
             </div>
             <div class="form-section-right">
                 <div class="form-line">
-                    <div id="article-default-image">
+                    <div id="article-default-image">                        
+                        
                         <div class="display">
                             <% if !@article.default_image.blank? %>
-                                <%= filepicker_image_tag(@article.default_image, w: 100, h: 100, fit: 'crop') %>
+                                <%= image_tag @article.default_image.url(:thumb) %>
                             <% end %>
                         </div>
                 
-                        <%= f.filepicker_field :default_image, :class => "button", :button_text => 'Select image', :extensions => ".png,.jpg,.jpeg,.gif", :multiple => false, :store_path => "articles/#{@article.id}/", :onchange => "$('#article-default-image .display').html('<img src=\"' + event.fpfile.url + '/convert?w=100&h=100&fit=crop\" />');" %>
+                        <%= f.hidden_field :default_image, :id => "article-default-image-hidden-field" %>
+                        <%= f.hidden_field :default_image_original_filename, :id => "article-default-image-original-filename-hidden-field" %>
+                        
+                        <input  type="filepicker" 
+                                name="temp_default_image" 
+                                class="button" 
+                                data-fp-apikey="<%= Settings.filepicker.api_key %>" 
+                                data-fp-button-text="Select image" 
+                                data-fp-extensions=".png,.jpg,.jpeg,.gif" 
+                                data-fp-multiple="false" 
+                                onchange="$('#article-default-image-hidden-field').val(event.fpfile.url); $('#article-default-image-original-filename-hidden-field').val(event.fpfile.filename); $('#article-default-image .display').html('<img src=\'' + event.fpfile.url + '/convert?w=100&h=100&fit=crop\' />');" 
+                        />
                 
                     </div>
                 </div>

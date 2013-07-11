@@ -32,7 +32,11 @@
                     <%= link_to template.slug, edit_admin_template_path(template) %>
                 </div>
                 <div class="quarter">
-                    <%= link_to filepicker_image_tag(template.image_url, w: 90, h: 125), edit_admin_template_path(template) %>
+                    <% if !template.image.blank? %>
+                        <%= image_tag template.image.url(:thumb) %>
+                    <% else %>
+                        &nbsp;
+                    <% end %>
                 </div>
                 <div class="quarter">
                     <%= template.components.order("template_components.order ASC").map { |component| component.name }.join(", ") %>
