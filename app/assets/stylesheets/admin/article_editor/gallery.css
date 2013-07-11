@@ -40,3 +40,8 @@
     line-height: 18px;
     font-weight: 100;
 }
+
+#article_editor .gallery .gallery-container .selected-buttons a, 
+#article_editor .gallery .gallery-container .selected-buttons a:hover {
+    color: white;
+}

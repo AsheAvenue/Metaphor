@@ -6,7 +6,7 @@
             @gallery = @widgets["#{position}"].content
         end
     %>
-    <% if @image %>
+    <% if @gallery %>
         <%= render :partial => 'gallery-embed' %>
     <% else %>
         <div class="select-gallery">
