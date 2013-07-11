@@ -11,6 +11,7 @@ gem 'rmagick'
 gem 'rolify'
 gem 'cancan'
 gem 'filepicker-rails', git: 'git://github.com/Filepicker/filepicker-rails.git'
+gem "paperclip", "~> 3.0"
 
 group :assets do
   gem 'uglifier', '>= 1.0.3'

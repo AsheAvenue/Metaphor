@@ -52,8 +52,15 @@ var gallery_editor = (function($) {
                 $('#gallery').on('click', '.overlay .buttons .remove', function(event){
                     event.preventDefault();
                     
+                    // figure out if the active image is being removed
+                    if($('#image_' + $(this).data('gallery-image-id') + ' .image.active').length == 1) {
+                        $.paneslide.close();
+                    }
+                    
+                    //remove the image
                     $('#image_' + $(this).data('gallery-image-id')).remove();
                     
+                    //send a message to delete the image from teh content widgets for this gallery
                     $.post(
                         '/admin/galleries/remove_image',
                         {

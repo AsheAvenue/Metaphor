@@ -39,6 +39,7 @@ class Admin::GalleryEditorController < Admin::AdminController
     w = ContentWidget.find(params[:content_widget_id])
     i = w.content
     i.caption = params[:image_caption]
+    i.name = i.caption if !i.name
     i.credit = params[:image_credit]
     i.save!
     render nothing: true
