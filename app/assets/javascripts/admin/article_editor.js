@@ -13,6 +13,27 @@ var article_editor = (function($) {
                     $('#article-preview').html('Preview');
                 }
             });
+            
+            // Enable the contenteditable fields
+    		$("#article").contentEditable().change(function(e){
+    			//post if the content has been changed
+                if(e.action == "save") {
+    			    
+                    //fade in the border
+                    $('.body-container').animate({"border-color": "#16a085"}, 250);
+                    
+                    $.post(
+                        $('#update_body').data('path'),
+                        {
+                            article_id: $('#article').data('id'),
+                            body: $('.body-container').html()
+                        }, 
+                        function() {
+                            $('.body-container').animate({"border-color": "transparent"}, 250);
+                        }
+                    );
+                }
+    		});
         },
         
         select_video: function(video_id, position) {

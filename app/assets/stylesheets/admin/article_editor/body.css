@@ -4,3 +4,9 @@
     line-height: 24px;
     font-weight: 200;
 }
+
+#article_editor .body .body-container,
+#article_editor .body .body-container:hover {
+    border: 1px solid transparent;
+    outline: 0;
+}

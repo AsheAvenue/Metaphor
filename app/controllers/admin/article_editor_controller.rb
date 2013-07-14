@@ -115,4 +115,13 @@ class Admin::ArticleEditorController < Admin::AdminController
     
   end
   
+  def update_body
+    @article = Article.find(params[:article_id])
+    body = params[:body]
+    @article.body = body
+    @article.save!
+    render :nothing => true
+  end  
+  
+  
 end
