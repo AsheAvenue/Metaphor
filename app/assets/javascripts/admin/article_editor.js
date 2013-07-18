@@ -1,8 +1,13 @@
 var article_editor = (function($) {
     
+    var self;
+    
     return {
         
         init: function() {
+            
+            self = this;
+            
             $('#article-preview').click(function(){
                 if($('#article-preview').html() == "Preview") {
                     $('#article_editor .selected-buttons').hide('fast');
@@ -18,7 +23,7 @@ var article_editor = (function($) {
     		$("#article").contentEditable().change(function(e){
     			//post if the content has been changed
                 if(e.action == "save") {
-    			    
+                    
                     //fade in the border
                     $('.body-container').animate({"border-color": "#16a085"}, 250);
                     
