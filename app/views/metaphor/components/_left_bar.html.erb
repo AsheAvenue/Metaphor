@@ -1,0 +1,13 @@
+<div id="left-bar">
+    <div class="header">
+        <%= Settings.components.plural %>
+    </div>
+
+    <div class="new">
+        <%= link_to "New #{Settings.components.singular} »", new_component_path %>
+    </div>
+    
+    <% @components.each do |component| %>
+        <div class="item"><%= link_to component.name, edit_component_path(component) %></div>
+    <% end %>
+</div>

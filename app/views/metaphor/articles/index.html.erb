@@ -1,0 +1,66 @@
+<div id="list">
+    
+    <div class="header">
+        <%= Settings.articles.plural %>
+        <div class="header-link pull-right">
+            <%= link_to "New #{Settings.articles.singular} »", new_article_url %>
+        </div>
+    </div>
+    
+    <div class="criteria">
+        Status:
+		<ul>
+			<li class="filter" data-filter="all">All</li>
+			<li class="filter" data-filter="published">Published</li>
+			<li class="filter" data-filter="scheduled">Scheduled</li>
+			<li class="filter" data-filter="not_scheduled">Not Scheduled</li>
+			<li class="filter" data-filter="retired">Retired</li>
+		</ul>    
+    </div>
+    
+    <div class="criteria">
+        Order:
+		<ul>
+            <li class="sort active" data-sort="data-created" data-order="asc">Newer</li>
+            <li class="sort" data-sort="data-created" data-order="desc">Older</li>
+		</ul>    
+    </div>
+    
+    <div id="fields" class="fields clearfix">
+        <div class="twofifths">
+            Title
+        </div>
+        <div class="onefifth">
+            <%= Settings.users.singular %>
+        </div>
+        <div class="onefifth">
+            Created at
+        </div>
+        <div class="onefifth">
+            Status
+        </div>
+    </div>
+
+    <ul id="items" class="items">
+        <% @articles.each do |article| %>
+            <li class="item mix <%= article.status_class %> clearfix" data-status="<%= article.status_class %>" data-created="<%= article.created_at.to_time.to_i %>">
+                <div class="twofifths">
+                    <%= link_to article.title, edit_article_path(article) %>
+                </div>
+                <div class="onefifth">
+                    <%= article.author_display_name %>
+                </div>
+                <div class="onefifth">
+                    <%= article.created_at.strftime("%b, %d %y - %I:%M %p") %>
+                </div>
+                <div class="onefifth" style="background-color: <%= article.status_color %>">
+                    <%= article.status %>
+                </div>
+            </li>
+        <% end %>
+        <div class="fail_element">
+            :( Sorry, no articles meet the selected criteria.
+        </div>
+    </ul>
+    
+</div>

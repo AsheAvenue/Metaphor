@@ -1,8 +1,0 @@
-<div id="pinned_articles_<%= p.id %>" class="pinned-article clearfix">
-    <div class="title">
-        <%= p.article.title %>
-    </div>
-    <div class="meta">
-        <%= link_to "/#{p.article.slug}", p.article.slug %> | <%= link_to "Unpin", admin_collection_remove_pinned_article_path(@collection.id, p.id), :remote => true %>
-    </div>
-</div>

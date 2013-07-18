@@ -1,0 +1,8 @@
+<div id="components_<%= component.id %>" class="component clearfix">
+    <div class="title">
+        <%= component.name %>
+    </div>
+    <div class="meta">
+        <%= link_to "Remove #{Settings.components.singular}", template_remove_component_path(@template.id, component.id), :remote => true %>
+    </div>
+</div>

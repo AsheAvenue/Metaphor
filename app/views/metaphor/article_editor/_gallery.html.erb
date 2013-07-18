@@ -1,0 +1,16 @@
+<div id="select_gallery" data-path="<%= article_editor_select_gallery_path(@article) %>"></div>
+
+<div class="gallery-container" data-picker="gallery" data-picker-callback="article_editor#select_gallery" data-picker-position="<%= position %>">
+    <% 
+        if !@widgets.blank? && @widgets["#{position}"]&& @widgets["#{position}"].content_type == "Gallery"
+            @gallery = @widgets["#{position}"].content
+        end
+    %>
+    <% if @gallery %>
+        <%= render :partial => 'gallery-embed' %>
+    <% else %>
+        <div class="select-gallery">
+            Select a Gallery
+        </div>
+    <% end %>
+</div>

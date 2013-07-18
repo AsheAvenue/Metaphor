@@ -1,0 +1,35 @@
+<%= form_for @category, :html => {:autocomplete=>"off"} do |f| %>
+    <div id="content">
+        <% if flash[:alert] %>
+            <div class="alert">
+                <%= flash[:alert] %>
+            </div>
+        <% end %>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                <%= Settings.categories.singular %>
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= f.text_field :name, :placeholder => "Name", :id => 'category-name', :autocomplete=>"off" %>
+                </div>
+                <div class="form-line">
+                    <%= f.text_field :slug, :placeholder => "Slug", :id => 'category-slug', :autocomplete=>"off" %>
+                </div>
+            </div>
+        </div>
+        <div class="form-section clearfix">
+            <div class="form-section-left"></div>
+            <div class="form-section-right">
+                <div class="form-line">
+                  <% if action == 'update' %>
+                      <%= f.submit "Save #{Settings.categories.singular}", :class => "button" %>
+                  <% else %>
+                      <%= f.submit "Create #{Settings.categories.singular}", :class => "button" %>
+                  <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<% end %>

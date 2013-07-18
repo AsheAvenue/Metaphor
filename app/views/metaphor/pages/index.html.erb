@@ -1,0 +1,32 @@
+<div id="list">
+    
+    <div class="header">
+        <%= Settings.pages.plural %>
+        <div class="header-link pull-right">
+            <%= link_to "New #{Settings.pages.singular} »", new_page_url %>
+        </div>
+    </div>
+    
+    <div id="fields" class="fields clearfix">
+        <div class="half">
+            Name
+        </div>
+        <div class="quarter">
+            Slug
+        </div>
+    </div>
+
+    <ul id="items" class="items">
+        <% @pages.each do |page| %>
+            <li class="item mix not_scheduled clearfix">
+                <div class="half">
+                    <%= link_to page.name, edit_page_path(page) %>
+                </div>
+                <div class="quarter">
+                    <%= link_to page.slug, edit_page_path(page) %>
+                </div>
+            </li>
+        <% end %>
+    </ul>
+    
+</div>

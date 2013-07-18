@@ -9,11 +9,12 @@ class Article < ActiveRecord::Base
     :publish_at, 
     :published, 
     :default_image,
+    :default_image_selected,
     :default_image_original_filename,
     :author_other_name, 
     :template
   
-  attr_accessor :default_image_original_filename
+  attr_accessor :default_image_selected, :default_image_original_filename
     
   has_many :article_categories, :dependent => :destroy
   has_many :categories, :through => :article_categories

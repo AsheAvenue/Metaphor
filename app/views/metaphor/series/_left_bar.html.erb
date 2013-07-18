@@ -1,0 +1,13 @@
+<div id="left-bar">
+    <div class="header">
+      <%= Settings.series.plural %>
+    </div>
+
+    <div class="new">
+        <%= link_to "New #{Settings.series.singular} »", new_series_path %>
+    </div>
+    
+    <% @serieses.each do |series| %>
+        <div class="item"><%= link_to series.name, edit_series_path(series) %></div>
+    <% end %>
+</div>

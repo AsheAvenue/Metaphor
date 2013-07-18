@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= Settings.site.name %></title>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700&subset=latin,greek' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "metaphor/metaphor/manifest", :media => "all" %>
+  <%= javascript_include_tag "metaphor/metaphor/manifest" %>
+  <%= filepicker_js_include_tag %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	
+	<!-- BEGIN HEADER -->
+	
+	<header>
+		<div class="top clearfix">
+            <div class="navigation-wrapper clearfix">
+                <%= Settings.site.name %>
+                <div class="navigation">
+                    <ul>
+                        <li>Signed in as <strong><%= current_user.display_name %></strong></li>
+                        <li><%= link_to "Sign out", signout_path %></li>
+                    </ul>
+                </div>
+                <% if current_user.has_role?(:superadmin) %>
+                    <div class="navigation">
+                        <ul>
+                            <li>Site:</li>
+                            <li><%= link_to Settings.templates.plural, templates_path %></li>
+                            <li><%= link_to Settings.components.plural, components_path %></li>
+                            <li><%= link_to Settings.pages.plural, pages_path %></li>
+                            <li><%= link_to Settings.users.plural, users_path %></li>
+                            <li><%= link_to "Roles", roles_path %></li>
+                        </ul>
+                    </div>
+                <% end %>
+                <div class="navigation">
+                    <ul>
+                        <li>Music:</li>
+                        <li><%= link_to Settings.related_parties.plural, related_parties_path %></li>
+                    </ul>
+                </div>
+                <div class="navigation">
+                    <ul>
+                        <li>Editorial:</li>
+                        <li><%= link_to Settings.articles.plural, articles_path %></li>
+                        <li><%= link_to Settings.categories.plural, categories_path %></li>
+                        
+                        <% if Settings.series.enabled %>
+                            <li><%= link_to Settings.series.plural, series_index_path %></li>
+                        <% end %>
+                        
+                        <li><%= link_to Settings.collections.plural, collections_path %></li>
+                    </ul>
+                </div>
+            </div>
+		</div>
+	</header>
+
+    <%= yield %>
+    
+    <%= render :partial => 'metaphor/picker/frame'%>
+    
+</body>
+</html>

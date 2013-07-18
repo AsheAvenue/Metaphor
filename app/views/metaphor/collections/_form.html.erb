@@ -1,0 +1,78 @@
+<div id="collection" data-id="<%= @collection.id %>" />
+
+<% if @collection.id != nil %>
+    <div id="add_pinned_article" data-path="<%= collection_add_pinned_article_url(@collection) %>" />
+<% end %>
+
+<%= form_for @collection, :html => {:autocomplete=>"off"} do |f| %>
+    <div id="content">
+        <% if flash[:alert] %>
+            <div class="alert">
+                <%= flash[:alert] %>
+            </div>
+        <% end %>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                <%= Settings.collections.singular %>
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= f.text_field :name, :placeholder => "Name", :id => 'collection-name', :autocomplete=>"off" %>
+                </div>
+                <div class="form-line">
+                    <%= f.text_field :slug, :placeholder => "Slug", :id => 'collection-slug', :autocomplete=>"off" %>
+                </div>
+            </div>
+        </div>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                <%= Settings.articles.singular %> Types
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= f.collection_select :article_type, Settings.query.types, :first, :last  %>
+                </div>
+            </div>
+        </div>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                Order 
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= f.collection_select :order, Settings.query.order, :first, :last  %>
+                </div>
+            </div>
+        </div>
+        <% if @collection.id != nil %>
+            <div class="form-section clearfix">
+                <div class="form-section-left">
+                    Pinned <%= Settings.articles.plural %>
+                </div>
+                <div class="form-section-right">
+                    <div class="form-line">
+                        <div class="pinned-articles" data-update-url="<%= collection_sort_url(@collection) %>">
+                            <% @collection.pinned_articles.each do |p| %>
+                                <%= render :partial => 'pinned_article', :locals => {:p => p} %>
+                            <% end %>
+                        </div>
+                        <a href="#" class="button" data-picker="article" data-picker-callback="collections#add_pinned_article">Add Article</a>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+        <div class="form-section clearfix">
+            <div class="form-section-left"></div>
+            <div class="form-section-right">
+                <div class="form-line">
+                  <% if action == 'update' %>
+                      <%= f.submit "Save #{Settings.collections.singular}", :class => "button" %>
+                  <% else %>
+                      <%= f.submit "Create #{Settings.collections.singular}", :class => "button" %>
+                  <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<% end %>

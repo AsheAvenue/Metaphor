@@ -1,0 +1,37 @@
+<div class="pickercontent">
+    <div class="header">
+        Gallery
+    </div>
+
+    <div class="tabs">
+        <div class="tab" data-content="select">
+            Select a Gallery
+        </div>
+        <div class="tab" data-content="add">
+            Add a Gallery
+        </div>
+    </div>
+    <div class="content select">    
+        <% @galleries.each do |gallery| %>
+            <div class="item">
+                <%= link_to gallery.name, "", 'data-picker-item' => gallery.id %>
+                <div>
+                    <%= link_to "Edit Gallery", gallery_editor_path(gallery) %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+    <div class="content add">
+        <div>
+            <%= text_field_tag :name, "", :placeholder => "Name", :id => 'gallery-name', :class => "picker-new-name", :autocomplete=>"off" %>
+        </div>
+        <div>
+            <%= text_field_tag :slug, "", :placeholder => "Slug", :id => 'gallery-slug', :class => "picker-new-slug", :autocomplete=>"off" %>
+        </div>
+        
+        <div class="buttons">
+            <a href="" class="button" id="picker-add-gallery">Create Gallery and Add Images</a>
+        </div>
+    </div>
+
+</div>

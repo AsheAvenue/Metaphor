@@ -1,0 +1,36 @@
+<%= form_for @series, :html => {:autocomplete=>"off"} do |f| %>
+    <div id="content">
+        <% if flash[:alert] %>
+            <div class="alert">
+                <%= flash[:alert] %>
+            </div>
+        <% end %>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                <%= Settings.series.singular %>
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= f.text_field :name, :placeholder => "Name", :id => 'series-name', :autocomplete=>"off" %>
+                </div>
+                <div class="form-line">
+                    <%= f.text_field :slug, :placeholder => "Slug", :id => 'series-slug', :autocomplete=>"off" %>
+                </div>
+            </div>
+        </div>
+        <div class="form-section clearfix">
+            <div class="form-section-left"></div>
+            <div class="form-section-right">
+                <div class="form-line">
+                  <% if action == 'update' %>
+                      <%= f.submit "Save Series", :class => "button" %>
+                  <% else %>
+                      <%= f.submit "Create Series", :class => "button" %>
+                  <% end %>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+<% end %>

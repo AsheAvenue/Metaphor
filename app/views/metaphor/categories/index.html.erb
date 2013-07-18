@@ -1,0 +1,32 @@
+<div id="list">
+    
+    <div class="header">
+        <%= Settings.categories.plural %>
+        <div class="header-link pull-right">
+            <%= link_to "New #{Settings.categories.singular} »", new_category_url %>
+        </div>
+    </div>
+    
+    <div id="fields" class="fields clearfix">
+        <div class="half">
+            Name
+        </div>
+        <div class="quarter">
+            Slug
+        </div>
+    </div>
+
+    <ul id="items" class="items">
+        <% @categories.each do |category| %>
+            <li class="item mix not_scheduled clearfix">
+                <div class="half">
+                    <%= link_to category.name, edit_category_path(category) %>
+                </div>
+                <div class="quarter">
+                    <%= link_to category.slug, edit_category_path(category) %>
+                </div>
+            </li>
+        <% end %>
+    </ul>
+    
+</div>

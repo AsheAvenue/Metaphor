@@ -1,0 +1,48 @@
+<div id="list">
+    
+    <div class="header">
+        <%= Settings.templates.plural %>
+        <div class="header-link pull-right">
+            <%= link_to "New #{Settings.templates.singular} »", new_template_url %>
+        </div>
+    </div>
+    
+    <div id="fields" class="fields clearfix">
+        <div class="quarter">
+            Name
+        </div>
+        <div class="quarter">
+            Slug
+        </div>
+        <div class="quarter">
+            Image
+        </div>
+        <div class="quarter">
+            Components
+        </div>
+    </div>
+
+    <ul id="items" class="items">
+        <% @templates.each do |template| %>
+            <li class="item mix not_scheduled clearfix">
+                <div class="quarter">
+                    <%= link_to template.name, edit_template_path(template) %>
+                </div>
+                <div class="quarter">
+                    <%= link_to template.slug, edit_template_path(template) %>
+                </div>
+                <div class="quarter">
+                    <% if !template.image.blank? %>
+                        <%= image_tag template.image.url(:thumb) %>
+                    <% else %>
+                        &nbsp;
+                    <% end %>
+                </div>
+                <div class="quarter">
+                    <%= template.components.order("template_components.order ASC").map { |component| component.name }.join(", ") %>
+                </div>
+            </li>
+        <% end %>
+    </ul>
+    
+</div>

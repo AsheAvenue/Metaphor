@@ -1,0 +1,13 @@
+<div id="stage">
+    
+    <%= render "left_bar" %>
+    
+    <%= form_for @page, :html => {:id => 'page-form', :autocomplete=>"off"} do |f| %>
+    
+        <%= render :partial => 'content', :locals => {:f => f, :action => 'update'}%>
+                
+        <%= render :partial => 'right_bar', :locals => {:f => f, :action => 'update'} %>
+        
+    <% end %>
+    
+</div>
