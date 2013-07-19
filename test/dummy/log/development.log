@@ -1,0 +1,267 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+Started GET "/admin" for 127.0.0.1 at 2013-07-19 14:32:35 -0400
+Processing by Metaphor::ArticlesController#index as HTML
+  [1m[36mUser Load (39.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35m (2.4ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 2 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'superadmin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  [1m[36mArticle Load (1.9ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE ('t') ORDER BY articles.created_at desc[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" INNER JOIN "article_users" ON "users"."id" = "article_users"."user_id" WHERE "article_users"."article_id" = 11 LIMIT 1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "article_users" ON "users"."id" = "article_users"."user_id" WHERE "article_users"."article_id" = 10 LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "article_users" ON "users"."id" = "article_users"."user_id" WHERE "article_users"."article_id" = 9 LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "article_users" ON "users"."id" = "article_users"."user_id" WHERE "article_users"."article_id" = 8 LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" INNER JOIN "article_users" ON "users"."id" = "article_users"."user_id" WHERE "article_users"."article_id" = 7 LIMIT 1
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "article_users" ON "users"."id" = "article_users"."user_id" WHERE "article_users"."article_id" = 6 LIMIT 1[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" INNER JOIN "article_users" ON "users"."id" = "article_users"."user_id" WHERE "article_users"."article_id" = 5 LIMIT 1
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "article_users" ON "users"."id" = "article_users"."user_id" WHERE "article_users"."article_id" = 4 LIMIT 1[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" INNER JOIN "article_users" ON "users"."id" = "article_users"."user_id" WHERE "article_users"."article_id" = 3 LIMIT 1
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "article_users" ON "users"."id" = "article_users"."user_id" WHERE "article_users"."article_id" = 2 LIMIT 1[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" INNER JOIN "article_users" ON "users"."id" = "article_users"."user_id" WHERE "article_users"."article_id" = 1 LIMIT 1
+  Rendered /Users/tim/Sites/Metaphor/app/views/metaphor/articles/index.html.erb within layouts/metaphor/metaphor (94.9ms)
+Compiled metaphor/metaphor/article_editor.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/article_editor/body.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/article_editor/gallery.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/article_editor/image.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/article_editor/meta.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/article_editor/sound.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/article_editor/video.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/bootstrap.min.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/bootstrapSwitch.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/bootstrap_overrides.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/datetimepicker.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/fonts.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/gallery_editor.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/jquery.paneslide.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/magnific-popup.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/metaphor.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/picker.css  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/manifest.css  (614ms)  (pid 14348)
+Compiled jquery.js  (1ms)  (pid 14348)
+Compiled jquery_ujs.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/admin.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/article_editor.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/articles.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/autocomplete-rails.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/bootstrap-datetimepicker.min.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/bootstrapSwitch.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/categories.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/collections.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/components.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/gallery_editor.js  (4ms)  (pid 14348)
+Compiled metaphor/metaphor/jquery-ui.min.js  (1ms)  (pid 14348)
+Compiled metaphor/metaphor/jquery.autosize-min.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/jquery.codemirror.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/jquery.contenteditable.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/jquery.magnific-popup.min.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/jquery.mixitup.min.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/jquery.sluggo.min.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/pages.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/picker.js  (5ms)  (pid 14348)
+Compiled metaphor/metaphor/series.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/templates.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/users.js  (0ms)  (pid 14348)
+Compiled metaphor/metaphor/manifest.js  (800ms)  (pid 14348)
+  [1m[36m (1.3ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 2 AND (((roles.name = 'superadmin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered /Users/tim/Sites/Metaphor/app/views/metaphor/picker/_frame.html.erb (0.3ms)
+Completed 200 OK in 2393ms (Views: 1670.7ms | ActiveRecord: 90.4ms)
+
+
+Started GET "/assets/metaphor/metaphor/manifest.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:38 -0400
+Served asset /metaphor/metaphor/manifest.css - 304 Not Modified (70ms)
+
+
+Started GET "/assets/metaphor/metaphor/article_editor.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:38 -0400
+Served asset /metaphor/metaphor/article_editor.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/article_editor/body.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:38 -0400
+Served asset /metaphor/metaphor/article_editor/body.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/article_editor/gallery.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:38 -0400
+Served asset /metaphor/metaphor/article_editor/gallery.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/article_editor/meta.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:38 -0400
+Served asset /metaphor/metaphor/article_editor/meta.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/article_editor/image.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:38 -0400
+Served asset /metaphor/metaphor/article_editor/image.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/article_editor/sound.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:38 -0400
+Served asset /metaphor/metaphor/article_editor/sound.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/article_editor/video.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:38 -0400
+Served asset /metaphor/metaphor/article_editor/video.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:38 -0400
+Served asset /metaphor/metaphor/bootstrap.min.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/bootstrapSwitch.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:38 -0400
+Served asset /metaphor/metaphor/bootstrapSwitch.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/bootstrap_overrides.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:38 -0400
+Served asset /metaphor/metaphor/bootstrap_overrides.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/datetimepicker.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:38 -0400
+Served asset /metaphor/metaphor/datetimepicker.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/fonts.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:38 -0400
+Served asset /metaphor/metaphor/fonts.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/gallery_editor.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:38 -0400
+Served asset /metaphor/metaphor/gallery_editor.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/jquery.paneslide.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/jquery.paneslide.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/magnific-popup.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/magnific-popup.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/metaphor.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/metaphor.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/picker.css?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/picker.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /jquery.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/admin.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/admin.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/article_editor.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/article_editor.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/articles.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/articles.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/metaphor/metaphor/autocomplete-rails.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/autocomplete-rails.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/metaphor/metaphor/bootstrap-datetimepicker.min.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/bootstrap-datetimepicker.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/bootstrapSwitch.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/bootstrapSwitch.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/categories.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/categories.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/collections.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/collections.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/components.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/components.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/gallery_editor.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/gallery_editor.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/jquery-ui.min.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/jquery-ui.min.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/jquery.autosize-min.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/jquery.autosize-min.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/jquery.codemirror.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/jquery.codemirror.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/metaphor/metaphor/jquery.contenteditable.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/jquery.contenteditable.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/jquery.magnific-popup.min.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/jquery.magnific-popup.min.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/metaphor/metaphor/jquery.mixitup.min.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/jquery.mixitup.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/jquery.sluggo.min.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/jquery.sluggo.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/pages.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/pages.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/picker.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/picker.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/series.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/series.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/metaphor/metaphor/templates.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/templates.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/users.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/users.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/metaphor/metaphor/manifest.js?body=1" for 127.0.0.1 at 2013-07-19 14:32:39 -0400
+Served asset /metaphor/metaphor/manifest.js - 304 Not Modified (53ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2013-07-19 14:32:40 -0400
+
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/tim/.rvm/rubies/ruby-1.9.3-p194/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/tim/.rvm/rubies/ruby-1.9.3-p194/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/tim/.rvm/rubies/ruby-1.9.3-p194/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/tim/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
