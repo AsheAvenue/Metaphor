@@ -1,6 +1,6 @@
 # CORE COMPONENTS
 site:
-  name: "Ill Roots Admin"
+  name: "Metaphor"
   root_url: "/admin"
 related_parties:
   singular: "Artist"
