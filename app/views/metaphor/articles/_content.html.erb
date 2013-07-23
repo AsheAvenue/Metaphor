@@ -142,6 +142,23 @@
          
         <div class="form-section clearfix">
             <div class="form-section-left">
+                <%= Settings.flags.plural %>
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= hidden_field_tag "article[flag_ids][]", nil %>
+                    <% Flag.all.each do |flag| %>
+                        <label class="checkbox">
+                            <%= check_box_tag "article[flag_ids][]", flag.id, @article.flag_ids.include?(flag.id) %>
+                            <%= flag.name %>
+                        </label>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-section clearfix">
+            <div class="form-section-left">
                 <%= Settings.users.singular %>
             </div>
             <div class="form-section-right">

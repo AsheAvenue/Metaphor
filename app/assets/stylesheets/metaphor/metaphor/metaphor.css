@@ -376,6 +376,8 @@ header .navigation li a {
 #category-slug,
 #series-name,
 #series-slug,
+#flag-name,
+#flag-slug,
 #collection-name,
 #collection-slug {
     font-size: 24px;

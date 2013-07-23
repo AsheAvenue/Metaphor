@@ -5,6 +5,7 @@ class Article < ActiveRecord::Base
     :body, 
     :category_ids, 
     :series_ids, 
+    :flag_ids, 
     :user_ids, 
     :publish_at, 
     :published, 
@@ -25,15 +26,14 @@ class Article < ActiveRecord::Base
   has_many :article_series, :dependent => :destroy
   has_many :series, :through => :article_series
 
-  has_many :article_flags, :dependent => :destroy
-  has_many :flags, :through => :article_flags
+  has_many :entity_flags, :dependent => :destroy
+  has_many :flags, :through => :entity_flags, :as => :flaggable
 
   has_many :article_users, :dependent => :destroy
-
   has_many :users, :through => :article_users
+  
   has_many :content_widgets, :as => :entity
 
-  
   validates_presence_of :title, :slug
   validates_uniqueness_of :slug
   
@@ -98,6 +98,11 @@ class Article < ActiveRecord::Base
     else
       "not_scheduled"
     end
+  end
+  
+  def is(flag)
+    #checks to see if an article flag is true based on the flag sent in
+     
   end
   
 end
