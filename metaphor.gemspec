@@ -24,6 +24,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'aws-sdk'
   s.add_dependency 'paperclip'
   s.add_dependency 'uglifier', '>= 1.0.3'
+  s.add_dependency 'instagram'
+  s.add_dependency 'twitter'
+  s.add_dependency 'tumblr-rb'
   
   s.add_development_dependency 'better_errors'
   s.add_development_dependency 'binding_of_caller'
