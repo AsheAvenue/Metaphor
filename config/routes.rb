@@ -5,6 +5,7 @@ Metaphor::Engine.routes.draw do
   resources :articles
   resources :categories
   resources :series
+  resources :flags
   resources :related_parties
   resources :collections
   resources :pinned_articles
