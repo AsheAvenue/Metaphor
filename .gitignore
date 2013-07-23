@@ -17,7 +17,6 @@
 /log/*.log
 /tmp
 /vendor
-/lib
 /tmp
 /doc
 config/settings.local.yml
