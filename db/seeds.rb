@@ -3,7 +3,7 @@ user = User.new
 user.username = 'admin'
 user.password = 'admin'
 user.email    = 'admin@sitename.com'
-user.display_name = 'admin'
+user.display_name = 'Admin'
 user.save
 
 # Give user Superadmin role

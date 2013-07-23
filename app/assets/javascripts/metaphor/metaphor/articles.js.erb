@@ -75,7 +75,7 @@ var articles = (function($) {
                         //kick off the slug checker
                         $('#article-slug-check').show('fast');
                         $('#article-slug').val(slug);
-                        $.post('/metaphor/articles/checkslug', 
+                        $.post('<%= Settings.site.root_url %>/articles/checkslug', 
                             {
                                 slug: slug
                             },
