@@ -26,8 +26,8 @@ class Article < ActiveRecord::Base
   has_many :article_series, :dependent => :destroy
   has_many :series, :through => :article_series
 
-  has_many :entity_flags, :dependent => :destroy
-  has_many :flags, :through => :entity_flags, :as => :flaggable
+  has_many :entity_flags, :dependent => :destroy, :as => :entity
+  has_many :flags, :through => :entity_flags
 
   has_many :article_users, :dependent => :destroy
   has_many :users, :through => :article_users
