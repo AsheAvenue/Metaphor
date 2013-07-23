@@ -40,6 +40,9 @@ Metaphor::Engine.routes.draw do
   match 'picker/addImage' => 'picker#addImage', :as => 'picker_add_image'
   match 'picker/addGallery' => 'picker#addGallery', :as => 'picker_add_gallery'
   match 'picker/:action' => 'picker#:action', :as => 'picker'
+  match "social/tumblr" => 'social#tumblr', :as => 'tumblr'
+  match "social/twitter" => 'social#twitter', :as => 'twitter'
+  match "social/instagram" => 'social#instagram', :as => 'instagram'
   
   get "signout" => "sessions#destroy", :as => "signout"
   get "signin" => "sessions#new", :as => "signin"

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    metaphor (0.0.1)
+    metaphor (0.5.0)
       aws-sdk
       cancan
       filepicker-rails
