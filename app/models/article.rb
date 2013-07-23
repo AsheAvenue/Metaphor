@@ -102,7 +102,10 @@ class Article < ActiveRecord::Base
   
   def is(flag)
     #checks to see if an article flag is true based on the flag sent in
-     
+    flags.each do |f|
+      return true if f.slug == flag
+    end
+    return false
   end
   
 end
