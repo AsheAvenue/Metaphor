@@ -55,7 +55,10 @@ class Article < ActiveRecord::Base
       :convert_options => {
         :thumb => "-quality 75 -strip" 
       }
-         
+       
+  has_paper_trail :only => [:title, :body, :summary], 
+                  :meta => {:user_display_name  => current_user.display_name}
+     
   # convenience methods
   def author
     users.first

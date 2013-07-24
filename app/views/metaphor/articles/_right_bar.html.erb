@@ -20,8 +20,20 @@
         </div>
 
         <div class="header">
-            Versions
+            History
         </div>
 
+        <% @article.versions.reverse.each do |version| %>
+            <div class="item">
+                <div class="item-title">Version <%= version.index %></div>
+                <div id="article-slug-display"><%= version.whodunnit %></div>
+                <div id="article-slug-container">
+                    <%= f.text_field :slug, :id => 'article-slug', :placeholder => 'Slug', :class => "input-xlarge", 'data-original-slug' => @article.slug %>
+                </div>
+                <div id="article-slug-check"><span class="label"><i class='icon-search icon-large icon-white'></i> Checking</span></div>
+                <div id="article-slug-reset"><a href="#" id="article-slug-change" class="right-bar-link">Change</a></div>
+            </div>
+        <% end %>
+            
     </div>
 <% end %>
