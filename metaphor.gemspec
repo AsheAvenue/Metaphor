@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'instagram'
   s.add_dependency 'twitter'
   s.add_dependency 'tumblr-rb'
+  s.add_dependency 'acts-as-taggable-on'
   
   s.add_development_dependency 'better_errors'
   s.add_development_dependency 'binding_of_caller'
