@@ -138,7 +138,7 @@ var articles = (function($) {
                 $('#article-author-display, #article-author-reset').hide('fast');
             }
     
-            $("#article-publish-at").datetimepicker({
+            $("#article-publish-next-revision-at").datetimepicker({
                 format: "dd MM yyyy - hh:ii",
                 autoclose: true,
                 showMeridian: true,
@@ -201,6 +201,66 @@ var articles = (function($) {
               }
             });
             
+            /************ Publish Article ************/
+            
+            $('#right-bar .show-publish').click(function(e){
+              e.preventDefault();
+              
+              //hide all the publish sections
+              $('#right-bar .publish').hide();
+              
+              //undim everything
+              $('#right-bar .items .item').removeClass('dim');
+              
+              //show all "publish this revision" buttons
+              $('#right-bar .show-publish').show();
+              $('#right-bar .publish .buttons.options').show();
+              $('#right-bar .items .item').not($(this).parent().parent()).addClass('dim');
+              
+              //show this revision's publish section
+              $(this).parent().parent().next().toggle();
+              
+              // hide the publish this revision button
+              $(this).hide();
+            });
+            
+            $('#right-bar .publish .button.now').click(function(e){
+                e.preventDefault();
+                $.post(
+                    '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/publish/revision/' + $(this).data('revision-id'),
+                    {}, 
+                    function() {
+                        window.location.href = '<%= Settings.site.root_url %>articles/' + $("#article").data("id") + '/edit';
+                    }
+                );
+            });
+            
+            $('#right-bar .publish .button.later').click(function(e){
+                e.preventDefault();
+                $('#right-bar .publish .buttons.options').hide();
+                $('#right-bar .publish .buttons.schedule').show();
+            });
+            
+            $('#right-bar .publish .button.schedule').click(function(e){
+                e.preventDefault();
+                $.post(
+                    '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/schedule/revision/' + $(this).data('revision-id'),
+                    {
+                        publish_at: $('#article-publish-next-revision-at').val()
+                    }, 
+                    function() {
+                        window.location.href = '<%= Settings.site.root_url %>articles/' + $("#article").data("id") + '/edit';
+                    }
+                );
+                
+            });
+            
+            $('#right-bar .publish .button.cancel').click(function(e){
+                e.preventDefault();
+                $('#right-bar .publish, #right-bar .publish .buttons.schedule').hide();
+                $('#right-bar .items .item').removeClass('dim');
+                $('#right-bar .show-publish').show();
+            });
         },
         
     };

@@ -25,13 +25,16 @@ module Metaphor
     
     def revision
       @articles = Article.where(true).newest
-      @article = Article.includes(:categories, :series).find(params[:id])
+      @original_article = Article.includes(:categories, :series).find(params[:id])
       
       #get the reverted version
       @version_index = params[:version_index].to_i
-      @article.versions.each do |version|
+      @original_article.versions.each do |version|
         if version.index == @version_index
-          @article = @article.version_at(version.created_at)
+          @article = @original_article.version_at(version.created_at)
+          @article.last_published_revision_index = @original_article.last_published_revision_index
+          @article.next_published_revision_index = @original_article.next_published_revision_index
+          @article.publish_next_revision_at = @original_article.publish_next_revision_at
           break
         end
       end
@@ -41,6 +44,27 @@ module Metaphor
       
       #use the standard edit view
       render :edit
+    end
+
+    def publish
+      article = Article.find(params[:id])
+      version_index = params[:version_index].to_i
+      article.last_published_revision_index = version_index
+      article.next_published_revision_index = nil 
+      article.publish_next_revision_at = nil 
+      article.save!
+      
+      render :nothing => true
+    end
+
+    def schedule
+      article = Article.find(params[:id])
+      version_index = params[:version_index].to_i
+      article.next_published_revision_index = version_index 
+      article.publish_next_revision_at = params[:publish_at] 
+      article.save!
+      
+      render :nothing => true
     end
 
     def new

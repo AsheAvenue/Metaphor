@@ -533,7 +533,11 @@ header .navigation li a {
 }
 
 #right-bar .items .item.current_revision {
-    background-color: #e74c3c;
+    background-color: #7f8c8d;
+}
+
+#right-bar .items .item.dim {
+    opacity: .1;
 }
 
 #right-bar .items .item .item-title {
@@ -550,6 +554,15 @@ header .navigation li a {
     color: white;
 }
 
+#right-bar .items .item .item-title .published {
+    color: #2ecc71;
+}
+
+#right-bar .items .item .item-title .scheduled {
+    color: #f1c40f;
+}
+
+
 #right-bar .items .item .item-sub-title {
     font-size: 12px;
     line-height: 15px;
@@ -558,6 +571,45 @@ header .navigation li a {
 
 #right-bar .items .item .item-sub-title .bold {
     font-weight: bold;
+}
+
+#right-bar .items .publish {
+    display: none;
+    padding: 10px 30px;
+    border-bottom: 1px solid #fff;
+    background-color: #bdc3c7;
+}
+
+#right-bar .items .publish .item-title {
+    font-size: 18px;
+    line-height: 24px;
+    color: white;
+}
+
+#right-bar .items .publish .buttons {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#right-bar .items .publish .buttons.schedule {
+    font-size: 18px;
+    line-height: 24px;
+    color: white;
+    font-weight: 100;
+    display: none;
+}
+
+#right-bar .items .publish a.now {
+    background-color: #2ecc71;
+}
+
+#right-bar .items .publish a.schedule,
+#right-bar .items .publish a.later {
+    background-color: #f1c40f;
+}
+
+#right-bar .items .publish a.cancel {
+    background-color: #e74c3c;
 }
 
 .right-bar-link,
@@ -578,31 +630,29 @@ header .navigation li a {
 
 #status {
     border-bottom: 1px solid #fff;
+    position: relative;
+    padding: 10px 30px;
+    font-size: 21px;
     line-height: 24px;
-    padding: 10px 30px;
-    position: relative;
-
-}
-
-#status .top {
-    font-size: 24px;
-    line-height: 1;
     font-weight: 100;
+    color: white;
 }
 
-#schedule {
-    border-bottom: 1px solid #fff;
-    position: relative;
-    padding: 10px 30px;
+#status.published {
+    background-color: #2ecc71;
 }
-#schedule .top {
-    font-size: 24px;
-    line-height: 1;
-    font-weight: 100;
+#status.scheduled {
+    background-color: #f1c40f;
 }
-#schedule .top input {
-    background: #fff;
+#status.unpublished {
+    background-color: #e74c3c;
 }
+
+#status a,
+#status a:hover {
+    color: white;
+}
+
 #actions {
     position: fixed;
     bottom: 0px;
@@ -664,7 +714,7 @@ header .navigation li a {
 .input-append .add-on:last-child,
 .input-append .btn:last-child,
 .input-append .btn-group:last-child>.dropdown-toggle {
-    background: #16a085;
+    background: #f1c40f;
     border: 0;
     -webkit-border-radius: 0;
      -khtml-border-radius: 0;

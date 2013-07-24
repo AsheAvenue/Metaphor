@@ -1,75 +1,132 @@
 <% if @article.id != nil %>
     <div id="right-bar">
-        <div id="status">
-            <div class="top">
-                Currently Published
-                <div class="switch pull-right switch-small article-published" data-on-label="<i class='icon-ok icon-white'></i>" data-off-label="<i class='icon-remove icon-white'></i>" data-on="success" data-off="danger">
-                    <%= f.check_box :published, :id => 'article-published' %>
-                </div>
-            </div>
+
+        <div class="header">
+            Status
         </div>
 
-        <div id="schedule">
-            <div class="top">
-                Publish at
-                <div class="input-append pull-right date" id="article-publish-at">
-                    <%= f.text_field :publish_at, :id => 'article-publish-at', :class => "input-medium", :readonly => true, 'data-date' => @article.publish_at, 'data-date-format' => "dd MM yyyy - hh:ii" %>
-                    <span class="add-on"><i class="icon-time"></i></span>
-                </div>
-            </div>        
-        </div>
-
-        <% if @article.versions.count > 1 %>
-            <div class="header">
-                History
-            </div>
-
-            <div class="items">
-                <% @article.versions.reverse.each do |version| %>
-            
+        <% if @article.last_published_revision_index || @article.next_published_revision_index%>
+            <% if @article.last_published_revision_index %>
+                <div id="status" class="published">
                     <% 
-                    if version.index == @version_index || (@version_index == nil && version.index == @article.versions.count - 1) 
-                        current_revision = true
-                    else
-                        current_revision = false
-                    end
+                        if @article.last_published_revision_index == 0
+                            text = "Original"
+                        else
+                            text = "Revision #{@article.last_published_revision_index}"
+                        end
                     %>
-                
-                
-                    <div class="item 
+                    Currently Published: <%= link_to text, article_revision_path(@article, @article.last_published_revision_index) %>
+                </div>
+            <% end %>
+            <% if @article.next_published_revision_index %>
+                <div id="status" class="scheduled">
+                    <% 
+                        if @article.next_published_revision_index == 0
+                            text = "Original"
+                        else
+                            text = "Revision #{@article.next_published_revision_index}"
+                        end
+                    %>
+                    Next Scheduled:
+                    <br />
+                    <%= link_to text, article_revision_path(@article, @article.next_published_revision_index) %>
+                    <br />
+                    <%= distance_of_time_in_words_to_now @article.publish_next_revision_at %> from now
+                    
+                </div>
+            <% end %>
+        <% else %>
+            <div id="status" class="unpublished">
+                Not Published
+            </div>
+        <% end %>
+        
+        <div class="header">
+            History
+        </div>
+
+        <div class="items">
+            <% @article.versions.reverse.each do |version| %>
+        
+                <% 
+                if version.index == @version_index || (@version_index == nil && version.index == @article.versions.count - 1) 
+                    current_revision = true
+                else
+                    current_revision = false
+                end
+                %>
+            
+                <div class="item 
+                    <% if current_revision %>
+                        current_revision
+                    <% end %>
+                ">
+                    <div class="item-title">
                         <% if current_revision %>
-                            current_revision
+                            Viewing
                         <% end %>
-                    ">
+                        <% if version.index == 0 %>
+                            Original
+                        <% else %>
+                            Revision <%= version.index %>
+                        <% end %>
+                        
+                        <% if version.index == @article.last_published_revision_index %>
+                            <span class="published">(Published)</span>
+                        <% elsif version.index == @article.next_published_revision_index %>
+                            <span class="scheduled">(Scheduled)</span>
+                        <% end %>
+                    </div>
+                    <div class="item-sub-title">
+                        <% if version.index == 0 %>
+                            Created by
+                        <% else %>
+                            Edited by
+                        <% end %>
+                        <span class="bold"><%= User.find(version.whodunnit).display_name %></span>
+                        <%= distance_of_time_in_words_to_now version.created_at %>
+                        ago
+                    </div>
+                    <div>
+                        <% if !current_revision %>
+                            <a href="<%= article_revision_path(@article, version.index) %>" class="right-bar-link">View <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> &nbsp;&nbsp;
+                        <% end %>
+                        <% if version.index != @article.last_published_revision_index and version.index != @article.next_published_revision_index %>
+                            <a href="#" class="right-bar-link show-publish">Publish <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> 
+                        <% end %>
+                    </div>
+                </div>
+                
+                <% if version.index != @article.last_published_revision_index and version.index != @article.next_published_revision_index %>
+                    <div class="publish">
                         <div class="item-title">
+                            Publish 
                             <% if version.index == 0 %>
                                 Original
                             <% else %>
                                 Revision <%= version.index %>
-                                <% if version.index == @article.versions.count - 1 %>
-                                    <span class="lighter">(Latest)</span>
-                                <% end %>
                             <% end %>
                         </div>
-                        <div class="item-sub-title">
-                            <% if version.index == 0 %>
-                                Created by
-                            <% else %>
-                                Edited by
-                            <% end %>
-                            <span class="bold"><%= User.find(version.whodunnit).display_name %></span>
-                            <%= distance_of_time_in_words_to_now version.created_at %>
-                            ago
+                        <div class="buttons options">
+                            <a href="#" class="button now" data-revision-id="<%= version.index %>">Now</a> 
+                            <a href="#" class="button later">Later</a> 
+                            <a href="#" class="button cancel">Don't Publish</a>
                         </div>
-                        <% if !current_revision %>
-                            <div>
-                                <a href="<%= article_revision_path(@article, version.index) %>" class="right-bar-link">View <% if version.index == 0 %>Original<% else %>this Revision<% end %></a>
+                        <div class="buttons schedule">
+                            At&nbsp;&nbsp;
+                            <div class="input-append date">
+                                <%= f.text_field :publish_next_revision_at, :id => 'article-publish-next-revision-at', :class => "input-large", :readonly => true, 'data-date' => @article.publish_next_revision_at, 'data-date-format' => "dd MM yyyy - hh:ii" %>
+                                <span class="add-on"><i class="icon-time"></i></span>
                             </div>
-                        <% end %>
+                            <div>
+                                <a href="#" class="button schedule" data-revision-id="<%= version.index %>">Schedule</a> 
+                                <a href="#" class="button cancel">Don't Publish</a>
+                            </div>
+                        </div>        
                     </div>
                 <% end %>
-            </div>
-        <% end %>
+            <% end %>
+        </div>
             
     </div>
 <% end %>

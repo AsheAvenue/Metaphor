@@ -7,14 +7,15 @@ class Article < ActiveRecord::Base
     :series_ids, 
     :flag_ids, 
     :user_ids, 
-    :publish_at, 
-    :published, 
+    :last_published_revision_index,
+    :next_published_revision_index, 
+    :publish_next_revision_at, 
     :default_image,
     :default_image_selected,
     :default_image_original_filename,
     :author_other_name, 
     :template
-  
+    
   attr_accessor :default_image_selected, :default_image_original_filename
     
   has_many :article_categories, :dependent => :destroy
@@ -56,7 +57,8 @@ class Article < ActiveRecord::Base
         :thumb => "-quality 75 -strip" 
       }
        
-  has_paper_trail :only => [:title, :body, :summary, :slug]
+  has_paper_trail :only => [:title, :body, :summary, :slug],
+                  :skip => [:last_published_revision_index, :next_published_revision_index, :publish_next_revision_at]
                    
   # convenience methods
   def author
