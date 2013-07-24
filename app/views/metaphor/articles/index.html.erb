@@ -14,7 +14,6 @@
 			<li class="filter" data-filter="published">Published</li>
 			<li class="filter" data-filter="scheduled">Scheduled</li>
 			<li class="filter" data-filter="not_scheduled">Not Scheduled</li>
-			<li class="filter" data-filter="retired">Retired</li>
 		</ul>    
     </div>
     
@@ -48,7 +47,7 @@
                     <%= link_to article.title, edit_article_path(article) %>
                 </div>
                 <div class="onefifth">
-                    <%= article.author_display_name %>
+                    <%= article.author_display_name || "&nbsp;" %>
                 </div>
                 <div class="onefifth">
                     <%= article.created_at.strftime("%b, %d %y - %I:%M %p") %>

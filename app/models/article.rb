@@ -75,9 +75,9 @@ class Article < ActiveRecord::Base
   
   # TODO: move the following three methods to a helper at some point
   def status 
-    if published
+    if last_published_revision_index
       "Published"
-    elsif publish_at
+    elsif next_published_revision_index
       "Scheduled"
     else
       "Not scheduled"
@@ -85,9 +85,9 @@ class Article < ActiveRecord::Base
   end
   
   def status_color
-    if published
+    if last_published_revision_index
       "#1abc9c"
-    elsif publish_at
+    elsif next_published_revision_index
       "#f39c12"
     else
       "#c0392b"
@@ -95,9 +95,9 @@ class Article < ActiveRecord::Base
   end
   
   def status_class
-    if published
+    if last_published_revision_index
       "published"
-    elsif publish_at
+    elsif next_published_revision_index
       "scheduled"
     else
       "not_scheduled"
