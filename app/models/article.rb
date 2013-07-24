@@ -56,9 +56,8 @@ class Article < ActiveRecord::Base
         :thumb => "-quality 75 -strip" 
       }
        
-  has_paper_trail :only => [:title, :body, :summary], 
-                  :meta => {:user_display_name  => current_user.display_name}
-     
+  has_paper_trail :only => [:title, :body, :summary, :slug]
+                   
   # convenience methods
   def author
     users.first

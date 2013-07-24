@@ -525,9 +525,32 @@ header .navigation li a {
     padding: 10px 30px;
 }
 
+#right-bar .item.current_revision {
+    background-color: #e74c3c;
+}
+
 #right-bar .item .item-title {
     font-size: 18px;
     line-height: 24px;
+}
+
+#right-bar .item .item-title .lighter {
+    color: #bdc3c7;
+}
+
+#right-bar .item.current_revision .item-title,
+#right-bar .item.current_revision .item-sub-title {
+    color: white;
+}
+
+#right-bar .item .item-sub-title {
+    font-size: 12px;
+    line-height: 15px;
+    color: #888;
+}
+
+#right-bar .item .item-sub-title .bold {
+    font-weight: bold;
 }
 
 .right-bar-link,
