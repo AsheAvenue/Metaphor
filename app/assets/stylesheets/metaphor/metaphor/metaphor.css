@@ -520,36 +520,43 @@ header .navigation li a {
     border-bottom: 1px solid #fff;
 }
 
-#right-bar .item {
+#right-bar .items {
+    height: 100%;
+    padding-bottom: 232px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+}
+
+#right-bar .items .item {
     border-bottom: 1px solid #fff;
     padding: 10px 30px;
 }
 
-#right-bar .item.current_revision {
+#right-bar .items .item.current_revision {
     background-color: #e74c3c;
 }
 
-#right-bar .item .item-title {
+#right-bar .items .item .item-title {
     font-size: 18px;
     line-height: 24px;
 }
 
-#right-bar .item .item-title .lighter {
+#right-bar .items .item .item-title .lighter {
     color: #bdc3c7;
 }
 
-#right-bar .item.current_revision .item-title,
-#right-bar .item.current_revision .item-sub-title {
+#right-bar .items .item.current_revision .item-title,
+#right-bar .items .item.current_revision .item-sub-title {
     color: white;
 }
 
-#right-bar .item .item-sub-title {
+#right-bar .items .item .item-sub-title {
     font-size: 12px;
     line-height: 15px;
     color: #888;
 }
 
-#right-bar .item .item-sub-title .bold {
+#right-bar .items .item .item-sub-title .bold {
     font-weight: bold;
 }
 
@@ -605,6 +612,7 @@ header .navigation li a {
     height: 25px;
     margin-left: -30px;
     margin-bottom: 0px;
+    z-index: 30;
 }
 
 .input-append input,

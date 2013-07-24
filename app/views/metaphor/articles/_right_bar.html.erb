@@ -24,37 +24,51 @@
                 History
             </div>
 
-            <% @article.versions.reverse.each do |version| %>
-                <div class="item 
-                    <% if version.index == @version_index || (@version_index == nil && version.index == @article.versions.count - 1) %>
-                        current_revision
-                    <% end %>
-                ">
-                    <div class="item-title">
-                        <% if version.index == 0 %>
-                            Original
-                        <% else %>
-                            Revision <%= version.index %>
-                            <% if version.index == @article.versions.count - 1 %>
-                                <span class="lighter">(Latest)</span>
+            <div class="items">
+                <% @article.versions.reverse.each do |version| %>
+            
+                    <% 
+                    if version.index == @version_index || (@version_index == nil && version.index == @article.versions.count - 1) 
+                        current_revision = true
+                    else
+                        current_revision = false
+                    end
+                    %>
+                
+                
+                    <div class="item 
+                        <% if current_revision %>
+                            current_revision
+                        <% end %>
+                    ">
+                        <div class="item-title">
+                            <% if version.index == 0 %>
+                                Original
+                            <% else %>
+                                Revision <%= version.index %>
+                                <% if version.index == @article.versions.count - 1 %>
+                                    <span class="lighter">(Latest)</span>
+                                <% end %>
                             <% end %>
+                        </div>
+                        <div class="item-sub-title">
+                            <% if version.index == 0 %>
+                                Created by
+                            <% else %>
+                                Edited by
+                            <% end %>
+                            <span class="bold"><%= User.find(version.whodunnit).display_name %></span>
+                            <%= distance_of_time_in_words_to_now version.created_at %>
+                            ago
+                        </div>
+                        <% if !current_revision %>
+                            <div>
+                                <a href="<%= article_revision_path(@article, version.index) %>" class="right-bar-link">View <% if version.index == 0 %>Original<% else %>this Revision<% end %></a>
+                            </div>
                         <% end %>
                     </div>
-                    <div class="item-sub-title">
-                        <% if version.index == 0 %>
-                            Created by
-                        <% else %>
-                            Edited by
-                        <% end %>
-                        <span class="bold"><%= User.find(version.whodunnit).display_name %></span>
-                        <%= distance_of_time_in_words_to_now version.created_at %>
-                        ago
-                    </div>
-                    <div>
-                        <a href="<%= article_revision_path(@article, version.index) %>" class="right-bar-link">View <% if version.index == 0 %>Original<% else %>this Revision<% end %></a>
-                    </div>
-                </div>
-            <% end %>
+                <% end %>
+            </div>
         <% end %>
             
     </div>
