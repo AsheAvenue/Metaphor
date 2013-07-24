@@ -59,6 +59,8 @@ class Article < ActiveRecord::Base
        
   has_paper_trail :only => [:title, :body, :summary, :slug],
                   :skip => [:last_published_revision_index, :next_published_revision_index, :publish_next_revision_at]
+  
+  acts_as_taggable
                    
   # convenience methods
   def author
