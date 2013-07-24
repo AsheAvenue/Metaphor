@@ -18,9 +18,29 @@ module Metaphor
     def edit
       @articles = Article.where(true).newest
       @article = Article.includes(:categories, :series).find(params[:id])
-    
+      
       #set up the templates
       @templates = Template.all
+    end
+    
+    def revision
+      @articles = Article.where(true).newest
+      @article = Article.includes(:categories, :series).find(params[:id])
+      
+      #get the reverted version
+      @version_index = params[:version_index].to_i
+      @article.versions.each do |version|
+        if version.index == @version_index
+          @article = @article.version_at(version.created_at)
+          break
+        end
+      end
+      
+      #set up the templates
+      @templates = Template.all
+      
+      #use the standard edit view
+      render :edit
     end
 
     def new

@@ -17,6 +17,7 @@ Metaphor::Engine.routes.draw do
   resources :sessions
   
   match 'articles/checkslug' => 'articles#checkslug'
+  match 'articles/:id/revision/:version_index' => 'articles#revision', :as => 'article_revision'
   match 'articles/:id/editor' => 'article_editor#index', :as => 'article_editor'
   match 'articles/:id/editor/select_video' => 'article_editor#select_video', :as => 'article_editor_select_video'
   match 'articles/:id/editor/select_image' => 'article_editor#select_image', :as => 'article_editor_select_image'

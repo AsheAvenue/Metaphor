@@ -55,7 +55,9 @@ class Article < ActiveRecord::Base
       :convert_options => {
         :thumb => "-quality 75 -strip" 
       }
-         
+       
+  has_paper_trail :only => [:title, :body, :summary, :slug]
+                   
   # convenience methods
   def author
     users.first
@@ -102,7 +104,10 @@ class Article < ActiveRecord::Base
   
   def is(flag)
     #checks to see if an article flag is true based on the flag sent in
-     
+    flags.each do |f|
+      return true if f.slug == flag
+    end
+    return false
   end
   
 end
