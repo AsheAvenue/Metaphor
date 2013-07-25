@@ -25,8 +25,12 @@
                     %>
                     Scheduled: <%= link_to text, article_revision_path(@article, @article.next_published_revision_index) %>
                     <br />
-                    <%= distance_of_time_in_words_to_now @article.publish_next_revision_at %> from now
-                    
+                    <%= distance_of_time_in_words_to_now @article.publish_next_revision_at %> 
+                    <% if @article.publish_next_revision_at > DateTime.now %>
+                        from now
+                    <% else %>
+                        ago
+                    <% end %>
                 </div>
             <% end %>
         <% else %>
