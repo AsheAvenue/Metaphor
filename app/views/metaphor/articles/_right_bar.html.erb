@@ -13,7 +13,12 @@
                     %>
                     Currently Published: <%= link_to text, article_revision_path(@article, @article.last_published_revision_index) %>
                 </div>
+            <% else %>
+                <div id="status" class="unpublished">
+                    Not Published
+                </div>
             <% end %>
+            
             <% if @article.next_published_revision_index %>
                 <div id="status" class="scheduled">
                     <% 
@@ -33,10 +38,6 @@
                     <% end %>
                 </div>
             <% end %>
-        <% else %>
-            <div id="status" class="unpublished">
-                Not Published
-            </div>
         <% end %>
         
         <div class="header">

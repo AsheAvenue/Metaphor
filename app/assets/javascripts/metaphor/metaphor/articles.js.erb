@@ -206,6 +206,7 @@ var articles = (function($) {
               $(this).hide();
             });
             
+            //publish now
             $('#right-bar .publish .button.now').click(function(e){
                 e.preventDefault();
                 $.post(
@@ -217,6 +218,7 @@ var articles = (function($) {
                 );
             });
             
+            //unpublish now
             $('#right-bar .unpublish').click(function(e){
                 e.preventDefault();
                 $.post(
@@ -228,27 +230,33 @@ var articles = (function($) {
                 );
             });
             
+            //show the schedule bar
             $('#right-bar .publish .button.later').click(function(e){
                 e.preventDefault();
                 $('#right-bar .publish .buttons.options').hide();
                 $('#right-bar .publish .buttons.schedule').show();
             });
             
+            //schedule now
             $('#right-bar .publish .button.schedule').click(function(e){
                 e.preventDefault();
-                $.post(
-                    '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/schedule/revision/' + $(this).data('revision-id'),
-                    {
-                        date: $(this).parent().parent().find('.datepicker').val(),
-                        time: $(this).parent().parent().find('.timepicker').val()
-                    }, 
-                    function() {
-                        window.location.href = '<%= Settings.site.root_url %>articles/' + $("#article").data("id") + '/edit';
-                    }
-                );
+                alert($(this).parent().parent().find('.datepicker').val());
+                if($(this).parent().parent().find('.datepicker').val() != '' && $(this).parent().parent().find('.timepicker').val() != '') {
+                    $.post(
+                        '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/schedule/revision/' + $(this).data('revision-id'),
+                        {
+                            date: $(this).parent().parent().find('.datepicker').val(),
+                            time: $(this).parent().parent().find('.timepicker').val()
+                        }, 
+                        function() {
+                            window.location.href = '<%= Settings.site.root_url %>articles/' + $("#article").data("id") + '/edit';
+                        }
+                    );
+                }
                 
             });
             
+            //unschedule now
             $('#right-bar .unschedule').click(function(e){
                 e.preventDefault();
                 $.post(
@@ -260,6 +268,7 @@ var articles = (function($) {
                 );
             });
             
+            //cancel
             $('#right-bar .publish .button.cancel').click(function(e){
                 e.preventDefault();
                 $('#right-bar .publish, #right-bar .publish .buttons.schedule').hide();
