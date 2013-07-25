@@ -213,7 +213,7 @@ var articles = (function($) {
                     '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/publish/revision/' + $(this).data('revision-id'),
                     {}, 
                     function() {
-                        window.location.href = '<%= Settings.site.root_url %>articles/' + $("#article").data("id") + '/edit';
+                        window.location.href = '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/edit';
                     }
                 );
             });
@@ -225,7 +225,7 @@ var articles = (function($) {
                     '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/unpublish',
                     {}, 
                     function() {
-                        window.location.href = '<%= Settings.site.root_url %>articles/' + $("#article").data("id") + '/edit';
+                        window.location.href = '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/edit';
                     }
                 );
             });
@@ -248,7 +248,7 @@ var articles = (function($) {
                             time: $(this).parent().parent().find('.timepicker').val()
                         }, 
                         function() {
-                            window.location.href = '<%= Settings.site.root_url %>articles/' + $("#article").data("id") + '/edit';
+                            window.location.href = '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/edit';
                         }
                     );
                 }
@@ -262,7 +262,7 @@ var articles = (function($) {
                     '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/unschedule',
                     {}, 
                     function() {
-                        window.location.href = '<%= Settings.site.root_url %>articles/' + $("#article").data("id") + '/edit';
+                        window.location.href = '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/edit';
                     }
                 );
             });
