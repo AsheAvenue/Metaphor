@@ -14,7 +14,8 @@ class Article < ActiveRecord::Base
     :default_image_selected,
     :default_image_original_filename,
     :author_other_name, 
-    :template
+    :template,
+    :tag_list
     
   attr_accessor :default_image_selected, :default_image_original_filename
     
