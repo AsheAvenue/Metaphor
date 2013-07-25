@@ -115,4 +115,18 @@ class Article < ActiveRecord::Base
     return false
   end
   
+  # PUBLISHING
+  #
+  # This is called by the cron job managed by the Whenever gem
+  def self.publish_scheduled_articles
+    articles = Article.where('next_published_revision_index IS NOT ? and publish_next_revision_at < ?', nil, DateTime.now)
+    articles.each do |article|
+      index_to_publish = article.next_published_revision_index
+      article.last_published_revision_index = index_to_publish
+      article.next_published_revision_index = nil
+      article.publish_next_revision_at = nil
+      article.save!
+    end
+  end
+  
 end

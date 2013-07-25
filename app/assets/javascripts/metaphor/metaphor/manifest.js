@@ -13,3 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_directory .
+//= require ./pickadate/picker.js
+//= require ./pickadate/picker.date.js
+//= require ./pickadate/picker.time.js
+//= require ./pickadate/legacy.js

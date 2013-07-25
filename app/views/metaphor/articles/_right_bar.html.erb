@@ -1,43 +1,40 @@
 <% if @article.id != nil %>
     <div id="right-bar">
 
-        <div class="header">
-            Status
-        </div>
-
-        <% if @article.last_published_revision_index || @article.next_published_revision_index%>
-            <% if @article.last_published_revision_index %>
-                <div id="status" class="published">
-                    <% 
-                        if @article.last_published_revision_index == 0
-                            text = "Original"
-                        else
-                            text = "Revision #{@article.last_published_revision_index}"
-                        end
-                    %>
-                    Currently Published: <%= link_to text, article_revision_path(@article, @article.last_published_revision_index) %>
-                </div>
-            <% end %>
-            <% if @article.next_published_revision_index %>
-                <div id="status" class="scheduled">
-                    <% 
-                        if @article.next_published_revision_index == 0
-                            text = "Original"
-                        else
-                            text = "Revision #{@article.next_published_revision_index}"
-                        end
-                    %>
-                    Next Scheduled:
-                    <br />
-                    <%= link_to text, article_revision_path(@article, @article.next_published_revision_index) %>
-                    <br />
-                    <%= distance_of_time_in_words_to_now @article.publish_next_revision_at %> from now
-                    
-                </div>
-            <% end %>
+        <% if @article.last_published_revision_index %>
+            <div id="status" class="published">
+                <% 
+                    if @article.last_published_revision_index == 0
+                        text = "Original"
+                    else
+                        text = "Revision #{@article.last_published_revision_index}"
+                    end
+                %>
+                Currently Published: <%= link_to text, article_revision_path(@article, @article.last_published_revision_index) %>
+            </div>
         <% else %>
             <div id="status" class="unpublished">
                 Not Published
+            </div>
+        <% end %>
+        
+        <% if @article.next_published_revision_index %>
+            <div id="status" class="scheduled">
+                <% 
+                    if @article.next_published_revision_index == 0
+                        text = "Original"
+                    else
+                        text = "Revision #{@article.next_published_revision_index}"
+                    end
+                %>
+                Scheduled: <%= link_to text, article_revision_path(@article, @article.next_published_revision_index) %>
+                <br />
+                <%= distance_of_time_in_words_to_now @article.publish_next_revision_at %> 
+                <% if @article.publish_next_revision_at > DateTime.now %>
+                    from now
+                <% else %>
+                    ago
+                <% end %>
             </div>
         <% end %>
         
@@ -94,6 +91,12 @@
                         <% if version.index != @article.last_published_revision_index and version.index != @article.next_published_revision_index %>
                             <a href="#" class="right-bar-link show-publish">Publish <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> 
                         <% end %>
+                        <% if version.index == @article.last_published_revision_index %>
+                            <a href="#" class="right-bar-link unpublish">Unpublish <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> 
+                        <% end %>
+                        <% if version.index == @article.next_published_revision_index %>
+                            <a href="#" class="right-bar-link unschedule">Unschedule <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> 
+                        <% end %>
                     </div>
                 </div>
                 
@@ -113,12 +116,13 @@
                             <a href="#" class="button cancel">Don't Publish</a>
                         </div>
                         <div class="buttons schedule">
-                            At&nbsp;&nbsp;
-                            <div class="input-append date">
-                                <%= f.text_field :publish_next_revision_at, :id => 'article-publish-next-revision-at', :class => "input-large", :readonly => true, 'data-date' => @article.publish_next_revision_at, 'data-date-format' => "dd MM yyyy - hh:ii" %>
-                                <span class="add-on"><i class="icon-time"></i></span>
+                            <div>
+                                <input class="datepicker" type="text" placeholder="Select Date" />
                             </div>
                             <div>
+                                <input class="timepicker" type="text" placeholder="Select Time" />
+                            </div>
+                            <div class="topbuffer">
                                 <a href="#" class="button schedule" data-revision-id="<%= version.index %>">Schedule</a> 
                                 <a href="#" class="button cancel">Don't Publish</a>
                             </div>

@@ -137,33 +137,15 @@ var articles = (function($) {
                 $('#article-author-container, #article-author-other, #article-author-use-other').show('fast');
                 $('#article-author-display, #article-author-reset').hide('fast');
             }
-    
-            $("#article-publish-next-revision-at").datetimepicker({
-                format: "dd MM yyyy - hh:ii",
-                autoclose: true,
-                showMeridian: true,
-                todayBtn: true,
-                pickerPosition: "bottom-left"
+            
+            $('.datepicker').pickadate({
+                min: true
             });
-    
-            //hide the publish at view on page load if the article is currently published
-            if($('#article-published').is(':checked')) {
-                $('#schedule').hide();
-            }
-    
-            //toggle the publish at view on the published switch change
-            $('.article-published').on('switch-change', function (e, data) {
-                var $el = $(data.el);
-                var value = data.value;
-        
-                //show or hide the publish at section
-                if(value == true) {
-                    $('#schedule').slideUp('fast');
-                } else {
-                    $('#schedule').slideDown('fast');
-                }
+            
+            $('.timepicker').pickatime({
+                interval: 5
             });
-    
+            
             //handle the preview button
             $('#article-preview').click(function(e){
               e.preventDefault();
@@ -224,6 +206,7 @@ var articles = (function($) {
               $(this).hide();
             });
             
+            //publish now
             $('#right-bar .publish .button.now').click(function(e){
                 e.preventDefault();
                 $.post(
@@ -235,26 +218,56 @@ var articles = (function($) {
                 );
             });
             
+            //unpublish now
+            $('#right-bar .unpublish').click(function(e){
+                e.preventDefault();
+                $.post(
+                    '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/unpublish',
+                    {}, 
+                    function() {
+                        window.location.href = '<%= Settings.site.root_url %>articles/' + $("#article").data("id") + '/edit';
+                    }
+                );
+            });
+            
+            //show the schedule bar
             $('#right-bar .publish .button.later').click(function(e){
                 e.preventDefault();
                 $('#right-bar .publish .buttons.options').hide();
                 $('#right-bar .publish .buttons.schedule').show();
             });
             
+            //schedule now
             $('#right-bar .publish .button.schedule').click(function(e){
                 e.preventDefault();
+                if($(this).parent().parent().find('.datepicker').val() != '' && $(this).parent().parent().find('.timepicker').val() != '') {
+                    $.post(
+                        '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/schedule/revision/' + $(this).data('revision-id'),
+                        {
+                            date: $(this).parent().parent().find('.datepicker').val(),
+                            time: $(this).parent().parent().find('.timepicker').val()
+                        }, 
+                        function() {
+                            window.location.href = '<%= Settings.site.root_url %>articles/' + $("#article").data("id") + '/edit';
+                        }
+                    );
+                }
+                
+            });
+            
+            //unschedule now
+            $('#right-bar .unschedule').click(function(e){
+                e.preventDefault();
                 $.post(
-                    '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/schedule/revision/' + $(this).data('revision-id'),
-                    {
-                        publish_at: $('#article-publish-next-revision-at').val()
-                    }, 
+                    '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/unschedule',
+                    {}, 
                     function() {
                         window.location.href = '<%= Settings.site.root_url %>articles/' + $("#article").data("id") + '/edit';
                     }
                 );
-                
             });
             
+            //cancel
             $('#right-bar .publish .button.cancel').click(function(e){
                 e.preventDefault();
                 $('#right-bar .publish, #right-bar .publish .buttons.schedule').hide();
