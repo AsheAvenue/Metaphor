@@ -121,7 +121,8 @@ class Article < ActiveRecord::Base
   def self.publish_scheduled_articles
     articles = Article.where('next_published_revision_index IS NOT ? and publish_next_revision_at < ?', nil, DateTime.now)
     articles.each do |article|
-      article.last_published_revision_index = article.next_published_revision_index
+      index_to_publish = article.next_published_revision_index
+      article.last_published_revision_index = index_to_publish
       article.next_published_revision_index = nil
       article.publish_next_revision_at = nil
       article.save!
