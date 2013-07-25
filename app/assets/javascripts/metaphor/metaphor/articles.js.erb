@@ -137,35 +137,15 @@ var articles = (function($) {
                 $('#article-author-container, #article-author-other, #article-author-use-other').show('fast');
                 $('#article-author-display, #article-author-reset').hide('fast');
             }
-    
-            // $("#article-publish-next-revision-at").datetimepicker({
-            //     format: "dd MM yyyy - hh:ii",
-            //     autoclose: true,
-            //     showMeridian: true,
-            //     todayBtn: true,
-            //     pickerPosition: "bottom-left"
-            // });
-            $('.timepicker').pickadate();
             
-    
-            //hide the publish at view on page load if the article is currently published
-            if($('#article-published').is(':checked')) {
-                $('#schedule').hide();
-            }
-    
-            //toggle the publish at view on the published switch change
-            $('.article-published').on('switch-change', function (e, data) {
-                var $el = $(data.el);
-                var value = data.value;
-        
-                //show or hide the publish at section
-                if(value == true) {
-                    $('#schedule').slideUp('fast');
-                } else {
-                    $('#schedule').slideDown('fast');
-                }
+            $('.datepicker').pickadate({
+                min: true
             });
-    
+            
+            $('.timepicker').pickatime({
+                interval: 5
+            });
+            
             //handle the preview button
             $('#article-preview').click(function(e){
               e.preventDefault();
@@ -259,7 +239,8 @@ var articles = (function($) {
                 $.post(
                     '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/schedule/revision/' + $(this).data('revision-id'),
                     {
-                        publish_at: $('#article-publish-next-revision-at').val()
+                        date: $(this).parent().parent().find('.datepicker').val(),
+                        time: $(this).parent().parent().find('.timepicker').val()
                     }, 
                     function() {
                         window.location.href = '<%= Settings.site.root_url %>articles/' + $("#article").data("id") + '/edit';

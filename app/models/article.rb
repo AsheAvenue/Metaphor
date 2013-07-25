@@ -119,7 +119,7 @@ class Article < ActiveRecord::Base
   #
   # This is called by the cron job managed by the Whenever gem
   def self.publish_scheduled_articles
-    articles = Article.where(:next_published_revision_index => !nil).where('publish_next_revision_at > ? and publish_next_revision_at < ?', 5.minutes.ago, DateTime.now)
+    articles = Article.where('next_published_revision_index IS NOT ? and publish_next_revision_at < ?', nil, DateTime.now)
     articles.each do |article|
       article.last_published_revision_index = article.next_published_revision_index
       article.next_published_revision_index = nil

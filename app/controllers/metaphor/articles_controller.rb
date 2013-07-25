@@ -69,7 +69,7 @@ module Metaphor
       article = Article.find(params[:id])
       version_index = params[:version_index].to_i
       article.next_published_revision_index = version_index 
-      article.publish_next_revision_at = params[:publish_at] 
+      article.publish_next_revision_at = DateTime.parse("#{params[:date]} #{params[:time]}") 
       article.save!
       render :nothing => true
     end
