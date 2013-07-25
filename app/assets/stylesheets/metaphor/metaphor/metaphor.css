@@ -354,45 +354,23 @@ header .navigation li a {
 
 /* ------ USER, ROLE, CATEGORY, and SERIES forms------ */
 
-#user-username,
-#user-email,
-#user-display-name,
-#user-password,
-#user-password-confirmation,
-#role-name,
-#role-key,
-#page-name,
-#page-slug,
-#template-name,
-#template-slug,
-#component-name,
-#component-slug,
-#related-party-name,
-#related-party-slug,
-#category-name,
-#category-slug,
-#series-name,
-#series-slug,
-#flag-name,
-#flag-slug,
-#collection-name,
-#collection-slug {
-    font-size: 24px;
-    font-weight: 100;
-    line-height: 30px;
-    height: 30px;
-    width: 300px;
-    border:0;
-    background: none;
-    border-bottom: 1px solid white;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    -webkit-border-radios:0;
-    -moz-border-radius:0;
-    border-radius:0;
-    margin-bottom:0;
-    outline: none;
+.form-text-field {
+    font-size: 24px !important;
+    font-weight: 100 !important;
+    line-height: 30px !important;
+    height: 30px !important;
+    width: 300px !important;
+    border:0 !important;
+    background: none !important;
+    border-bottom: 1px solid white !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-border-radius:0 !important;
+    -moz-border-radius:0 !important;
+    border-radius:0 !important;
+    margin-bottom:0 !important;
+    outline: none !important;
 }
 
 #user_role_ids {
