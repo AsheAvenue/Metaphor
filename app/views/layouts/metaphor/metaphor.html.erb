@@ -37,8 +37,10 @@
                 <% end %>
                 <div class="navigation">
                     <ul>
-                        <li>Music:</li>
-                        <li><%= link_to Settings.related_parties.plural, related_parties_path %></li>
+                        <li><%= Settings.entities.title %>:</li>
+                        <% Settings.entities.types.each do |key, value| %>
+                            <li><%= link_to value, "#{Settings.site.root_url}/#{key}" %></li>
+                        <% end %>
                     </ul>
                 </div>
                 <div class="navigation">
