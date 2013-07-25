@@ -138,13 +138,15 @@ var articles = (function($) {
                 $('#article-author-display, #article-author-reset').hide('fast');
             }
     
-            $("#article-publish-next-revision-at").datetimepicker({
-                format: "dd MM yyyy - hh:ii",
-                autoclose: true,
-                showMeridian: true,
-                todayBtn: true,
-                pickerPosition: "bottom-left"
-            });
+            // $("#article-publish-next-revision-at").datetimepicker({
+            //     format: "dd MM yyyy - hh:ii",
+            //     autoclose: true,
+            //     showMeridian: true,
+            //     todayBtn: true,
+            //     pickerPosition: "bottom-left"
+            // });
+            $('.timepicker').pickadate();
+            
     
             //hide the publish at view on page load if the article is currently published
             if($('#article-published').is(':checked')) {
