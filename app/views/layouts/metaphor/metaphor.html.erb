@@ -19,39 +19,39 @@
                 <div class="navigation">
                     <ul>
                         <li>Signed in as <strong><%= current_user.display_name %></strong></li>
-                        <li><%= link_to "Sign out", signout_path %></li>
+                        <li><%= link_to "Sign out", metaphor.signout_path %></li>
                     </ul>
                 </div>
                 <% if current_user.has_role?(:superadmin) %>
                     <div class="navigation">
                         <ul>
                             <li>Site:</li>
-                            <li><%= link_to Settings.templates.plural, templates_path %></li>
-                            <li><%= link_to Settings.components.plural, components_path %></li>
-                            <li><%= link_to Settings.flags.plural, flags_path %></li>
-                            <li><%= link_to Settings.pages.plural, pages_path %></li>
-                            <li><%= link_to Settings.users.plural, users_path %></li>
-                            <li><%= link_to "Roles", roles_path %></li>
+                            <li><%= link_to Settings.templates.plural, metaphor.templates_path %></li>
+                            <li><%= link_to Settings.components.plural, metaphor.components_path %></li>
+                            <li><%= link_to Settings.flags.plural, metaphor.flags_path %></li>
+                            <li><%= link_to Settings.pages.plural, metaphor.pages_path %></li>
+                            <li><%= link_to Settings.users.plural, metaphor.users_path %></li>
+                            <li><%= link_to "Roles", metaphor.roles_path %></li>
                         </ul>
                     </div>
                 <% end %>
                 <div class="navigation">
                     <ul>
                         <li>Music:</li>
-                        <li><%= link_to Settings.related_parties.plural, related_parties_path %></li>
+                        <li><%= link_to Settings.related_parties.plural, metaphor.related_parties_path %></li>
                     </ul>
                 </div>
                 <div class="navigation">
                     <ul>
                         <li>Editorial:</li>
-                        <li><%= link_to Settings.articles.plural, articles_path %></li>
-                        <li><%= link_to Settings.categories.plural, categories_path %></li>
+                        <li><%= link_to Settings.articles.plural, metaphor.articles_path %></li>
+                        <li><%= link_to Settings.categories.plural, metaphor.categories_path %></li>
                         
                         <% if Settings.series.enabled %>
-                            <li><%= link_to Settings.series.plural, series_index_path %></li>
+                            <li><%= link_to Settings.series.plural, metaphor.series_index_path %></li>
                         <% end %>
                         
-                        <li><%= link_to Settings.collections.plural, collections_path %></li>
+                        <li><%= link_to Settings.collections.plural, metaphor.collections_path %></li>
                     </ul>
                 </div>
             </div>
