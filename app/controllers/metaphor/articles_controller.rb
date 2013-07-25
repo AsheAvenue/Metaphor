@@ -113,9 +113,16 @@ module Metaphor
         render :text => 'FALSE'
       end
     end
+    
+    def taglist
+      render json: Article.tag_counts_on(:tags)
+                   .where("name like ?","%#{params[:term]}%")
+                   .order("name like '%#{params[:term]}%' DESC, LENGTH(name) ASC, name ASC")
+                   .map(&:to_s)
+    end
   
     def preview
-      @article = Article.find(params[:id])
+      
     end
     
   end
