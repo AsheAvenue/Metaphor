@@ -53,7 +53,15 @@ module Metaphor
       article.next_published_revision_index = nil 
       article.publish_next_revision_at = nil 
       article.save!
-      
+      render :nothing => true
+    end
+
+    def unpublish
+      article = Article.find(params[:id])
+      article.last_published_revision_index = nil
+      article.next_published_revision_index = nil 
+      article.publish_next_revision_at = nil 
+      article.save!
       render :nothing => true
     end
 
@@ -63,7 +71,14 @@ module Metaphor
       article.next_published_revision_index = version_index 
       article.publish_next_revision_at = params[:publish_at] 
       article.save!
-      
+      render :nothing => true
+    end
+
+    def unschedule
+      article = Article.find(params[:id])
+      article.next_published_revision_index = nil 
+      article.publish_next_revision_at = nil
+      article.save!
       render :nothing => true
     end
 

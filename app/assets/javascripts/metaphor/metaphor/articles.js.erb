@@ -235,6 +235,17 @@ var articles = (function($) {
                 );
             });
             
+            $('#right-bar .unpublish').click(function(e){
+                e.preventDefault();
+                $.post(
+                    '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/unpublish',
+                    {}, 
+                    function() {
+                        window.location.href = '<%= Settings.site.root_url %>articles/' + $("#article").data("id") + '/edit';
+                    }
+                );
+            });
+            
             $('#right-bar .publish .button.later').click(function(e){
                 e.preventDefault();
                 $('#right-bar .publish .buttons.options').hide();
@@ -253,6 +264,17 @@ var articles = (function($) {
                     }
                 );
                 
+            });
+            
+            $('#right-bar .unschedule').click(function(e){
+                e.preventDefault();
+                $.post(
+                    '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/unschedule',
+                    {}, 
+                    function() {
+                        window.location.href = '<%= Settings.site.root_url %>articles/' + $("#article").data("id") + '/edit';
+                    }
+                );
             });
             
             $('#right-bar .publish .button.cancel').click(function(e){

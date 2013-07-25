@@ -1,10 +1,6 @@
 <% if @article.id != nil %>
     <div id="right-bar">
 
-        <div class="header">
-            Status
-        </div>
-
         <% if @article.last_published_revision_index || @article.next_published_revision_index%>
             <% if @article.last_published_revision_index %>
                 <div id="status" class="published">
@@ -27,9 +23,7 @@
                             text = "Revision #{@article.next_published_revision_index}"
                         end
                     %>
-                    Next Scheduled:
-                    <br />
-                    <%= link_to text, article_revision_path(@article, @article.next_published_revision_index) %>
+                    Scheduled: <%= link_to text, article_revision_path(@article, @article.next_published_revision_index) %>
                     <br />
                     <%= distance_of_time_in_words_to_now @article.publish_next_revision_at %> from now
                     
@@ -93,6 +87,12 @@
                         <% end %>
                         <% if version.index != @article.last_published_revision_index and version.index != @article.next_published_revision_index %>
                             <a href="#" class="right-bar-link show-publish">Publish <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> 
+                        <% end %>
+                        <% if version.index == @article.last_published_revision_index %>
+                            <a href="#" class="right-bar-link unpublish">Unpublish <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> 
+                        <% end %>
+                        <% if version.index == @article.next_published_revision_index %>
+                            <a href="#" class="right-bar-link unschedule">Unschedule <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> 
                         <% end %>
                     </div>
                 </div>
