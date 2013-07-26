@@ -138,6 +138,29 @@ var articles = (function($) {
                 $('#article-author-display, #article-author-reset').hide('fast');
             }
             
+            //article tags
+            $('.tag-list').tagit({
+                autocomplete: {
+                    delay: 0,
+                    minLength: 2,
+                    messages: {
+                        noResults: '',
+                        results: function(){}
+                    },
+                    source: function(request,showChoices){
+                        if(request.term.length>1){
+                            $.ajax({
+                                url:"/admin/articles/taglist/"+request.term,
+                                dataType:"json",
+                                success:function(data){
+                                    showChoices(data);
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+            
             $('.datepicker').pickadate({
                 min: true
             });
