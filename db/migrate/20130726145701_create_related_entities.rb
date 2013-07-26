@@ -1,6 +1,6 @@
-class CreateMetaphorRelatedEntities < ActiveRecord::Migration
+class CreateRelatedEntities < ActiveRecord::Migration
   def change
-    create_table :metaphor_related_entities do |t|
+    create_table :related_entities, :id => false do |t|
       t.integer :entity_id
       t.integer :related_id
       t.string :entity_type
