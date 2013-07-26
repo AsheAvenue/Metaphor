@@ -149,7 +149,7 @@ var gallery_editor = (function($) {
             $.post(
                 '<%= Settings.site.root_url %>/galleries/save_image',
                 {
-                    content_widget_id: id,
+                    entity_content_id: id,
                     image_caption: $('#image-info-caption').val(),
                     image_credit: $('#image-info-credit').val()
                 },

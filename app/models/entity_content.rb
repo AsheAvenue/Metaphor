@@ -1,4 +1,4 @@
-class ContentWidget < ActiveRecord::Base
+class EntityContent < ActiveRecord::Base
   attr_accessible :content_id, :content_type, :entity_id, :entity_type, :position
   
   belongs_to :entity, :polymorphic => true, :foreign_key => :entity_id

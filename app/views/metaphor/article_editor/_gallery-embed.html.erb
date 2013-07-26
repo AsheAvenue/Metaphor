@@ -1,5 +1,5 @@
 <div class="images">
-    <% @gallery.content_widgets.each do |cw| %><%= image_tag cw.content.image.url(:mediumthumb) %><% end %>
+    <% @gallery.entity_contents.each do |cw| %><%= image_tag cw.content.image.url(:mediumthumb) %><% end %>
 </div>
 <div class="selected-buttons clearfix">
     <div class="pull-left">

@@ -9,7 +9,7 @@ module Metaphor
       @gallery = Gallery.find(params[:id])
     
       #get the widgets
-      @widgets = @gallery.content_widgets.order('position ASC')
+      @widgets = @gallery.entity_contents.order('position ASC')
     
       #get the article we were just editing
       @article = Article.find(session[:article_id])
@@ -17,7 +17,7 @@ module Metaphor
   
     def sort
       params[:image].each_with_index do |id, index|
-        ContentWidget.update_all({position: index+1}, {id: id})
+        EntityContent.update_all({position: index+1}, {id: id})
       end 
       render nothing: true
     end
@@ -41,12 +41,12 @@ module Metaphor
     end
   
     def remove_image
-      w = ContentWidget.find(params[:id])
+      w = EntityContent.find(params[:id])
       w.destroy
     end
   
     def save_image
-      w = ContentWidget.find(params[:content_widget_id])
+      w = EntityContent.find(params[:entity_content_id])
       i = w.content
       i.caption = params[:image_caption]
       i.name = i.caption if !i.name
@@ -63,7 +63,7 @@ module Metaphor
     
       # get the content widget if it already exists in that place and 
       # update it... or create a new one
-      @widget = ContentWidget.new
+      @widget = EntityContent.new
       @widget.entity = @gallery
       @widget.content = @image
       @widget.position = @position
@@ -73,7 +73,7 @@ module Metaphor
     end
   
     def image_info
-      widget = ContentWidget.find(params[:id])
+      widget = EntityContent.find(params[:id])
       @image = widget.content
     end
   

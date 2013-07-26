@@ -19,8 +19,8 @@ module Metaphor
     
       #get the widgets
       @widgets = Hash.new
-      content_widgets = @article.content_widgets.order('position ASC')
-      content_widgets.each do |w|
+      entity_contents = @article.entity_contents.order('position ASC')
+      entity_contents.each do |w|
         @widgets["#{w.position}"] = w
       end
     end
@@ -33,11 +33,11 @@ module Metaphor
     
       # get the content widget if it already exists in that place and 
       # update it... or create a new one
-      c = ContentWidget.find_by_entity_id_and_entity_type_and_content_type_and_position(@article.id, 'Article', 'Video', @position)
+      c = EntityContent.find_by_entity_id_and_entity_type_and_content_type_and_position(@article.id, 'Article', 'Video', @position)
       if c
         c.content = @video
       else
-        c = ContentWidget.new
+        c = EntityContent.new
         c.entity = @article
         c.content = @video
         c.position = @position
@@ -56,11 +56,11 @@ module Metaphor
     
       # get the content widget if it already exists in that place and 
       # update it... or create a new one
-      c = ContentWidget.find_by_entity_id_and_entity_type_and_content_type_and_position(@article.id, 'Article', 'Image', @position)
+      c = EntityContent.find_by_entity_id_and_entity_type_and_content_type_and_position(@article.id, 'Article', 'Image', @position)
       if c
         c.content = @image
       else
-        c = ContentWidget.new
+        c = EntityContent.new
         c.entity = @article
         c.content = @image
         c.position = @position
@@ -79,11 +79,11 @@ module Metaphor
     
       # get the content widget if it already exists in that place and 
       # update it... or create a new one
-      c = ContentWidget.find_by_entity_id_and_entity_type_and_content_type_and_position(@article.id, 'Article', 'Gallery', @position)
+      c = EntityContent.find_by_entity_id_and_entity_type_and_content_type_and_position(@article.id, 'Article', 'Gallery', @position)
       if c
         c.content = @gallery
       else
-        c = ContentWidget.new
+        c = EntityContent.new
         c.entity = @article
         c.content = @gallery
         c.position = @position
@@ -102,11 +102,11 @@ module Metaphor
     
       # get the content widget if it already exists in that place and 
       # update it... or create a new one
-      c = ContentWidget.find_by_entity_id_and_entity_type_and_content_type_and_position(@article.id, 'Article', 'Sound', @position)
+      c = EntityContent.find_by_entity_id_and_entity_type_and_content_type_and_position(@article.id, 'Article', 'Sound', @position)
       if c
         c.content = @sound
       else
-        c = ContentWidget.new
+        c = EntityContent.new
         c.entity = @article
         c.content = @sound
         c.position = @position

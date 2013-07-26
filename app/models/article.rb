@@ -31,7 +31,7 @@ class Article < ActiveRecord::Base
   has_many :article_users, :dependent => :destroy
   has_many :users, :through => :article_users
   
-  has_many :content_widgets, :as => :entity
+  has_many :entity_contents, :as => :entity
 
   validates_presence_of :title, :slug
   validates_uniqueness_of :slug
