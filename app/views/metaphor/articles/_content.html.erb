@@ -103,14 +103,14 @@
                 <div class="form-line">
                     <div id="article-author-display"><%= @article.author_display_name %></div>
                     <div id="article-author-container">
-                        <%= collection_select(:article, :user_ids, User.all, :id, :display_name, {}, {:multiple => false, :name => 'article[user_ids][]'})%>
+                        <%= collection_select(:article, :user_ids, User.all, :id, :display_name, {}, {:multiple => false, :name => 'article[user_ids][]', :class => 'select-field'})%>
                     </div>
                     <div id="article-author-reset"><a href="#" id="article-author-change" class="right-bar-link">Change</a></div>
                     <div id="article-author-other">
-                        <a href="#" id="article-author-use-other" class="right-bar-link">Manually enter <%= Settings.users.singular %> name</a>
-                        <%= f.text_field :author_other_name, :id => 'article-author-other-name', :placeholder => "#{Settings.users.singular} name", :class => "input-xlarge", 'data-original-author-other-name' => @article.author_other_name %>
+                        <a href="#" id="article-author-use-other" class="right-bar-link">Manually enter Author name</a>
+                        <%= f.text_field :author_other_name, :id => 'article-author-other-name', :placeholder => "Author name", :class => "input-xlarge", 'data-original-author-other-name' => @article.author_other_name %>
                     </div>
-                    <div id="article-author-other-cancel"><a href="#" id="article-author-use-existing" class="right-bar-link">Use existing <%= Settings.users.singular %></a></div>
+                    <div id="article-author-other-cancel"><a href="#" id="article-author-use-existing" class="right-bar-link">Use existing Author</a></div>
                 </div>
             </div>
         </div>
