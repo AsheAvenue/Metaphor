@@ -13,8 +13,6 @@ var pages = (function($) {
               $('#page-form').submit();
             });
             
-            $('#page-content').wymeditor();
-            
         }
         
     };
