@@ -334,6 +334,22 @@ header .navigation li a {
     float: left;
     width: 20%;
 }
+
+#list .item .published {
+    color: white;
+    background-color: #2ecc71;
+}
+
+#list .item .scheduled {
+    color: white;
+    background-color: #f1c40f;
+}
+
+#list .item .unscheduled {
+    color: white;
+    background-color: #e74c3c;
+}
+
 .fail_element {
     opacity: 0;
     margin: 10px 10px0;
@@ -630,9 +646,11 @@ header .navigation li a {
 #status.published {
     background-color: #2ecc71;
 }
+
 #status.scheduled {
     background-color: #f1c40f;
 }
+
 #status.unpublished {
     background-color: #e74c3c;
 }

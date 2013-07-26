@@ -13,7 +13,7 @@
 			<li class="filter" data-filter="all">All</li>
 			<li class="filter" data-filter="published">Published</li>
 			<li class="filter" data-filter="scheduled">Scheduled</li>
-			<li class="filter" data-filter="not_scheduled">Not Scheduled</li>
+			<li class="filter" data-filter="unscheduled">Unscheduled</li>
 		</ul>    
     </div>
     
@@ -42,7 +42,7 @@
 
     <ul id="items" class="items">
         <% @articles.each do |article| %>
-            <li class="item mix <%= article.status_class %> clearfix" data-status="<%= article.status_class %>" data-created="<%= article.created_at.to_time.to_i %>">
+            <li class="item mix <%= article.status %> clearfix" data-status="<%= article.status %>" data-created="<%= article.created_at.to_time.to_i %>">
                 <div class="twofifths">
                     <%= link_to article.title, edit_article_path(article) %>
                 </div>
@@ -52,8 +52,8 @@
                 <div class="onefifth">
                     <%= article.created_at.strftime("%b, %d %y - %I:%M %p") %>
                 </div>
-                <div class="onefifth" style="background-color: <%= article.status_color %>">
-                    <%= article.status %>
+                <div class="onefifth <%= article.status %>">
+                    <%= article.status.slice(0,1).capitalize + article.status.slice(1..-1) %>
                 </div>
             </li>
         <% end %>
