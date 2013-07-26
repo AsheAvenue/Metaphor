@@ -17,6 +17,7 @@ class Article < ActiveRecord::Base
     :template,
     :tag_list
     
+  # attributes used but not saved to the db
   attr_accessor :default_image_selected, :default_image_original_filename
     
   has_many :article_categories, :dependent => :destroy
@@ -25,12 +26,12 @@ class Article < ActiveRecord::Base
   has_many :article_series, :dependent => :destroy
   has_many :series, :through => :article_series
 
-  has_many :entity_flags, :dependent => :destroy, :as => :entity
-  has_many :flags, :through => :entity_flags
-
   has_many :article_users, :dependent => :destroy
   has_many :users, :through => :article_users
   
+  has_many :entity_flags, :dependent => :destroy, :as => :entity
+  has_many :flags, :through => :entity_flags
+
   has_many :entity_contents, :as => :entity
   has_many :videos, :through => :entity_contents, :source => :content, :source_type => "Video"
   has_many :sounds, :through => :entity_contents, :source => :content, :source_type => "Sound"
