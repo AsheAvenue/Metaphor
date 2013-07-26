@@ -32,7 +32,11 @@ class Article < ActiveRecord::Base
   has_many :users, :through => :article_users
   
   has_many :entity_contents, :as => :entity
-
+  has_many :videos, :through => :entity_contents, :source => :content, :source_type => "Video"
+  has_many :sounds, :through => :entity_contents, :source => :content, :source_type => "Sound"
+  has_many :images, :through => :entity_contents, :source => :content, :source_type => "Image"
+  has_many :galleries, :through => :entity_contents, :source => :content, :source_type => "Gallery"
+  
   validates_presence_of :title, :slug
   validates_uniqueness_of :slug
   
