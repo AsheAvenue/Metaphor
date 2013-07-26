@@ -38,6 +38,8 @@ class Article < ActiveRecord::Base
   has_many :images, :through => :entity_contents, :source => :content, :source_type => "Image"
   has_many :galleries, :through => :entity_contents, :source => :content, :source_type => "Gallery"
   
+  has_many :related_entities, :as => :entity
+  
   validates_presence_of :title, :slug
   validates_uniqueness_of :slug
   
