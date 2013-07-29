@@ -171,6 +171,7 @@ var articles = (function($) {
                 });
             
                 var <%= key %>_itemId;
+                var returned_<%= key %> = []
                 $('.<%= key %>-list').tagit({
                     autocomplete: {
                         delay: 0,
@@ -185,6 +186,7 @@ var articles = (function($) {
                                     url:"/admin/articles/related_entity_list/<%= value %>/" + request.term,
                                     dataType:"json",
                                     success:function(data){
+                                        returned_<%= key %> = data;
                                         showChoices(data);
                                     }
                                 });
@@ -194,6 +196,15 @@ var articles = (function($) {
                             <%= key %>_itemId = ui.item.id;
                             $('.<%= key %>-list').tagit("createTag", ui.item.value);
                             return false;
+                        }
+                    },
+                    beforeTagAdded: function(event, ui){
+                        if(!ui.duringInitialization){
+                            var ret = false;
+                            $.each(returned_<%= key %>,function(intVal,curElement){
+                                if(ui.tagLabel == curElement.value) ret = true;
+                            });
+                            if(ret===false) return false;
                         }
                     },
                     afterTagAdded: function(event, ui) {

@@ -16,7 +16,9 @@ class Article < ActiveRecord::Base
     :author_other_name, 
     :template,
     :tag_list,
-    :artists_list
+    :artists_list,
+    :producers_list,
+    :directors_list
     
   # attributes used but not saved to the db
   attr_accessor :default_image_selected, :default_image_original_filename, :artist_ids, :producer_ids, :director_ids
