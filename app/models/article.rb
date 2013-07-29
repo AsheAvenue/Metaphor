@@ -16,12 +16,10 @@ class Article < ActiveRecord::Base
     :author_other_name, 
     :template,
     :tag_list,
-    :artists_list,
-    :producers_list,
-    :directors_list
+    :artists_list
     
   # attributes used but not saved to the db
-  attr_accessor :default_image_selected, :default_image_original_filename
+  attr_accessor :default_image_selected, :default_image_original_filename, :artist_ids, :producer_ids, :director_ids
     
   has_many :article_categories, :dependent => :destroy
   has_many :categories, :through => :article_categories
@@ -74,24 +72,36 @@ class Article < ActiveRecord::Base
     self.artists.collect{|a| a.name}.join(',')
   end
   
+  def artists_ids
+    self.artists.collect{|a| "#{a.name}:#{a.id}"}.join(',')
+  end
+  
   def artists_list=(artist_ids)
-    self.artists = Artist.find(artist_ids)
+    self.artists = Artist.find(artist_ids.split(","))
   end
   
   def producers_list
     self.producers.collect{|a| a.name}.join(',')
   end
   
+  def producers_ids
+    self.producers.collect{|a| "#{a.name}:#{a.id}"}.join(',')
+  end
+  
   def producers_list=(producer_ids)
-    self.producers = Producer.find(producer_ids)
+    self.producers = Producer.find(producer_ids.split(","))
   end
   
   def directors_list
     self.directors.collect{|a| a.name}.join(',')
   end
-                   
+  
+  def directors_ids
+    self.directors.collect{|a| "#{a.name}:#{a.id}"}.join(',')
+  end
+  
   def directors_list=(director_ids)
-    self.directors = Director.find(director_ids)
+    self.directors = Director.find(director_ids.split(","))
   end
   
   # convenience methods

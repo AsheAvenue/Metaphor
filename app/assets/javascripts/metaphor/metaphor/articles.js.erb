@@ -161,41 +161,51 @@ var articles = (function($) {
                 }
             });
             
-            //article related entities
-            var itemId;
-            $('.artists-list').tagit({
-                autocomplete: {
-                    delay: 0,
-                    minLength: 2,
-                    messages: {
-                        noResults: '',
-                        results: function(){}
-                    },
-                    source: function(request,showChoices){
-                        if(request.term.length>1){
-                            $.ajax({
-                                url:"/admin/articles/related_entity_list/Artist/"+request.term,
-                                dataType:"json",
-                                success:function(data){
-                                    showChoices(data);
-                                }
-                            });
+            //related entities
+            <% Settings.entities.types.each do |key, value| %>
+                var existing_<%= key %> = Array();
+                var <%= key %> = $('.<%= key %>_list input').data('<%= key %>-ids').split(',');
+                $(<%= key %>).each(function(index){
+                    var <%= key %>_item = <%= key %>[index].split(":");
+                    existing_<%= key %>[<%= key %>_item[0]] = <%= key %>_item[1];
+                });
+            
+                var <%= key %>_itemId;
+                $('.<%= key %>-list').tagit({
+                    autocomplete: {
+                        delay: 0,
+                        minLength: 2,
+                        messages: {
+                            noResults: '',
+                            results: function(){}
+                        },
+                        source: function(request,showChoices){
+                            if(request.term.length>1){
+                                $.ajax({
+                                    url:"/admin/articles/related_entity_list/<%= value %>/" + request.term,
+                                    dataType:"json",
+                                    success:function(data){
+                                        showChoices(data);
+                                    }
+                                });
+                            }
+                        },
+                        select: function(event,ui) {
+                            <%= key %>_itemId = ui.item.id;
+                            $('.<%= key %>-list').tagit("createTag", ui.item.value);
+                            return false;
                         }
                     },
-                    select: function(event,ui) {
-                        itemId = ui.item.id;
-                        $('.artists-list').tagit("createTag", ui.item.value);
-                        return false;
+                    afterTagAdded: function(event, ui) {
+                        if (<%= key %>_itemId) {
+                            $(ui.tag).attr('data-id', <%= key %>_itemId); // store the id
+                            <%= key %>_itemId = null;
+                        } else {
+                            $(ui.tag).attr('data-id', existing_<%= key %>[ui.tagLabel]);
+                        }
                     }
-                },
-                afterTagAdded: function(event, ui) {
-                    if (itemId) {
-                        console.log($(ui.tag));
-                        $(ui.tag).attr('data-id', itemId); // store the id
-                        itemId = null;
-                    }
-                }
-            });
+                });
+            <% end %> 
             
             $('.datepicker').pickadate({
                 min: true
@@ -213,7 +223,10 @@ var articles = (function($) {
     
             $('#article-submit').click(function(e){
               e.preventDefault();
-              $('#article_artists_list').val([2]);
+              <% Settings.entities.types.each do |key, value| %>
+                  var <%= key %>_ids = $('.<%= key %>_list li.tagit-choice').map(function () { return parseInt($(this).attr('data-id')); });
+                  $('#article_<%= key %>_list').val($.makeArray(<%= key %>_ids));
+              <% end %>
               $('#article-form').submit();
             });
 
