@@ -197,8 +197,9 @@
             </div>
             <div class="form-section-right">
                 <div class="form-line">
+                    <%= hidden_field_tag "article[#{key}_list][]", nil %>
                     <% s = "#{key}_list".parameterize.underscore.to_sym%>
-                    <%= f.text_field s, :class => "#{key}-list" %>
+                    <%= f.text_field s, :class => "#{key}-list", :name => "article[#{key}_list][]" %>
                 </div>
             </div>
         </div>

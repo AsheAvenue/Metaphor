@@ -140,11 +140,11 @@ module Metaphor
       entity = params[:related_entity]
       render json: entity
                    .constantize
-                   .select(:name)
+                   .select("name as value, id as id")
                    .where("name ilike ?","%#{params[:term]}%")
-                   .order("name ilike '%#{params[:term]}%' DESC, LENGTH(name) ASC, name ASC").map{|e| e.name}
+                   .order("name ilike '%#{params[:term]}%' DESC, LENGTH(name) ASC, name ASC")
     end
-  
+      
     def preview
       
     end

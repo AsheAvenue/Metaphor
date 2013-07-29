@@ -74,14 +74,26 @@ class Article < ActiveRecord::Base
     self.artists.collect{|a| a.name}.join(',')
   end
   
+  def artists_list=(artist_ids)
+    self.artists = Artist.find(artist_ids)
+  end
+  
   def producers_list
     self.producers.collect{|a| a.name}.join(',')
+  end
+  
+  def producers_list=(producer_ids)
+    self.producers = Producer.find(producer_ids)
   end
   
   def directors_list
     self.directors.collect{|a| a.name}.join(',')
   end
                    
+  def directors_list=(director_ids)
+    self.directors = Director.find(director_ids)
+  end
+  
   # convenience methods
   def author
     users.first

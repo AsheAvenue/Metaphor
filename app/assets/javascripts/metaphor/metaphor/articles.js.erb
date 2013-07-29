@@ -162,6 +162,7 @@ var articles = (function($) {
             });
             
             //article related entities
+            var itemId;
             $('.artists-list').tagit({
                 autocomplete: {
                     delay: 0,
@@ -180,6 +181,18 @@ var articles = (function($) {
                                 }
                             });
                         }
+                    },
+                    select: function(event,ui) {
+                        itemId = ui.item.id;
+                        $('.artists-list').tagit("createTag", ui.item.value);
+                        return false;
+                    }
+                },
+                afterTagAdded: function(event, ui) {
+                    if (itemId) {
+                        console.log($(ui.tag));
+                        $(ui.tag).attr('data-id', itemId); // store the id
+                        itemId = null;
                     }
                 }
             });
@@ -200,6 +213,7 @@ var articles = (function($) {
     
             $('#article-submit').click(function(e){
               e.preventDefault();
+              $('#article_artists_list').val([2]);
               $('#article-form').submit();
             });
 
