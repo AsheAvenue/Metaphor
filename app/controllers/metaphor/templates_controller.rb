@@ -20,7 +20,7 @@ module Metaphor
       @template = Template.create(params[:template])
       @templates = Template.where(true)
       if @template.save
-        flash[:alert] = "#{Settings.templates.singular} successfully created"
+        flash[:alert] = "#{Settings.templates.name} successfully created"
         redirect_to edit_template_path(@template)
       else
         flash[:alert] = "All fields are required"
@@ -44,7 +44,7 @@ module Metaphor
       @template.update_attributes(params[:template])
       if @template.save
         @templates = Template.where(true)
-        flash[:alert] = "#{Settings.templates.singular} successfully updated"
+        flash[:alert] = "#{Settings.templates.name} successfully updated"
         redirect_to edit_template_path(@template)
       else
         flash[:alert] = "All fields are required"

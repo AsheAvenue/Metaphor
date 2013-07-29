@@ -26,11 +26,11 @@
                     <div class="navigation">
                         <ul>
                             <li>Site:</li>
-                            <li><%= link_to Settings.templates.plural, metaphor.templates_path %></li>
-                            <li><%= link_to Settings.components.plural, metaphor.components_path %></li>
-                            <li><%= link_to Settings.flags.plural, metaphor.flags_path %></li>
-                            <li><%= link_to Settings.pages.plural, metaphor.pages_path %></li>
-                            <li><%= link_to Settings.users.plural, metaphor.users_path %></li>
+                            <li><%= link_to Settings.templates.name.pluralize, metaphor.templates_path %></li>
+                            <li><%= link_to Settings.components.name.pluralize, metaphor.components_path %></li>
+                            <li><%= link_to Settings.flags.name.pluralize, metaphor.flags_path %></li>
+                            <li><%= link_to Settings.pages.name.pluralize, metaphor.pages_path %></li>
+                            <li><%= link_to Settings.users.name.pluralize, metaphor.users_path %></li>
                             <li><%= link_to "Roles", metaphor.roles_path %></li>
                         </ul>
                     </div>
@@ -39,21 +39,21 @@
                     <ul>
                         <li><%= Settings.entities.title %>:</li>
                         <% Settings.entities.types.each do |key, value| %>
-                            <li><%= link_to value, "#{Settings.site.root_url}/#{key}" %></li>
+                            <li><%= link_to value.pluralize, "#{Settings.site.root_url}/#{key}" %></li>
                         <% end %>
                     </ul>
                 </div>
                 <div class="navigation">
                     <ul>
                         <li>Editorial:</li>
-                        <li><%= link_to Settings.articles.plural, metaphor.articles_path %></li>
-                        <li><%= link_to Settings.categories.plural, metaphor.categories_path %></li>
+                        <li><%= link_to Settings.articles.name.pluralize, metaphor.articles_path %></li>
+                        <li><%= link_to Settings.categories.name.pluralize, metaphor.categories_path %></li>
                         
                         <% if Settings.series.enabled %>
-                            <li><%= link_to Settings.series.plural, metaphor.series_index_path %></li>
+                            <li><%= link_to Settings.series.name.pluralize, metaphor.series_index_path %></li>
                         <% end %>
                         
-                        <li><%= link_to Settings.collections.plural, metaphor.collections_path %></li>
+                        <li><%= link_to Settings.collections.name.pluralize, metaphor.collections_path %></li>
                     </ul>
                 </div>
             </div>

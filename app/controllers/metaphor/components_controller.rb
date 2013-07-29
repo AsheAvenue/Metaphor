@@ -20,7 +20,7 @@ module Metaphor
       @component = Component.create(params[:component])
       @components = Component.where(true)
       if @component.save
-        flash[:alert] = "#{Settings.components.singular} successfully created"
+        flash[:alert] = "#{Settings.components.name} successfully created"
         redirect_to edit_component_path(@component)
       else
         flash[:alert] = "All fields are required"
@@ -33,7 +33,7 @@ module Metaphor
       @component.update_attributes(params[:component])
       if @component.save
         @components = Component.where(true)
-        flash[:alert] = "#{Settings.components.singular} successfully updated"
+        flash[:alert] = "#{Settings.components.name} successfully updated"
         redirect_to edit_component_path(@component)
       else
         flash[:alert] = "All fields are required"

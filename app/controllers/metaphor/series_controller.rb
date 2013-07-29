@@ -20,7 +20,7 @@ module Metaphor
       @series = Series.create(params[:series])
       @serieses = Series.where(true)
       if @series.save
-        flash[:alert] = "#{Settings.series.singular} successfully created"
+        flash[:alert] = "#{Settings.series.name} successfully created"
         redirect_to edit_series_path(@series)
       else
         flash[:alert] = "All fields are required"
@@ -33,7 +33,7 @@ module Metaphor
       @serieses.update_attributes(params[:series])
       if @series.save
         @serieses = Series.where(true)
-        flash[:alert] = "#{Settings.series.singular} successfully updated"
+        flash[:alert] = "#{Settings.series.name} successfully updated"
         redirect_to edit_series_path(@series)
       else
         flash[:alert] = "All fields are required"

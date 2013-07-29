@@ -20,7 +20,7 @@ module Metaphor
       @collection = Collection.create(params[:collection])
       @collections = Collection.where(true)
       if @collection.save
-        flash[:alert] = "#{Settings.collections.singular} successfully created"
+        flash[:alert] = "#{Settings.collections.name} successfully created"
         redirect_to edit_collection_path(@collection)
       else
         flash[:alert] = "All fields are required"
@@ -33,7 +33,7 @@ module Metaphor
       @collection.update_attributes(params[:collection])
       if @collection.save
         @collections = Collection.where(true)
-        flash[:alert] = "#{Settings.collections.singular} successfully updated"
+        flash[:alert] = "#{Settings.collections.name} successfully updated"
         redirect_to edit_collection_path(@collection)
       else
         flash[:alert] = "All fields are required"

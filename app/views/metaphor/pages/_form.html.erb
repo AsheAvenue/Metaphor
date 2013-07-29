@@ -7,7 +7,7 @@
         <% end %>
         <div class="form-section clearfix">
             <div class="form-section-left">
-                <%= Settings.pages.singular %>
+                <%= Settings.pages.name %>
             </div>
             <div class="form-section-right">
                 <div class="form-line">
@@ -23,9 +23,9 @@
     
         <div id="actions" class="form-section clearfix has-right-bar">
             <% if action == 'create' %>
-                <%= f.submit "Create #{Settings.pages.singular}", :class => "button green" %>
+                <%= f.submit "Create #{Settings.pages.name}", :class => "button green" %>
             <% elsif action == 'update'%>
-                <%= f.submit "Save #{Settings.pages.singular}", :class => "button green" %>
+                <%= f.submit "Save #{Settings.pages.name}", :class => "button green" %>
             <% end %>
         </div>
         
