@@ -1,10 +1,10 @@
 <div id="left-bar">
     <div class="header">
-        <%= Settings.collections.plural %>
+        <%= Settings.collections.name.pluralize %>
     </div>
 
     <div class="new">
-        <%= link_to "New #{Settings.collections.singular} »", new_collection_path %>
+        <%= link_to "New #{Settings.collections.name} »", new_collection_path %>
     </div>
     
     <% @collections.each do |collection| %>

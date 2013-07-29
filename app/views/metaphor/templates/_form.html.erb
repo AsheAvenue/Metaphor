@@ -13,7 +13,7 @@
         <% end %>
         <div class="form-section clearfix">
             <div class="form-section-left">
-                <%= Settings.templates.singular %>
+                <%= Settings.templates.name %>
             </div>
             <div class="form-section-right">
                 <div class="form-line">
@@ -56,7 +56,7 @@
         <% if @template.id != nil %>
             <div class="form-section clearfix">
                 <div class="form-section-left">
-                    <%= Settings.components.plural %>
+                    <%= Settings.components.name.pluralize %>
                 </div>
                 <div class="form-section-right">
                     <div class="form-line">
@@ -76,9 +76,9 @@
             <div class="form-section-right">
                 <div class="form-line">
                   <% if action == 'update' %>
-                      <%= f.submit "Save #{Settings.templates.singular}", :class => "button" %>
+                      <%= f.submit "Save #{Settings.templates.name}", :class => "button" %>
                   <% else %>
-                      <%= f.submit "Create #{Settings.templates.singular}", :class => "button" %>
+                      <%= f.submit "Create #{Settings.templates.name}", :class => "button" %>
                   <% end %>
                 </div>
             </div>

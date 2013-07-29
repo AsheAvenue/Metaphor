@@ -1,10 +1,10 @@
 <div id="left-bar">
     <div class="header">
-      <%= Settings.users.plural %>
+      <%= Settings.users.name.pluralize %>
     </div>
 
     <div class="new">
-        <%= link_to "New #{Settings.users.singular} »", new_user_path %>
+        <%= link_to "New #{Settings.users.name} »", new_user_path %>
     </div>
     
     <% @users.each do |user| %>

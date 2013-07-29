@@ -48,9 +48,9 @@
             <div class="form-section-right">
                 <div class="form-line">
                   <% if action == 'update' %>
-                      <%= f.submit "Save #{Settings.users.singular}", :class => "button" %>
+                      <%= f.submit "Save #{Settings.users.name}", :class => "button" %>
                   <% else %>
-                      <%= f.submit "Create #{Settings.users.singular}", :class => "button" %>
+                      <%= f.submit "Create #{Settings.users.name}", :class => "button" %>
                   <% end %>
                 </div>
             </div>

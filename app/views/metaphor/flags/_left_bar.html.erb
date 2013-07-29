@@ -1,10 +1,10 @@
 <div id="left-bar">
     <div class="header">
-        <%= Settings.flags.plural %>
+        <%= Settings.flags.name.pluralize %>
     </div>
 
     <div class="new">
-        <%= link_to "New #{Settings.flags.singular} »", new_flag_path %>
+        <%= link_to "New #{Settings.flags.name} »", new_flag_path %>
     </div>
     
     <% @flags.each do |flag| %>

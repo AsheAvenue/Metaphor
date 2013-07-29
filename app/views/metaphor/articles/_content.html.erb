@@ -7,7 +7,7 @@
         <% elsif action == "update" %>
             Edit
         <% end %>
-        <%= Settings.articles.singular %>
+        <%= Settings.articles.name %>
     </div>
     <div class="form-section clearfix">
         <div class="form-section-left">
@@ -26,7 +26,7 @@
         </div>
         <div class="form-section-right">
             <div class="form-line">
-                <div id="article-slug-display"><%= @article.slug || "Awaiting #{Settings.articles.singular.downcase} title..." %></div>
+                <div id="article-slug-display"><%= @article.slug || "Awaiting #{Settings.articles.name.downcase} title..." %></div>
                 <div id="article-slug-container">
                     <%= f.text_field :slug, :id => 'article-slug', :placeholder => 'Slug', :class => "input-xlarge", 'data-original-slug' => @article.slug %>
                 </div>
@@ -128,7 +128,7 @@
     
         <div class="form-section clearfix">
             <div class="form-section-left">
-                <%= Settings.categories.plural %>
+                <%= Settings.categories.name.pluralize %>
             </div>
             <div class="form-section-right">
                 <div class="form-line">
@@ -146,7 +146,7 @@
         <% if Settings.series.enabled %>
             <div class="form-section clearfix">
                 <div class="form-section-left">
-                    <%= Settings.series.plural %>
+                    <%= Settings.series.name.pluralize %>
                 </div>
                 <div class="form-section-right">
                     <div class="form-line">
@@ -164,7 +164,7 @@
          
         <div class="form-section clearfix">
             <div class="form-section-left">
-                <%= Settings.flags.plural %>
+                <%= Settings.flags.name.pluralize %>
             </div>
             <div class="form-section-right">
                 <div class="form-line">
@@ -181,7 +181,7 @@
         
         <div class="form-section clearfix">
             <div class="form-section-left">
-                <%= Settings.tags.plural %>
+                <%= Settings.tags.name.pluralize %>
             </div>
             <div class="form-section-right">
                 <div class="form-line">
@@ -208,10 +208,10 @@
     
     <div id="actions" class="form-section clearfix has-right-bar">
         <% if action == 'create' %>
-            <%= link_to "Create #{Settings.articles.singular} and Continue Editing", '#', :class => "button green", :id => 'article-submit' %>
+            <%= link_to "Create #{Settings.articles.name} and Continue Editing", '#', :class => "button green", :id => 'article-submit' %>
         <% elsif action == 'update'%>
-            <%= link_to "Save #{Settings.articles.singular}", '#', :class => "button green", :id => 'article-submit' %>
-            <%= link_to "Edit #{Settings.articles.singular} Content", '#', :class => "button yellow", :id => 'article-edit' %>
+            <%= link_to "Save #{Settings.articles.name}", '#', :class => "button green", :id => 'article-submit' %>
+            <%= link_to "Edit #{Settings.articles.name} Content", '#', :class => "button yellow", :id => 'article-edit' %>
         <% end %>
     </div>
     

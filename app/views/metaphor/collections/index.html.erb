@@ -1,9 +1,9 @@
 <div id="list">
     
     <div class="header">
-        <%= Settings.collections.plural %>
+        <%= Settings.collections.name.pluralize %>
         <div class="header-link pull-right">
-            <%= link_to "New #{Settings.collections.singular} »", new_collection_url %>
+            <%= link_to "New #{Settings.collections.name} »", new_collection_url %>
         </div>
     </div>
     

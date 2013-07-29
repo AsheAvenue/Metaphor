@@ -1,10 +1,10 @@
 <div id="left-bar">
     <div class="header">
-        <%= Settings.pages.plural %>
+        <%= Settings.pages.name.pluralize %>
     </div>
 
     <div class="new">
-        <%= link_to "New #{Settings.pages.singular} »", new_page_path %>
+        <%= link_to "New #{Settings.pages.name} »", new_page_path %>
     </div>
     
     <% @pages.each do |page| %>

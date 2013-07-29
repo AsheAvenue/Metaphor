@@ -1,10 +1,10 @@
 <div id="left-bar">
     <div class="header">
-        <%= Settings.components.plural %>
+        <%= Settings.components.name.pluralize %>
     </div>
 
     <div class="new">
-        <%= link_to "New #{Settings.components.singular} »", new_component_path %>
+        <%= link_to "New #{Settings.components.name} »", new_component_path %>
     </div>
     
     <% @components.each do |component| %>

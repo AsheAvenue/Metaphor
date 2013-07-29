@@ -7,7 +7,7 @@
         <% end %>
         <div class="form-section clearfix">
             <div class="form-section-left">
-                <%= Settings.components.singular %>
+                <%= Settings.components.name %>
             </div>
             <div class="form-section-right">
                 <div class="form-line">
@@ -23,9 +23,9 @@
             <div class="form-section-right">
                 <div class="form-line">
                   <% if action == 'update' %>
-                      <%= f.submit "Save #{Settings.components.singular}", :class => "button" %>
+                      <%= f.submit "Save #{Settings.components.name}", :class => "button" %>
                   <% else %>
-                      <%= f.submit "Create #{Settings.components.singular}", :class => "button" %>
+                      <%= f.submit "Create #{Settings.components.name}", :class => "button" %>
                   <% end %>
                 </div>
             </div>

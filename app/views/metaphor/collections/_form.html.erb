@@ -13,7 +13,7 @@
         <% end %>
         <div class="form-section clearfix">
             <div class="form-section-left">
-                <%= Settings.collections.singular %>
+                <%= Settings.collections.name %>
             </div>
             <div class="form-section-right">
                 <div class="form-line">
@@ -26,7 +26,7 @@
         </div>
         <div class="form-section clearfix">
             <div class="form-section-left">
-                <%= Settings.articles.singular %> Types
+                <%= Settings.articles.name %> Types
             </div>
             <div class="form-section-right">
                 <div class="form-line">
@@ -47,7 +47,7 @@
         <% if @collection.id != nil %>
             <div class="form-section clearfix">
                 <div class="form-section-left">
-                    Pinned <%= Settings.articles.plural %>
+                    Pinned <%= Settings.articles.name.pluralize %>
                 </div>
                 <div class="form-section-right">
                     <div class="form-line">
@@ -66,9 +66,9 @@
             <div class="form-section-right">
                 <div class="form-line">
                   <% if action == 'update' %>
-                      <%= f.submit "Save #{Settings.collections.singular}", :class => "button" %>
+                      <%= f.submit "Save #{Settings.collections.name}", :class => "button" %>
                   <% else %>
-                      <%= f.submit "Create #{Settings.collections.singular}", :class => "button" %>
+                      <%= f.submit "Create #{Settings.collections.name}", :class => "button" %>
                   <% end %>
                 </div>
             </div>

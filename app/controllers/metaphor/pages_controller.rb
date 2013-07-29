@@ -23,7 +23,7 @@ module Metaphor
       @page = Page.create(params[:page])
       @pages = Page.where(true)
       if @page.save
-        flash[:alert] = "#{Settings.pages.singular} successfully created"
+        flash[:alert] = "#{Settings.pages.name} successfully created"
         redirect_to edit_page_path(@page)
       else
         flash[:alert] = "All fields are required"
@@ -36,7 +36,7 @@ module Metaphor
       @page.update_attributes(params[:page])
       if @page.save
         @pages = Page.where(true)
-        flash[:alert] = "#{Settings.pages.singular} successfully updated"
+        flash[:alert] = "#{Settings.pages.name} successfully updated"
         redirect_to edit_page_path(@page)
       else
         flash[:alert] = "All fields are required"

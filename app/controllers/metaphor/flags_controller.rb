@@ -20,7 +20,7 @@ module Metaphor
       @flag = Flag.create(params[:flag])
       @flags = Flag.where(true)
       if @flag.save
-        flash[:alert] = "#{Settings.flags.singular} successfully created"
+        flash[:alert] = "#{Settings.flags.name} successfully created"
         redirect_to edit_flag_path(@flag)
       else
         flash[:alert] = "All fields are required"
@@ -33,7 +33,7 @@ module Metaphor
       @flag.update_attributes(params[:flag])
       if @flag.save
         @flags = Flag.where(true)
-        flash[:alert] = "#{Settings.flags.singular} successfully updated"
+        flash[:alert] = "#{Settings.flags.name} successfully updated"
         redirect_to edit_flag_path(@flag)
       else
         flash[:alert] = "All fields are required"

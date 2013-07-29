@@ -20,7 +20,7 @@ module Metaphor
       @category = Category.create(params[:category])
       @categories = Category.where(true)
       if @category.save
-        flash[:alert] = "#{Settings.categories.singular} successfully created"
+        flash[:alert] = "#{Settings.categories.name} successfully created"
         redirect_to edit_category_path(@category)
       else
         flash[:alert] = "All fields are required"
@@ -33,7 +33,7 @@ module Metaphor
       @category.update_attributes(params[:category])
       if @category.save
         @categories = Category.where(true)
-        flash[:alert] = "#{Settings.categories.singular} successfully updated"
+        flash[:alert] = "#{Settings.categories.name} successfully updated"
         redirect_to edit_category_path(@category)
       else
         flash[:alert] = "All fields are required"
