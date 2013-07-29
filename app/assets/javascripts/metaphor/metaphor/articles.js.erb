@@ -158,6 +158,9 @@ var articles = (function($) {
                             });
                         }
                     }
+                },
+                beforeTagAdded: function(event,ui){
+                    $(ui.tag).html(ui.tagLabel.toLowerCase());
                 }
             });
             

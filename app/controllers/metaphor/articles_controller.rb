@@ -134,6 +134,7 @@ module Metaphor
                    .where("name ilike ?","%#{params[:term]}%")
                    .order("name ilike '%#{params[:term]}%' DESC, LENGTH(name) ASC, name ASC")
                    .map(&:to_s)
+                   .map(&:downcase)
     end
     
     def related_entity_list
