@@ -1,0 +1,36 @@
+<%= form_for @page, :html => {:autocomplete=>"off"} do |f| %>
+    <div id="content">
+        <% if flash[:alert] %>
+            <div class="alert">
+                <%= flash[:alert] %>
+            </div>
+        <% end %>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                <%= Settings.pages.singular %>
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= f.text_field :name, :placeholder => "Name", :id => 'page-name', :autocomplete=>"off", :class => 'form-text-field' %>
+                </div>
+                <div class="form-line">
+                    <%= f.text_field :slug, :placeholder => "Slug", :id => 'page-slug', :autocomplete=>"off", :class => 'form-text-field' %>
+                </div>
+            </div>
+        </div>
+        
+        <%= f.text_area :content, :id => 'page-content', :autocomplete=>"off", :class => 'ckeditor' %>
+    
+        <div id="actions" class="form-section clearfix has-right-bar">
+            <% if action == 'create' %>
+                <%= f.submit "Create #{Settings.pages.singular}", :class => "button green" %>
+            <% elsif action == 'update'%>
+                <%= f.submit "Save #{Settings.pages.singular}", :class => "button green" %>
+            <% end %>
+        </div>
+        
+    </div>
+    
+    
+    
+<% end %>
