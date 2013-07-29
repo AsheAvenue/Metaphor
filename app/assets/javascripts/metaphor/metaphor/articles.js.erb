@@ -173,6 +173,7 @@ var articles = (function($) {
                 var <%= key %>_itemId;
                 var returned_<%= key %> = []
                 $('.<%= key %>-list').tagit({
+                    allowSpaces: true,
                     autocomplete: {
                         delay: 0,
                         minLength: 2,
