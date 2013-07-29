@@ -160,7 +160,8 @@ var articles = (function($) {
                     }
                 },
                 beforeTagAdded: function(event,ui){
-                    $(ui.tag).html(ui.tagLabel.toLowerCase());
+                    console.log(ui.tag);
+                    $(ui.tag).children(":first").html(ui.tagLabel.toLowerCase());
                 }
             });
             
