@@ -28,6 +28,7 @@ Metaphor::Engine.routes.draw do
   match 'articles/:id/editor/select_sound' => 'article_editor#select_sound', :as => 'article_editor_select_sound'
   match 'articles/:id/editor/update_body' => 'article_editor#update_body', :as => 'article_editor_update_body'
   match 'articles/taglist/:term' => 'articles#taglist', :as => 'article_tag_list'
+  match 'articles/related_entity_list/:related_entity/:term' => 'articles#related_entity_list', :as => 'related_entity_list'
   match 'galleries/:id/editor' => 'gallery_editor#index', :as => 'gallery_editor'
   match 'galleries/:id/sort' => 'gallery_editor#sort', :as => 'gallery_sort'
   match 'galleries/add_image' => 'gallery_editor#add_image', :as => 'gallery_editor_add_image'

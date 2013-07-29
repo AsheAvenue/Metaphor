@@ -15,7 +15,10 @@ class Article < ActiveRecord::Base
     :default_image_original_filename,
     :author_other_name, 
     :template,
-    :tag_list
+    :tag_list,
+    :artists_list,
+    :producers_list,
+    :directors_list
     
   # attributes used but not saved to the db
   attr_accessor :default_image_selected, :default_image_original_filename
@@ -66,6 +69,18 @@ class Article < ActiveRecord::Base
                   :skip => [:last_published_revision_index, :next_published_revision_index, :publish_next_revision_at]
   
   acts_as_ordered_taggable
+  
+  def artists_list
+    self.artists.collect{|a| a.name}.join(',')
+  end
+  
+  def producers_list
+    self.producers.collect{|a| a.name}.join(',')
+  end
+  
+  def directors_list
+    self.directors.collect{|a| a.name}.join(',')
+  end
                    
   # convenience methods
   def author

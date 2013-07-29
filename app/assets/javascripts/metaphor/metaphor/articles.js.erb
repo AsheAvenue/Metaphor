@@ -161,6 +161,29 @@ var articles = (function($) {
                 }
             });
             
+            //article related entities
+            $('.artists-list').tagit({
+                autocomplete: {
+                    delay: 0,
+                    minLength: 2,
+                    messages: {
+                        noResults: '',
+                        results: function(){}
+                    },
+                    source: function(request,showChoices){
+                        if(request.term.length>1){
+                            $.ajax({
+                                url:"/admin/articles/related_entity_list/Artist/"+request.term,
+                                dataType:"json",
+                                success:function(data){
+                                    showChoices(data);
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+            
             $('.datepicker').pickadate({
                 min: true
             });

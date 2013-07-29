@@ -189,6 +189,20 @@
                 </div>
             </div>
         </div>
+        
+        <% Settings.entities.types.each do |key,value| %>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                <%= value %>
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <% s = "#{key}_list".parameterize.underscore.to_sym%>
+                    <%= f.text_field s, :class => "#{key}-list" %>
+                </div>
+            </div>
+        </div>
+        <% end %>
 
     <% end %>
     
