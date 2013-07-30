@@ -56,6 +56,7 @@ class Article < ActiveRecord::Base
       :styles => {
         :large => '640x360>',
         :medium => '320x180>',
+        :homepage_list => '457x310>',
         :thumb => '100x100#'
       },
       :convert_options => {
