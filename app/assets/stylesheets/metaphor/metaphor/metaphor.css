@@ -436,13 +436,10 @@ header .navigation li a {
     color: white;
 }
 
-#left-bar .new a {
-    color: #fff;   
-}
-
 #left-bar .item,
 #left-bar .new {
     border-bottom: 1px solid #fff;
+    height: 44px;
 }
 #left-bar .item a,
 #left-bar .new a {
@@ -451,7 +448,7 @@ header .navigation li a {
     font-size: 18px;
     line-height: 1;
     display: block;
-    line-height: 40px;
+    line-height: 44px;
     padding: 0 30px;
     font-weight: 100;
     text-decoration: none;
@@ -467,6 +464,7 @@ header .navigation li a {
 #left-bar .new a {
     color: #fff;
     background: #16a085;
+    font-size: 24px;
 }
 #left-bar .new a:hover {
     background: #1abc9c;

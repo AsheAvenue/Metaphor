@@ -58,7 +58,7 @@ class Article < ActiveRecord::Base
         :large => '640x360>',
         :medium => '320x180>',
         :homepage_list => '457x310>',
-        :thumb => '100x100#'
+        :thumb => '160x90#'
       },
       :convert_options => {
         :thumb => "-quality 75 -strip" 
