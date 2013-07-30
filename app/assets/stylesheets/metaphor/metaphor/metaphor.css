@@ -105,6 +105,7 @@ header .top {
     line-height: 1;
     position: fixed;
     width: 100%;
+    z-index: 10;
 }
 
 header .site-name {
