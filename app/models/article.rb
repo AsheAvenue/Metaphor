@@ -18,7 +18,7 @@ class Article < ActiveRecord::Base
     :tag_list
     
   # attributes used but not saved to the db
-  attr_accessor :default_image_selected, :default_image_original_filename, :artist_ids, :producer_ids, :director_ids
+  attr_accessor :default_image_selected, :default_image_original_filename
     
   has_many :article_categories, :dependent => :destroy
   has_many :categories, :through => :article_categories
@@ -44,6 +44,7 @@ class Article < ActiveRecord::Base
   validates_uniqueness_of :slug
   
   scope :newest, order("articles.created_at desc")
+  scope :recently_edited, order("articles.updated_at desc")
   
   has_attached_file :default_image,
       :storage => :s3,
