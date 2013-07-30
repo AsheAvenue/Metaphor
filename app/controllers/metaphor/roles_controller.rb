@@ -1,6 +1,8 @@
 module Metaphor
   class RolesController < ApplicationController
 
+    layout 'metaphor/metaphor'
+    
     def index
       @roles = Role.where(true)
       @roles = @roles.alphabetical

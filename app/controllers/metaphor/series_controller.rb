@@ -1,6 +1,8 @@
 module Metaphor
   class SeriesController < ApplicationController
 
+    layout 'metaphor/metaphor'
+    
     def index
       @serieses = Series.all
       @series = Series.new

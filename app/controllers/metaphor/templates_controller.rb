@@ -1,6 +1,8 @@
 module Metaphor
   class TemplatesController < ApplicationController
- 
+  
+    layout 'metaphor/metaphor'
+    
     def index
       @templates = Template.all
       @template = Template.new

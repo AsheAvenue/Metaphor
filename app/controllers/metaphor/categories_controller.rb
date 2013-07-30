@@ -1,6 +1,8 @@
 module Metaphor
   class CategoriesController < ApplicationController
   
+    layout 'metaphor/metaphor'
+    
     def index
       @categories = Category.all
       @category = Category.new

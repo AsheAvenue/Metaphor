@@ -1,6 +1,8 @@
 module Metaphor
   class ComponentsController < ApplicationController
 
+    layout 'metaphor/metaphor'
+    
     def index
       @components = Component.all
       @component = Component.new

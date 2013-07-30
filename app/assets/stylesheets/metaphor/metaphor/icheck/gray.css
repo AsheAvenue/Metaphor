@@ -2,11 +2,9 @@
 ----------------------------------- */
 .icheckbox_line-gray,
 .iradio_line-gray {
-    float: left;
     display: block;
     margin-right: 5px;
     margin-bottom: 5px;
-    width: 174px;
     padding: 3px 3px 3px 38px;
     font-size: 18px;
     font-weight: 100;
