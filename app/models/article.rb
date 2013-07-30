@@ -44,7 +44,7 @@ class Article < ActiveRecord::Base
   validates_uniqueness_of :slug
   
   scope :newest, order("articles.created_at desc")
-  scope :recently_edited, order("articles.updated_at desc")
+  scope :recently_updated, order("articles.updated_at desc")
   
   has_attached_file :default_image,
       :storage => :s3,

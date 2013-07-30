@@ -14,7 +14,7 @@ module Metaphor
     end
   
     def edit
-      @articles = Article.where(true).newest
+      @articles = Article.where(true).recently_updated
       @article = Article.includes(:categories, :series).find(params[:id])
       
       #set up the templates
