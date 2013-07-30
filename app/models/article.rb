@@ -81,6 +81,10 @@ class Article < ActiveRecord::Base
     end
   end
   
+  def category_names
+    self.categories.collect{|c| c.name}.join(', ')
+  end
+  
   # TODO: move the following three methods to a helper at some point
   def status 
     if last_published_revision_index
