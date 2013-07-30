@@ -1,13 +1,16 @@
 <div id="left-bar">
-    <div class="header">
-      <%= Settings.series.name.pluralize %>
-    </div>
 
     <div class="new">
         <%= link_to "New #{Settings.series.name} »", new_series_path %>
     </div>
     
-    <% @serieses.each do |series| %>
-        <div class="item"><%= link_to series.name, edit_series_path(series) %></div>
+    <% if @serieses.count > 0 %>
+        <div class="header">
+          Recent <%= Settings.series.name.pluralize %>:
+        </div>
+    
+        <% @serieses.each do |series| %>
+            <div class="item"><%= link_to series.name, edit_series_path(series) %></div>
+        <% end %>
     <% end %>
 </div>

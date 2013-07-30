@@ -1,13 +1,15 @@
 <div id="left-bar">
-    <div class="header">
-      <%= Settings.users.name.pluralize %>
-    </div>
-
     <div class="new">
         <%= link_to "New #{Settings.users.name} »", new_user_path %>
     </div>
     
-    <% @users.each do |user| %>
-        <div class="item"><%= link_to (user.display_name || user.email), edit_user_path(user) %></div>
+    <% if @users.count > 0 %>
+        <div class="header">
+            Recent <%= Settings.users.name.pluralize %>:
+        </div>
+
+        <% @users.each do |user| %>
+            <div class="item"><%= link_to (user.display_name || user.email), edit_user_path(user) %></div>
+        <% end %>
     <% end %>
 </div>

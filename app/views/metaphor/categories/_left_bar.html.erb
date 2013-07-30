@@ -1,13 +1,16 @@
 <div id="left-bar">
-    <div class="header">
-        <%= Settings.categories.name.pluralize %>
-    </div>
 
     <div class="new">
         <%= link_to "New #{Settings.categories.name} »", new_category_path %>
     </div>
     
-    <% @categories.each do |category| %>
-        <div class="item"><%= link_to category.name, edit_category_path(category) %></div>
+    <% if @categories.count > 0 %>
+        <div class="header">
+            Recent <%= Settings.categories.name.pluralize %> :
+        </div>
+
+        <% @categories.each do |category| %>
+            <div class="item"><%= link_to category.name, edit_category_path(category) %></div>
+        <% end %>
     <% end %>
 </div>

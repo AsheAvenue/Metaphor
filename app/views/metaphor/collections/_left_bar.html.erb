@@ -1,13 +1,17 @@
 <div id="left-bar">
-    <div class="header">
-        <%= Settings.collections.name.pluralize %>
-    </div>
 
     <div class="new">
         <%= link_to "New #{Settings.collections.name} »", new_collection_path %>
     </div>
     
-    <% @collections.each do |collection| %>
-        <div class="item"><%= link_to collection.name, edit_collection_path(collection) %></div>
+    <% if @collections.count > 0 %>
+        <div class="header">
+            Recent <%= Settings.collections.name.pluralize %>:
+        </div>
+
+        <% @collections.each do |collection| %>
+            <div class="item"><%= link_to collection.name, edit_collection_path(collection) %></div>
+        <% end %>
     <% end %>
+    
 </div>

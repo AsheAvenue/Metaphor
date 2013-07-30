@@ -1,13 +1,15 @@
 <div id="left-bar">
-    <div class="header">
-        Roles
-    </div>
-
     <div class="new">
         <%= link_to "New Role »", new_role_path %>
     </div>
     
-    <% @roles.each do |role| %>
-        <div class="item"><%= link_to role.name, edit_role_path(role) %></div>
+    <% if @roles.count > 0 %>
+        <div class="header">
+            Recent Roles:
+        </div>
+
+        <% @roles.each do |role| %>
+            <div class="item"><%= link_to role.name, edit_role_path(role) %></div>
+        <% end %>
     <% end %>
 </div>
