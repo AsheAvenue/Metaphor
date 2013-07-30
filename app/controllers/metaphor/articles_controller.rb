@@ -1,5 +1,3 @@
-require_dependency "metaphor/application_controller"
-
 require "open-uri"
 
 module Metaphor
