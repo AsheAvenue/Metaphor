@@ -132,12 +132,10 @@
             </div>
             <div class="form-section-right">
                 <div class="form-line">
-                    <%= hidden_field_tag "article[category_ids][]", nil %>
-                    <% Category.all.each do |category| %>
-                        <label class="checkbox">
-                            <%= check_box_tag "article[category_ids][]", category.id, @article.category_ids.include?(category.id) %>
-                            <%= category.name %>
-                        </label>
+                    <% if Settings.categories.mode === 'multiple' %>
+                        <%= collection_select(:article,:category_ids,Category.all,:id,:name,{:selected=>@article.category_ids},{:multiple=>true}) %>
+                    <% else %>
+                        <%= collection_select(:article,:category_ids,Category.all,:id,:name,{:selected=>@article.category_ids}) %>
                     <% end %>
                 </div>
             </div>
