@@ -101,13 +101,19 @@ header .top {
     color: #16a085;
     font-size: 24px;
     font-weight: 100;
-    height: 50px;
+    height: 87px;
     line-height: 1;
     position: fixed;
     width: 100%;
 }
+
+header .site-name {
+    position: absolute;
+    font-size: 60px;
+}
+
 header .navigation-wrapper {
-    padding: 10px 30px;
+    padding: 10px 25px;
 }
 
 header .navigation {
@@ -239,7 +245,7 @@ header .navigation li a {
 /* ------ LIST ------- */
 
 #list {
-    padding: 70px 30px 20px;
+    padding: 107px 30px 20px;
 }
 #list .header,
 #list .small-header {
@@ -413,7 +419,7 @@ header .navigation li a {
     width: 250px;
     border-right: 1px solid #fff;
     height: 100%;
-    top: 50px;
+    top: 87px;
     left:0;
     z-index: 29;
     -webkit-transition: left .5s ease-in-out,background .4s ease-in-out;
@@ -466,7 +472,7 @@ header .navigation li a {
 #content {
     height: 100%;
     margin-left: 251px;
-    padding: 60px 30px 70px;
+    padding: 97px 30px 70px;
 }
 #content.has-right-bar {
     margin-right: 350px;
@@ -485,7 +491,7 @@ header .navigation li a {
     width: 350px;
     border-left: 1px solid #fff;
     height: 100%;
-    top: 50px;
+    top: 87px;
     right:0;
     z-index: 29;
     -webkit-transition: left .5s ease-in-out,background .4s ease-in-out;
