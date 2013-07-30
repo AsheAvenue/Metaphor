@@ -3,11 +3,13 @@
         <%= link_to "New #{Settings.pages.name} »", new_page_path %>
     </div>
     
-    <div class="header">
-        Recent <%= Settings.pages.name.pluralize %>:
-    </div>
+    <% if @pages.count > 0 %>
+        <div class="header">
+            Recent <%= Settings.pages.name.pluralize %>:
+        </div>
 
-    <% @pages.each do |page| %>
-        <div class="item"><%= link_to page.name, edit_page_path(page) %></div>
+        <% @pages.each do |page| %>
+            <div class="item"><%= link_to page.name, edit_page_path(page) %></div>
+        <% end %>
     <% end %>
 </div>

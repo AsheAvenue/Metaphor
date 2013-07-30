@@ -3,11 +3,13 @@
         <%= link_to "New #{Settings.articles.name} »", new_article_path %>
     </div>
     
-    <div class="header">
-        Recent <%= Settings.articles.name.pluralize %>:
-    </div>
+    <% if @articles.count > 0 %>
+        <div class="header">
+            Recent <%= Settings.articles.name.pluralize %>:
+        </div>
 
-    <% @articles.each do |article| %>
-        <div class="item"><%= link_to article.title, edit_article_path(article) %></div>
+        <% @articles.each do |article| %>
+            <div class="item"><%= link_to article.title, edit_article_path(article) %></div>
+        <% end %>
     <% end %>
 </div>
