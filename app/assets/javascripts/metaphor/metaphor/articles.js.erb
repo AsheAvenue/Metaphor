@@ -138,19 +138,6 @@ var articles = (function($) {
                 $('#article-author-display, #article-author-reset').hide('fast');
             }
             
-            //categories, series, and flag styling
-            $('input').each(function(){
-                var self = $(this),
-                  label = self.next(),
-                  label_text = label.text();
-
-                label.remove();
-                self.iCheck({
-                  checkboxClass: 'icheckbox_line-green',
-                  insert: '<div class="icheck_line-icon"></div>' + label_text
-                });
-              });
-            
             //article tags
             $('.tag-list').tagit({
                 autocomplete: {
@@ -178,62 +165,77 @@ var articles = (function($) {
                 }
             });
             
+            //categories, series, and flag styling
+            $('input').each(function(){
+                var self = $(this),
+                  label = self.next(),
+                  label_text = label.text();
+
+                label.remove();
+                self.iCheck({
+                  checkboxClass: 'icheckbox_line-green',
+                  insert: '<div class="icheck_line-icon"></div>' + label_text
+                });
+              });
+            
             //related entities
             <% Settings.entities.types.each do |key, value| %>
                 var existing_<%= key %> = Array();
-                var <%= key %> = $('.<%= key %>_list input').data('<%= key %>-ids').split(',');
-                $(<%= key %>).each(function(index){
-                    var <%= key %>_item = <%= key %>[index].split(":");
-                    existing_<%= key %>[<%= key %>_item[0]] = <%= key %>_item[1];
-                });
+                if($('.<%= key %>_list input').length) {
+                    var <%= key %> = $('.<%= key %>_list input').data('<%= key %>-ids').split(',');
+                    $(<%= key %>).each(function(index){
+                        var <%= key %>_item = <%= key %>[index].split(":");
+                        existing_<%= key %>[<%= key %>_item[0]] = <%= key %>_item[1];
+                    });
             
-                var <%= key %>_itemId;
-                var returned_<%= key %> = []
-                $('.<%= key %>-list').tagit({
-                    allowSpaces: true,
-                    autocomplete: {
-                        delay: 0,
-                        minLength: 2,
-                        messages: {
-                            noResults: '',
-                            results: function(){}
-                        },
-                        source: function(request,showChoices){
-                            if(request.term.length>1){
-                                $.ajax({
-                                    url:"/admin/articles/related_entity_list/<%= value %>/" + request.term,
-                                    dataType:"json",
-                                    success:function(data){
-                                        returned_<%= key %> = data;
-                                        showChoices(data);
-                                    }
-                                });
+                    var <%= key %>_itemId;
+                    var returned_<%= key %> = []
+                    $('.<%= key %>-list').tagit({
+                        allowSpaces: true,
+                        autocomplete: {
+                            delay: 0,
+                            minLength: 2,
+                            messages: {
+                                noResults: '',
+                                results: function(){}
+                            },
+                            source: function(request,showChoices){
+                                if(request.term.length>1){
+                                    $.ajax({
+                                        url:"/admin/articles/related_entity_list/<%= value %>/" + request.term,
+                                        dataType:"json",
+                                        success:function(data){
+                                            returned_<%= key %> = data;
+                                            showChoices(data);
+                                        }
+                                    });
+                                }
+                            },
+                            select: function(event,ui) {
+                                <%= key %>_itemId = ui.item.id;
+                                $('.<%= key %>-list').tagit("createTag", ui.item.value);
+                                return false;
                             }
                         },
-                        select: function(event,ui) {
-                            <%= key %>_itemId = ui.item.id;
-                            $('.<%= key %>-list').tagit("createTag", ui.item.value);
-                            return false;
+                        beforeTagAdded: function(event, ui){
+                            if(!ui.duringInitialization){
+                                var ret = false;
+                                $.each(returned_<%= key %>,function(intVal,curElement){
+                                    if(ui.tagLabel == curElement.value) ret = true;
+                                });
+                                if(ret===false) return false;
+                            }
+                        },
+                        afterTagAdded: function(event, ui) {
+                            if (<%= key %>_itemId) {
+                                $(ui.tag).attr('data-id', <%= key %>_itemId); // store the id
+                                <%= key %>_itemId = null;
+                            } else {
+                                $(ui.tag).attr('data-id', existing_<%= key %>[ui.tagLabel]);
+                            }
                         }
-                    },
-                    beforeTagAdded: function(event, ui){
-                        if(!ui.duringInitialization){
-                            var ret = false;
-                            $.each(returned_<%= key %>,function(intVal,curElement){
-                                if(ui.tagLabel == curElement.value) ret = true;
-                            });
-                            if(ret===false) return false;
-                        }
-                    },
-                    afterTagAdded: function(event, ui) {
-                        if (<%= key %>_itemId) {
-                            $(ui.tag).attr('data-id', <%= key %>_itemId); // store the id
-                            <%= key %>_itemId = null;
-                        } else {
-                            $(ui.tag).attr('data-id', existing_<%= key %>[ui.tagLabel]);
-                        }
-                    }
-                });
+                    });
+                }
             <% end %> 
             
             $('.datepicker').pickadate({
