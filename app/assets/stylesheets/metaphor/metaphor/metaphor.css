@@ -88,6 +88,11 @@ html, body {
     background: #16a085;
 }
 
+.checkbox {
+    padding-left: 5px;
+    padding-right: 5px;
+    min-height: 0px;
+}
 
 /* ------ HEADER ------ */
 

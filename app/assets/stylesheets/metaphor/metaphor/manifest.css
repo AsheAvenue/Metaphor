@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require_directory ./icheck
  *= require ./pickadate/default
  *= require ./pickadate/default.date
  *= require ./pickadate/default.time

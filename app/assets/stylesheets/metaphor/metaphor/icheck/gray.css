@@ -1,0 +1,79 @@
+/* iCheck plugin Line skin, gray
+----------------------------------- */
+.icheckbox_line-gray,
+.iradio_line-gray {
+    float: left;
+    display: block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    width: 174px;
+    padding: 3px 3px 3px 38px;
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 24px;
+    color: #fff;
+    background: #bdc3c7;
+    border: none;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    cursor: pointer;
+}
+    .icheckbox_line-gray .icheck_line-icon,
+    .iradio_line-gray .icheck_line-icon {
+        position: absolute;
+        top: 50%;
+        left: 13px;
+        width: 13px;
+        height: 11px;
+        margin: -5px 0 0 0;
+        padding: 0;
+        overflow: hidden;
+        background: url(line.png) no-repeat;
+        border: none;
+        display: none;
+    }
+    .icheckbox_line-gray.hover,
+    .icheckbox_line-gray.checked.hover,
+    .iradio_line-gray.hover {
+        background: #ccc;
+    }
+    .icheckbox_line-gray.checked,
+    .iradio_line-gray.checked {
+        background: #bdc3c7;
+    }
+        .icheckbox_line-gray.checked .icheck_line-icon,
+        .iradio_line-gray.checked .icheck_line-icon {
+            background-position: -15px 0;
+            display: inline;
+        }
+    .icheckbox_line-gray.disabled,
+    .iradio_line-gray.disabled {
+        background: #89E6C4;
+        cursor: default;
+    }
+        .icheckbox_line-gray.disabled .icheck_line-icon,
+        .iradio_line-gray.disabled .icheck_line-icon {
+            background-position: -30px 0;
+        }
+    .icheckbox_line-gray.checked.disabled,
+    .iradio_line-gray.checked.disabled {
+        background: #89E6C4;
+    }
+        .icheckbox_line-gray.checked.disabled .icheck_line-icon,
+        .iradio_line-gray.checked.disabled .icheck_line-icon {
+            background-position: -45px 0;
+        }
+
+/* Retina support */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (-moz-min-device-pixel-ratio: 1.5),
+       only screen and (-o-min-device-pixel-ratio: 3/2),
+       only screen and (min-device-pixel-ratio: 1.5) {
+    .icheckbox_line-gray .icheck_line-icon,
+    .iradio_line-gray .icheck_line-icon {
+        background-image: url(line@2x.png);
+        -webkit-background-size: 60px 13px;
+        background-size: 60px 13px;
+    }
+}

@@ -4,16 +4,15 @@
 .iradio_line {
     position: relative;
     display: block;
-    margin: 0;
     padding: 5px 15px 5px 38px;
     font-size: 13px;
     line-height: 17px;
     color: #fff;
     background: #000;
     border: none;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
     cursor: pointer;
 }
     .icheckbox_line .icheck_line-icon,
