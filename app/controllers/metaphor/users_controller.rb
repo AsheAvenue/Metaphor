@@ -1,6 +1,8 @@
 module Metaphor
   class UsersController < ApplicationController
   
+    layout 'metaphor/metaphor'
+    
     def index
       @users = User.where(true)
       @users = @users.alphabetical

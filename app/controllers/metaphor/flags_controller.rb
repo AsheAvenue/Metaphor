@@ -1,6 +1,8 @@
 module Metaphor
   class FlagsController < ApplicationController
   
+    layout 'metaphor/metaphor'
+    
     def index
       @flags = Flag.all
       @flag = Flag.new

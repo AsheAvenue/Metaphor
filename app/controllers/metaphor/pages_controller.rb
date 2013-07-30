@@ -2,7 +2,8 @@ module Metaphor
   class PagesController < ApplicationController
   
     skip_load_and_authorize_resource
-    # TODO: load_and_authorize_resource :pages, :find_by => :slug, :id_param => :slug
+    
+    layout 'metaphor/metaphor'
     
     def index
       @pages = Page.all

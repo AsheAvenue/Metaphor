@@ -3,6 +3,8 @@ module Metaphor
     skip_before_filter :require_login 
     skip_load_and_authorize_resource
 
+    layout 'metaphor/metaphor'
+    
     def tumblr
       #call out to tumblr through a tumblr gem and get the latest tumblrs
       #make sure to keep the tumblr login info in Settings.yml, which is 

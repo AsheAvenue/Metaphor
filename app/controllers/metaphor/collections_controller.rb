@@ -1,6 +1,8 @@
 module Metaphor
   class CollectionsController < ApplicationController
 
+    layout 'metaphor/metaphor'
+    
     def index
       @collections = Collection.all
       @collection = Collection.new
