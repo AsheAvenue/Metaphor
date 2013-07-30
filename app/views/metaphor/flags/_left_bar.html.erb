@@ -1,12 +1,12 @@
 <div id="left-bar">
-    <div class="header">
-        <%= Settings.flags.name.pluralize %>
-    </div>
-
     <div class="new">
         <%= link_to "New #{Settings.flags.name} »", new_flag_path %>
     </div>
     
+    <div class="header">
+        Recent <%= Settings.flags.name.pluralize %>:
+    </div>
+
     <% @flags.each do |flag| %>
         <div class="item"><%= link_to flag.name, edit_flag_path(flag) %></div>
     <% end %>

@@ -1,12 +1,13 @@
 <div id="left-bar">
-    <div class="header">
-        <%= Settings.templates.name.pluralize %>
-    </div>
 
     <div class="new">
         <%= link_to "New #{Settings.templates.name} »", new_template_path %>
     </div>
-    
+
+    <div class="header">
+        Recent <%= Settings.templates.name.pluralize %>:
+    </div>
+
     <% @templates.each do |template| %>
         <div class="item"><%= link_to template.name, edit_template_path(template) %></div>
     <% end %>

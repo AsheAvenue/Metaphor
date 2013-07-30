@@ -1,12 +1,12 @@
 <div id="left-bar">
-    <div class="header">
-        <%= Settings.pages.name.pluralize %>
-    </div>
-
     <div class="new">
         <%= link_to "New #{Settings.pages.name} »", new_page_path %>
     </div>
     
+    <div class="header">
+        Recent <%= Settings.pages.name.pluralize %>:
+    </div>
+
     <% @pages.each do |page| %>
         <div class="item"><%= link_to page.name, edit_page_path(page) %></div>
     <% end %>

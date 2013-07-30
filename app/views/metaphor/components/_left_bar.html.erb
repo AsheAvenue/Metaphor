@@ -1,12 +1,12 @@
 <div id="left-bar">
-    <div class="header">
-        <%= Settings.components.name.pluralize %>
-    </div>
-
     <div class="new">
         <%= link_to "New #{Settings.components.name} »", new_component_path %>
     </div>
     
+    <div class="header">
+        Recent <%= Settings.components.name.pluralize %>:
+    </div>
+
     <% @components.each do |component| %>
         <div class="item"><%= link_to component.name, edit_component_path(component) %></div>
     <% end %>
