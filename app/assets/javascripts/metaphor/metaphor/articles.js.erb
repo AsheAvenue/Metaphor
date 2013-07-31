@@ -22,14 +22,6 @@ var articles = (function($) {
                 width: 400
             });
 
-            //handle the remove image button
-            $('#article-default-image-view-remove-image').click(function(e){
-                e.preventDefault();
-                $('#article-default-image .display').hide('fast');
-                $('#article-default-image .upload').show('fast');
-                $("#article-default-image-remove-checkbox").prop('checked', true);
-            });
-            
             //set the template on load
             var template = $('#article-template').val();
             if(template != null) {

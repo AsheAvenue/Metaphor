@@ -39,7 +39,7 @@
                     <%= f.hidden_field :image, :id => "template-image-hidden-field" %>
                     <%= f.hidden_field :image_original_filename, :id => "template-image-original-filename-hidden-field" %>
                     
-                    <input  type="filepicker" 
+                    <input type="filepicker" 
                             name="temp_image" 
                             class="button" 
                             data-fp-apikey="<%= Settings.filepicker.api_key %>" 
@@ -65,7 +65,7 @@
                                 <%= render :partial => 'component', :locals => {:component => component} %>
                             <% end %>
                         </div>
-                        <a href="#" class="button" data-picker="component" data-picker-callback="templates#add_component">Add Component</a>
+                        <a href="#" class="button add-component" data-picker="component" data-picker-callback="templates#add_component">Add Component</a>
                     </div>
                 </div>
             </div>
