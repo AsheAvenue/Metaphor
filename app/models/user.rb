@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
     roles.first
   end
   
+  def display_name
+    display_name || ''
+  end
+  
 end
