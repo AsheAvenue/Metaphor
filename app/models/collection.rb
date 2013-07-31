@@ -3,19 +3,14 @@ class Collection < ActiveRecord::Base
   has_many :pinned_articles, :order => 'pinned_articles.order ASC'
   accepts_nested_attributes_for :pinned_articles
   
-  def get(slug)
-    collection = Collection.find_by_slug(slug)
+  def get_articles
+    articles = Article.send(self.order)
+    articles2 = []
+    self.pinned_articles.each do |pa|
+      articles2 << pa.article
+    end
     
-    # apply scope based on the article type
-    
-    # apply scope based on order
-    
-    # get the actual articles and put them into an array
-    
-    # get pinned articles and add them to the array
-    
-    #return the article array
-    
+    articles = articles2 + articles
   end 
   
 end

@@ -37,14 +37,17 @@ class Article < ActiveRecord::Base
   has_many :sounds, :through => :entity_contents, :source => :content, :source_type => "Sound"
   has_many :images, :through => :entity_contents, :source => :content, :source_type => "Image"
   has_many :galleries, :through => :entity_contents, :source => :content, :source_type => "Gallery"
+  belongs_to :current_version, :class_name => 'Version', :foreign_key => :last_published_revision_id
   
   has_many :related_entities, :as => :entity
   
   validates_presence_of :title, :slug
   validates_uniqueness_of :slug
   
-  scope :newest, order("articles.created_at desc")
+  scope :recent, order("articles.created_at desc")
   scope :recently_updated, order("articles.updated_at desc")
+  scope :newest, :joins => :current_version, :order => "versions.created_at DESC"
+  scope :oldest, :joins => :current_version, :order => "versions.created_at ASC"
   
   has_attached_file :default_image,
       :storage => :s3,
@@ -103,6 +106,10 @@ class Article < ActiveRecord::Base
       return true if f.slug == flag
     end
     return false
+  end
+  
+  def current
+    self.version_at(self.current_version.created_at)
   end
   
   # PUBLISHING

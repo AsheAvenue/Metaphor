@@ -6,7 +6,7 @@ module Metaphor
     layout 'metaphor/popup'
 
     def article
-      @articles = Article.where(true).newest
+      @articles = Article.where(true).recent
     end
 
     def component

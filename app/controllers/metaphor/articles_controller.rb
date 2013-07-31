@@ -6,7 +6,7 @@ module Metaphor
     layout 'metaphor/metaphor'
     
     def index
-      @articles = Article.where(true).newest
+      @articles = Article.where(true).recent
     end
     
     def show
@@ -30,7 +30,7 @@ module Metaphor
     end
     
     def revision
-      @articles = Article.where(true).newest
+      @articles = Article.where(true).recent
       @original_article = Article.includes(:categories, :series).find(params[:id])
       
       # get the indexes
@@ -93,7 +93,7 @@ module Metaphor
     end
 
     def new
-      @articles = Article.where(true).newest
+      @articles = Article.where(true).recent
       @article = Article.new
     
       #set up the templates
