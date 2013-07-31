@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   
   has_and_belongs_to_many :roles, :join_table => :users_roles
   
-  scope :alphabetical, order("users.display_name asc")
+  scope :alphabetical, order("users.first_name, users.last_name asc")
   
   def role
     roles.first
@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
   
   def display_name
-    !full_name.strip!.empty? ? full_name.strip! : username
+    full_name.strip != "" ? full_name : username 
   end
   
 end
