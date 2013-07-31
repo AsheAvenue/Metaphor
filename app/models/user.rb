@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   end
   
   def display_name
-    display_name || ''
+    :display_name || ''
   end
   
 end
