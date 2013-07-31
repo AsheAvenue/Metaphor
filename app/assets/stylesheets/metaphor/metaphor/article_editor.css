@@ -1,3 +1,20 @@
+.article-editor header .top {
+    background: #fff;
+    color: #16a085;
+    font-size: 24px;
+    font-weight: 100;
+    height: 50px;
+    line-height: 1;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 10;
+}
+
+.article-editor #picker {
+    top: 50px;
+}
+
 #article_editor {
     width: 700px;
     height: auto;
