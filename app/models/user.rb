@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   rolify
-  attr_accessible :username, :email, :password, :password_confirmation, :display_name, :role_ids
+  attr_accessible :username, :email, :password, :password_confirmation, :first_name, :last_name, :role_ids
   
   authenticates_with_sorcery!
   
@@ -18,8 +18,12 @@ class User < ActiveRecord::Base
     roles.first
   end
   
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+  
   def display_name
-    name || ''
+    !full_name.strip!.empty? ? full_name.strip! : username
   end
   
 end
