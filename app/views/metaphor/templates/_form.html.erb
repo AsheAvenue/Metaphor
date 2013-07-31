@@ -24,36 +24,37 @@
                 </div>
             </div>
         </div>
-        <div class="form-section clearfix">
-            <div class="form-section-left">
-                Thumbnail
-            </div>
-            <div class="form-section-right">
-                <div class="form-line">
-                    <div id="template-image-display">
-                        <% if !@template.image.blank? %>
-                            <%= image_tag @template.image.url(:large) %>
-                        <% end %>
-                    </div>
-                    
-                    <%= f.hidden_field :image, :id => "template-image-hidden-field" %>
-                    <%= f.hidden_field :image_original_filename, :id => "template-image-original-filename-hidden-field" %>
-                    
-                    <input type="filepicker" 
-                            name="temp_image" 
-                            class="button" 
-                            data-fp-apikey="<%= Settings.filepicker.api_key %>" 
-                            data-fp-button-text="Select image" 
-                            data-fp-extensions=".png,.jpg,.jpeg" 
-                            data-fp-multiple="false" 
-                            onchange="$('#template-image-hidden-field').val(event.fpfile.url); $('#template-image-original-filename-hidden-field').val(event.fpfile.filename); $('#template-image-display').html('<img src=\'' + event.fpfile.url + '/convert?w=180&h=250&fit=crop\' />');" 
-                    />
-                    
-                </div>
-            </div>
-        </div>
         
         <% if @template.id != nil %>
+            <div class="form-section clearfix">
+                <div class="form-section-left">
+                    Thumbnail
+                </div>
+                <div class="form-section-right">
+                    <div class="form-line">
+                        <div id="template-image-display">
+                            <% if !@template.image.blank? %>
+                                <%= image_tag @template.image.url(:large) %>
+                            <% end %>
+                        </div>
+                    
+                        <%= f.hidden_field :image, :id => "template-image-hidden-field" %>
+                        <%= f.hidden_field :image_original_filename, :id => "template-image-original-filename-hidden-field" %>
+                    
+                        <input type="filepicker" 
+                                name="temp_image" 
+                                class="button" 
+                                data-fp-apikey="<%= Settings.filepicker.api_key %>" 
+                                data-fp-button-text="Select image" 
+                                data-fp-extensions=".png,.jpg,.jpeg" 
+                                data-fp-multiple="false" 
+                                onchange="$('#template-image-hidden-field').val(event.fpfile.url); $('#template-image-original-filename-hidden-field').val(event.fpfile.filename); $('#template-image-display').html('<img src=\'' + event.fpfile.url + '/convert?w=180&h=250&fit=crop\' />');" 
+                        />
+                    
+                    </div>
+                </div>
+            </div>
+        
             <div class="form-section clearfix">
                 <div class="form-section-left">
                     <%= Settings.components.name.pluralize %>
