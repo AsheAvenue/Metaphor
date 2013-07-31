@@ -5,11 +5,11 @@ class Template < ActiveRecord::Base
   
   has_attached_file :image,
       :storage => :s3,
-      :bucket => 'metaphor-images',
-      :path => "template/:id/:style.:extension",
+      :bucket => Settings.filepicker.s3.bucket,
+      :path => Settings.filepicker.s3.path,
       :s3_credentials => {
-        :access_key_id => 'AKIAJU2Z5ERW6USCRFNQ',
-        :secret_access_key => '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'
+        :access_key_id => Settings.filepicker.s3.access_key_id,
+        :secret_access_key => Settings.filepicker.s3.secret_access_key
       },
       :styles => {
         :large => '180x250#',
