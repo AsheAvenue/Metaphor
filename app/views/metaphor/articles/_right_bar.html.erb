@@ -1,16 +1,16 @@
 <% if @article.id != nil %>
     <div id="right-bar">
 
-        <% if @article.last_published_revision_index %>
+        <% if @article.last_published_revision_id %>
             <div id="status" class="published">
                 <% 
-                    if @article.last_published_revision_index == 0
+                    if @article.last_published_revision_id == 0
                         text = "Original"
                     else
-                        text = "Revision #{@article.last_published_revision_index}"
+                        text = "Revision #{@article.last_published_revision_id}"
                     end
                 %>
-                Currently Published: <%= link_to text, article_revision_path(@article, @article.last_published_revision_index) %>
+                Currently Published: <%= link_to text, article_revision_path(@article, @article.last_published_revision_id) %>
             </div>
         <% else %>
             <div id="status" class="unpublished">
@@ -18,16 +18,16 @@
             </div>
         <% end %>
         
-        <% if @article.next_published_revision_index %>
+        <% if @article.next_published_revision_id %>
             <div id="status" class="scheduled">
                 <% 
-                    if @article.next_published_revision_index == 0
+                    if @article.next_published_revision_id == 0
                         text = "Original"
                     else
-                        text = "Revision #{@article.next_published_revision_index}"
+                        text = "Revision #{@article.next_published_revision_id}"
                     end
                 %>
-                Scheduled: <%= link_to text, article_revision_path(@article, @article.next_published_revision_index) %>
+                Scheduled: <%= link_to text, article_revision_path(@article, @article.next_published_revision_id) %>
                 <br />
                 <%= distance_of_time_in_words_to_now @article.publish_next_revision_at %> 
                 <% if @article.publish_next_revision_at > DateTime.now %>
@@ -68,9 +68,9 @@
                             Revision <%= version.index %>
                         <% end %>
                         
-                        <% if version.index == @article.last_published_revision_index %>
+                        <% if version.index == @article.last_published_revision_id %>
                             <span class="published">(Published)</span>
-                        <% elsif version.index == @article.next_published_revision_index %>
+                        <% elsif version.index == @article.next_published_revision_id %>
                             <span class="scheduled">(Scheduled)</span>
                         <% end %>
                     </div>
@@ -88,19 +88,19 @@
                         <% if !current_revision %>
                             <a href="<%= article_revision_path(@article, version.index) %>" class="right-bar-link">View <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> &nbsp;&nbsp;
                         <% end %>
-                        <% if version.index != @article.last_published_revision_index and version.index != @article.next_published_revision_index %>
+                        <% if version.index != @article.last_published_revision_id and version.index != @article.next_published_revision_id %>
                             <a href="#" class="right-bar-link show-publish">Publish <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> 
                         <% end %>
-                        <% if version.index == @article.last_published_revision_index %>
+                        <% if version.index == @article.last_published_revision_id %>
                             <a href="#" class="right-bar-link unpublish">Unpublish <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> 
                         <% end %>
-                        <% if version.index == @article.next_published_revision_index %>
+                        <% if version.index == @article.next_published_revision_id %>
                             <a href="#" class="right-bar-link unschedule">Unschedule <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> 
                         <% end %>
                     </div>
                 </div>
                 
-                <% if version.index != @article.last_published_revision_index and version.index != @article.next_published_revision_index %>
+                <% if version.index != @article.last_published_revision_id and version.index != @article.next_published_revision_id %>
                     <div class="publish">
                         <div class="item-title">
                             Publish 

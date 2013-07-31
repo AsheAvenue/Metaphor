@@ -7,8 +7,8 @@ class Article < ActiveRecord::Base
     :series_ids, 
     :flag_ids, 
     :user_ids, 
-    :last_published_revision_index,
-    :next_published_revision_index, 
+    :last_published_revision_id,
+    :next_published_revision_id, 
     :publish_next_revision_at, 
     :default_image,
     :default_image_selected,
@@ -65,7 +65,7 @@ class Article < ActiveRecord::Base
       }
        
   has_paper_trail :only => [:title, :body, :summary, :slug],
-                  :skip => [:last_published_revision_index, :next_published_revision_index, :publish_next_revision_at]
+                  :skip => [:last_published_revision_id, :next_published_revision_id, :publish_next_revision_at]
   
   acts_as_ordered_taggable
   
@@ -88,9 +88,9 @@ class Article < ActiveRecord::Base
   
   # TODO: move the following three methods to a helper at some point
   def status 
-    if last_published_revision_index
+    if last_published_revision_id
       "published"
-    elsif next_published_revision_index
+    elsif next_published_revision_id
       "scheduled"
     else
       "unscheduled"
@@ -109,11 +109,11 @@ class Article < ActiveRecord::Base
   #
   # This is called by the cron job managed by the Whenever gem
   def self.publish_scheduled_articles
-    articles = Article.where('next_published_revision_index IS NOT ? and publish_next_revision_at < ?', nil, DateTime.now)
+    articles = Article.where('next_published_revision_id IS NOT ? and publish_next_revision_at < ?', nil, DateTime.now)
     articles.each do |article|
-      index_to_publish = article.next_published_revision_index
-      article.last_published_revision_index = index_to_publish
-      article.next_published_revision_index = nil
+      index_to_publish = article.next_published_revision_id
+      article.last_published_revision_id = index_to_publish
+      article.next_published_revision_id = nil
       article.publish_next_revision_at = nil
       article.save!
     end

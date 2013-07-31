@@ -30,8 +30,8 @@ module Metaphor
       @original_article.versions.each do |version|
         if version.index == @version_index
           @article = @original_article.version_at(version.created_at)
-          @article.last_published_revision_index = @original_article.last_published_revision_index
-          @article.next_published_revision_index = @original_article.next_published_revision_index
+          @article.last_published_revision_id = @original_article.last_published_revision_id
+          @article.next_published_revision_id = @original_article.next_published_revision_id
           @article.publish_next_revision_at = @original_article.publish_next_revision_at
           break
         end
@@ -47,8 +47,8 @@ module Metaphor
     def publish
       article = Article.find(params[:id])
       version_index = params[:version_index].to_i
-      article.last_published_revision_index = version_index
-      article.next_published_revision_index = nil 
+      article.last_published_revision_id = version_index
+      article.next_published_revision_id = nil 
       article.publish_next_revision_at = nil 
       article.save!
       render :nothing => true
@@ -56,8 +56,8 @@ module Metaphor
 
     def unpublish
       article = Article.find(params[:id])
-      article.last_published_revision_index = nil
-      article.next_published_revision_index = nil 
+      article.last_published_revision_id = nil
+      article.next_published_revision_id = nil 
       article.publish_next_revision_at = nil 
       article.save!
       render :nothing => true
@@ -66,7 +66,7 @@ module Metaphor
     def schedule
       article = Article.find(params[:id])
       version_index = params[:version_index].to_i
-      article.next_published_revision_index = version_index 
+      article.next_published_revision_id = version_index 
       article.publish_next_revision_at = DateTime.parse("#{params[:date]} #{params[:time]}") 
       article.save!
       render :nothing => true
@@ -74,7 +74,7 @@ module Metaphor
 
     def unschedule
       article = Article.find(params[:id])
-      article.next_published_revision_index = nil 
+      article.next_published_revision_id = nil 
       article.publish_next_revision_at = nil
       article.save!
       render :nothing => true
