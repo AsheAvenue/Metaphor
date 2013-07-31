@@ -87,7 +87,7 @@
                                 data-fp-button-text="Select <% if !@article.default_image.blank? %>a different <% end %>image" 
                                 data-fp-extensions=".png,.jpg,.jpeg,.gif" 
                                 data-fp-multiple="false" 
-                                onchange="$('#article-default-image-hidden-field').val(event.fpfile.url); $('#article-default-image-selected-field').val('true'); $('#article-default-image-original-filename-hidden-field').val(event.fpfile.filename); $('#article-default-image .display').html('<img src=\'' + event.fpfile.url + '/convert?w=320&h=180&fit=crop\' />');" 
+                                onchange="$('#article-default-image-hidden-field').val(event.fpfile.url); $('#article-default-image-selected-field').val('true'); $('#article-default-image-original-filename-hidden-field').val(event.fpfile.filename); $('#article-default-image .display').html('<img src=\'' + event.fpfile.url + '/convert?w=320&h=180\' />');" 
                         />
                         
                         <% if !@article.default_image.blank? %>
