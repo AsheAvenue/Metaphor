@@ -46,8 +46,17 @@ class Article < ActiveRecord::Base
   
   scope :recent, order("articles.created_at desc")
   scope :recently_updated, order("articles.updated_at desc")
-  scope :newest, :joins => :current_version, :order => "versions.created_at DESC"
-  scope :oldest, :joins => :current_version, :order => "versions.created_at ASC"
+  scope :published, where('articles.last_published_revision_id IS NOT NULL')
+  scope :article_type, lambda { |template|
+    where(:template => template) if template != "all_types"
+  }
+  scope :sort, lambda { |order|
+    if order == "newest"
+      joins(:current_version).order("versions.created_at DESC")
+    elsif order == "oldest"
+      joins(:current_version).order("versions.created_at ASC")
+    end
+  }
   
   has_attached_file :default_image,
       :storage => :s3,
