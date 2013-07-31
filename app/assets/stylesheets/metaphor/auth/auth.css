@@ -21,17 +21,17 @@ time, mark, audio, video, input, textarea {
 }
 
 body {
-    background: #e74c3c;
+    background: #ecf0f1;
     color: #ecf0f1;
     font-size: 30px;
     line-height: 30px;
     font-weight: 100;
-    font-style: italic;
 }
 
 .header {
     font-size: 48px;
     line-height: 48px;
+    color: #16a085;
 }
 
 .content {
@@ -41,7 +41,7 @@ body {
 
 .form {
     margin-top: 10px;
-    padding: 10px;
+    padding: 10px 10px 15px 10px;
     background-color: #95a5a6;
     border:0;
     -webkit-border-radius: 5px;
@@ -56,25 +56,43 @@ body {
     font-size: 18px;
     padding: 7px;
     margin-top: 5px;
+    margin-bottom: 5px;
     border:0;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     font-weight: 100;
-    font-style: italic;
 }
 
-.form input[type='submit'] {
-    width: 280px;
-    font-size: 18px;
-    padding: 7px;
+.button,
+.button:hover {
+  padding: 5px 15px !important;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 100;
+  font-style: normal;
+  color: white;
+  vertical-align: middle;
+  background-color: #bdc3c7;
+  text-decoration: none !important;
+  border: none;
+  clear: both;
+  webkit-font-smoothing: antialiased;
+  -webkit-transition: background-color 0.15s ease-in-out;
+  -moz-transition: background-color 0.15s ease-in-out;
+  -o-transition: background-color 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.button.green {
+    background: #16a085;
+}
+.button.green:hover {
+    background: #1abc9c;
+}
+
+.actions {
     margin-top: 5px;
-    border:0;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    font-weight: 100;
-    font-style: italic;
 }
 
 .alert {
