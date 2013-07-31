@@ -54,14 +54,18 @@ body {
 .form input[type='password'] {
     width: 266px;
     font-size: 18px;
+    font-weight: 100;
     padding: 7px;
     margin-top: 5px;
     margin-bottom: 5px;
-    border:0;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    font-weight: 100;
+    border-bottom: 1px solid white !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-border-radius:5 !important;
+    -moz-border-radius:5 !important;
+    border-radius:5 !important;
+    outline: none !important;
 }
 
 .button,
@@ -99,4 +103,5 @@ body {
     border-bottom: 1px solid white;
     padding-bottom: 10px;
     margin-bottom: 5px;
+    color: #e74c3c;
 }
