@@ -306,7 +306,7 @@ var articles = (function($) {
             $('#right-bar .publish .button.now').click(function(e){
                 e.preventDefault();
                 $.post(
-                    '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/publish/revision/' + $(this).data('revision-id'),
+                    '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/publish/version/' + $(this).data('revision-id'),
                     {}, 
                     function() {
                         window.location.href = '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/edit';
@@ -338,7 +338,7 @@ var articles = (function($) {
                 e.preventDefault();
                 if($(this).parent().parent().find('.datepicker').val() != '' && $(this).parent().parent().find('.timepicker').val() != '') {
                     $.post(
-                        '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/schedule/revision/' + $(this).data('revision-id'),
+                        '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/schedule/version/' + $(this).data('revision-id'),
                         {
                             date: $(this).parent().parent().find('.datepicker').val(),
                             time: $(this).parent().parent().find('.timepicker').val()

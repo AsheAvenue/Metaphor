@@ -7,7 +7,7 @@
                     if @article.last_published_revision_id == 0
                         text = "Original"
                     else
-                        text = "Revision #{@article.last_published_revision_id}"
+                        text = "Revision #{@last_published_revision_index}"
                     end
                 %>
                 Currently Published: <%= link_to text, article_revision_path(@article, @article.last_published_revision_id) %>
@@ -24,7 +24,7 @@
                     if @article.next_published_revision_id == 0
                         text = "Original"
                     else
-                        text = "Revision #{@article.next_published_revision_id}"
+                        text = "Revision #{@next_published_revision_index}"
                     end
                 %>
                 Scheduled: <%= link_to text, article_revision_path(@article, @article.next_published_revision_id) %>
@@ -46,7 +46,7 @@
             <% @article.versions.reverse.each do |version| %>
         
                 <% 
-                if version.index == @version_index || (@version_index == nil && version.index == @article.versions.count - 1) 
+                if version.id == @version_id || (@version_id == nil && version.index == @article.versions.count - 1) 
                     current_revision = true
                 else
                     current_revision = false
@@ -68,9 +68,9 @@
                             Revision <%= version.index %>
                         <% end %>
                         
-                        <% if version.index == @article.last_published_revision_id %>
+                        <% if version.id == @article.last_published_revision_id %>
                             <span class="published">(Published)</span>
-                        <% elsif version.index == @article.next_published_revision_id %>
+                        <% elsif version.id == @article.next_published_revision_id %>
                             <span class="scheduled">(Scheduled)</span>
                         <% end %>
                     </div>
@@ -86,15 +86,15 @@
                     </div>
                     <div>
                         <% if !current_revision %>
-                            <a href="<%= article_revision_path(@article, version.index) %>" class="right-bar-link">View <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> &nbsp;&nbsp;
+                            <a href="<%= article_revision_path(@article, version.id) %>" class="right-bar-link">View <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> &nbsp;&nbsp;
                         <% end %>
-                        <% if version.index != @article.last_published_revision_id and version.index != @article.next_published_revision_id %>
+                        <% if version.id != @article.last_published_revision_id and version.id != @article.next_published_revision_id %>
                             <a href="#" class="right-bar-link show-publish">Publish <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> 
                         <% end %>
-                        <% if version.index == @article.last_published_revision_id %>
+                        <% if version.id == @article.last_published_revision_id %>
                             <a href="#" class="right-bar-link unpublish">Unpublish <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> 
                         <% end %>
-                        <% if version.index == @article.next_published_revision_id %>
+                        <% if version.id == @article.next_published_revision_id %>
                             <a href="#" class="right-bar-link unschedule">Unschedule <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> 
                         <% end %>
                     </div>
@@ -111,7 +111,7 @@
                             <% end %>
                         </div>
                         <div class="buttons options">
-                            <a href="#" class="button now" data-revision-id="<%= version.index %>">Now</a> 
+                            <a href="#" class="button now" data-revision-id="<%= version.id %>">Now</a> 
                             <a href="#" class="button later">Later</a> 
                             <a href="#" class="button cancel">Don't Publish</a>
                         </div>
@@ -123,7 +123,7 @@
                                 <input class="timepicker" type="text" placeholder="Select Time" />
                             </div>
                             <div class="topbuffer">
-                                <a href="#" class="button schedule" data-revision-id="<%= version.index %>">Schedule</a> 
+                                <a href="#" class="button schedule" data-revision-id="<%= version.id %>">Schedule</a> 
                                 <a href="#" class="button cancel">Don't Publish</a>
                             </div>
                         </div>        

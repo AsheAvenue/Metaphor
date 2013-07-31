@@ -17,6 +17,14 @@ module Metaphor
       @articles = Article.where(true).recently_updated
       @article = Article.includes(:categories, :series).find(params[:id])
       
+      # get the indexes
+      @last_published_revision_index = nil;
+      @next_published_revision_index = nil;
+      @article.versions.each do |version|
+        @last_published_revision_index = version.index if version.id == @article.last_published_revision_id
+        @next_published_revision_index = version.index if version.id == @article.next_published_revision_id
+      end
+      
       #set up the templates
       @templates = Template.all
     end
@@ -25,17 +33,21 @@ module Metaphor
       @articles = Article.where(true).newest
       @original_article = Article.includes(:categories, :series).find(params[:id])
       
-      #get the reverted version
-      @version_index = params[:version_index].to_i
-      @original_article.versions.each do |version|
-        if version.index == @version_index
-          @article = @original_article.version_at(version.created_at)
-          @article.last_published_revision_id = @original_article.last_published_revision_id
-          @article.next_published_revision_id = @original_article.next_published_revision_id
-          @article.publish_next_revision_at = @original_article.publish_next_revision_at
-          break
-        end
+      # get the indexes
+      @last_published_revision_index = nil;
+      @next_published_revision_index = nil;
+      @original_article.versions.each do |v|
+        @last_published_revision_index = v.index if v.id == @original_article.last_published_revision_id
+        @next_published_revision_index = v.index if v.id == @original_article.next_published_revision_id
       end
+      
+      #get the reverted version
+      @version_id = params[:version_id].to_i
+      version = @original_article.versions.find(@version_id)
+      @article = @original_article.version_at(version.created_at)
+      @article.last_published_revision_id = @original_article.last_published_revision_id
+      @article.next_published_revision_id = @original_article.next_published_revision_id
+      @article.publish_next_revision_at = @original_article.publish_next_revision_at
       
       #set up the templates
       @templates = Template.all
@@ -46,8 +58,8 @@ module Metaphor
 
     def publish
       article = Article.find(params[:id])
-      version_index = params[:version_index].to_i
-      article.last_published_revision_id = version_index
+      version_id = params[:version_id].to_i
+      article.last_published_revision_id = version_id
       article.next_published_revision_id = nil 
       article.publish_next_revision_at = nil 
       article.save!
@@ -65,8 +77,8 @@ module Metaphor
 
     def schedule
       article = Article.find(params[:id])
-      version_index = params[:version_index].to_i
-      article.next_published_revision_id = version_index 
+      version_id = params[:version_id].to_i
+      article.next_published_revision_id = version_id 
       article.publish_next_revision_at = DateTime.parse("#{params[:date]} #{params[:time]}") 
       article.save!
       render :nothing => true
