@@ -66,6 +66,11 @@ class Article < ActiveRecord::Base
   scope :flagged_as, lambda { |flag| 
     joins(:flags).where("flags.slug = ?", flag) if flag
   }
+  scope :with_limit, lambda { |l|
+    if l && l.is_a?(Integer) && l > 0 
+      limit(l)
+    end
+  }
   
   has_attached_file :default_image,
       :storage => :s3,
