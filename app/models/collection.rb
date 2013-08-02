@@ -10,7 +10,15 @@ class Collection < ActiveRecord::Base
     if c
       # combine pinned articles with all articles... uniquify
       generated = []
-      Article.with_article_type(c.article_type).with_category(c.category).with_series(c.series).flagged_as(c.flag).sort_by(c.order).with_limit(c.limit).published.all.each do |a|
+      Article
+        .with_article_type(c.article_type)
+        .with_category(c.category)
+        .with_series(c.series)
+        .flagged_as(c.flag)
+        .sort_by(c.order)
+        .with_limit(c.limit)
+        .published
+        .all.each do |a|
         generated << a.current
       end
       
