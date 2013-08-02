@@ -60,7 +60,7 @@
             </div>
             <div class="form-section-right">
                 <div class="form-line">
-                    <%= f.collection_select :flag, Flag.all, :id, :name, {:prompt => 'All'}  %>
+                    <%= f.collection_select :flag, Flag.all, :slug, :name, {:prompt => 'All'}  %>
                 </div>
             </div>
         </div>
