@@ -85,6 +85,7 @@ class Article < ActiveRecord::Base
         :medium => '320x180>',
         :homepage_list => '457x310>',
         :original_content => '122x155#',
+        :approved_by => '118x79#',
         :thumb => '160x90#'
       },
       :convert_options => {
