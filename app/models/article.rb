@@ -37,9 +37,9 @@ class Article < ActiveRecord::Base
   has_many :sounds, :through => :entity_contents, :source => :content, :source_type => "Sound"
   has_many :images, :through => :entity_contents, :source => :content, :source_type => "Image"
   has_many :galleries, :through => :entity_contents, :source => :content, :source_type => "Gallery"
-  belongs_to :current_version, :class_name => 'Version', :foreign_key => :last_published_revision_id
-  
   has_many :related_entities, :as => :entity
+  
+  belongs_to :current_version, :class_name => 'Version', :foreign_key => :last_published_revision_id
   
   validates_presence_of :title, :slug
   validates_uniqueness_of :slug
@@ -47,18 +47,30 @@ class Article < ActiveRecord::Base
   scope :recent, order("articles.created_at desc")
   scope :recently_updated, order("articles.updated_at desc")
   scope :published, where('articles.last_published_revision_id IS NOT NULL')
-  scope :article_type, lambda { |template|
+  scope :with_article_type, lambda { |template|
     where(:template => template) if template != "all_types"
   }
-  scope :sort, lambda { |order|
+  scope :sort_by, lambda { |order|
     if order == "newest"
       joins(:current_version).order("versions.created_at DESC")
     elsif order == "oldest"
       joins(:current_version).order("versions.created_at ASC")
     end
   }
+  scope :with_category, lambda { |category| 
+    if category != ''
+      joins(:categories).where("categories.id = ?", category)
+    end
+  }
+  scope :with_series, lambda { |series| 
+    if series != ''
+      joins(:series).where("series.id = ?", series)
+    end
+  }
   scope :flagged_as, lambda { |flag| 
-    joins(:flags).where("flags.slug = ?", flag)
+    if flag != ''
+      joins(:flags).where("flags.id = ?", flag)
+    end
   }
   
   has_attached_file :default_image,
