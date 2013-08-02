@@ -133,7 +133,11 @@ class Article < ActiveRecord::Base
   end
   
   def current
-    self.version_at(self.current_version.created_at)
+    if self.current_version
+      self.version_at(self.current_version.created_at)
+    else
+      self
+    end
   end
   
   # GETTING FROM THE FRONTEND

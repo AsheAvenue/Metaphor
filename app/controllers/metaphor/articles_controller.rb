@@ -6,7 +6,7 @@ module Metaphor
     layout 'metaphor/metaphor'
     
     def index
-      @articles = Article.where(true).recently_created
+      @articles = get_current_articles
     end
     
     def show
@@ -14,7 +14,7 @@ module Metaphor
     end
   
     def edit
-      @articles = Article.where(true).recently_updated
+      @articles = get_current_articles
       @article = Article.includes(:categories, :series).find(params[:id])
       
       # get the indexes
@@ -30,7 +30,7 @@ module Metaphor
     end
     
     def revision
-      @articles = Article.where(true).recently_created
+      @articles = get_current_articles
       @original_article = Article.includes(:categories, :series).find(params[:id])
       
       # get the indexes
@@ -156,8 +156,15 @@ module Metaphor
                    .order("name ilike '%#{params[:term]}%' DESC, LENGTH(name) ASC, name ASC")
     end
       
-    def preview
-      
+    private
+    
+    def get_current_articles
+      all_articles = Article.where(true).recently_updated
+      articles = []
+      all_articles.each do |article|
+        articles << article.current
+      end
+      articles
     end
     
   end

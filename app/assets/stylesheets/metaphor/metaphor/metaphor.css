@@ -438,10 +438,11 @@ header .navigation li a {
     color: white;
 }
 
+
 #left-bar .item,
 #left-bar .new {
     border-bottom: 1px solid #fff;
-    height: 44px;
+    min-height: 44px;
 }
 #left-bar .item a,
 #left-bar .new a {
@@ -460,6 +461,7 @@ header .navigation li a {
          -o-transition: color .3s ease-in-out, background .3s ease-in-out;
             transition: color .3s ease-in-out, background .3s ease-in-out;
 }
+
 #left-bar .item a:hover {
     background: rgba(255,255,255,.66);
 }
