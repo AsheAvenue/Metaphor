@@ -64,7 +64,9 @@ class Article < ActiveRecord::Base
     joins(:series).where("series.id = ?", series) if series
   }
   scope :flagged_as, lambda { |flag| 
-    joins(:flags).where("flags.id = ?", flag) if flag
+    if flag != ''
+      joins(:flags).where("flags.slug = ?", flag)
+    end
   }
   
   has_attached_file :default_image,
