@@ -37,9 +37,9 @@ class Article < ActiveRecord::Base
   has_many :sounds, :through => :entity_contents, :source => :content, :source_type => "Sound"
   has_many :images, :through => :entity_contents, :source => :content, :source_type => "Image"
   has_many :galleries, :through => :entity_contents, :source => :content, :source_type => "Gallery"
-  belongs_to :current_version, :class_name => 'Version', :foreign_key => :last_published_revision_id
-  
   has_many :related_entities, :as => :entity
+  
+  belongs_to :current_version, :class_name => 'Version', :foreign_key => :last_published_revision_id
   
   validates_presence_of :title, :slug
   validates_uniqueness_of :slug
@@ -56,6 +56,12 @@ class Article < ActiveRecord::Base
     elsif order == "oldest"
       joins(:current_version).order("versions.created_at ASC")
     end
+  }
+  scope :with_category, lambda { |category| 
+    joins(:categories).where("categories.slug = ?", category)
+  }
+  scope :with_series, lambda { |series| 
+    joins(:series).where("series.slug = ?", series)
   }
   scope :flagged_as, lambda { |flag| 
     joins(:flags).where("flags.slug = ?", flag)
