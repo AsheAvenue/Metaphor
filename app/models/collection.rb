@@ -7,11 +7,16 @@ class Collection < ActiveRecord::Base
   def self.get(slug)
     # get the collection defined by the slug
     c = Collection.find_by_slug(slug)
-    # combine pinned articles with all articles... uniquify
-    Article.with_article_type(c.article_type).with_category(c.category).sort_by(c.order).published.all.each do |a|
-      c.articles << a.current
+    if c
+      # combine pinned articles with all articles... uniquify
+      Article.with_article_type(c.article_type).with_category(c.category).sort_by(c.order).published.all.each do |a|
+        c.articles << a.current
+      end
+      c.articles.uniq
+    else
+      # return nothing if the collection doesn't exist
+      []
     end
-    c.articles.uniq
   end 
   
 end
