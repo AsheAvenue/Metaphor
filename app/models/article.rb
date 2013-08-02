@@ -131,6 +131,13 @@ class Article < ActiveRecord::Base
     self.version_at(self.current_version.created_at)
   end
   
+  # GETTING FROM THE FRONTEND
+  def self.get(slug)
+    article = Article.where(:slug => slug).published.first
+    return nil if !article
+    article.current
+  end
+  
   # PUBLISHING
   #
   # This is called by the cron job managed by the Whenever gem
