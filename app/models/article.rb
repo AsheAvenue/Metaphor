@@ -44,7 +44,7 @@ class Article < ActiveRecord::Base
   validates_presence_of :title, :slug
   validates_uniqueness_of :slug
   
-  scope :recent, order("articles.created_at desc")
+  scope :recently_created, order("articles.created_at desc")
   scope :recently_updated, order("articles.updated_at desc")
   scope :published, where('articles.last_published_revision_id IS NOT NULL')
   scope :sort_by, lambda { |order|
