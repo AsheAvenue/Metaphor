@@ -57,6 +57,9 @@ class Article < ActiveRecord::Base
       joins(:current_version).order("versions.created_at ASC")
     end
   }
+  scope :flagged_as, lambda { |flag| 
+    joins(:flags).where("flags.slug = ?", flag)
+  }
   
   has_attached_file :default_image,
       :storage => :s3,
@@ -70,6 +73,7 @@ class Article < ActiveRecord::Base
         :large => '640x360>',
         :medium => '320x180>',
         :homepage_list => '457x310>',
+        :original_content => '122x155#',
         :thumb => '160x90#'
       },
       :convert_options => {
