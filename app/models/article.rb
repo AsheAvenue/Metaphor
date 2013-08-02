@@ -57,18 +57,18 @@ class Article < ActiveRecord::Base
       joins(:current_version).order("versions.created_at ASC")
     end
   }
-  scope :with_category, lambda { |category| 
-    if category != ''
+  scope :with_category, lambda { |category|
+    if category
       joins(:categories).where("categories.id = ?", category)
     end
   }
   scope :with_series, lambda { |series| 
-    if series != ''
+    if series
       joins(:series).where("series.id = ?", series)
     end
   }
   scope :flagged_as, lambda { |flag| 
-    if flag != ''
+    if flag
       joins(:flags).where("flags.id = ?", flag)
     end
   }
