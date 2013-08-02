@@ -8,7 +8,7 @@ class Collection < ActiveRecord::Base
     # get the collection defined by the slug
     c = Collection.find_by_slug(slug)
     # combine pinned articles with all articles... uniquify
-    Article.article_type(c.article_type).sort(c.order).category(c.category).published.all.each do |a|
+    Article.with_article_type(c.article_type).with_category(c.category).sort_by(c.order).published.all.each do |a|
       c.articles << a.current
     end
     c.articles.uniq

@@ -4,6 +4,11 @@ var collections = (function($) {
         
         init: function() {
 
+            $('#collection-name').sluggo({
+                target:             '#collection-slug',
+                makeTargetReadonly: true
+            });
+            
             $('#content .pinned-articles').sortable(
                 {
                     axis: 'y',

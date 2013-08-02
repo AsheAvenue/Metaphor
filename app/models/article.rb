@@ -47,10 +47,10 @@ class Article < ActiveRecord::Base
   scope :recent, order("articles.created_at desc")
   scope :recently_updated, order("articles.updated_at desc")
   scope :published, where('articles.last_published_revision_id IS NOT NULL')
-  scope :article_type, lambda { |template|
+  scope :with_article_type, lambda { |template|
     where(:template => template) if template != "all_types"
   }
-  scope :sort, lambda { |order|
+  scope :sort_by, lambda { |order|
     if order == "newest"
       joins(:current_version).order("versions.created_at DESC")
     elsif order == "oldest"
@@ -58,13 +58,19 @@ class Article < ActiveRecord::Base
     end
   }
   scope :with_category, lambda { |category| 
-    joins(:categories).where("categories.slug = ?", category)
+    if category != ''
+      joins(:categories).where("categories.id = ?", category)
+    end
   }
   scope :with_series, lambda { |series| 
-    joins(:series).where("series.slug = ?", series)
+    if series != ''
+      joins(:series).where("series.id = ?", series)
+    end
   }
   scope :flagged_as, lambda { |flag| 
-    joins(:flags).where("flags.slug = ?", flag)
+    if flag != ''
+      joins(:flags).where("flags.id = ?", flag)
+    end
   }
   
   has_attached_file :default_image,
