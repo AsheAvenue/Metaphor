@@ -30,8 +30,8 @@ class Collection < ActiveRecord::Base
           .sort_by(c.order)
           .with_limit(c.limit)
           .published
-          .all.each do |a|
-          generated << a.current
+          .all.each do |e|
+          generated << e
         end
       end
       
