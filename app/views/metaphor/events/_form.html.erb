@@ -1,0 +1,70 @@
+<%= form_for @event, :html => {:autocomplete=>"off"} do |f| %>
+    <div id="content">
+        <% if flash[:alert] %>
+            <div class="alert">
+                <%= flash[:alert] %>
+            </div>
+        <% end %>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                <%= Settings.events.name %>
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= f.text_field :title, :placeholder => "Title", :id => 'event-title', :autocomplete=>"off" %>
+                </div>
+                <div class="form-line">
+                    <%= f.text_field :slug, :placeholder => "Slug", :id => 'event-slug', :autocomplete=>"off" %>
+                </div>
+            </div>
+        </div>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                Type
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= f.collection_select :type, Settings.events.types, :first, :last, {:include_blank => 'Select an event type'}  %>
+                </div>
+            </div>
+        </div>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                Date
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <div class="form-line">
+                        <%= f.text_field :date, :placeholder => "Date", :id => 'event-date', :autocomplete=>"off" %>
+                    </div>
+                    <div class="form-line">
+                        <%= f.text_field :time, :placeholder => "Time", :id => 'event-time', :autocomplete=>"off" %> (optional)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                Body
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= f.text_field :body, :placeholder => "Body", :id => 'event-body', :autocomplete=>"off" %>
+                </div>
+            </div>
+        </div>
+        <div class="form-section clearfix">
+            <div class="form-section-left"></div>
+            <div class="form-section-right">
+                <div class="form-line">
+                  <% if action == 'update' %>
+                      <%= f.submit "Save #{Settings.events.name}", :class => "button" %>
+                  <% else %>
+                      <%= f.submit "Create #{Settings.events.name}", :class => "button" %>
+                  <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<% end %>

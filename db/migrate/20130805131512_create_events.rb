@@ -1,6 +1,6 @@
-class CreateMetaphorEvents < ActiveRecord::Migration
+class CreateEvents < ActiveRecord::Migration
   def change
-    create_table :metaphor_events do |t|
+    create_table :events do |t|
       t.string :title
       t.string :slug
       t.datetime :date

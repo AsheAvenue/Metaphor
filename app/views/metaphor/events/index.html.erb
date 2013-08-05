@@ -1,0 +1,32 @@
+<div id="list">
+    
+    <div class="header">
+        <%= Settings.events.name.pluralize %>
+        <div class="header-link pull-right">
+            <%= link_to "New #{Settings.events.name} »", new_event_url %>
+        </div>
+    </div>
+    
+    <div id="fields" class="fields clearfix">
+        <div class="half">
+            Name
+        </div>
+        <div class="quarter">
+            Slug
+        </div>
+    </div>
+
+    <ul id="items" class="items">
+        <% @events.each do |event| %>
+            <li class="item mix not_scheduled clearfix">
+                <div class="half">
+                    <%= link_to event.name, edit_event_path(event) %>
+                </div>
+                <div class="quarter">
+                    <%= link_to event.slug, edit_event_path(event) %>
+                </div>
+            </li>
+        <% end %>
+    </ul>
+    
+</div>

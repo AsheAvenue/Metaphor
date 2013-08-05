@@ -1,0 +1,16 @@
+<div id="left-bar">
+
+    <div class="new">
+        <%= link_to "New #{Settings.events.name} »", new_event_path %>
+    </div>
+    
+    <% if @events.count > 0 %>
+        <div class="header">
+            Recent <%= Settings.events.name.pluralize %> :
+        </div>
+
+        <% @events.each do |event| %>
+            <div class="item"><%= link_to event.name, edit_event_path(event) %></div>
+        <% end %>
+    <% end %>
+</div>
