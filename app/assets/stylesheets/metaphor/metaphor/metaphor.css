@@ -191,11 +191,14 @@ header .navigation li a {
 }
 #article-title,
 #article-slug,
-#article-summary,
 #article-default-image,
 #article-author-other-name,
 #article-body,
-#article-summary {
+#article-summary,
+#event-title,
+#event-slug,
+#event-body,
+#event-default-image {
     font-size: 24px;
     line-height: 30px;
     font-weight: 100;

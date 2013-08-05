@@ -1,0 +1,36 @@
+var events = (function($) {
+    
+    return {
+        init: function() {
+
+            //autosize the article textareas
+            $('#event-title').autosize();
+            $('#event-body').autosize();
+            
+            $('#event-title').sluggo({
+                target:             '#event-slug',
+                makeTargetReadonly: true
+            });
+    
+            //hide the default image file form field on page load if we already have an image
+            if($('#article-default-image .display').is(':visible')) {
+                $('#article-default-image .upload').hide();
+            }
+            
+            $('#event-date').pickadate({
+                min: true
+            });
+            
+            $('#event-time').pickatime({
+                interval: 5
+            });
+              
+        },
+        
+    };
+})(jQuery);
+
+jQuery(document).ready(function($) {
+    events.init();
+});
+

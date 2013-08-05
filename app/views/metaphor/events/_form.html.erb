@@ -24,7 +24,7 @@
             </div>
             <div class="form-section-right">
                 <div class="form-line">
-                    <%= f.collection_select :type, Settings.events.types, :first, :last, {:include_blank => 'Select an event type'}  %>
+                    <%= f.collection_select :event_type, Settings.events.types, :first, :last, {:include_blank => 'Select an event type'}  %>
                 </div>
             </div>
         </div>
@@ -35,10 +35,10 @@
             <div class="form-section-right">
                 <div class="form-line">
                     <div class="form-line">
-                        <%= f.text_field :date, :placeholder => "Date", :id => 'event-date', :autocomplete=>"off" %>
+                        <%= f.text_field :date, :placeholder => "Date", :id => 'event-date', :autocomplete=>"off", :class => 'form-text-field' %>
                     </div>
                     <div class="form-line">
-                        <%= f.text_field :time, :placeholder => "Time", :id => 'event-time', :autocomplete=>"off" %> (optional)
+                        <%= f.text_field :time, :placeholder => "Time", :id => 'event-time', :autocomplete=>"off", :class => 'form-text-field' %> (optional)
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
             </div>
             <div class="form-section-right">
                 <div class="form-line">
-                    <%= f.text_field :body, :placeholder => "Body", :id => 'event-body', :autocomplete=>"off" %>
+                    <%= f.text_area :body, :placeholder => "Body", :id => 'event-body', :autocomplete=>"off" %>
                 </div>
             </div>
         </div>
