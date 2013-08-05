@@ -3,6 +3,7 @@ Metaphor::Engine.routes.draw do
   root :to => 'articles#index', :as => 'metaphor'
   
   resources :articles
+  resources :events
   resources :categories
   resources :series
   resources :flags

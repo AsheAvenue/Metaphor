@@ -31,6 +31,11 @@
                         <ul>
                             <li>Content:</li>
                             <li><%= link_to Settings.articles.name.pluralize, metaphor.articles_path %></li>
+                            
+                            <% if Settings.events.enabled %>
+                                <li><%= link_to Settings.events.name.pluralize, metaphor.events_path %></li>
+                            <% end %>
+                            
                             <% Settings.entities.types.each do |key, value| %>
                                 <li><%= link_to value.pluralize, "#{Settings.site.root_url}/#{key}" %></li>
                             <% end %>
