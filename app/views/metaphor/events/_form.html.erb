@@ -1,4 +1,4 @@
-<%= form_for @event, :html => {:autocomplete=>"off"} do |f| %>
+<%= form_for @event, :html => {:autocomplete=>"off", :id => 'event-form'} do |f| %>
     <div id="content">
         <% if flash[:alert] %>
             <div class="alert">
@@ -35,7 +35,7 @@
             <div class="form-section-right">
                 <div class="form-line">
                     <div class="form-line">
-                        <%= f.text_field :date, :placeholder => "Date", :id => 'event-date', :autocomplete=>"off", :class => 'form-text-field' %>
+                        <%= f.text_field :date, :placeholder => "Date", :id => 'event-date', :autocomplete=>"off", :class => 'form-text-field', :value => @event.date ? @event.date.strftime('%b %d, %Y') : '' %>
                     </div>
                     <div class="form-line">
                         <%= f.text_field :time, :placeholder => "Time", :id => 'event-time', :autocomplete=>"off", :class => 'form-text-field' %> (optional)
@@ -43,6 +43,32 @@
                 </div>
             </div>
         </div>
+        
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                <%= Settings.tags.name.pluralize %>
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= f.text_field :tag_list, :class => 'tag-list' %>
+                </div>
+            </div>
+        </div>
+        
+        <% Settings.entities.types.each do |key,value| %>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                <%= value %>
+            </div>
+            <div class="form-section-right">
+                <div class="form-line <%= key %>_list">
+                    <% s = "#{key}_list".parameterize.underscore.to_sym %>
+                    <%= f.text_field s, :class => "#{key}-list", :name => "event[#{key}_list]", "data-#{key}-ids" => @event.send("#{key}_ids".to_sym) %>
+                </div>
+            </div>
+        </div>
+        <% end %>
+
         <div class="form-section clearfix">
             <div class="form-section-left">
                 Body
@@ -53,17 +79,13 @@
                 </div>
             </div>
         </div>
-        <div class="form-section clearfix">
-            <div class="form-section-left"></div>
-            <div class="form-section-right">
-                <div class="form-line">
-                  <% if action == 'update' %>
-                      <%= f.submit "Save #{Settings.events.name}", :class => "button" %>
-                  <% else %>
-                      <%= f.submit "Create #{Settings.events.name}", :class => "button" %>
-                  <% end %>
-                </div>
-            </div>
+        
+        <div id="actions" class="form-section clearfix">
+            <% if action == 'create' %>
+                <%= link_to "Create #{Settings.events.name}", '#', :class => "button green", :id => 'event-submit' %>
+            <% elsif action == 'update'%>
+                <%= link_to "Save #{Settings.events.name}", '#', :class => "button green", :id => 'event-submit' %>
+            <% end %>
         </div>
     </div>
     

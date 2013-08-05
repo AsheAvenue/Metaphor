@@ -42,6 +42,23 @@ module Metaphor
         render :edit
       end
     end
+    
+    def taglist
+      render json: Event.tag_counts_on(:tags)
+                   .where("name ilike ?","%#{params[:term]}%")
+                   .order("name ilike '%#{params[:term]}%' DESC, LENGTH(name) ASC, name ASC")
+                   .map(&:to_s)
+                   .map(&:downcase)
+    end
+    
+    def related_entity_list
+      entity = params[:related_entity]
+      render json: entity
+                   .constantize
+                   .select("name as value, id as id")
+                   .where("name ilike ?","%#{params[:term]}%")
+                   .order("name ilike '%#{params[:term]}%' DESC, LENGTH(name) ASC, name ASC")
+    end
   
   end
 end

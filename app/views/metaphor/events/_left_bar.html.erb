@@ -10,7 +10,7 @@
         </div>
 
         <% @events.each do |event| %>
-            <div class="item"><%= link_to event.name, edit_event_path(event) %></div>
+            <div class="item"><%= link_to event.title, edit_event_path(event) %></div>
         <% end %>
     <% end %>
 </div>

@@ -29,7 +29,11 @@ Metaphor::Engine.routes.draw do
   match 'articles/:id/editor/select_sound' => 'article_editor#select_sound', :as => 'article_editor_select_sound'
   match 'articles/:id/editor/update_body' => 'article_editor#update_body', :as => 'article_editor_update_body'
   match 'articles/taglist/:term' => 'articles#taglist', :as => 'article_tag_list'
-  match 'articles/related_entity_list/:related_entity/:term' => 'articles#related_entity_list', :as => 'related_entity_list'
+  match 'articles/related_entity_list/:related_entity/:term' => 'articles#related_entity_list'
+  
+  match 'events/taglist/:term' => 'events#taglist', :as => 'event_tag_list'
+  match 'events/related_entity_list/:related_entity/:term' => 'events#related_entity_list'
+  
   match 'galleries/:id/editor' => 'gallery_editor#index', :as => 'gallery_editor'
   match 'galleries/:id/sort' => 'gallery_editor#sort', :as => 'gallery_sort'
   match 'galleries/add_image' => 'gallery_editor#add_image', :as => 'gallery_editor_add_image'
@@ -37,17 +41,21 @@ Metaphor::Engine.routes.draw do
   match 'galleries/save_image' => 'gallery_editor#save_image', :as => 'gallery_editor_save_image'
   match 'galleries/select_image' => 'gallery_editor#select_image', :as => 'gallery_editor_select_image'
   match 'galleries/image_info/:id' => 'gallery_editor#image_info', :as => 'gallery_editor_image_info'
+  
   match 'collections/:id/sort' => 'collections#sort', :as => 'collection_sort'
   match 'collections/:id/add_pinned_article' => 'collections#add_pinned_article', :as => 'collection_add_pinned_article'
   match 'collections/:id/remove_pinned_article/:pinned_article_id' => 'collections#remove_pinned_article', :as => 'collection_remove_pinned_article'
+
   match 'templates/:id/sort' => 'templates#sort', :as => 'template_sort'
   match 'templates/:id/add_component' => 'templates#add_component', :as => 'template_add_component'
   match 'templates/:id/remove_component/:component_id' => 'templates#remove_component', :as => 'template_remove_component'
+
   match 'picker/addVideo' => 'picker#addVideo', :as => 'picker_add_video'
   match 'picker/addSound' => 'picker#addSound', :as => 'picker_add_sound'
   match 'picker/addImage' => 'picker#addImage', :as => 'picker_add_image'
   match 'picker/addGallery' => 'picker#addGallery', :as => 'picker_add_gallery'
   match 'picker/:action' => 'picker#:action', :as => 'picker'
+
   match "social/tumblr" => 'social#tumblr', :as => 'tumblr'
   match "social/twitter" => 'social#twitter', :as => 'twitter'
   match "social/instagram" => 'social#instagram', :as => 'instagram'

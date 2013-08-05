@@ -1,3 +1,5 @@
+<%= render :partial => 'js' %>
+
 <div id="list">
     
     <div class="header">
@@ -7,26 +9,63 @@
         </div>
     </div>
     
+    <div class="criteria">
+        Type:
+		<ul>
+            <li class="filter" data-filter="all">All</li>
+            <% Settings.events.types.each do |key, value| %>
+			    <li class="filter" data-filter="<%= key %>"><%= value %></li>
+            <% end %>
+		</ul>    
+    </div>
+    
+    <div class="criteria">
+        Date:
+		<ul>
+            <li class="sort active" data-sort="data-date" data-order="asc">Newer</li>
+            <li class="sort" data-sort="data-date" data-order="desc">Older</li>
+		</ul>    
+    </div>
+    
     <div id="fields" class="fields clearfix">
-        <div class="half">
-            Name
+        <div class="quarter">
+            Title
         </div>
         <div class="quarter">
             Slug
+        </div>
+        <div class="quarter">
+            Type
+        </div>
+        <div class="quarter">
+            Date/Time
         </div>
     </div>
 
     <ul id="items" class="items">
         <% @events.each do |event| %>
-            <li class="item mix not_scheduled clearfix">
-                <div class="half">
-                    <%= link_to event.name, edit_event_path(event) %>
+            <li class="item mix <%= event.event_type %> clearfix" data-event-type="<%= event.event_type %>" data-date="<%= event.date.to_time.to_i %>">
+                <div class="quarter">
+                    <%= link_to event.title, edit_event_path(event) %>
                 </div>
                 <div class="quarter">
                     <%= link_to event.slug, edit_event_path(event) %>
                 </div>
+                <div class="quarter">
+                    <%= link_to event.event_type.capitalize, edit_event_path(event) %>
+                </div>
+                <div class="quarter">
+                    <%= link_to event.date.strftime('%b %d, %Y'), edit_event_path(event)%>
+                    
+                    <% if !event.time.empty? %>
+                        @ <%= link_to event.time, edit_event_path(event)%>
+                    <% end %> 
+                </div>
             </li>
         <% end %>
+        <div class="fail_element">
+            :( Sorry, no events meet the selected criteria.
+        </div>
     </ul>
     
 </div>
