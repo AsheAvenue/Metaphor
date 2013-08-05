@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
   
   def display_name
-    full_name.strip != "" ? full_name : username 
+    (full_name && full_name.strip != "") ? full_name : username
   end
   
 end
