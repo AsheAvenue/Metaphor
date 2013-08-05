@@ -44,16 +44,18 @@
                 </div>
             </div>
         </div>
-        <div class="form-section clearfix">
-            <div class="form-section-left">
-                Series 
-            </div>
-            <div class="form-section-right">
-                <div class="form-line">
-                    <%= f.collection_select :series, Series.all, :id, :name, {:include_blank => 'All'}  %>
+        <% if Settings.series.enabled %>
+            <div class="form-section clearfix">
+                <div class="form-section-left">
+                    Series 
+                </div>
+                <div class="form-section-right">
+                    <div class="form-line">
+                        <%= f.collection_select :series, Series.all, :id, :name, {:include_blank => 'All'}  %>
+                    </div>
                 </div>
             </div>
-        </div>
+        <% end %>
         <div class="form-section clearfix">
             <div class="form-section-left">
                 Flag 
