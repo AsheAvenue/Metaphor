@@ -11,6 +11,8 @@ module Metaphor
     def edit
       @collection = Collection.find(params[:id])
       @collections = Collection.all
+      
+      @content_type = params[:content_type] || 'article'
     end
     
     def new

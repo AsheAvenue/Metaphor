@@ -1,5 +1,5 @@
 class Collection < ActiveRecord::Base
-  attr_accessible :name, :slug, :article_type, :category, :series, :flag, :tag, :limit, :order, :pinned_articles_attributes
+  attr_accessible :name, :slug, :content_type, :article_type, :category, :series, :flag, :tag, :limit, :order, :pinned_articles_attributes
   has_many :pinned_articles, :order => 'pinned_articles.order ASC'
   has_many :articles, :through => :pinned_articles, :conditions => "articles.last_published_revision_id IS NOT NULL"
   accepts_nested_attributes_for :pinned_articles

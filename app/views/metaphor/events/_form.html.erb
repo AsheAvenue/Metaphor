@@ -46,6 +46,23 @@
         
         <div class="form-section clearfix">
             <div class="form-section-left">
+                <%= Settings.flags.name.pluralize %>
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= hidden_field_tag "event[flag_ids][]", nil %>
+                    <% Flag.all.each do |flag| %>
+                        <label class="checkbox">
+                            <%= check_box_tag "event[flag_ids][]", flag.id, @event.flag_ids.include?(flag.id) %>
+                            <label><%= flag.name %></label>
+                        </label>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-section clearfix">
+            <div class="form-section-left">
                 <%= Settings.tags.name.pluralize %>
             </div>
             <div class="form-section-right">
