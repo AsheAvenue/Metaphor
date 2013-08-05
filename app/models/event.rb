@@ -13,8 +13,23 @@ class Event < ActiveRecord::Base
 
   has_many :related_entities, :as => :entity
   
+  scope :sort_by, lambda { |order|
+    if order == "newest"
+      joins(:current_version).order("versions.created_at DESC")
+    elsif order == "oldest"
+      joins(:current_version).order("versions.created_at ASC")
+    end
+  }
+  scope :with_event_type, lambda { |event_type|
+    where(:event_type => event_type) if event_type != ''
+  }
   scope :flagged_as, lambda { |flag| 
     joins(:flags).where("flags.slug = ?", flag) if !flag.empty?
+  }
+  scope :with_limit, lambda { |l|
+    if l && l.is_a?(Integer) && l > 0 
+      limit(l)
+    end
   }
   
   acts_as_ordered_taggable

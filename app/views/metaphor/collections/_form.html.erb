@@ -4,7 +4,7 @@
     <div id="add_pinned_article" data-path="<%= collection_add_pinned_article_url(@collection) %>" />
 <% end %>
 
-<%= form_for @collection, :html => {:autocomplete=>"off"} do |f| %>
+<%= form_for @collection, :html => {:autocomplete=>"off", :id => 'collection-form'} do |f| %>
     <div id="content">
         <% if flash[:alert] %>
             <div class="alert">
@@ -30,12 +30,12 @@
             </div>
             <div class="form-section-right">
                 <div class="form-line">
-                    <%= select_tag 'collection[content_type]', options_from_collection_for_select(Settings.collections.types, :first, :last, @content_type), :id => 'collection_content_type' %>
+                    <%= select_tag 'collection[content_type]', options_from_collection_for_select(Settings.collections.types, :first, :last, @collection.content_type), :id => 'collection_content_type' %>
                 </div>
             </div>
         </div>
         
-        <% if @content_type == "article" %>
+        <% if @collection.content_type == "article" %>
             <div class="form-section clearfix">
                 <div class="form-section-left">
                     <%= Settings.articles.name %> Type
@@ -46,41 +46,44 @@
                     </div>
                 </div>
             </div>
-        <% elsif @content_type == "event" %>
+        
+            <div class="form-section clearfix">
+                <div class="form-section-left">
+                    Category 
+                </div>
+                <div class="form-section-right">
+                    <div class="form-line">
+                        <%= f.collection_select :category, Category.all, :id, :name, {:include_blank => 'All'}  %>
+                    </div>
+                </div>
+            </div>
+            
+            <% if Settings.series.enabled %>
+                <div class="form-section clearfix">
+                    <div class="form-section-left">
+                        Series 
+                    </div>
+                    <div class="form-section-right">
+                        <div class="form-line">
+                            <%= f.collection_select :series, Series.all, :id, :name, {:include_blank => 'All'}  %>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+            
+        <% elsif @collection.content_type == "event" %>
             <div class="form-section clearfix">
                 <div class="form-section-left">
                     <%= Settings.events.name %> Type
                 </div>
                 <div class="form-section-right">
                     <div class="form-line">
-                        <%= f.collection_select :article_type, Settings.query.types, :first, :last  %>
+                        <%= f.collection_select :article_type, Settings.events.types, :first, :last, {:include_blank => 'All'}  %>
                     </div>
                 </div>
             </div>
         <% end %>
-        
-        <div class="form-section clearfix">
-            <div class="form-section-left">
-                Category 
-            </div>
-            <div class="form-section-right">
-                <div class="form-line">
-                    <%= f.collection_select :category, Category.all, :id, :name, {:include_blank => 'All'}  %>
-                </div>
-            </div>
-        </div>
-        <% if Settings.series.enabled %>
-            <div class="form-section clearfix">
-                <div class="form-section-left">
-                    Series 
-                </div>
-                <div class="form-section-right">
-                    <div class="form-line">
-                        <%= f.collection_select :series, Series.all, :id, :name, {:include_blank => 'All'}  %>
-                    </div>
-                </div>
-            </div>
-        <% end %>
+
         <div class="form-section clearfix">
             <div class="form-section-left">
                 Flag 

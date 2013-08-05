@@ -22,7 +22,7 @@ var collections = (function($) {
             );
             
             $('#collection_content_type').change(function(){
-                window.location.href = "<%= Settings.site.root_url %>/collections/" + $('#collection').data('id') + "/edit?content_type=" + $('#collection_content_type').val();
+                $('#collection-form').submit();
             });
         },
         

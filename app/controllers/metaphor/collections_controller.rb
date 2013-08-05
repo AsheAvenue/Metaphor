@@ -10,9 +10,10 @@ module Metaphor
   
     def edit
       @collection = Collection.find(params[:id])
+      if !@collection.content_type
+        @collection.content_type = 'article'
+      end
       @collections = Collection.all
-      
-      @content_type = params[:content_type] || 'article'
     end
     
     def new
@@ -37,7 +38,6 @@ module Metaphor
       @collection.update_attributes(params[:collection])
       if @collection.save
         @collections = Collection.where(true)
-        flash[:alert] = "#{Settings.collections.name} successfully updated"
         redirect_to edit_collection_path(@collection)
       else
         flash[:alert] = "All fields are required"
