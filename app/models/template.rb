@@ -11,13 +11,8 @@ class Template < ActiveRecord::Base
         :access_key_id => Settings.filepicker.s3.access_key_id,
         :secret_access_key => Settings.filepicker.s3.secret_access_key
       },
-      :styles => {
-        :large => '180x250#',
-        :thumb => '90x125#'
-      },
-      :convert_options => {
-        :thumb => "-quality 75 -strip" 
-      }
+      :styles => Settings.templates.image.sizes.to_hash,
+      :convert_options => Settings.templates.image.convert_options.to_hash
       
   has_many :template_components, :dependent => :destroy
   has_many :components, :through => :template_components

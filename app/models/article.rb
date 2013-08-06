@@ -66,17 +66,8 @@ class Article < ActiveRecord::Base
         :access_key_id => Settings.filepicker.s3.access_key_id,
         :secret_access_key => Settings.filepicker.s3.secret_access_key
       },
-      :styles => {
-        :large => '640x360>',
-        :medium => '320x180>',
-        :homepage_list => '457x310>',
-        :original_content => '122x155#',
-        :approved_by => '118x79#',
-        :thumb => '160x90#'
-      },
-      :convert_options => {
-        :thumb => "-quality 75 -strip" 
-      }
+      :styles => Settings.articles.image.sizes.to_hash,
+      :convert_options => Settings.articles.image.convert_options.to_hash
        
   has_paper_trail :only => [:title, :body, :summary, :slug],
                   :skip => [:last_published_revision_id, :next_published_revision_id, :publish_next_revision_at]
@@ -91,7 +82,11 @@ class Article < ActiveRecord::Base
     if author_other_name != ""
       return author_other_name
     else
-      return author.display_name
+      if author
+        return author.display_name
+      else
+        return ""
+      end
     end
   end
   

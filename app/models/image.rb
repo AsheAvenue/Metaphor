@@ -11,19 +11,7 @@ class Image < ActiveRecord::Base
         :access_key_id => 'AKIAJU2Z5ERW6USCRFNQ',
         :secret_access_key => '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'
       },
-      :styles => {
-        :extralarge =>    '688x500#',
-        :large =>         '550x400#',
-        :medium =>        '320x180#',
-        :largethumb =>    '200x200#',
-        :mediumthumb =>   '138x138#',
-        :thumb =>         '64x64#',
-        :galleryheader => '646x368#',
-        :gallerythumb =>  '151x100#'
-      },
-      :convert_options => {
-        :thumb => "-quality 75 -strip",
-        :largethumb => "-quality 75 -strip"
-      }
+      :styles => Settings.components.image.image.sizes.to_hash,
+      :convert_options => Settings.components.image.image.convert_options.to_hash
       
 end
