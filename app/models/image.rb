@@ -17,7 +17,9 @@ class Image < ActiveRecord::Base
         :medium =>        '320x180#',
         :largethumb =>    '200x200#',
         :mediumthumb =>   '138x138#',
-        :thumb =>         '64x64#'
+        :thumb =>         '64x64#',
+        :galleryheader => '646x368#',
+        :gallerythumb =>  '151x100#'
       },
       :convert_options => {
         :thumb => "-quality 75 -strip",

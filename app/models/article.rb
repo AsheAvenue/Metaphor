@@ -1,24 +1,17 @@
 class Article < ActiveRecord::Base
-  attr_accessible :slug, 
-    :title, 
-    :summary, 
+  
+  include Metaphor::Base
+  
+  attr_accessible :summary, 
     :body, 
     :category_ids, 
     :series_ids, 
-    :flag_ids, 
     :user_ids, 
     :last_published_revision_id,
     :next_published_revision_id, 
     :publish_next_revision_at, 
-    :default_image,
-    :default_image_selected,
-    :default_image_original_filename,
     :author_other_name, 
-    :template,
-    :tag_list
-    
-  # attributes used but not saved to the db
-  attr_accessor :default_image_selected, :default_image_original_filename
+    :template
     
   has_many :article_categories, :dependent => :destroy
   has_many :categories, :through => :article_categories
@@ -29,20 +22,13 @@ class Article < ActiveRecord::Base
   has_many :article_users, :dependent => :destroy
   has_many :users, :through => :article_users
   
-  has_many :entity_flags, :dependent => :destroy, :as => :entity
-  has_many :flags, :through => :entity_flags
-
   has_many :entity_contents, :as => :entity
   has_many :videos, :through => :entity_contents, :source => :content, :source_type => "Video"
   has_many :sounds, :through => :entity_contents, :source => :content, :source_type => "Sound"
   has_many :images, :through => :entity_contents, :source => :content, :source_type => "Image"
   has_many :galleries, :through => :entity_contents, :source => :content, :source_type => "Gallery"
-  has_many :related_entities, :as => :entity
   
   belongs_to :current_version, :class_name => 'Version', :foreign_key => :last_published_revision_id
-  
-  validates_presence_of :title, :slug
-  validates_uniqueness_of :slug
   
   scope :recently_created, order("articles.created_at desc")
   scope :recently_updated, order("articles.updated_at desc")
@@ -95,7 +81,6 @@ class Article < ActiveRecord::Base
   has_paper_trail :only => [:title, :body, :summary, :slug],
                   :skip => [:last_published_revision_id, :next_published_revision_id, :publish_next_revision_at]
   
-  acts_as_ordered_taggable
   
   # convenience methods
   def author
@@ -114,6 +99,10 @@ class Article < ActiveRecord::Base
     self.categories.collect{|c| c.name}.join(', ')
   end
   
+  def series_names
+    self.series.collect{|c| c.name}.join(', ')
+  end
+  
   # TODO: move the following three methods to a helper at some point
   def status 
     if last_published_revision_id
@@ -125,20 +114,8 @@ class Article < ActiveRecord::Base
     end
   end
   
-  def is(flag)
-    #checks to see if an article flag is true based on the flag sent in
-    flags.each do |f|
-      return true if f.slug == flag
-    end
-    return false
-  end
-  
   def current
-    if self.current_version
-      self.version_at(self.current_version.created_at)
-    else
-      self
-    end
+    self.current_version ? self.version_at(self.current_version.created_at) : self
   end
   
   # GETTING FROM THE FRONTEND

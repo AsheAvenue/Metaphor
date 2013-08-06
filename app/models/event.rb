@@ -1,23 +1,17 @@
 class Event < ActiveRecord::Base
-  attr_accessible :title, 
-    :slug, 
-    :date, 
+  
+  include Metaphor::Base
+  
+  attr_accessible :date, 
     :event_type, 
     :time, 
-    :body, 
-    :flag_ids,
-    :tag_list
-  
-  has_many :entity_flags, :dependent => :destroy, :as => :entity
-  has_many :flags, :through => :entity_flags
-
-  has_many :related_entities, :as => :entity
+    :body
   
   scope :sort_by, lambda { |order|
     if order == "newest"
-      joins(:current_version).order("versions.created_at DESC")
+      order("events.created_at DESC")
     elsif order == "oldest"
-      joins(:current_version).order("versions.created_at ASC")
+      order("events.created_at ASC")
     end
   }
   scope :with_event_type, lambda { |event_type|
@@ -32,14 +26,13 @@ class Event < ActiveRecord::Base
     end
   }
   
-  acts_as_ordered_taggable
   
-  def is(flag)
-    #checks to see if an event flag is true based on the flag sent in
-    flags.each do |f|
-      return true if f.slug == flag
-    end
-    return false
+  # GETTING FROM THE FRONTEND
+  def self.get(slug)
+    event = Event.where(:slug => slug).first
+    return nil if !event
+    event
   end
+  
   
 end

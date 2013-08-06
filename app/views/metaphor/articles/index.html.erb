@@ -55,7 +55,7 @@
                     <%= article.created_at.strftime("%b, %d %y - %I:%M %p") %>
                 </div>
                 <div class="onefifth <%= article.status %>">
-                    <%= article.status.slice(0,1).capitalize + article.status.slice(1..-1) %>
+                    <%= article.status.capitalize %>
                 </div>
             </li>
         <% end %>
