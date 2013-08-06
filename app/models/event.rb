@@ -26,7 +26,6 @@ class Event < ActiveRecord::Base
     end
   }
   
-  
   # GETTING FROM THE FRONTEND
   def self.get(slug)
     event = Event.where(:slug => slug).first
