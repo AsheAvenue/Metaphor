@@ -1,12 +1,39 @@
 <div class="pickercontent">
-    <div class="header">
-        <span aria-hidden="true" class="icon-search"></span>
-        <input type="text" id="picker-search">
+    <header>
+    	<div class="top clearfix">
+            <div class="navigation-wrapper clearfix">
+                Articles
+            </div>
+    	</div>
+    </header>
+        
+    <div class="tabs clearfix">
+        <div class="tab" data-content="recent">
+            Recent Articles
+        </div>
+        <div class="tab" data-content="search">
+            Search for Article
+        </div>
     </div>
-
-    <div class="content select">
+    
+    <div class="content recent">
         <% @articles.each do |article| %>
-            <div class="item"><%= link_to article.title, "", 'data-picker-item' => article.id %></div>
+             <%= render :partial => 'article_item', :locals => {:article => article} %>
         <% end %>
     </div>
+    
+    <div class="content search">
+        <div>
+            <%= text_field_tag :search, "", :placeholder => "Enter a search term", :id => 'search-term', :class => "picker-search-field", :autocomplete=>"off" %>
+        </div>
+        
+        <div class="buttons">
+            <a href="" class="button" id="picker-search" data-type="Article">Search</a>
+        </div>
+        
+        <div class="results"> 
+            
+        </div>
+    </div>
+    
 </div>

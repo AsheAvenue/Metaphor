@@ -6,7 +6,11 @@ module Metaphor
     layout 'metaphor/picker'
 
     def article
-      @articles = Article.where(true).recently_created
+      @articles = Article.where(true).recently_updated
+    end
+    
+    def searchArticle
+      @results = Article.text_search(params[:search_term]).order('articles.updated_at desc').limit(10)
     end
 
     def component

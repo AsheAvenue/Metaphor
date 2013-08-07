@@ -15,6 +15,7 @@
 .pickercontent {
     height: 100%;
 }
+
 .pickercontent header .top {
     background: #fff;
     color: #16a085;
@@ -28,6 +29,10 @@
     z-index: 10;
 }
 
+.site .pickercontent header .top {
+    color: #fff;
+    background: #16a085;
+}
 .pickercontent header .navigation-wrapper {
     padding: 10px 25px 10px 10px;
 }

@@ -28,7 +28,7 @@ var picker = (function($) {
                     //show the picker
                     $.paneslide({ 
                         href: '<%= Settings.site.root_url %>/picker/blank',
-                        maincontainer: '#stage, #bottom-bar .buttons',
+                        maincontainer: '#stage, #bottom-bar .buttons, .site .navigation-wrapper',
                         callback: function(){
                         
                             $('#paneslide').load('<%= Settings.site.root_url %>/picker/' + picker_type, function(){

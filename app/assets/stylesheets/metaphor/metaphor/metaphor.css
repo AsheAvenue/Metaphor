@@ -697,12 +697,13 @@ header .navigation li a {
 /* ------- COLLECTION -------- */
 
 .pinned-articles {
-    margin-bottom: 6px;
+    margin-bottom: 3px;
 }
 .pinned-article {
     width: 500px;
-    height: 60px;
+    height: 64px;
     background-color: #7f8c8d;
+    color: white;
     padding-left: 3px;
     margin-bottom: 3px;
     cursor: move;
@@ -711,14 +712,24 @@ header .navigation li a {
 .pinned-article .title {
     font-size: 36px;
     line-height: 36px;
-    margin-top: 3px;
+    margin: 7px 7px 0px 7px;
 }
 
 .pinned-article .meta {
     font-size: 12px;
     line-height: 12px;
+    margin: 3px 0px 0px 7px;
 }
 
+.pinned-article .meta a {
+    color: white;
+}
+
+.add-article,
+.add-article:hover {
+    color: white !important;
+    font-size: 14px;
+}
 
 /* ------- TEMPLATES -------- */
 
