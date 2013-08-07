@@ -1,0 +1,13 @@
+<div class="item clearfix">
+    <div class="single">
+        <%= link_to gallery.name, "", 'data-picker-item' => gallery.id %>
+        <div class="images">
+            <% gallery.images.each do |image| %>
+                <%= image_tag image.image.url(:thumb), 'data-picker-item' => gallery.id %>
+            <% end %>
+        </div>
+        <div class="links">
+            <%= link_to "Select this Gallery", "", 'data-picker-item' => gallery.id %> &nbsp; &nbsp; &nbsp; <%= link_to "Edit this Gallery", gallery_editor_path(gallery) %>
+        </div>
+    </div>
+</div>

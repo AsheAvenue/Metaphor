@@ -1,36 +1,49 @@
 <div class="pickercontent">
-    <div class="header">
-        Images
-    </div>
-
-    <div class="tabs">
-        <div class="tab" data-content="select">
-            Select an Image
+    <header>
+    	<div class="top clearfix">
+            <div class="navigation-wrapper clearfix">
+                Images
+            </div>
+    	</div>
+    </header>
+        
+    <div class="tabs clearfix">
+        <div class="tab" data-content="recent">
+            Recent Images
         </div>
         <div class="tab" data-content="add">
             Add an Image
         </div>
     </div>
-    <div class="content select">    
+    <div class="content recent">    
         <% @images.each do |image| %>
-            <div class="item">
-                <%= image_tag image.image.url(:thumb), 'data-picker-item' => image.id %>
-                <%= link_to image.name, "", 'data-picker-item' => image.id %>
+            <div class="item clearfix">
+                <div class="thumb">
+                    <%= image_tag image.image.url(:gallerythumb), 'data-picker-item' => image.id %>
+                </div>
+                <div class="info">
+                    <div>
+                        <%= link_to (image.name || image.slug), "", 'data-picker-item' => image.id %>
+                    </div>
+                    <div class="caption">
+                        Caption: <span class="italic"><%= image.caption || "None"%></span>
+                    </div>
+                </div>
             </div>
         <% end %>
     </div>
     <div class="content add">
         <div>
-            <%= text_field_tag :name, "", :placeholder => "Name", :id => 'image-name', :class => "picker-new-name", :autocomplete=>"off" %>
+            <%= text_field_tag :name, "", :placeholder => "Name", :id => 'image-name', :class => "picker-new-name", :maxlength => Settings.components.image.image.maxlength.name, :autocomplete=>"off" %>
         </div>
         <div>
             <%= text_field_tag :slug, "", :placeholder => "Slug", :id => 'image-slug', :class => "picker-new-slug", :autocomplete=>"off" %>
         </div>
         <div>
-            <%= text_field_tag :caption, "", :placeholder => "Caption", :id => 'image-caption', :autocomplete=>"off" %>
+            <%= text_field_tag :caption, "", :placeholder => "Caption", :id => 'image-caption', :maxlength => Settings.components.image.image.maxlength.caption, :autocomplete=>"off" %>
         </div>
         <div>
-            <%= text_field_tag :credit, "", :placeholder => "Credit", :id => 'image-credit', :autocomplete=>"off" %>
+            <%= text_field_tag :credit, "", :placeholder => "Credit", :id => 'image-credit', :maxlength => Settings.components.image.image.maxlength.credit, :autocomplete=>"off" %>
         </div>
         
         <div>
@@ -45,4 +58,10 @@
         </div>
     </div>
 
+</div>
+
+<div id="picker-bottom-bar">
+    <div class="buttons pull-right">
+        <a id="picker-cancel" href="#" class="button">Close Image Selector</a>
+    </div>  
 </div>

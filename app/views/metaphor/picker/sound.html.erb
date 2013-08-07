@@ -1,21 +1,27 @@
 <div class="pickercontent">
-    <div class="header">
-        Sounds
-    </div>
+    <header>
+    	<div class="top clearfix">
+            <div class="navigation-wrapper clearfix">
+                Sounds
+            </div>
+    	</div>
+    </header>
 
-    <div class="tabs">
-        <div class="tab" data-content="select">
-            Select a Sound
+    <div class="tabs clearfix">
+        <div class="tab" data-content="recent">
+            Recent Sounds
         </div>
         <div class="tab" data-content="add">
             Add a Sound
         </div>
     </div>
-    <div class="content select">    
+    <div class="content recent">    
         <% @sounds.each do |sound| %>
-            <div class="item">
-                <iframe width="100%" height="100" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F<%= sound.code %>"></iframe>
-                <%= link_to sound.name, "", 'data-picker-item' => sound.id %>
+            <div class="item clearfix">
+                <div class="single">
+                    <iframe width="100%" height="100" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F<%= sound.code %>"></iframe>
+                    <%= link_to sound.name, "", 'data-picker-item' => sound.id %>
+                </div>
             </div>
         <% end %>
     </div>
@@ -34,4 +40,10 @@
         </div>
     </div>
 
+</div>
+
+<div id="picker-bottom-bar">
+    <div class="buttons pull-right">
+        <a id="picker-cancel" href="#" class="button">Close Sound Selector</a>
+    </div>  
 </div>

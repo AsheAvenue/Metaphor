@@ -7,6 +7,6 @@
 
 #article_editor .body .body-container,
 #article_editor .body .body-container:hover {
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     outline: 0;
 }

@@ -1,11 +1,21 @@
 <div class="pickercontent">
-    <div class="header">
-        <%= Settings.components.name.pluralize %>
-    </div>
+    <header>
+    	<div class="top clearfix">
+            <div class="navigation-wrapper clearfix">
+                <%= Settings.components.name.pluralize %>
+            </div>
+    	</div>
+    </header>
 
-    <div class="content select">
+    <div class="content recent">
         <% @components.each do |component| %>
             <div class="item"><%= link_to component.name, "", 'data-picker-item' => component.id %></div>
         <% end %>
     </div>
+</div>
+
+<div id="picker-bottom-bar">
+    <div class="buttons pull-right">
+        <a id="picker-cancel" href="#" class="button">Close Component Selector</a>
+    </div>  
 </div>

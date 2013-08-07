@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'acts-as-taggable-on'
   s.add_dependency 'whenever'
   s.add_dependency 'ckeditor_rails'
+  s.add_dependency 'pg_search'
   
   s.add_development_dependency 'better_errors'
   s.add_development_dependency 'binding_of_caller'

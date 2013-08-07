@@ -112,7 +112,7 @@ module Metaphor
       # Open the url that's been returned by Filepicker.
       # Then remove the default image from params so it doesn't get updated 
       # via update_attributes, which will cause a validation error
-      if  params[:article][:default_image_selected] == "true" && params[:article][:default_image] != '/default_images/original/missing.png'
+      if params[:article][:default_image_selected] == "true" && params[:article][:default_image] != '/default_images/original/missing.png'
         url = params[:article][:default_image]
         original_filename = params[:article][:default_image_original_filename]
         article.default_image = open(url)

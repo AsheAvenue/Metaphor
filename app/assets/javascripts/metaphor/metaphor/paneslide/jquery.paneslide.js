@@ -59,7 +59,7 @@
     }
     
     // Function that controls opening of the paneslide
-    function _start( position, speed, maincontainer ) {
+    function _start( position, speed, maincontainer, callback ) {
         var slideWidth = $paneslide.outerWidth( true ),
             slideAnimateIn = {},
             maincontainerAnimateIn = {};
@@ -99,6 +99,12 @@
         $paneslide.show()
                   .animate(slideAnimateIn, speed, function() {
                       _sliding = false;
+                      
+                      //call the callback
+                      if(callback != null) {
+                          callback.call(this);
+                      }
+                      
                   });
     }
       
@@ -139,6 +145,7 @@
         iframe:         false,       // By default, linked pages are loaded into an iframe. Set this to false if you don't want an iframe.
         href:           null,       // Override the source of the content. Optional in most cases, but required when opening paneslide programmatically.
         maincontainer:  null,       // A container that should be resized according to the width of the paneslide
+        callback:       null, 
     };
 	
 	/*
@@ -154,12 +161,12 @@
         if( $paneslide.is(':visible') && $paneslide.data( 'position' ) != settings.position) {
             $.paneslide.close(function(){
                 _load( settings.href, settings.iframe );
-                _start( settings.position, settings.speed, settings.maincontainer);
+                _start( settings.position, settings.speed, settings.maincontainer, settings.callback);
             });
         } else {                
             _load( settings.href, settings.iframe );
             if( $paneslide.is(':hidden') ) {
-                _start( settings.position, settings.speed, settings.maincontainer);
+                _start( settings.position, settings.speed, settings.maincontainer, settings.callback);
             }
         }
         

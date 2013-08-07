@@ -231,12 +231,6 @@ var articles = (function($) {
                 interval: 5
             });
             
-            //handle the preview button
-            $('#article-preview').click(function(e){
-              e.preventDefault();
-              window.location.href = $('#article-preview').attr('href');
-            });
-    
             $('#article-submit').click(function(e){
               e.preventDefault();
               <% Settings.entities.types.each do |key, value| %>
@@ -248,29 +242,13 @@ var articles = (function($) {
 
             $('#article-edit').click(function(e){
               e.preventDefault();
+              <% Settings.entities.types.each do |key, value| %>
+                  var <%= key %>_ids = $('.<%= key %>_list li.tagit-choice').map(function () { return parseInt($(this).attr('data-id')); });
+                  $('#article_<%= key %>_list').val($.makeArray(<%= key %>_ids));
+              <% end %>
               $('#article-form').append('<input type="hidden" name="edit-content" value="true" />');
               $('#article-form').submit();
             });            
-            
-            /************ Preview Article ************/
-    
-            //preview size selection
-            $('.preview-size').click(function(e){
-              e.preventDefault();
-              if(!$(this).hasClass('active')) {
-                if($(this).attr('id') == "preview-size-screen") {
-                  $('#preview-size-mobile').removeClass('active');
-                  $(this).addClass('active');
-                  $('#preview-list-iframe').animate({width:'100%'}, 'fast')
-                  $('#preview-article-iframe').animate({width:'100%'}, 'fast')
-                } else if($(this).attr('id') == "preview-size-mobile") {
-                  $('#preview-size-screen').removeClass('active');
-                  $(this).addClass('active');
-                  $('#preview-list-iframe').animate({width:'320px'}, 'fast')
-                  $('#preview-article-iframe').animate({width:'320px'}, 'fast')
-                }
-              }
-            });
             
             /************ Publish Article ************/
             

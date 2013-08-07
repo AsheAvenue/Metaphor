@@ -54,6 +54,10 @@ Metaphor::Engine.routes.draw do
   match 'picker/addSound' => 'picker#addSound', :as => 'picker_add_sound'
   match 'picker/addImage' => 'picker#addImage', :as => 'picker_add_image'
   match 'picker/addGallery' => 'picker#addGallery', :as => 'picker_add_gallery'
+  match 'picker/searchVideo' => 'picker#searchVideo'
+  match 'picker/searchSound' => 'picker#searchSound'
+  match 'picker/searchImage' => 'picker#searchImage'
+  match 'picker/searchGallery' => 'picker#searchGallery'
   match 'picker/:action' => 'picker#:action', :as => 'picker'
 
   match "social/tumblr" => 'social#tumblr', :as => 'tumblr'

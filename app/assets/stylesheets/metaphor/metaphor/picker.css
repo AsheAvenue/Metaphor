@@ -11,24 +11,28 @@
     -webkit-transition: left .5s ease-in-out,background .4s ease-in-out;
     transition: left .5s ease-in-out,background .4s ease-in-out;
 }
-.pickercontent .header {
-    padding: 10px;
-    background-color: #95a5a6;
-    font-size: 42px;
-    line-height: 42px;
+
+.pickercontent {
+    height: 100%;
+}
+.pickercontent header .top {
+    background: #fff;
+    color: #16a085;
+    font-size: 24px;
     font-weight: 100;
-    color: white;
+    height: 50px;
+    line-height: 1;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 10;
 }
 
-.pickercontent .header span {
-    margin: 3px 3px;
-    color: white;
-    font-size: 32px;
-    line-height: 48px;  
-    background-position: 14px 14px;
+.pickercontent header .navigation-wrapper {
+    padding: 10px 25px 10px 10px;
 }
 
-.pickercontent .header input {
+.pickercontent header input {
     color: white;
     font-weight: 100;
     font-size: 32px;
@@ -52,41 +56,86 @@
 .pickercontent .new,
 .pickercontent .item {
     padding: 10px;
-    border-bottom: 1px solid rgba(0,0,0,0.5);
+    border-bottom: 1px solid #bdc3c7;
 }
 
 .pickercontent .item {
     cursor: pointer;
 }
 
-.pickercontent .item a {
-    color: white;
+
+.pickercontent .item .single {
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.pickercontent .item .single .links {
+    font-size: 15px;
+}
+
+.pickercontent .item .thumb,
+.pickercontent .item .info {
+    float: left;
+}
+
+.pickercontent .item .info {
+    font-size: 24px;
+    line-height: 27px;
+    margin-left: 10px;
+    width: 315px;
+}
+
+.pickercontent .item .info a,
+.pickercontent .item .single a {
+    color: #7f8c8d;
     text-decoration: none;
     font-weight: 100;
 }
 
 .pickercontent .tabs {
     width: 100%;
+    display: block;
+    margin-top: 50px;
+    background-color: #bdc3c7;
 }
 
 .pickercontent .tabs .tab {
     float: left;
-    width:165px;
+    width: 156px;
     font-weight: 100;
     font-size: 20px;
-    line-height: 20px;
+    line-height: 24px;
     color: white;
-    background-color: #8e44ad;
+    background-color: #bdc3c7;
     padding: 5px;
     cursor: pointer;
+    text-align: center;
 }
 
 .pickercontent .content {
     display: none;
+    overflow-y: scroll;
+    height: 100%;
+    box-sizing: border-box;
+    padding-bottom: 150px;
+}
+
+.pickercontent .content .caption {
+    font-size: 12px;
+    line-height: 16px;
+    color: #bdc3c7;
+    font-weight: 100;
+}
+
+.pickercontent .content .caption .italic {
+    font-style: italic;
+}
+
+.pickercontent .search {
+    padding: 10px;
 }
 
 .pickercontent .add {
-    background-color: #9b59b6;
     padding: 10px;
 }
 
@@ -95,6 +144,7 @@
     margin-bottom: 10px;
 }
 
+#search-term,
 #video-name,
 #video-slug,
 #video-code,
@@ -107,15 +157,15 @@
 #sound-code,
 #gallery-name,
 #gallery-slug {
-    color: white;
+    color: #666;
     font-size: 24px;
     font-weight: 100;
     line-height: 30px;
     height: 30px;
-    width: 300px;
+    width: 460px;
     border:0;
     background: none;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #bdc3c7;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -137,4 +187,20 @@
     border: 1px dashed #666;
     border-radius: 6px;
     margin-bottom: 20px;
+}
+
+#picker-bottom-bar {
+    position: fixed;
+    bottom: 0px;
+    width: 475px;
+    height: 30px;
+    padding: 10px 10px 10px 15px;
+    background: #7f8c8d;
+    z-index: 30;
+    -webkit-transition: left .5s ease-in-out,background .4s ease-in-out;
+    transition: left .5s ease-in-out,background .4s ease-in-out;
+}
+
+#picker-bottom-bar .buttons {
+    padding: 2px 0px;
 }

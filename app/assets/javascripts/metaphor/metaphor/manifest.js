@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require ckeditor-jquery
 //= require_directory .
 //= require ./pickadate/picker.js
 //= require ./pickadate/picker.date.js

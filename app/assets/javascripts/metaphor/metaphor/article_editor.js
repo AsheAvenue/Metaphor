@@ -25,7 +25,7 @@ var article_editor = (function($) {
                 if(e.action == "save") {
                     
                     //fade in the border
-                    $('.body-container').animate({"border-color": "#16a085"}, 250);
+                    $('.body-container').animate({"border-color": "#bdc3c7"}, 250);
                     
                     $.post(
                         $('#update_body').data('path'),

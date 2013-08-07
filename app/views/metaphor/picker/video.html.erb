@@ -1,19 +1,29 @@
 <div class="pickercontent">
-    <div class="header">
-        Videos
-    </div>
+    <header>
+    	<div class="top clearfix">
+            <div class="navigation-wrapper clearfix">
+                Videos
+            </div>
+    	</div>
+    </header>
 
-    <div class="tabs">
-        <div class="tab" data-content="select">
-            Select a Video
+
+    <div class="tabs clearfix">
+        <div class="tab" data-content="recent">
+            Recent Videos
         </div>
         <div class="tab" data-content="add">
             Add a Video
         </div>
     </div>
-    <div class="content select">    
+    <div class="content recent">    
         <% @videos.each do |video| %>
-            <div class="item"><%= link_to video.name, "", 'data-picker-item' => video.id %></div>
+            <div class="item clearfix">
+                <div class="single">
+                    <iframe width="475" height="357" src="//www.youtube.com/embed/<%= video.code %>" frameborder="0" allowfullscreen></iframe>
+                    <%= link_to video.name, "", 'data-picker-item' => video.id %>
+                </div>
+            </div>
         <% end %>
     </div>
     <div class="content add">
@@ -31,4 +41,10 @@
         </div>
     </div>
 
+</div>
+
+<div id="picker-bottom-bar">
+    <div class="buttons pull-right">
+        <a id="picker-cancel" href="#" class="button">Close Video Selector</a>
+    </div>  
 </div>

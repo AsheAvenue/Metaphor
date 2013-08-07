@@ -1,25 +1,41 @@
 <div class="pickercontent">
-    <div class="header">
-        Gallery
-    </div>
+    <header>
+    	<div class="top clearfix">
+            <div class="navigation-wrapper clearfix">
+                Galleries
+            </div>
+    	</div>
+    </header>
 
-    <div class="tabs">
-        <div class="tab" data-content="select">
-            Select a Gallery
+
+    <div class="tabs clearfix">
+        <div class="tab" data-content="recent">
+            Recent Galleries
+        </div>
+        <div class="tab" data-content="search">
+            Search for Gallery
         </div>
         <div class="tab" data-content="add">
             Add a Gallery
         </div>
     </div>
-    <div class="content select">    
+    <div class="content recent">    
         <% @galleries.each do |gallery| %>
-            <div class="item">
-                <%= link_to gallery.name, "", 'data-picker-item' => gallery.id %>
-                <div>
-                    <%= link_to "Edit Gallery", gallery_editor_path(gallery) %>
-                </div>
-            </div>
+            <%= render :partial => 'gallery_item', :locals => {:gallery => gallery}%>
         <% end %>
+    </div>
+    <div class="content search">
+        <div>
+            <%= text_field_tag :search, "", :placeholder => "Enter a search term", :id => 'search-term', :class => "picker-search-field", :autocomplete=>"off" %>
+        </div>
+        
+        <div class="buttons">
+            <a href="" class="button" id="picker-search" data-type="Gallery">Search</a>
+        </div>
+        
+        <div class="results"> 
+            
+        </div>
     </div>
     <div class="content add">
         <div>
@@ -34,4 +50,10 @@
         </div>
     </div>
 
+</div>
+
+<div id="picker-bottom-bar">
+    <div class="buttons pull-right">
+        <a id="picker-cancel" href="#" class="button">Close Video Selector</a>
+    </div>  
 </div>

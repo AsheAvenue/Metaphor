@@ -3,7 +3,7 @@ module Metaphor
 
     skip_load_and_authorize_resource #don't let cancan try and instantiate a non-existent "Picker" resource
   
-    layout 'metaphor/popup'
+    layout 'metaphor/picker'
 
     def article
       @articles = Article.where(true).recently_created
@@ -14,7 +14,8 @@ module Metaphor
     end
 
     def video
-      @videos = Video.all
+      @videos = Video.where(true).order('videos.updated_at desc')
+      @video = Video.new
     end
 
     def addVideo
@@ -26,7 +27,7 @@ module Metaphor
     end
 
     def image
-      @images = Image.all
+      @images = Image.where(true).order('images.updated_at desc')
       @image = Image.new
     end
 
@@ -64,7 +65,7 @@ module Metaphor
     end
   
     def gallery
-      @galleries = Gallery.all
+      @galleries = Gallery.where(true).order('galleries.updated_at desc')
       @gallery = Gallery.new
     end
 
@@ -73,6 +74,11 @@ module Metaphor
       @g.name = params[:gallery_name]
       @g.slug = params[:gallery_slug]
       @g.save!
+    end
+    
+    def searchGallery
+      search_term = params[:search_term]
+      @results = Gallery.where("name @@ :q", q: "%#{search_term}%").order('galleries.created_at desc').limit(20)
     end
   
   end
