@@ -72,6 +72,20 @@ class Article < ActiveRecord::Base
   has_paper_trail :only => [:title, :body, :summary, :slug],
                   :skip => [:last_published_revision_id, :next_published_revision_id, :publish_next_revision_at]
   
+  include PgSearch
+  pg_search_scope :search, 
+    against: [:title],
+    using: {tsearch: {dictionary: "english"}}
+
+  def self.text_search(query)
+    if query.present?
+      search(query)
+    else
+      scoped
+    end
+  end
+  
+  
   
   # convenience methods
   def author
