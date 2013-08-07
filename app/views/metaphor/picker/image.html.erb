@@ -11,26 +11,30 @@
         <div class="tab" data-content="recent">
             Recent Images
         </div>
+        <div class="tab" data-content="search">
+            Search for Image
+        </div>
         <div class="tab" data-content="add">
             Add an Image
         </div>
     </div>
     <div class="content recent">    
         <% @images.each do |image| %>
-            <div class="item clearfix">
-                <div class="thumb">
-                    <%= image_tag image.image.url(:gallerythumb), 'data-picker-item' => image.id %>
-                </div>
-                <div class="info">
-                    <div>
-                        <%= link_to (image.name || image.slug), "", 'data-picker-item' => image.id %>
-                    </div>
-                    <div class="caption">
-                        Caption: <span class="italic"><%= image.caption || "None"%></span>
-                    </div>
-                </div>
-            </div>
+            <%= render :partial => 'image_item', :locals => {:image => image} %>
         <% end %>
+    </div>
+    <div class="content search">
+        <div>
+            <%= text_field_tag :search, "", :placeholder => "Enter a search term", :id => 'search-term', :class => "picker-search-field", :autocomplete=>"off" %>
+        </div>
+        
+        <div class="buttons">
+            <a href="" class="button" id="picker-search" data-type="Image">Search</a>
+        </div>
+        
+        <div class="results"> 
+            
+        </div>
     </div>
     <div class="content add">
         <div>

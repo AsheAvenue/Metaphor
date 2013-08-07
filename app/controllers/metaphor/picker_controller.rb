@@ -25,6 +25,10 @@ module Metaphor
       @v.code = params[:video_code]
       @v.save!
     end
+    
+    def searchVideo
+      @results = Video.text_search(params[:search_term]).order('videos.created_at desc').limit(10)
+    end
 
     def image
       @images = Image.where(true).order('images.updated_at desc')
@@ -51,6 +55,10 @@ module Metaphor
       # now save
       @i.save!
     end
+    
+    def searchImage
+      @results = Image.text_search(params[:search_term]).order('images.created_at desc').limit(10)
+    end
   
     def sound
       @sounds = Sound.all
@@ -63,7 +71,11 @@ module Metaphor
       @s.code = params[:sound_code]
       @s.save!
     end
-  
+    
+    def searchSound
+      @results = Sound.text_search(params[:search_term]).order('sounds.created_at desc').limit(10)
+    end
+    
     def gallery
       @galleries = Gallery.where(true).order('galleries.updated_at desc')
       @gallery = Gallery.new
@@ -77,8 +89,7 @@ module Metaphor
     end
     
     def searchGallery
-      search_term = params[:search_term]
-      @results = Gallery.where("name @@ :q", q: "%#{search_term}%").order('galleries.created_at desc').limit(20)
+      @results = Gallery.text_search(params[:search_term]).order('galleries.created_at desc').limit(10)
     end
   
   end

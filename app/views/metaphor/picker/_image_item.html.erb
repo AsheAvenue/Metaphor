@@ -1,0 +1,13 @@
+<div class="item clearfix">
+    <div class="thumb">
+        <%= image_tag image.image.url(:gallerythumb), 'data-picker-item' => image.id %>
+    </div>
+    <div class="info">
+        <div>
+            <%= link_to (image.name || image.slug), "", 'data-picker-item' => image.id %>
+        </div>
+        <div class="caption">
+            Caption: <span class="italic"><%= image.caption || "None"%></span>
+        </div>
+    </div>
+</div>

@@ -12,19 +12,30 @@
         <div class="tab" data-content="recent">
             Recent Videos
         </div>
+        <div class="tab" data-content="search">
+            Search for Video
+        </div>
         <div class="tab" data-content="add">
             Add a Video
         </div>
     </div>
     <div class="content recent">    
         <% @videos.each do |video| %>
-            <div class="item clearfix">
-                <div class="single">
-                    <iframe width="475" height="357" src="//www.youtube.com/embed/<%= video.code %>" frameborder="0" allowfullscreen></iframe>
-                    <%= link_to video.name, "", 'data-picker-item' => video.id %>
-                </div>
-            </div>
+            <%= render :partial => 'video_item', :locals => {:video => video} %>
         <% end %>
+    </div>
+    <div class="content search">
+        <div>
+            <%= text_field_tag :search, "", :placeholder => "Enter a search term", :id => 'search-term', :class => "picker-search-field", :autocomplete=>"off" %>
+        </div>
+        
+        <div class="buttons">
+            <a href="" class="button" id="picker-search" data-type="Video">Search</a>
+        </div>
+        
+        <div class="results"> 
+            
+        </div>
     </div>
     <div class="content add">
         <div>

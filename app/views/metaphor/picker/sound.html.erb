@@ -11,19 +11,30 @@
         <div class="tab" data-content="recent">
             Recent Sounds
         </div>
+        <div class="tab" data-content="search">
+            Search for Sound
+        </div>
         <div class="tab" data-content="add">
             Add a Sound
         </div>
     </div>
     <div class="content recent">    
         <% @sounds.each do |sound| %>
-            <div class="item clearfix">
-                <div class="single">
-                    <iframe width="100%" height="100" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F<%= sound.code %>"></iframe>
-                    <%= link_to sound.name, "", 'data-picker-item' => sound.id %>
-                </div>
-            </div>
+            <%= render :partial => 'sound_item', :locals => {:sound => sound} %>
         <% end %>
+    </div>
+    <div class="content search">
+        <div>
+            <%= text_field_tag :search, "", :placeholder => "Enter a search term", :id => 'search-term', :class => "picker-search-field", :autocomplete=>"off" %>
+        </div>
+        
+        <div class="buttons">
+            <a href="" class="button" id="picker-search" data-type="Sound">Search</a>
+        </div>
+        
+        <div class="results"> 
+            
+        </div>
     </div>
     <div class="content add">
         <div>

@@ -135,6 +135,10 @@
     padding: 10px;
 }
 
+.pickercontent .search .results {
+    padding-bottom: 150px;
+}
+
 .pickercontent .add {
     padding: 10px;
 }
