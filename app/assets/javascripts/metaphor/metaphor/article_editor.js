@@ -14,7 +14,7 @@ var article_editor = (function($) {
                 convertVideoLinks: true,
                 removeEmptyTags: false,
                 linkAnchor: false,
-                //toolbarExternal: '#article-body-toolbar',
+                toolbarExternal: '#article-body-toolbar',
                 placeholder: 'Enter body text...',
                 buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', '|', 'add_image', 'add_video', 'link', '|', 'horizontalrule'],
                 formattingTags: ['blockquote', 'h3'],
@@ -32,18 +32,22 @@ var article_editor = (function($) {
             
             //catch the toolbar and make it sticky if it goes offscreen
             var catcher        = $('#article-body-toolbar-catcher'),
-                sticky         = $('#article-body-toolbar');
+                sticky         = $('#article-body-toolbar'),
+                toolbarHeight  = 50;
             $(window).scroll(function() {
-                if($(window).scrollTop() > $(sticky).offset().top) {
+                if(sticky.data('stuck') != 'true' && $(window).scrollTop() > ($(catcher).offset().top - toolbarHeight)) {
                     sticky.css({
                         position: 'fixed',
-                        top: '105px'
+                        top: toolbarHeight + 'px'
                     });
-                } else {
+                    sticky.data('stuck', 'true');
+                } 
+                if(sticky.data('stuck') == 'true' && $(window).scrollTop() < ($(catcher).offset().top - toolbarHeight)) {
                     sticky.css({
                         position: 'relative',
                         top:      'auto'
                     });
+                    sticky.data('stuck', 'false');
                 }
             });
             

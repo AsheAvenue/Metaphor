@@ -13,6 +13,23 @@ module Metaphor
       @results = Article.text_search(params[:search_term]).order('articles.updated_at desc').limit(10)
     end
 
+    def gallery
+      puts "HERE!!!!!"
+      @galleries = Gallery.where(true).order('galleries.updated_at desc')
+      @gallery = Gallery.new
+    end
+
+    def addGallery
+      @g = Gallery.new
+      @g.name = params[:gallery_name]
+      @g.slug = params[:gallery_slug]
+      @g.save!
+    end
+    
+    def searchGallery
+      @results = Gallery.text_search(params[:search_term]).order('galleries.created_at desc').limit(10)
+    end
+    
     def component
       @components = Component.all
     end
@@ -78,22 +95,6 @@ module Metaphor
     
     def searchSound
       @results = Sound.text_search(params[:search_term]).order('sounds.created_at desc').limit(10)
-    end
-    
-    def gallery
-      @galleries = Gallery.where(true).order('galleries.updated_at desc')
-      @gallery = Gallery.new
-    end
-
-    def addGallery
-      @g = Gallery.new
-      @g.name = params[:gallery_name]
-      @g.slug = params[:gallery_slug]
-      @g.save!
-    end
-    
-    def searchGallery
-      @results = Gallery.text_search(params[:search_term]).order('galleries.created_at desc').limit(10)
     end
   
   end

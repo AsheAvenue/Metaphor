@@ -27,14 +27,10 @@
         <div>
             <%= text_field_tag :search, "", :placeholder => "Enter a search term", :id => 'search-term', :class => "picker-search-field", :autocomplete=>"off" %>
         </div>
-        
         <div class="buttons">
             <a href="" class="button" id="picker-search" data-type="Image">Search</a>
         </div>
-        
-        <div class="results"> 
-            
-        </div>
+        <div class="results"></div>
     </div>
     <div class="content add">
         <div>
@@ -54,14 +50,13 @@
             <%= hidden_field_tag :image, "", :id => "image-image-hidden-field" %>
             <%= hidden_field_tag :image_original_filename, "", :id => "image-image-original-filename-hidden-field" %>
             
-            <img id="image-display">
+            <img id="image-display" />
             <div id="image-drop">Drag image here</div>
         </div>
         <div class="buttons">
             <a href="" class="button" id="picker-add-image">Add Image</a>
         </div>
     </div>
-
 </div>
 
 <div id="picker-bottom-bar">

@@ -145,7 +145,6 @@ var articles = (function($) {
                     }
                 },
                 beforeTagAdded: function(event,ui){
-                    console.log(ui.tag);
                     $(ui.tag).children(":first").html(ui.tagLabel.toLowerCase());
                 }
             });

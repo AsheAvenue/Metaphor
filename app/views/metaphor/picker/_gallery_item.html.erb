@@ -1,7 +1,7 @@
 <div class="item clearfix">
     <div class="single">
         <%= link_to gallery.name, "", 'data-picker-item' => gallery.id %>
-        <div class="images">
+        <div class="thumbs">
             <% gallery.images.each do |image| %>
                 <%= image_tag image.image.url(:thumb), 'data-picker-item' => gallery.id %>
             <% end %>
