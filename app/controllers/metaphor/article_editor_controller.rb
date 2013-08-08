@@ -23,6 +23,7 @@ module Metaphor
       entity_contents.each do |w|
         @widgets["#{w.position}"] = w
       end
+ 
     end
   
     def select_video
