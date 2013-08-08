@@ -1,0 +1,45 @@
+<div class="pickercontent">
+    <header>
+    	<div class="top clearfix">
+            <div class="navigation-wrapper clearfix">
+                Events
+            </div>
+    	</div>
+    </header>
+        
+    <div class="tabs clearfix">
+        <div class="tab" data-content="recent">
+            Recent Events
+        </div>
+        <div class="tab" data-content="search">
+            Search for Event
+        </div>
+    </div>
+    
+    <div class="content recent">
+        <% @events.each do |event| %>
+             <%= render :partial => 'event_item', :locals => {:event => event} %>
+        <% end %>
+    </div>
+    
+    <div class="content search">
+        <div>
+            <%= text_field_tag :search, "", :placeholder => "Enter a search term", :id => 'search-term', :class => "picker-search-field", :autocomplete=>"off" %>
+        </div>
+        
+        <div class="buttons">
+            <a href="" class="button" id="picker-search" data-type="Event">Search</a>
+        </div>
+        
+        <div class="results"> 
+            
+        </div>
+    </div>
+    
+</div>
+
+<div id="picker-bottom-bar">
+    <div class="buttons">
+        <a id="picker-cancel" href="#" class="button">Close Event Selector</a>
+    </div>  
+</div>
