@@ -8,37 +8,45 @@ var article_editor = (function($) {
             
             self = this;
             
-            $('#article-preview').click(function(){
-                if($('#article-preview').html() == "Preview") {
-                    $('#article_editor .selected-buttons').hide('fast');
-                    picker.close();
-                    $('#article-preview').html('Done Previewing');
-                } else {
-                    $('#article_editor .selected-buttons').show('fast');
-                    $('#article-preview').html('Preview');
+            //fire up redactor
+            $('.redactor').redactor({ 
+                convertImageLinks: true,
+                convertVideoLinks: true,
+                removeEmptyTags: false,
+                linkAnchor: false,
+                placeholder: 'Enter body text...',
+                buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', '|', 'add_image', 'add_video', 'link', '|', 'horizontalrule'],
+                formattingTags: ['p', 'blockquote', 'h3'],
+                buttonsCustom: {
+                    add_image: {
+                        title: 'Add Image', 
+                        callback: self.add_image_to_body
+                    },
+                    add_video: {
+                        title: 'Add Video', 
+                        callback: self.add_video_to_body
+                    } 
                 }
+                
             });
             
-            // Enable the contenteditable fields
-    		$("#article").contentEditable().change(function(e){
-    			//post if the content has been changed
-                if(e.action == "save") {
-                    
-                    //fade in the border
-                    $('.body-container').animate({"border-color": "#bdc3c7"}, 250);
-                    
-                    $.post(
-                        $('#update_body').data('path'),
-                        {
-                            article_id: $('#article').data('id'),
-                            body: $('.body-container').html()
-                        }, 
-                        function() {
-                            $('.body-container').animate({"border-color": "transparent"}, 250);
-                        }
-                    );
-                }
-    		});
+            //tweak redactor things we want changed 
+            $('.redactor_format_h3').html('Header');
+            
+            $('#article-save-in-editor').click(function(event){
+                event.preventDefault();
+                $.post(
+                    $('#update_body').data('path'),
+                    {
+                        body: $('.redactor').redactor('get').val()
+                    },
+                    function() {
+                        window.location.reload();
+                    }
+                );
+                
+            });
+        
         },
         
         select_video: function(video_id, position) {
@@ -116,6 +124,38 @@ var article_editor = (function($) {
                     //Rails select_video.js.erb template.
                     //
                     //Just close the picker.
+                    picker.close();
+                }
+            );
+        },
+        
+        add_image_to_body: function(obj) {
+            picker.launchPicker('image', 'article_editor#select_image_for_body', -1);
+        },
+        
+        add_video_to_body: function(obj) {
+            picker.launchPicker('video', 'article_editor#select_video_for_body', -1);
+        },
+        
+        select_image_for_body: function(obj) {
+            $.post(
+                $('#get_image_for_body').data('path'),
+                {
+                    image_id: obj
+                },
+                function() {
+                    picker.close();
+                }
+            );
+        },
+        
+        select_video_for_body: function(obj) {
+            $.post(
+                $('#get_video_for_body').data('path'),
+                {
+                    video_id: obj
+                },
+                function() {
                     picker.close();
                 }
             );

@@ -1,0 +1,1 @@
+$('#article-editor-body').execCommand('inserthtml', '<%= escape_javascript(render(:partial => "image-embed-for-body", :locals => {:image => @image})) %>', false);

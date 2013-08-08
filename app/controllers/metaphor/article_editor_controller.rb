@@ -118,11 +118,19 @@ module Metaphor
     end
   
     def update_body
-      @article = Article.find(params[:article_id])
+      @article = Article.find(params[:id])
       body = params[:body]
       @article.body = body
       @article.save!
       render :nothing => true
+    end  
+
+    def get_image_for_body
+      @image = Image.find(params[:image_id])
+    end  
+
+    def get_video_for_body
+      @video = Video.find(params[:video_id])
     end  
   
   end

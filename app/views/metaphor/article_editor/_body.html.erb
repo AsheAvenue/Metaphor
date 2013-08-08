@@ -1,5 +1,5 @@
 <div id="update_body" data-path="<%= article_editor_update_body_path(@article) %>"></div>
+<div id="get_image_for_body" data-path="<%= article_editor_get_image_for_body_path(@article) %>"></div>
+<div id="get_video_for_body" data-path="<%= article_editor_get_video_for_body_path(@article) %>"></div>
 
-<div class="body-container empty" contenteditable="true">
-    <%= raw @article.body || "Enter Body Text" %>
-</div>
+<%= text_area_tag :body, @article.body, :class => "redactor", :id => "article-editor-body"%>

@@ -23,6 +23,14 @@
     padding-bottom: 50px;
 }
 
+#article_editor .redactor_btn_add_image {
+    background-position: -200px;
+}
+
+#article_editor .redactor_btn_add_video {
+    background-position: -225px;
+}
+
 #bottom-bar {
     position: fixed;
     bottom: 0px;

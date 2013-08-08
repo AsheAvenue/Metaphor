@@ -1,11 +1,21 @@
-<div id="article" data-id="<%= @article.id %>" />
+<div id="stage">
+    <div id="article_editor">
+        <div id="article" data-id="<%= @article.id %>" />
 
-<% @template.components.order("template_components.order ASC").each_with_index do |component, index| %>
-    <div id="<%= component.slug %>_<%= index %>" class="<%= component.slug %>" data-position="<%= index %>">
-        <%= render :partial => component.slug, :locals => {:position => index} %>
+        <% @template.components.order("template_components.order ASC").each_with_index do |component, index| %>
+            <div id="<%= component.slug %>_<%= index %>" class="<%= component.slug %>" data-position="<%= index %>">
+                <%= render :partial => component.slug, :locals => {:position => index} %>
+            </div>
+        <% end %>
+
+        </div>
     </div>
-<% end %>
-
 </div>
 
-<%= javascript_include_tag "metaphor/metaphor/paneslide/jquery.paneslide" %>
+<div id="bottom-bar">
+    <div class="buttons pull-right">
+        <a id="article-save-in-editor" href="" class="button yellow">Save Article</a>
+        <a id="article-preview" href="#" class="button">Preview</a>
+        <a id="article-back" href="<%= edit_article_path(@article) %>" class="button">Done Editing Article</a>
+    </div>  
+</div>

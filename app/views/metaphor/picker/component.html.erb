@@ -1,4 +1,4 @@
-<div class="pickercontent">
+<div class="pickercontent components">
     <header>
     	<div class="top clearfix">
             <div class="navigation-wrapper clearfix">
@@ -6,16 +6,20 @@
             </div>
     	</div>
     </header>
-
+    
     <div class="content recent">
         <% @components.each do |component| %>
-            <div class="item"><%= link_to component.name, "", 'data-picker-item' => component.id %></div>
+            <div class="item">
+                <div class="single">
+                    <%= link_to component.name, "", 'data-picker-item' => component.id %>
+                </div>
+            </div>
         <% end %>
     </div>
 </div>
 
 <div id="picker-bottom-bar">
-    <div class="buttons pull-right">
+    <div class="buttons">
         <a id="picker-cancel" href="#" class="button">Close Component Selector</a>
     </div>  
 </div>

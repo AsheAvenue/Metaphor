@@ -20,18 +20,8 @@
 		</div>
 	</header>
 
-    <div id="stage">
-        <div id="article_editor">
-            <%= yield %>
-        </div>
-    </div>
+    <%= yield %>
     
-    <div id="bottom-bar">
-        <div class="buttons pull-right">
-            <a id="article-preview" href="#" class="button">Preview</a>
-            <a id="article-back" href="<%= edit_article_path(@article) %>" class="button">Back to Article</a>
-        </div>  
-    </div>
-    
+    <%= javascript_include_tag "metaphor/metaphor/paneslide/jquery.paneslide" %>
 </body>
 </html>

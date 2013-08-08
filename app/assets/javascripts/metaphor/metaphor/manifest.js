@@ -17,3 +17,4 @@
 //= require ./pickadate/picker.date.js
 //= require ./pickadate/picker.time.js
 //= require ./pickadate/legacy.js
+//= require redactor-rails

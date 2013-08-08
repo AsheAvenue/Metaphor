@@ -4,83 +4,19 @@ var picker = (function($) {
         picker_callback_scope,
         picker_callback_function,
         picker_position,
-        picker_item;
+        picker_item,
+        self;
 
     return {
         
         init: function() {
 
+            self = this;
+            
             //show the picker
             $('[data-picker]').on('click', function(event){
-                
                 if(!$('#paneslide').is(':visible')) {
-                    //get the type of picker we want to display and the callback
-                    picker_type = $(this).data('picker');
-                
-                    //disassemble the callback
-                    var picker_callback = $(this).data('picker-callback').split("#");
-                    picker_callback_scope = picker_callback[0];
-                    picker_callback_function = picker_callback[1];
-                
-                    //get the position
-                    picker_position = $(this).data('picker-position');
-                
-                    //show the picker
-                    $.paneslide({ 
-                        href: '<%= Settings.site.root_url %>/picker/blank',
-                        maincontainer: '#stage, #bottom-bar .buttons, .site .navigation-wrapper',
-                        callback: function(){
-                        
-                            $('#paneslide').load('<%= Settings.site.root_url %>/picker/' + picker_type, function(){
-                            
-                                //display the "content select" view
-                                $('.pickercontent .content.recent').show();
-                
-                                //enable any slug fields within the picker
-                                $('.pickercontent .picker-new-name').sluggo({
-                                    target:             '.picker-new-slug',
-                                    makeTargetReadonly: true
-                                });
-                
-                                //draggable section for image
-                                filepicker.setKey('<%= Settings.filepicker.api_key %>');
-                                filepicker.makeDropPane($('#image-drop')[0], {
-                                    multiple: false,
-                                    path: 'images/',
-                                    dragEnter: function() {
-                                        $("#image-drop").html("Drop to upload").css({
-                                            'backgroundColor': "#E0E0E0",
-                                            'border': "1px solid #000"
-                                        });
-                                    },
-                                    dragLeave: function() {
-                                        $("#image-drop").html("Drop files here").css({
-                                            'backgroundColor': "#F6F6F6",
-                                            'border': "1px dashed #666"
-                                        });
-                                    },
-                                    onSuccess: function(InkBlobs) {
-                                        $("#image-drop").text("Converting...");
-                                        $('#image-image-hidden-field').val(InkBlobs[0].url);
-                                        $('#image-image-original-filename-hidden-field').val(InkBlobs[0].filename);
-                        
-                                        //show the image, but convert it first
-                                        filepicker.convert(InkBlobs[0], {width: 320, height: 180, fit: 'crop'},
-                                            function(converted_InkBlob){
-                                                $('#image-display').attr('src', converted_InkBlob.url);
-                                                $("#image-drop").text("Drop another image to replace");
-                                            }
-                                        );
-                                    },
-                                    onProgress: function(percentage) {
-                                        $("#image-drop").text("Uploading ("+percentage+"%)");
-                                    }
-                                });
-                            
-                            });
-                        
-                        }
-                    });
+                    picker.launchPicker($(this).data('picker'), $(this).data('picker-callback'), $(this).data('picker-position'));
                 }
             });
     
@@ -154,7 +90,76 @@ var picker = (function($) {
             });
         },
         
+        launchPicker: function(type, callback, position){
+   
+            //disassemble the callback
+            var picker_callback = callback.split("#");
+            picker_callback_scope = picker_callback[0];
+            picker_callback_function = picker_callback[1];
+            picker_position = position;
+            picker_type = type;
+        
+            //show the picker
+            $.paneslide({ 
+                href: '<%= Settings.site.root_url %>/picker/blank',
+                maincontainer: '#stage, #bottom-bar .buttons, .site .navigation-wrapper',
+                callback: function(){
+                
+                    $('#paneslide').load('<%= Settings.site.root_url %>/picker/' + picker_type, function(){
+                    
+                        //display the "content select" view
+                        $('.pickercontent .content.recent').show();
+        
+                        //enable any slug fields within the picker
+                        $('.pickercontent .picker-new-name').sluggo({
+                            target:             '.picker-new-slug',
+                            makeTargetReadonly: true
+                        });
+        
+                        //draggable section for image
+                        if(picker_type == "image") {
+                            filepicker.setKey('<%= Settings.filepicker.api_key %>');
+                            filepicker.makeDropPane($('#image-drop')[0], {
+                                multiple: false,
+                                path: 'images/',
+                                dragEnter: function() {
+                                    $("#image-drop").html("Drop to upload").css({
+                                        'backgroundColor': "#E0E0E0",
+                                        'border': "1px solid #000"
+                                    });
+                                },
+                                dragLeave: function() {
+                                    $("#image-drop").html("Drop files here").css({
+                                        'backgroundColor': "#F6F6F6",
+                                        'border': "1px dashed #666"
+                                    });
+                                },
+                                onSuccess: function(InkBlobs) {
+                                    $("#image-drop").text("Converting...");
+                                    $('#image-image-hidden-field').val(InkBlobs[0].url);
+                                    $('#image-image-original-filename-hidden-field').val(InkBlobs[0].filename);
+                
+                                    //show the image, but convert it first
+                                    filepicker.convert(InkBlobs[0], {width: 320, height: 180, fit: 'crop'},
+                                        function(converted_InkBlob){
+                                            $('#image-display').attr('src', converted_InkBlob.url);
+                                            $("#image-drop").text("Drop another image to replace");
+                                        }
+                                    );
+                                },
+                                onProgress: function(percentage) {
+                                    $("#image-drop").text("Uploading ("+percentage+"%)");
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        },
+        
         select: function(picker_item) {
+            console.log(picker_callback_scope);
+            console.log(picker_callback_function);
             //call back to the method passed in as a callback
             window[picker_callback_scope][picker_callback_function](picker_item, picker_position);
         }, 
