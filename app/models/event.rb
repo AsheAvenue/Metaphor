@@ -7,6 +7,9 @@ class Event < ActiveRecord::Base
     :time, 
     :body
   
+  scope :recently_created, order("events.created_at desc")
+  scope :recently_updated, order("events.updated_at desc")
+    
   scope :sort_by, lambda { |order|
     if order == "newest"
       order("events.created_at DESC")
@@ -14,7 +17,7 @@ class Event < ActiveRecord::Base
       order("events.created_at ASC")
     end
   }
-  scope :with_event_type, lambda { |event_type|
+  scope :with_type, lambda { |event_type|
     where(:event_type => event_type) if event_type != ''
   }
   scope :flagged_as, lambda { |flag| 

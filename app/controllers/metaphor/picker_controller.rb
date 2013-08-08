@@ -13,6 +13,14 @@ module Metaphor
       @results = Article.text_search(params[:search_term]).order('articles.updated_at desc').limit(10)
     end
 
+    def event
+      @events = Event.where(true).recently_updated
+    end
+    
+    def searchEvent
+      @results = Event.text_search(params[:search_term]).order('events.updated_at desc').limit(10)
+    end
+
     def gallery
       puts "HERE!!!!!"
       @galleries = Gallery.where(true).order('galleries.updated_at desc')
