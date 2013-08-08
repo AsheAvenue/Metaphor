@@ -11,30 +11,17 @@ class Collection < ActiveRecord::Base
       # combine pinned articles with all articles... uniquify
       generated = []
       
-      if c.content_type == "article" 
-        Article
-          .with_type(c.article_type)
-          .with_category(c.category)
-          .with_series(c.series)
-          .flagged_as(c.flag)
-          .sort_by(c.order)
-          .with_limit(c.limit)
-          .published
-          .all.each do |a|
-          generated << a.current
+      c.content_type.capitalize.constantize
+        .with_type(c.article_type)
+        .with_category(c.category)
+        .with_series(c.series)
+        .flagged_as(c.flag)
+        .sort_by(c.order)
+        .with_limit(c.limit)
+        .published
+        .all.each do |a|
+          generated << a
         end
-      elsif c.content_type == "event"
-        Event
-          .with_type(c.article_type)
-          .flagged_as(c.flag)
-          .sort_by(c.order)
-          .with_limit(c.limit)
-          .published
-          .all.each do |e|
-          generated << e
-        end
-      end
-      
       pinned = []
       c.articles.each do |a|
         pinned << a.current
