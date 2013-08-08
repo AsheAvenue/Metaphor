@@ -34,6 +34,10 @@ module Metaphor
 
     attr_accessor :default_image_selected, :default_image_original_filename
     
+    def current
+      self
+    end
+    
     def is(flag)
       #checks to see if a flag is true based on the flag sent in
       self.flags.each do |f|

@@ -25,6 +25,10 @@ module Metaphor
     end
   
     attr_accessor :default_image_selected, :default_image_original_filename
+    
+    def current
+      self
+    end
 
   end
 end

@@ -20,13 +20,9 @@ class Collection < ActiveRecord::Base
         .with_limit(c.limit)
         .published
         .all.each do |a|
-          generated << a
+          generated << a.current
         end
-      pinned = []
-      c.articles.each do |a|
-        pinned << a.current
-      end
-      (pinned + generated).uniq
+      generated.uniq
     else
       # return nothing if the collection doesn't exist
       []
