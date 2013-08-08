@@ -4,15 +4,15 @@ class Image < ActiveRecord::Base
   attr_accessor :image_original_filename
   
   has_attached_file :image,
-      :storage => :s3,
-      :bucket => 'metaphor-images',
-      :path => "image/:id/:style.:extension",
-      :s3_credentials => {
-        :access_key_id => 'AKIAJU2Z5ERW6USCRFNQ',
-        :secret_access_key => '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'
-      },
-      :styles => Settings.components.image.image.sizes.to_hash,
-      :convert_options => Settings.components.image.image.convert_options.to_hash
+    :storage => :s3,
+    :bucket => Settings.filepicker.s3.bucket,
+    :path => Settings.filepicker.s3.path,
+    :s3_credentials => {
+      :access_key_id => Settings.filepicker.s3.access_key_id,
+      :secret_access_key => Settings.filepicker.s3.secret_access_key
+    },
+    :styles => Settings.components.image.image.sizes.to_hash,
+    :convert_options => Settings.components.image.image.convert_options.to_hash
       
 
   include PgSearch
