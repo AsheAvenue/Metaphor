@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
   
-  include Metaphor::Base
+  include Metaphor::EntityBase
   
   attr_accessible :summary, 
     :body, 

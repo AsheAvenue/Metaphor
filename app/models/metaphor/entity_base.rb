@@ -1,5 +1,5 @@
 module Metaphor
-  module Base 
+  module EntityBase 
     
     def self.included(base)
       base.attr_accessible :slug, 

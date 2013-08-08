@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   
-  include Metaphor::Base
+  include Metaphor::EntityBase
   
   attr_accessible :date, 
     :event_type, 
