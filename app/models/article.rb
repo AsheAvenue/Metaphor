@@ -40,7 +40,7 @@ class Article < ActiveRecord::Base
       joins(:current_version).order("versions.created_at ASC")
     end
   }
-  scope :with_article_type, lambda { |template|
+  scope :with_type, lambda { |template|
     where(:template => template) if template != "all_types"
   }
   scope :with_category, lambda { |category|
