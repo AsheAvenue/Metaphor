@@ -16,7 +16,7 @@ var article_editor = (function($) {
                 linkAnchor: false,
                 toolbarExternal: '#article-body-toolbar',
                 placeholder: 'Enter body text...',
-                buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', '|', 'add_image', 'add_video', 'link', '|', 'horizontalrule'],
+                buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', '|', 'add_image', 'add_video', 'add_sound', 'link', '|', 'horizontalrule'],
                 formattingTags: ['blockquote', 'h3'],
                 buttonsCustom: {
                     add_image: {
@@ -26,6 +26,10 @@ var article_editor = (function($) {
                     add_video: {
                         title: 'Add Video', 
                         callback: self.add_video_to_body
+                    },
+                    add_sound: {
+                        title: 'Add Sound', 
+                        callback: self.add_sound_to_body
                     } 
                 }
             });
@@ -158,6 +162,10 @@ var article_editor = (function($) {
             picker.launchPicker('video', 'article_editor#select_video_for_body', -1);
         },
         
+        add_sound_to_body: function(obj) {
+            picker.launchPicker('sound', 'article_editor#select_sound_for_body', -1);
+        },
+        
         select_image_for_body: function(obj) {
             $.post(
                 $('#get_image_for_body').data('path'),
@@ -175,6 +183,18 @@ var article_editor = (function($) {
                 $('#get_video_for_body').data('path'),
                 {
                     video_id: obj
+                },
+                function() {
+                    picker.close();
+                }
+            );
+        },
+        
+        select_sound_for_body: function(obj) {
+            $.post(
+                $('#get_sound_for_body').data('path'),
+                {
+                    sound_id: obj
                 },
                 function() {
                     picker.close();

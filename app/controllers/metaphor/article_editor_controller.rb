@@ -131,6 +131,10 @@ module Metaphor
 
     def get_video_for_body
       @video = Video.find(params[:video_id])
+    end 
+
+    def get_sound_for_body
+      @sound = Sound.find(params[:sound_id])
     end  
   
   end
