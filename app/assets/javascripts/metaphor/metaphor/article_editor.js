@@ -17,7 +17,7 @@ var article_editor = (function($) {
                 //toolbarExternal: '#article-body-toolbar',
                 placeholder: 'Enter body text...',
                 buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', '|', 'add_image', 'add_video', 'link', '|', 'horizontalrule'],
-                formattingTags: ['p', 'blockquote', 'h3'],
+                formattingTags: ['blockquote', 'h3'],
                 buttonsCustom: {
                     add_image: {
                         title: 'Add Image', 
