@@ -59,15 +59,15 @@ class Article < ActiveRecord::Base
   }
   
   has_attached_file :default_image,
-      :storage => :s3,
-      :bucket => Settings.filepicker.s3.bucket,
-      :path => Settings.filepicker.s3.path,
-      :s3_credentials => {
-        :access_key_id => Settings.filepicker.s3.access_key_id,
-        :secret_access_key => Settings.filepicker.s3.secret_access_key
-      },
-      :styles => Settings.articles.image.sizes.to_hash,
-      :convert_options => Settings.articles.image.convert_options.to_hash
+    :storage => :s3,
+    :bucket => Settings.filepicker.s3.bucket,
+    :path => Settings.filepicker.s3.path,
+    :s3_credentials => {
+      :access_key_id => Settings.filepicker.s3.access_key_id,
+      :secret_access_key => Settings.filepicker.s3.secret_access_key
+    },
+    :styles => Settings.articles.image.sizes.to_hash,
+    :convert_options => Settings.articles.image.convert_options.to_hash
        
   has_paper_trail :only => [:title, :body, :summary, :slug],
                   :skip => [:last_published_revision_id, :next_published_revision_id, :publish_next_revision_at]
