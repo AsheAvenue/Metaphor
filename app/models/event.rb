@@ -17,7 +17,7 @@ class Event < ActiveRecord::Base
       order("events.created_at ASC")
     end
   }
-  scope :with_event_type, lambda { |event_type|
+  scope :with_type, lambda { |event_type|
     where(:event_type => event_type) if event_type != ''
   }
   scope :flagged_as, lambda { |flag| 
