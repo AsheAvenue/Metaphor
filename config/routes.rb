@@ -30,6 +30,7 @@ Metaphor::Engine.routes.draw do
   match 'articles/:id/editor/update_body' => 'article_editor#update_body', :as => 'article_editor_update_body'
   match 'articles/:id/editor/get_image_for_body' => 'article_editor#get_image_for_body', :as => 'article_editor_get_image_for_body'
   match 'articles/:id/editor/get_video_for_body' => 'article_editor#get_video_for_body', :as => 'article_editor_get_video_for_body'
+  match 'articles/:id/editor/get_sound_for_body' => 'article_editor#get_sound_for_body', :as => 'article_editor_get_sound_for_body'
   match 'articles/taglist/:term' => 'articles#taglist', :as => 'article_tag_list'
   match 'articles/related_entity_list/:related_entity/:term' => 'articles#related_entity_list'
   
