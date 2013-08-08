@@ -22,7 +22,11 @@ class Collection < ActiveRecord::Base
         .all.each do |a|
           generated << a.current
         end
-      generated.uniq
+      pinned = []
+      c.articles.each do |a|
+        pinned << a.current
+      end
+      (pinned + generated).uniq
     else
       # return nothing if the collection doesn't exist
       []
