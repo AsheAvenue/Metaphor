@@ -1,13 +1,25 @@
-#article_editor .gallery {
-    padding: 5px;
-}
+#article_editor .gallery {}
 
 #article_editor .gallery .gallery-container {
-    border: 1px solid white;
-    min-height: 387px;
-    background-color: #bdc3c7;
-    vertical-align: middle;
+    margin-left: -14px;
+    width: 663px;
+    position: relative;
+}
+
+#article_editor .gallery .gallery-container img.first {
+    width: 646px;
+    height: 368px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#article_editor .gallery .gallery-container img {
+    display: block;
     cursor: pointer;
+    width: 151px;
+    height: 100px;
+    float: left;
+    margin: 14px 0px 10px 14px;
 }
 
 #article_editor .gallery .gallery-container .images {
@@ -26,10 +38,12 @@
     font-size: 50px;
     line-height: 50px;
     font-weight: 200;
-    width: 50%;
     text-align: center;
-    margin: 165px auto;
+    margin-left: 14px;
+    padding: 165px 50px;
     color: white;
+    cursor: pointer;
+    background-color: #bdc3c7;
 }
 
 #article_editor .gallery .gallery-container .selected-buttons {
@@ -39,6 +53,9 @@
     font-size: 18px;
     line-height: 18px;
     font-weight: 100;
+    background-color: #bdc3c7;
+    margin-left: 14px;
+    cursor: pointer;
 }
 
 #article_editor .gallery .gallery-container .selected-buttons a, 

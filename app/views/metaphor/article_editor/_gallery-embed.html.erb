@@ -1,6 +1,10 @@
-<div class="images">
-    <% @gallery.entity_contents.each do |cw| %><%= image_tag cw.content.image.url(:mediumthumb) %><% end %>
-</div>
+<% @gallery.entity_contents.each_with_index do |cw, index| %>
+    <% if index == 0 %>
+        <%= image_tag cw.content.image.url(:galleryheader), :class => "first" %>
+    <% elsif index < 5 %>
+        <%= image_tag cw.content.image.url(:gallerythumb)%>
+    <% end %>
+<% end %>
 <div class="selected-buttons clearfix">
     <div class="pull-left">
         <%= link_to "Edit this gallery", gallery_editor_path(@gallery) %>
