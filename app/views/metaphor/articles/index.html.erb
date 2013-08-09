@@ -8,15 +8,37 @@
             <%= link_to "New #{Settings.articles.name} »", new_article_url %>
         </div>
     </div>
+
+    <div id="Filters">
+        <div class="criteria">
+            Type:
+    		<ul>
+                <li class="active" data-filter="all" data-dimension="template">All</li>
+                <% @templates.each do |template| %>
+        			<li data-filter="<%= template.slug %>" data-dimension="template"><%= template.name %></li>
+                <% end %>
+    		</ul>    
+        </div>
     
-    <div class="criteria">
-        Status:
-		<ul>
-			<li class="filter" data-filter="all">All</li>
-			<li class="filter" data-filter="published">Published</li>
-			<li class="filter" data-filter="scheduled">Scheduled</li>
-			<li class="filter" data-filter="unscheduled">Unscheduled</li>
-		</ul>    
+        <div class="criteria">
+            Flag:
+    		<ul>
+                <li class="active" data-filter="all" data-dimension="flag">All</li>
+                <% Flag.all.each do |flag| %>
+        			<li data-filter="<%= flag.slug %>" data-dimension="flag"><%= flag.name %></li>
+                <% end %>
+    		</ul>    
+        </div>
+    
+        <div class="criteria">
+            Status:
+    		<ul>
+                <li class="active" data-filter="all" data-dimension="status">All</li>
+    			<li data-filter="published" data-dimension="status">Published</li>
+    			<li data-filter="scheduled" data-dimension="status">Scheduled</li>
+    			<li data-filter="unscheduled" data-dimension="status">Unscheduled</li>
+    		</ul>    
+        </div>
     </div>
     
     <div class="criteria">
@@ -32,7 +54,7 @@
             Title
         </div>
         <div class="onefifth">
-            <%= Settings.users.name %>
+            Type
         </div>
         <div class="onefifth">
             Created at
@@ -44,12 +66,12 @@
 
     <ul id="items" class="items">
         <% @articles.each do |article| %>
-            <li class="item mix <%= article.status %> clearfix" data-status="<%= article.status %>" data-created="<%= article.created_at.to_time.to_i %>">
+            <li class="item mix <%= article.status %> <%= article.template %> <% article.flags.each do |flag|%><%= flag.slug %> <% end %>clearfix" data-created="<%= article.created_at.to_time.to_i %>">
                 <div class="twofifths">
                     <%= link_to article.title, edit_article_path(article) %>
                 </div>
                 <div class="onefifth">
-                    <%= article.author_display_name || "&nbsp;" %>
+                    <%= article.template.capitalize %>
                 </div>
                 <div class="onefifth">
                     <%= article.created_at.strftime("%b, %d %y - %I:%M %p") %>

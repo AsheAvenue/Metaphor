@@ -7,6 +7,7 @@ module Metaphor
     
     def index
       @articles = get_current_articles
+      @templates = Template.all
     end
     
     def show
