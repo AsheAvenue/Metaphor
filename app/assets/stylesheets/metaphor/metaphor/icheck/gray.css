@@ -27,7 +27,7 @@
         margin: -5px 0 0 0;
         padding: 0;
         overflow: hidden;
-        background: url(line.png) no-repeat;
+        background: url(/images/line.png) no-repeat;
         border: none;
         display: none;
     }
@@ -70,7 +70,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_line-gray .icheck_line-icon,
     .iradio_line-gray .icheck_line-icon {
-        background-image: url(line@2x.png);
+        background-image: url(/images/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
