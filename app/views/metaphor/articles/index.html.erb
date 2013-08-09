@@ -3,86 +3,101 @@
 <div id="list">
     
     <div class="header">
-        <%= Settings.articles.plural %>
+        <%= Settings.articles.name.pluralize %>
         <div class="header-link pull-right">
             <%= link_to "New #{Settings.articles.name} »", new_article_url %>
         </div>
     </div>
 
-    <div id="Filters">
-        <div class="criteria">
-            Type:
-    		<ul>
-                <li class="active" data-filter="all" data-dimension="template">All</li>
-                <% @templates.each do |template| %>
-        			<li data-filter="<%= template.slug %>" data-dimension="template"><%= template.name %></li>
-                <% end %>
-    		</ul>    
+    <div class="search clearfix">
+        <div class="name">
+            Search <%= Settings.articles.name.pluralize %>:
         </div>
-    
-        <div class="criteria">
-            Flag:
-    		<ul>
-                <li class="active" data-filter="all" data-dimension="flag">All</li>
-                <% Flag.all.each do |flag| %>
-        			<li data-filter="<%= flag.slug %>" data-dimension="flag"><%= flag.name %></li>
-                <% end %>
-    		</ul>    
+        <div class="contents">
+            <input type="text" id="search-term" class="article-search-term" placeholder="Enter search term" />
         </div>
-    
-        <div class="criteria">
-            Status:
-    		<ul>
-                <li class="active" data-filter="all" data-dimension="status">All</li>
-    			<li data-filter="published" data-dimension="status">Published</li>
-    			<li data-filter="scheduled" data-dimension="status">Scheduled</li>
-    			<li data-filter="unscheduled" data-dimension="status">Unscheduled</li>
-    		</ul>    
-        </div>
+        <div class="spinner"></div>
     </div>
     
-    <div class="criteria">
-        Order:
-		<ul>
-            <li class="sort active" data-sort="data-created" data-order="asc">Newer</li>
-            <li class="sort" data-sort="data-created" data-order="desc">Older</li>
-		</ul>    
+    <div class="criteria-set">    
+        <div id="Filters">
+            <div class="criteria clearfix">
+                <div class="name">
+                    Type:
+                </div>
+                <div class="contents">
+            		<ul>
+                        <li class="active" data-filter="all" data-dimension="template">All</li>
+                        <% @templates.each do |template| %>
+                			<li data-filter="<%= template.slug %>" data-dimension="template"><%= template.name %></li>
+                        <% end %>
+            		</ul>
+                </div> 
+            </div>
+    
+            <div class="criteria clearfix">
+                <div class="name">
+                    Flag:
+                </div>
+                <div class="contents">
+            		<ul>
+                        <li class="active" data-filter="all" data-dimension="flag">All</li>
+                        <% Flag.all.each do |flag| %>
+                			<li data-filter="<%= flag.slug %>" data-dimension="flag"><%= flag.name %></li>
+                        <% end %>
+            		</ul>
+                </div>     
+            </div>
+    
+            <div class="criteria clearfix">
+                <div class="name">
+                    Status:
+                </div>
+                <div class="contents">
+            		<ul>
+                        <li class="active" data-filter="all" data-dimension="status">All</li>
+            			<li data-filter="published" data-dimension="status">Published</li>
+            			<li data-filter="scheduled" data-dimension="status">Scheduled</li>
+            			<li data-filter="unscheduled" data-dimension="status">Unscheduled</li>
+            		</ul> 
+                </div>    
+            </div>
+        </div>
+        <div class="criteria clearfix">
+            <div class="name">
+                Order:
+            </div>
+            <div class="contents">
+        		<ul>
+                    <li class="sort active" data-sort="data-created" data-order="asc">Newer</li>
+                    <li class="sort" data-sort="data-created" data-order="desc">Older</li>
+        		</ul>  
+            </div>   
+        </div>
     </div>
     
     <div id="fields" class="fields clearfix">
         <div class="twofifths">
             Title
         </div>
-        <div class="onefifth">
+        <div class="onetenth">
             Type
         </div>
         <div class="onefifth">
-            Created at
+            Flag(s)
+        </div>
+        <div class="onetenth">
+            Status
         </div>
         <div class="onefifth">
-            Status
+            Date Created
         </div>
     </div>
 
     <ul id="items" class="items">
-        <% @articles.each do |article| %>
-            <li class="item mix <%= article.status %> <%= article.template %> <% article.flags.each do |flag|%><%= flag.slug %> <% end %>clearfix" data-created="<%= article.created_at.to_time.to_i %>">
-                <div class="twofifths">
-                    <%= link_to article.title, edit_article_path(article) %>
-                </div>
-                <div class="onefifth">
-                    <%= article.template.capitalize %>
-                </div>
-                <div class="onefifth">
-                    <%= article.created_at.strftime("%b, %d %y - %I:%M %p") %>
-                </div>
-                <div class="onefifth <%= article.status %>">
-                    <%= article.status.capitalize %>
-                </div>
-            </li>
-        <% end %>
+        <%= render :partial => 'list' %>
         <div class="fail_element">
-            :( Sorry, no articles meet the selected criteria.
+            :( Sorry, no <%= Settings.articles.name.pluralize %> meet the selected criteria.
         </div>
     </ul>
     

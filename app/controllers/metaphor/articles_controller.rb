@@ -6,8 +6,22 @@ module Metaphor
     layout 'metaphor/metaphor'
     
     def index
-      @articles = get_current_articles
+      all_articles = Article.where(true).recently_created.limit(100)
+      @articles = []
+      all_articles.each do |article|
+        @articles << article.current
+      end
+      
       @templates = Template.all
+    end
+    
+    def search 
+      all_articles = Article.text_search(params[:search_term]).limit(100)
+      @articles = []
+      all_articles.each do |article|
+        puts article.title
+        @articles << article.current
+      end
     end
     
     def show

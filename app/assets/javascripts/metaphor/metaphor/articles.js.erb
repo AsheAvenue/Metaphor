@@ -1,8 +1,73 @@
 var articles = (function($) {
     
+    var self, $filters, dimensions;
+    
     return {
+        
         init: function() {
 
+            self = this;
+
+            /************ Article Index ************/
+            
+            $('.article-search-term').on('focus', function(){
+                $('#list .criteria-set, .fields, #items').fadeTo(250, 0.15);
+            });
+            
+            $('.article-search-term').on('blur', function(){
+                $('#list .criteria-set, .fields, #items').fadeTo(250, 1.0);
+                $("#list .search .spinner").spin(false);
+            });
+            
+            $(document).on("keypress", ".article-search-term", function(e) {
+                 if (e.which == 13) {
+                     //get the search term
+                     var search_term = $(this).val();
+                     
+                     //show the spinner
+                     $("#list .search .spinner").spin("small");   
+                     
+                     //kick off the search
+                     self.search(search_term);
+                 }
+            });
+            
+            $filters = $('#Filters').find('li');
+            dimensions = {
+				template: 'all',
+				flag: 'all',
+                status: 'all'
+			};
+
+			// Bind checkbox click handlers:
+
+			$filters.on('click',function(){
+				var $t = $(this),
+					dimension = $t.attr('data-dimension'),
+					filter = $t.attr('data-filter'),
+					filterString = dimensions[dimension];
+		
+				if(filter == 'all'){
+					$t.addClass('active').siblings().removeClass('active');
+					filterString = 'all';	
+				} else {
+					if(!$t.hasClass('active')){
+                        $t.siblings('[data-filter]').removeClass('active');
+    					$t.addClass('active');
+						filterString = filter;
+					} else {
+                        $t.siblings('[data-filter="all"]').addClass('active');
+    					filterString = 'all';
+                        $t.removeClass('active');
+						var re = new RegExp('(\\s|^)'+filter);
+						filterString = filterString.replace(re,'');
+					};
+				};
+	
+				dimensions[dimension] = filterString;
+				$('#items').mixitup('filter',[dimensions.template, dimensions.flag, dimensions.status])			
+			});
+            
             /************ New/Edit Article ************/
     
             //autosize the article textareas
@@ -341,6 +406,24 @@ var articles = (function($) {
                 $('#right-bar .show-publish').show();
             });
         },
+        
+        search: function(term) {
+            //post to the backend
+            $.post(
+                '<%= Settings.site.root_url %>/articles/search',
+                {
+                    search_term: term
+                },
+                function(){
+                    //response will be handled by search.js.erb, but we 
+                    //should adjust the opacity and hide the spinner
+                    $('#list .criteria-set, .fields, #items').fadeTo(250, 1.0);
+                    $("#list .search .spinner").spin(false);
+                    $('#items').mixitup('remix','all');
+                    $('[data-sort]').removeClass('active');
+                }
+            );
+        }
         
     };
 })(jQuery);

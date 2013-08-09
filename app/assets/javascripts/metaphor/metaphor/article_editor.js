@@ -39,19 +39,21 @@ var article_editor = (function($) {
                 sticky         = $('#article-body-toolbar'),
                 toolbarHeight  = 50;
             $(window).scroll(function() {
-                if(sticky.data('stuck') != 'true' && $(window).scrollTop() > ($(catcher).offset().top - toolbarHeight)) {
-                    sticky.css({
-                        position: 'fixed',
-                        top: toolbarHeight + 'px'
-                    });
-                    sticky.data('stuck', 'true');
-                } 
-                if(sticky.data('stuck') == 'true' && $(window).scrollTop() < ($(catcher).offset().top - toolbarHeight)) {
-                    sticky.css({
-                        position: 'relative',
-                        top:      'auto'
-                    });
-                    sticky.data('stuck', 'false');
+                if($(sticky).is(':visible')) {
+                    if(sticky.data('stuck') != 'true' && $(window).scrollTop() > ($(catcher).offset().top - toolbarHeight)) {
+                        sticky.css({
+                            position: 'fixed',
+                            top: toolbarHeight + 'px'
+                        });
+                        sticky.data('stuck', 'true');
+                    } 
+                    if(sticky.data('stuck') == 'true' && $(window).scrollTop() < ($(catcher).offset().top - toolbarHeight)) {
+                        sticky.css({
+                            position: 'relative',
+                            top:      'auto'
+                        });
+                        sticky.data('stuck', 'false');
+                    }
                 }
             });
             
