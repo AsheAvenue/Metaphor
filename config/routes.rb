@@ -1,5 +1,6 @@
 Metaphor::Engine.routes.draw do
 
+  mount RedactorRails::Engine => '/redactor_rails'
   root :to => 'articles#index', :as => 'metaphor'
   
   resources :articles
