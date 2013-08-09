@@ -65,7 +65,7 @@ var article_editor = (function($) {
                 $.post(
                     $('#update_body').data('path'),
                     {
-                        body: $('.redactor').redactor('get').val()
+                        body: $('.redactor').redactor('get')
                     },
                     function() {
                         window.location.reload();
