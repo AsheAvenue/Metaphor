@@ -31,6 +31,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'acts-as-taggable-on'
   s.add_dependency 'whenever'
   s.add_dependency 'pg_search'
+  s.add_dependency 'carrierwave' #needed for redactor
+  s.add_dependency 'mini_magick' #needed for redactor  
   s.add_dependency 'redactor-rails'
   
   s.add_development_dependency 'better_errors'
