@@ -65,6 +65,12 @@ html, body {
   transition: background-color 0.15s ease-in-out;
 }
 
+.tip {
+    font-size: 12px;
+    color: #95a5a6;
+    width: 140px;
+}
+
 .button.green {
     background: #16a085;
 }
@@ -89,9 +95,10 @@ html, body {
 }
 
 .checkbox {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 0px;
     min-height: 0px;
+    width: 50%;
+    float: left;
 }
 
 /* ------ HEADER ------ */
@@ -231,6 +238,12 @@ header .navigation li a {
     line-height: 0;
     height: auto;
     margin: 4px 0 0;
+}
+#article-default-image .article-select-image.large {
+    width: 457px;
+    height: 310px;
+    font-size: 41px;
+    margin-top: -10px;
 }
 
 #article-default-image .display {

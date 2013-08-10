@@ -5,6 +5,7 @@ class Category < ActiveRecord::Base
   
   validates_presence_of :slug, :name
   
+  scope :alphabetical, order("categories.name asc")
   
   # GETTING FROM THE FRONTEND
   # Pass in a category slug, get a list of articles

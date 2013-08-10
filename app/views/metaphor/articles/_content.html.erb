@@ -39,6 +39,9 @@
     <div class="form-section clearfix">
         <div class="form-section-left">
             Template
+            <div class="tip">
+                The primary content type and style of the <%= Settings.articles.name.downcase %>
+            </div>
         </div>
         <div class="form-section-right">
             <div class="form-line">
@@ -64,7 +67,10 @@
     <% if @article.id != nil %>
         <div class="form-section clearfix">
             <div class="form-section-left">
-                Image
+                List Image
+                <div class="tip">
+                    The image displayed in <%= Settings.articles.name.downcase %> lists
+                </div>
             </div>
             <div class="form-section-right">
                 <div class="form-line">
@@ -72,7 +78,7 @@
                         
                         <div class="display">
                             <% if !@article.default_image.blank? %>
-                                <%= image_tag @article.default_image.url(:medium) %>
+                                <%= image_tag @article.default_image.url(:homepage_list) %>
                             <% end %>
                         </div>
                 
@@ -82,12 +88,12 @@
                         
                         <input type="filepicker" 
                                 name="temp_default_image" 
-                                class="button" 
+                                class="button article-select-image <% if @article.default_image.blank? %>large<% end %>" 
                                 data-fp-apikey="<%= Settings.filepicker.api_key %>" 
-                                data-fp-button-text="Select <% if !@article.default_image.blank? %>a different <% end %>image" 
+                                data-fp-button-text="Select a<% if !@article.default_image.blank? %> different <% end %> list image" 
                                 data-fp-extensions=".png,.jpg,.jpeg,.gif" 
                                 data-fp-multiple="false" 
-                                onchange="$('#article-default-image-hidden-field').val(event.fpfile.url); $('#article-default-image-selected-field').val('true'); $('#article-default-image-original-filename-hidden-field').val(event.fpfile.filename); $('#article-default-image .display').html('<img src=\'' + event.fpfile.url + '/convert?w=320&h=180\' />');" 
+                                onchange="$('#article-default-image-hidden-field').val(event.fpfile.url); $('.article-select-image').removeClass('large'); $('#article-default-image-selected-field').val('true'); $('#article-default-image-original-filename-hidden-field').val(event.fpfile.filename); $('#article-default-image .display').html('<img src=\'' + event.fpfile.url + '/convert?w=457&h=310&fit=crop\' />');" 
                         />
                         
                         <% if !@article.default_image.blank? %>
@@ -101,40 +107,47 @@
             </div>
         </div>
         
-        <div class="form-section clearfix">
-            <div class="form-section-left">
-                Author
-            </div>
-            <div class="form-section-right">
-                <div class="form-line">
-                    <div id="article-author-display"><%= @article.author_display_name %></div>
-                    <div id="article-author-container">
-                        <%= collection_select(:article, :user_ids, User.all, :id, :display_name, {}, {:multiple => false, :name => 'article[user_ids][]', :class => 'select-field'})%>
+        <% if Settings.articles.author.enabled %>
+            <div class="form-section clearfix">
+                <div class="form-section-left">
+                    Author
+                </div>
+                <div class="form-section-right">
+                    <div class="form-line">
+                        <div id="article-author-display"><%= @article.author_display_name %></div>
+                        <div id="article-author-container">
+                            <%= collection_select(:article, :user_ids, User.all, :id, :display_name, {}, {:multiple => false, :name => 'article[user_ids][]', :class => 'select-field'})%>
+                        </div>
+                        <div id="article-author-reset"><a href="#" id="article-author-change" class="right-bar-link">Change</a></div>
+                        <div id="article-author-other">
+                            <a href="#" id="article-author-use-other" class="right-bar-link">Manually enter Author name</a>
+                            <%= f.text_field :author_other_name, :id => 'article-author-other-name', :placeholder => "Author name", :class => "input-xlarge", 'data-original-author-other-name' => @article.author_other_name %>
+                        </div>
+                        <div id="article-author-other-cancel"><a href="#" id="article-author-use-existing" class="right-bar-link">Use existing Author</a></div>
                     </div>
-                    <div id="article-author-reset"><a href="#" id="article-author-change" class="right-bar-link">Change</a></div>
-                    <div id="article-author-other">
-                        <a href="#" id="article-author-use-other" class="right-bar-link">Manually enter Author name</a>
-                        <%= f.text_field :author_other_name, :id => 'article-author-other-name', :placeholder => "Author name", :class => "input-xlarge", 'data-original-author-other-name' => @article.author_other_name %>
-                    </div>
-                    <div id="article-author-other-cancel"><a href="#" id="article-author-use-existing" class="right-bar-link">Use existing Author</a></div>
                 </div>
             </div>
-        </div>
+        <% end %>
     
-        <div class="form-section clearfix">
-            <div class="form-section-left">
-                Summary
-            </div>
-            <div class="form-section-right">
-                <div class="form-line">
-                    <%= f.text_area :summary, :id => 'article-summary', :autocomplete=>"off", :placeholder => 'Summary' %>
+        <% if Settings.articles.summary.enabled %>
+            <div class="form-section clearfix">
+                <div class="form-section-left">
+                    Summary
+                </div>
+                <div class="form-section-right">
+                    <div class="form-line">
+                        <%= f.text_area :summary, :id => 'article-summary', :autocomplete=>"off", :placeholder => 'Summary' %>
+                    </div>
                 </div>
             </div>
-        </div>
+        <% end %>
     
         <div class="form-section clearfix">
             <div class="form-section-left">
                 <%= Settings.categories.name.pluralize %>
+                <div class="tip">
+                    Click to select each of this <%= Settings.articles.name.downcase %>'s <%= Settings.categories.name.pluralize.downcase %> 
+                </div>
             </div>
             <div class="form-section-right">
                 <div class="form-line">
@@ -157,6 +170,9 @@
             <div class="form-section clearfix">
                 <div class="form-section-left">
                     <%= Settings.series.name.pluralize %>
+                    <div class="tip">
+                        Click to select each of this <%= Settings.articles.name.downcase %>'s <%= Settings.series.name.pluralize.downcase %> 
+                    </div>
                 </div>
                 <div class="form-section-right">
                     <div class="form-line">
@@ -175,6 +191,9 @@
         <div class="form-section clearfix">
             <div class="form-section-left">
                 <%= Settings.flags.name.pluralize %>
+                <div class="tip">
+                    Click to select each of this <%= Settings.articles.name.downcase %>'s relevant <%= Settings.flags.name.pluralize.downcase %> 
+                </div>
             </div>
             <div class="form-section-right">
                 <div class="form-line">
@@ -204,6 +223,9 @@
         <div class="form-section clearfix">
             <div class="form-section-left">
                 <%= value %>
+                <div class="tip">
+                    Enter names of <%= value.downcase %>s associated with this <%= Settings.articles.name.downcase %>
+                </div>
             </div>
             <div class="form-section-right">
                 <div class="form-line <%= key %>_list">
