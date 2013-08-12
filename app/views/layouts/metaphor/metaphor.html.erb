@@ -41,6 +41,11 @@
                             <% end %>
                         </ul>
                     </div>
+                    <div class="navigation">
+                        <ul>
+                            <li><%= link_to "Visit #{Settings.site.visit_name}", "/", :target => '_blank' %></li>
+                        </ul>
+                    </div>
                 </div>
                 
                 <div class="clearfix">
@@ -48,6 +53,10 @@
                         <div class="navigation">
                             <ul>
                                 <li>Superadmin:</li>
+                                <li><%= link_to Settings.categories.name.pluralize, metaphor.categories_path %></li>
+                                <% if Settings.series.enabled %>
+                                    <li><%= link_to Settings.series.name.pluralize, metaphor.series_index_path %></li>
+                                <% end %>
                                 <li><%= link_to Settings.collections.name.pluralize, metaphor.collections_path %></li>
                                 <li><%= link_to Settings.templates.name.pluralize, metaphor.templates_path %></li>
                                 <li><%= link_to Settings.components.name.pluralize, metaphor.components_path %></li>
@@ -58,16 +67,6 @@
                             </ul>
                         </div>
                     <% end %>
-                    <div class="navigation">
-                        <ul>
-                            <li>Admin:</li>
-                            <li><%= link_to Settings.categories.name.pluralize, metaphor.categories_path %></li>
-                        
-                            <% if Settings.series.enabled %>
-                                <li><%= link_to Settings.series.name.pluralize, metaphor.series_index_path %></li>
-                            <% end %>
-                        </ul>
-                    </div>
                 </div>
             </div>
 		</div>
