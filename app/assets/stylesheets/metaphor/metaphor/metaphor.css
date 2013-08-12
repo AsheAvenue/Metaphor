@@ -748,6 +748,9 @@ header .navigation li a {
     margin-top: 10px;
 }
 
+#right-bar .items .publish a {
+    font-size: 16px;
+}
 #right-bar .items .publish a.now {
     background-color: #2ecc71;
 }
