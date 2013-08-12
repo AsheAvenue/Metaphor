@@ -345,6 +345,15 @@ var articles = (function($) {
             
             /************ Publish Article ************/
             
+            //hover for publish
+            $("#right-bar .item").on('mouseenter mouseleave', function(event){
+                if(event.type == "mouseenter") {
+                    $(this).find('.view-revision, .unpublish, .show-publish').addClass('active');
+                } else {
+                    $(this).find('.view-revision, .unpublish, .show-publish').removeClass('active');
+                }
+            });
+            
             $('#right-bar .show-publish').click(function(e){
               e.preventDefault();
               

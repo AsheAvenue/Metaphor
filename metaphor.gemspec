@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'carrierwave' #needed for redactor
   s.add_dependency 'mini_magick' #needed for redactor  
   s.add_dependency 'redactor-rails'
+  s.add_dependency 'font-awesome-rails'
   
   s.add_development_dependency 'better_errors'
   s.add_development_dependency 'binding_of_caller'

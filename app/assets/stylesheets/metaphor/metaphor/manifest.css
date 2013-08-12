@@ -15,4 +15,5 @@
  *= require ./pickadate/default.date
  *= require ./pickadate/default.time
  *= require redactor-rails
+ *= require font-awesome
  */

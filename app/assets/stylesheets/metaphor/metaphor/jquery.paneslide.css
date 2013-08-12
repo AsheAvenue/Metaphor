@@ -8,11 +8,11 @@
     z-index: 999999;
     
     /* Specify the width of your paneslide here */
-    width: 500px;
+    width: 400px;
     padding: 0px;
     background: white;
 }
 
 .site #paneslide {
-    width: 350px;
+    width: 320px;
 }

@@ -53,11 +53,7 @@
                 end
                 %>
             
-                <div class="item 
-                    <% if current_revision %>
-                        current_revision
-                    <% end %>
-                ">
+                <div class="item <% if current_revision %>current_revision<% end %>">
                     <div class="item-title">
                         <% if current_revision %>
                             Viewing
@@ -86,7 +82,7 @@
                     </div>
                     <div>
                         <% if !current_revision %>
-                            <a href="<%= article_revision_path(@article, version.id) %>" class="right-bar-link">View <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> &nbsp;&nbsp;
+                            <a href="<%= article_revision_path(@article, version.id) %>" class="right-bar-link view-revision">View <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> &nbsp;&nbsp;
                         <% end %>
                         <% if version.id != @article.last_published_revision_id and version.id != @article.next_published_revision_id %>
                             <a href="#" class="right-bar-link show-publish">Publish <% if version.index == 0 %>Original<% else %>this Revision<% end %></a> 

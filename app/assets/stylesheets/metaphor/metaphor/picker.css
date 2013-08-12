@@ -87,7 +87,7 @@
     font-size: 24px;
     line-height: 27px;
     margin-left: 10px;
-    width: 315px;
+    width: 215px;
 }
 
 .pickercontent .item .info a,
@@ -106,10 +106,10 @@
 
 .pickercontent .tabs .tab {
     float: left;
-    width: 156px;
+    width: 120px;
     font-weight: 100;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 16px;
+    line-height: 18px;
     color: white;
     background-color: #bdc3c7;
     padding: 5px;
@@ -177,7 +177,7 @@
     font-weight: 100;
     line-height: 30px;
     height: 30px;
-    width: 460px;
+    width: 360px;
     border:0;
     background: none;
     border-bottom: 1px solid #bdc3c7;
@@ -189,6 +189,10 @@
     border-radius:0;
     margin-bottom:0;
     outline: none;
+}
+
+.site #search-term {
+    width: 280px;
 }
 
 #image-display {
@@ -207,7 +211,7 @@
 #picker-bottom-bar {
     position: fixed;
     bottom: 0px;
-    width: 475px;
+    width: 375px;
     height: 30px;
     padding: 10px 10px 10px 15px;
     background: #7f8c8d;

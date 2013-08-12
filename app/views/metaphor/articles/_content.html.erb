@@ -93,9 +93,8 @@
                                 data-fp-button-text="Select a<% if !@article.default_image.blank? %> different <% end %> list image" 
                                 data-fp-extensions=".png,.jpg,.jpeg,.gif" 
                                 data-fp-multiple="false" 
-                                onchange="$('#article-default-image-hidden-field').val(event.fpfile.url); $('#article-default-image-selected-field').val('true'); $('#article-default-image-original-filename-hidden-field').val(event.fpfile.filename); $('#article-default-image .display').html('<img src=\'' + event.fpfile.url + '/convert?w=457&h=310&fit=crop\' />');" 
+                                onchange="$('#article-default-image-hidden-field').val(event.fpfile.url); $('#article-default-image-selected-field').val('true'); $('#article-default-image-original-filename-hidden-field').val(event.fpfile.filename); $('#article-default-image .display').html('<img src=\'' + event.fpfile.url + '/convert?w=457&h=310&fit=crop\' />'); " 
                         />
-                        
                     </div>
                 </div>
             </div>

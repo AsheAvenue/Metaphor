@@ -585,7 +585,7 @@ header .navigation li a {
     padding: 97px 30px 70px;
 }
 #content.has-right-bar {
-    margin-right: 350px;
+    margin-right: 320px;
 }
 #content .header {
     font-size: 24px;
@@ -626,7 +626,7 @@ header .navigation li a {
 
 #right-bar {
     position: fixed;
-    width: 350px;
+    width: 320px;
     border-left: 1px solid #fff;
     height: 100%;
     top: 87px;
@@ -678,7 +678,8 @@ header .navigation li a {
     color: white;
 }
 
-#right-bar .items .item .item-title .published {
+#right-bar .items .item .item-title .published,
+#right-bar .items .item .icons i.published {
     color: #2ecc71;
 }
 
@@ -694,6 +695,26 @@ header .navigation li a {
 
 #right-bar .items .item .item-sub-title .bold {
     font-weight: bold;
+}
+
+#right-bar .items .item.current_revision .icons {
+    color: white;
+}
+
+#right-bar .items .item .show-publish.active {
+    color: white;
+    background-color: #2ecc71;
+    padding: 3px;
+}
+#right-bar .items .item .unpublish.active {
+    color: white;
+    background-color: #e74c3c;
+    padding: 3px;
+}
+#right-bar .items .item .view-revision.active {
+    color: black;
+    background-color: white;
+    padding: 3px;
 }
 
 #right-bar .items .publish {
