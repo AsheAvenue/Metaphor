@@ -15,7 +15,13 @@
 <div id="bottom-bar">
     <div class="buttons pull-right">
         <a id="article-save-in-editor" href="" class="button yellow">Save Article</a>
+        <a id="article-save-confirm" href="" class="button yellow">Save Article</a>
+        <a id="article-dont-save" href="#" class="button">Don't Save</a>
+        <a id="article-cancel" href="#" class="button">Cancel</a>
         <a id="article-preview" href="#" class="button">Preview</a>
         <a id="article-back" href="<%= edit_article_path(@article) %>" class="button">Done Editing Article</a>
     </div>  
+    <div class="article-needs-save-message pull-right">
+        Would you like to save your changes before exiting the Content Editor?
+    </div>
 </div>

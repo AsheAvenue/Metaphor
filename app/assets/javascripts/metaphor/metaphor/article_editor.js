@@ -88,7 +88,22 @@ var article_editor = (function($) {
                
                if(body_has_changed) {
                    //alert the user that they should save
-                   $('.modal-overlay').show();
+                   $('#article-save-in-editor, #article-preview, #article-back').hide();
+                   $('#article-save-confirm, #article-cancel, #article-dont-save, #bottom-bar .article-needs-save-message').show();
+                   
+                   $('#article-save-confirm').click(function(){
+                       self.save_body(false);
+                       window.location.href = $('#article-back').attr('href');
+                   });
+                   
+                   $('#article-dont-save').click(function(){
+                       window.location.href = $('#article-back').attr('href');
+                   });
+                   
+                   $('#article-cancel').click(function(){
+                       $('#article-save-confirm, #article-cancel, #article-dont-save, #bottom-bar .article-needs-save-message').hide();
+                       $('#article-save-in-editor, #article-preview, #article-back').show();
+                   });
                } else {
                    window.location.href = $(this).attr('href');
                }

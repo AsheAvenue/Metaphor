@@ -91,6 +91,20 @@
     padding: 2px 25px;
 }
 
+#bottom-bar .article-needs-save-message {
+    display: none;
+    color: white;
+    font-size: 21px;
+    font-weight: 100;
+    margin-top: 5px;
+}
+
+#article-save-confirm,
+#article-dont-save,
+#article-cancel {
+    display: none;
+}
+
 @media
 only screen and (-webkit-min-device-pixel-ratio: 2),
 only screen and (   min--moz-device-pixel-ratio: 2),

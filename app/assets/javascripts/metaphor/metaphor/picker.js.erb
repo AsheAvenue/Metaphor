@@ -1,6 +1,7 @@
 var picker = (function($) {
 
     var picker_type,
+        previous_picker_type,
         picker_callback_scope,
         picker_callback_function,
         picker_position,
@@ -98,16 +99,24 @@ var picker = (function($) {
             picker_type = type;
         
             if($('#paneslide').is(':visible')) {
+                
+                //close the picker
                 picker.close();
-                setTimeout(function(){
-                    picker.launchPicker(type, callback, position);
-                }, 500);
+                
+                //open a different picker type
+                if(picker_type != previous_picker_type) {
+                    setTimeout(function(){
+                        picker.launchPicker(type, callback, position);
+                    }, 500);
+                }
             } else {
                 //show the picker
                 $.paneslide({ 
                     href: '<%= Settings.site.root_url %>/picker/blank',
                     maincontainer: '#stage, #bottom-bar .buttons, .site .navigation-wrapper',
                     callback: function(){
+                        
+                        previous_picker_type = picker_type;
                         
                         $('#paneslide').load('<%= Settings.site.root_url %>/picker/' + picker_type + "?" + new Date().getTime(), function(){
                         
