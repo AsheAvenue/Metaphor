@@ -1,19 +1,22 @@
 <div class="contents">
     <% @articles.each do |article| %>
-        <li class="item mix <%= article.status %> <%= article.template %> <% article.flags.each do |flag|%><%= flag.slug %> <% end %>clearfix" data-created="<%= article.created_at.to_time.to_i %>">
+        <li class="item mix <%= article.status %> <%= article.template %> <% article.categories.each do |category|%><%= category.slug %> <% end %> <% article.flags.each do |flag|%><%= flag.slug %> <% end %>clearfix" data-created="<%= article.created_at.to_time.to_i %>">
             <div class="twofifths">
                 <%= link_to article.title, edit_article_path(article) %>
             </div>
             <div class="onetenth">
                 <%= article.template.capitalize %>
             </div>
-            <div class="onefifth">
-                <%= article.flags.map { |flag| flag.name }.join(", ") %>
+            <div class="onetenth">
+                <%= raw article.categories.map { |category| category.name }.join(", ") %>
+            </div>
+            <div class="onetenth">
+                <%= raw article.flags.map { |flag| flag.name }.join(", ") %>
             </div>
             <div class="onetenth">
                 <span class="<%= article.status %>"><%= article.status.capitalize %></span>
             </div>
-            <div class="onefifth">
+            <div class="onefifth last">
                 <%= article.created_at.strftime("%b, %d %y - %I:%M %p") %>
             </div>
         </li>

@@ -37,7 +37,7 @@
         <div class="quarter">
             Type
         </div>
-        <div class="quarter">
+        <div class="quarter last">
             Date/Time
         </div>
     </div>
@@ -54,7 +54,7 @@
                 <div class="quarter">
                     <%= link_to event.event_type.capitalize, edit_event_path(event) %>
                 </div>
-                <div class="quarter">
+                <div class="quarter last">
                     <%= link_to event.date.strftime('%b %d, %Y'), edit_event_path(event)%>
                     
                     <% if !event.time.empty? %>
@@ -64,7 +64,7 @@
             </li>
         <% end %>
         <div class="fail_element">
-            :( Sorry, no events meet the selected criteria.
+            No <%= Settings.events.name.pluralize %> meet the selected criteria.
         </div>
     </ul>
     

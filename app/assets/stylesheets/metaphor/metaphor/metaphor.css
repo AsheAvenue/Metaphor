@@ -121,6 +121,10 @@ header .site-name {
     font-size: 60px;
 }
 
+header .site-name a {
+    color: #16a085;
+}
+
 header .navigation-wrapper {
     padding: 10px 25px;
 }
@@ -290,7 +294,7 @@ header .navigation li a {
 }
 
 #list .search {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 #list .search .name,
@@ -311,6 +315,16 @@ header .navigation li a {
     width: 300px !important;
 }
 
+#list .search .contents .reset-filters {
+    display: none;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 100;
+    margin-top: 12px;
+    color: #95a5a6;
+    cursor: pointer;
+}
+
 #list .search .spinner {
     margin: 9px;
     color: #16a085;
@@ -322,14 +336,14 @@ header .navigation li a {
 }
 
 #list .criteria-set {
-    margin-top: 10px;
+    margin: 10px 0px 20px 30px;
 }
 
 #list .criteria {
     color: #95a5a6;
     font-size: 18px;
     font-weight: 100;
-    margin: 0 0 15px;
+    margin: 0 0 15px 0px;
 }
 
 #list .criteria .name,
@@ -338,8 +352,14 @@ header .navigation li a {
 }
 
 #list .criteria .name {
-    width: 60px;
+    width: 80px;
     padding-top: 2px;
+}
+
+#list .criteria .name.large {
+    font-size: 24px;
+    line-height: 30px;
+    color: #555;
 }
 
 #list .criteria ul {
@@ -373,21 +393,20 @@ header .navigation li a {
 }
 
 #list .item {
-    margin: 10px 10px0;
-    padding:0 5px0 5px;
+    margin: 5px 5px 3px 0px;
+    padding:0 5px 0 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
 }
 
 #list .fields,
 #list .item,
 #list .item a,
 #list .item a:hover {
-    font-size: 21px;
-    line-height: 25px;
+    font-size: 18px;
+    line-height: 18px;
     font-weight: 100;
-}
-#list .item {
-    margin-bottom: 3px;
-    width: 100%;
 }
 #list .item.mix {
     display: none;
@@ -397,25 +416,37 @@ header .navigation li a {
     float: left;
     width: 50%;
     box-sizing: border-box;
-    padding: 5px;
+    padding: 1px;
+}
+#list .half.last {
+    width: 48%;
 }
 #list .quarter {
     float: left;
     width: 25%;
     box-sizing: border-box;
-    padding: 5px;
+    padding: 1px;
+}
+#list .quarter.last {
+    width: 23%;
 }
 #list .twofifths {
     float: left;
     width: 40%;
     box-sizing: border-box;
-    padding: 5px;
+    padding: 1px;
+}
+#list .twofifths.last {
+    width: 38%;
 }
 #list .onefifth {
     float: left;
     width: 20%;
     box-sizing: border-box;
-    padding: 5px;
+    padding: 1px;
+}
+#list .onefifth.last {
+    width: 17%;
 }
 #list .onetenth {
     float: left;
@@ -423,12 +454,15 @@ header .navigation li a {
     box-sizing: border-box;
     padding: 5px;
 }
+#list .onetenth.last {
+    width: 8%;
+}
 
 #list .item .published {
     color: white;
     background-color: #2ecc71;
     box-sizing: border-box;
-    padding: 5px;
+    padding: 1px;
 }
 
 #list .item .scheduled {

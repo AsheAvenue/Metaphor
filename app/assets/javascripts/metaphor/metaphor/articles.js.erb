@@ -35,6 +35,7 @@ var articles = (function($) {
             $filters = $('#Filters').find('li');
             dimensions = {
 				template: 'all',
+				category: 'all',
 				flag: 'all',
                 status: 'all'
 			};
@@ -65,8 +66,36 @@ var articles = (function($) {
 				};
 	
 				dimensions[dimension] = filterString;
-				$('#items').mixitup('filter',[dimensions.template, dimensions.flag, dimensions.status])			
+				$('#items').mixitup('filter', [dimensions.template, dimensions.category, dimensions.flag, dimensions.status]);
+                
+                //show or hide the reset button
+                if(dimensions.template == 'all' && dimensions.category == 'all' && dimensions.flag == 'all' && dimensions.status == 'all') {
+                    $('.reset-filters').hide('fast');
+                } else {
+                    $('.reset-filters').show('fast');
+                }
 			});
+            
+            $('.reset-filters').click(function(){
+                
+                //reset the dimensions
+                dimensions = {
+    				template: 'all',
+    				category: 'all',
+    				flag: 'all',
+                    status: 'all'
+    			};
+                
+                //remix it up
+                $('#items').mixitup('filter', [dimensions.template, dimensions.category, dimensions.flag, dimensions.status]);
+                
+                //set filter tags back to all
+                $filters.removeClass('active');
+                $filters.siblings('[data-filter="all"]').addClass('active');
+                
+                //hide the reset filters button
+                $(this).hide('fast');
+            });
             
             /************ New/Edit Article ************/
     

@@ -16,7 +16,14 @@ module Metaphor
     end
     
     def search 
-      all_articles = Article.text_search(params[:search_term]).limit(100)
+      search_term = params[:search_term]
+      
+      if search_term.empty?
+        all_articles = Article.where(true).recently_created.limit(100)
+      else
+        all_articles = Article.text_search(params[:search_term]).limit(100)
+      end
+      
       @articles = []
       all_articles.each do |article|
         puts article.title

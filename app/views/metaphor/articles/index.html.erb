@@ -19,6 +19,15 @@
         <div class="spinner"></div>
     </div>
     
+    <div class="search clearfix">
+        <div class="name">
+            Filters: 
+        </div>
+        <div class="contents">
+            <div class="reset-filters">Reset Filters</div>
+        </div>
+    </div>
+    
     <div class="criteria-set">    
         <div id="Filters">
             <div class="criteria clearfix">
@@ -33,6 +42,20 @@
                         <% end %>
             		</ul>
                 </div> 
+            </div>
+    
+            <div class="criteria clearfix">
+                <div class="name">
+                    Category:
+                </div>
+                <div class="contents">
+            		<ul>
+                        <li class="active" data-filter="all" data-dimension="category">All</li>
+                        <% Category.all.each do |category| %>
+                			<li data-filter="<%= category.slug %>" data-dimension="category"><%= category.name %></li>
+                        <% end %>
+            		</ul>
+                </div>     
             </div>
     
             <div class="criteria clearfix">
@@ -65,12 +88,12 @@
         </div>
         <div class="criteria clearfix">
             <div class="name">
-                Order:
+                Sort by:
             </div>
             <div class="contents">
         		<ul>
-                    <li class="sort active" data-sort="data-created" data-order="asc">Newer</li>
-                    <li class="sort" data-sort="data-created" data-order="desc">Older</li>
+                    <li class="sort active" data-sort="data-created" data-order="asc">Newest</li>
+                    <li class="sort" data-sort="data-created" data-order="desc">Oldest</li>
         		</ul>  
             </div>   
         </div>
@@ -83,13 +106,16 @@
         <div class="onetenth">
             Type
         </div>
-        <div class="onefifth">
-            Flag(s)
+        <div class="onetenth">
+            Category
+        </div>
+        <div class="onetenth">
+            Flag
         </div>
         <div class="onetenth">
             Status
         </div>
-        <div class="onefifth">
+        <div class="onefifth last">
             Date Created
         </div>
     </div>
@@ -97,7 +123,7 @@
     <ul id="items" class="items">
         <%= render :partial => 'list' %>
         <div class="fail_element">
-            :( Sorry, no <%= Settings.articles.name.pluralize %> meet the selected criteria.
+            No <%= Settings.articles.name.pluralize %> meet the selected criteria.
         </div>
     </ul>
     

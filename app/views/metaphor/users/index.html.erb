@@ -17,7 +17,7 @@
         <div class="quarter">
             Email
         </div>       
-        <div class="quarter">
+        <div class="quarter last">
             Role
         </div>
     </div>
@@ -34,13 +34,13 @@
                 <div class="quarter">
                     <%= link_to user.email, edit_user_path(user) %>
                 </div>                
-                <div class="quarter">
+                <div class="quarter last">
                     <%= link_to user.role.name, edit_role_path(user.role.id) %>
                 </div>
             </li>
         <% end %>
         <div class="fail_element">
-            :( Sorry, no users meet the selected criteria.
+            No users meet the selected criteria.
         </div>
     </ul>
     

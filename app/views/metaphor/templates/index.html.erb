@@ -17,7 +17,7 @@
         <div class="quarter">
             Image
         </div>
-        <div class="quarter">
+        <div class="quarter last">
             Components
         </div>
     </div>
@@ -38,7 +38,7 @@
                         &nbsp;
                     <% end %>
                 </div>
-                <div class="quarter">
+                <div class="quarter last">
                     <%= template.components.order("template_components.order ASC").map { |component| component.name }.join(", ") %>
                 </div>
             </li>
