@@ -1,12 +1,14 @@
 var article_editor = (function($) {
     
     var self;
+    var body_has_changed;
     
     return {
                 
         init: function() {
             
             self = this;
+            body_has_changed = false;
             
             $('#article-preview').click(function(){
                 if($('#article-preview').html() == "Preview") {
@@ -44,7 +46,10 @@ var article_editor = (function($) {
                         title: 'Add Sound', 
                         callback: self.add_sound_to_body
                     } 
-                }
+                },
+                changeCallback: function() {
+            		body_has_changed = true;
+            	}
             });
             
             //catch the toolbar and make it sticky if it goes offscreen
@@ -75,16 +80,18 @@ var article_editor = (function($) {
             
             $('#article-save-in-editor').click(function(event){
                 event.preventDefault();
-                $.post(
-                    $('#update_body').data('path'),
-                    {
-                        body: $('.redactor').redactor('get')
-                    },
-                    function() {
-                        window.location.reload();
-                    }
-                );
-                
+                self.save_body(true);
+            });
+            
+            $('#article-back').click(function(event){
+               event.preventDefault(); 
+               
+               if(body_has_changed) {
+                   //alert the user that they should save
+                   $('.modal-overlay').show();
+               } else {
+                   window.location.href = $(this).attr('href');
+               }
             });
         
         },
@@ -213,6 +220,20 @@ var article_editor = (function($) {
                 },
                 function() {
                     picker.close();
+                }
+            );
+        },
+        
+        save_body: function(refresh){
+            $.post(
+                $('#update_body').data('path'),
+                {
+                    body: $('.redactor').redactor('get')
+                },
+                function() {
+                    if(refresh) {
+                        window.location.reload();
+                    }
                 }
             );
         }

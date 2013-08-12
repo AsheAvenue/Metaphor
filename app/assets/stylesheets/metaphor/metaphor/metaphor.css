@@ -253,11 +253,6 @@ header .navigation li a {
     margin-bottom: 10px;
 }
 
-/* popped up when viewing default image sizes */
-.modal-body {
-    background-color: #333;
-    width: auto;
-}
 
 /* ------ LIST ------- */
 
