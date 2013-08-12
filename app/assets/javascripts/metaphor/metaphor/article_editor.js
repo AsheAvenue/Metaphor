@@ -8,6 +8,19 @@ var article_editor = (function($) {
             
             self = this;
             
+            $('#article-preview').click(function(){
+                if($('#article-preview').html() == "Preview") {
+                    $('#article_editor .selected-buttons').hide('fast');
+                    $('#article-body-toolbar, #article_editor .redactor_box').addClass('preview');
+                    picker.close();
+                    $('#article-preview').html('Done Previewing');
+                } else {
+                    $('#article_editor .selected-buttons').show('fast');
+                     $('#article-body-toolbar, #article_editor .redactor_box').removeClass('preview');
+                    $('#article-preview').html('Preview');
+                }
+            });
+            
             //fire up redactor
             $('.redactor').redactor({ 
                 convertImageLinks: true,
