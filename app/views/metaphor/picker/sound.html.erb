@@ -3,19 +3,22 @@
     	<div class="top clearfix">
             <div class="navigation-wrapper clearfix">
                 Sounds
+                <div class="buttons">
+                    <a id="picker-cancel" href="#" class="button small">X</a>
+                </div>
             </div>
     	</div>
     </header>
 
     <div class="tabs clearfix">
+        <div class="tab" data-content="add">
+            Upload a Sound
+        </div>
         <div class="tab" data-content="recent">
             Recent Sounds
         </div>
         <div class="tab" data-content="search">
             Search for Sound
-        </div>
-        <div class="tab" data-content="add">
-            Add a Sound
         </div>
     </div>
     <div class="content recent">    
@@ -47,14 +50,8 @@
             <%= text_field_tag :code, "", :placeholder => "Soundcloud ID", :id => 'sound-code', :autocomplete=>"off" %>
         </div>
         <div class="buttons">
-            <a href="" class="button" id="picker-add-sound">Add Sound</a>
+            <a href="" class="button" id="picker-add-sound">Upload Sound</a>
         </div>
     </div>
 
-</div>
-
-<div id="picker-bottom-bar">
-    <div class="buttons">
-        <a id="picker-cancel" href="#" class="button">Close Sound Selector</a>
-    </div>  
 </div>

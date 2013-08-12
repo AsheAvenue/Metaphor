@@ -112,7 +112,11 @@ var picker = (function($) {
                         $('#paneslide').load('<%= Settings.site.root_url %>/picker/' + picker_type + "?" + new Date().getTime(), function(){
                         
                             //display the "content select" view
-                            $('.pickercontent .content.recent').show();
+                            if($('.pickercontent .content.add').length > 0) {
+                                $('.pickercontent .content.add').show();
+                            } else {
+                                $('.pickercontent .content.recent').show();
+                            }
         
                             //enable any slug fields within the picker
                             $('.pickercontent .picker-new-name').sluggo({

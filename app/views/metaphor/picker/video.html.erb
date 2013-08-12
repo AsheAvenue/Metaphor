@@ -3,20 +3,23 @@
     	<div class="top clearfix">
             <div class="navigation-wrapper clearfix">
                 Videos
+                <div class="buttons">
+                    <a id="picker-cancel" href="#" class="button small">X</a>
+                </div>
             </div>
     	</div>
     </header>
 
 
     <div class="tabs clearfix">
+        <div class="tab" data-content="add">
+            Upload a Video
+        </div>
         <div class="tab" data-content="recent">
             Recent Videos
         </div>
         <div class="tab" data-content="search">
             Search for Video
-        </div>
-        <div class="tab" data-content="add">
-            Add a Video
         </div>
     </div>
     <div class="content recent">    
@@ -48,14 +51,8 @@
             <%= text_field_tag :code, "", :placeholder => "Youtube ID", :id => 'video-code', :autocomplete=>"off" %>
         </div>
         <div class="buttons">
-            <a href="" class="button" id="picker-add-video">Add Video</a>
+            <a href="" class="button" id="picker-add-video">Upload Video</a>
         </div>
     </div>
 
-</div>
-
-<div id="picker-bottom-bar">
-    <div class="buttons">
-        <a id="picker-cancel" href="#" class="button">Close Video Selector</a>
-    </div>  
 </div>

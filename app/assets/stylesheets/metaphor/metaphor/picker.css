@@ -25,16 +25,23 @@
     line-height: 1;
     position: fixed;
     top: 0px;
-    width: 100%;
+    width: 400px;
     z-index: 10;
 }
 
 .site .pickercontent header .top {
     color: #fff;
     background: #16a085;
+    width: 320px;
+}
+
+.pickercontent header .top .buttons {
+    position: absolute;
+    top: 0px;
+    right: 10px;
 }
 .pickercontent header .navigation-wrapper {
-    padding: 10px 25px 10px 10px;
+    padding: 15px 25px 10px 10px;
 }
 
 .pickercontent header input {
@@ -206,20 +213,4 @@
     border: 1px dashed #666;
     border-radius: 6px;
     margin-bottom: 20px;
-}
-
-#picker-bottom-bar {
-    position: fixed;
-    bottom: 0px;
-    width: 375px;
-    height: 30px;
-    padding: 10px 10px 10px 15px;
-    background: #7f8c8d;
-    z-index: 30;
-    -webkit-transition: left .5s ease-in-out,background .4s ease-in-out;
-    transition: left .5s ease-in-out,background .4s ease-in-out;
-}
-
-#picker-bottom-bar .buttons {
-    padding: 2px 0px;
 }

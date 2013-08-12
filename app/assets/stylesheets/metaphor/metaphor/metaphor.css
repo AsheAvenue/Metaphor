@@ -65,6 +65,11 @@ html, body {
   transition: background-color 0.15s ease-in-out;
 }
 
+.button.small {
+    padding: 5px 10px !important;
+    font-size: 15px;
+}
+
 .button.green {
     background: #16a085;
 }
@@ -120,7 +125,7 @@ header .site-name a {
 }
 
 header .navigation-wrapper {
-    padding: 10px 25px;
+    padding: 10px 5px 10px 25px;
 }
 
 header .navigation {
