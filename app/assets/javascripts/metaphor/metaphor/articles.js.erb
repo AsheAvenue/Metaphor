@@ -11,11 +11,11 @@ var articles = (function($) {
             /************ Article Index ************/
             
             $('.article-search-term').on('focus', function(){
-                $('#list .criteria-set, .fields, #items').fadeTo(250, 0.15);
+                $('#list .criteria-set, .fields, #items, .filter-header').fadeTo(250, 0.15);
             });
             
             $('.article-search-term').on('blur', function(){
-                $('#list .criteria-set, .fields, #items').fadeTo(250, 1.0);
+                $('#list .criteria-set, .fields, #items, .filter-header').fadeTo(250, 1.0);
                 $("#list .search .spinner").spin(false);
             });
             
@@ -133,7 +133,7 @@ var articles = (function($) {
     
             // don't let the slug be changed right off the bat if it's already been set
             var slug = $('#article-slug-display').text();
-            if(slug != '' && slug != 'Awaiting article title...') {
+            if(slug != '' && slug != 'Enter a Title to populate this field') {
                 slug_is_set = true;
             }
     
@@ -446,7 +446,7 @@ var articles = (function($) {
                 function(){
                     //response will be handled by search.js.erb, but we 
                     //should adjust the opacity and hide the spinner
-                    $('#list .criteria-set, .fields, #items').fadeTo(250, 1.0);
+                    $('#list .criteria-set, .fields, #items, .filter-header').fadeTo(250, 1.0);
                     $("#list .search .spinner").spin(false);
                     $('#items').mixitup('remix','all');
                 }

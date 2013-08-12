@@ -65,12 +65,6 @@ html, body {
   transition: background-color 0.15s ease-in-out;
 }
 
-.tip {
-    font-size: 12px;
-    color: #95a5a6;
-    width: 140px;
-}
-
 .button.green {
     background: #16a085;
 }
@@ -254,12 +248,6 @@ header .navigation li a {
     margin-bottom: 10px;
 }
 
-#article-default-image .sizes-available {
-    height: 10px;
-    margin-top: 15px; 
-    font-size: 12px;  
-}
-
 /* popped up when viewing default image sizes */
 .modal-body {
     background-color: #333;
@@ -299,11 +287,14 @@ header .navigation li a {
 
 #list .search .name,
 #list .search .contents,
-#list .search .spinner {
+#list .search .spinner,
+#list .filter-header .name,
+#list .filter-header .contents {
     float: left;
 }
 
-#list .search .name {
+#list .search .name,
+#list .filter-header .name  {
     font-size: 24px;
     line-height: 30px;
     font-weight: 100;
@@ -315,7 +306,7 @@ header .navigation li a {
     width: 300px !important;
 }
 
-#list .search .contents .reset-filters {
+#list .filter-header .contents .reset-filters {
     display: none;
     font-size: 18px;
     line-height: 18px;
@@ -603,6 +594,29 @@ header .navigation li a {
     line-height: 1;
     margin: 0 -30px 20px;
     padding: 0 30px 10px;
+}
+
+#content .header .view-published-article {
+    color: #bdc3c7;
+}
+
+#content .header .view-published-article a,
+#content .header .view-published-article a:hover {
+    color: #2ecc71;
+}
+
+#content .header.internal {
+    border-bottom: 0;
+    border-top: 1px solid #fff;
+    margin: 10px -30px 10px;
+    padding: 15px 30px 10px;
+}
+
+#content .header .tip {
+    font-size: 12px;
+    line-height: 12px;
+    margin-top: 5px;
+    margin-bottom: 0px;
 }
 
 #content select {

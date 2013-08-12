@@ -8,6 +8,12 @@
             Edit
         <% end %>
         <%= Settings.articles.name %>
+        
+        <% if @article.last_published_revision_id %>
+            <span class="view-published-article">
+                // <%= link_to 'View Published Article »', frontend_url(@article.template, @article.slug), :target => '_blank' %>
+            </span>
+        <% end %>
     </div>
     <div class="form-section clearfix">
         <div class="form-section-left">
@@ -26,7 +32,7 @@
         </div>
         <div class="form-section-right">
             <div class="form-line">
-                <div id="article-slug-display"><%= @article.slug || "Awaiting #{Settings.articles.name.downcase} title..." %></div>
+                <div id="article-slug-display"><%= @article.slug || "Enter a Title to populate this field" %></div>
                 <div id="article-slug-container">
                     <%= f.text_field :slug, :id => 'article-slug', :placeholder => 'Slug', :class => "input-xlarge", 'data-original-slug' => @article.slug %>
                 </div>
@@ -39,9 +45,6 @@
     <div class="form-section clearfix">
         <div class="form-section-left">
             Template
-            <div class="tip">
-                The primary content type and style of the <%= Settings.articles.name.downcase %>
-            </div>
         </div>
         <div class="form-section-right">
             <div class="form-line">
@@ -68,9 +71,6 @@
         <div class="form-section clearfix">
             <div class="form-section-left">
                 List Image
-                <div class="tip">
-                    The image displayed in <%= Settings.articles.name.downcase %> lists
-                </div>
             </div>
             <div class="form-section-right">
                 <div class="form-line">
@@ -88,19 +88,13 @@
                         
                         <input type="filepicker" 
                                 name="temp_default_image" 
-                                class="button article-select-image <% if @article.default_image.blank? %>large<% end %>" 
+                                class="button article-select-image" 
                                 data-fp-apikey="<%= Settings.filepicker.api_key %>" 
                                 data-fp-button-text="Select a<% if !@article.default_image.blank? %> different <% end %> list image" 
                                 data-fp-extensions=".png,.jpg,.jpeg,.gif" 
                                 data-fp-multiple="false" 
-                                onchange="$('#article-default-image-hidden-field').val(event.fpfile.url); $('.article-select-image').removeClass('large'); $('#article-default-image-selected-field').val('true'); $('#article-default-image-original-filename-hidden-field').val(event.fpfile.filename); $('#article-default-image .display').html('<img src=\'' + event.fpfile.url + '/convert?w=457&h=310&fit=crop\' />');" 
+                                onchange="$('#article-default-image-hidden-field').val(event.fpfile.url); $('#article-default-image-selected-field').val('true'); $('#article-default-image-original-filename-hidden-field').val(event.fpfile.filename); $('#article-default-image .display').html('<img src=\'' + event.fpfile.url + '/convert?w=457&h=310&fit=crop\' />');" 
                         />
-                        
-                        <% if !@article.default_image.blank? %>
-                            <div class="sizes-available">
-                                Sizes available: Large (640x360), Homepage List (457x310), Medium (320x180), Original Content (122x155), Thumb (160x90)
-                            </div>
-                        <% end %>
                         
                     </div>
                 </div>
@@ -145,9 +139,6 @@
         <div class="form-section clearfix">
             <div class="form-section-left">
                 <%= Settings.categories.name.pluralize %>
-                <div class="tip">
-                    Click to select each of this <%= Settings.articles.name.downcase %>'s <%= Settings.categories.name.pluralize.downcase %> 
-                </div>
             </div>
             <div class="form-section-right">
                 <div class="form-line">
@@ -170,9 +161,6 @@
             <div class="form-section clearfix">
                 <div class="form-section-left">
                     <%= Settings.series.name.pluralize %>
-                    <div class="tip">
-                        Click to select each of this <%= Settings.articles.name.downcase %>'s <%= Settings.series.name.pluralize.downcase %> 
-                    </div>
                 </div>
                 <div class="form-section-right">
                     <div class="form-line">
@@ -191,9 +179,6 @@
         <div class="form-section clearfix">
             <div class="form-section-left">
                 <%= Settings.flags.name.pluralize %>
-                <div class="tip">
-                    Click to select each of this <%= Settings.articles.name.downcase %>'s relevant <%= Settings.flags.name.pluralize.downcase %> 
-                </div>
             </div>
             <div class="form-section-right">
                 <div class="form-line">
@@ -219,13 +204,17 @@
             </div>
         </div>
         
+        <div class="header internal">
+            Related Entities
+            <div class="tip">
+                All related entities must be created (via the links in the menu bar at the top of the page) before they can be added to an <%= Settings.articles.name.capitalize %>
+            </div>
+        </div>
+        
         <% Settings.entities.types.each do |key,value| %>
         <div class="form-section clearfix">
             <div class="form-section-left">
                 <%= value %>
-                <div class="tip">
-                    Enter names of <%= value.downcase %>s associated with this <%= Settings.articles.name.downcase %>
-                </div>
             </div>
             <div class="form-section-right">
                 <div class="form-line <%= key %>_list">
