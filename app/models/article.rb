@@ -50,7 +50,7 @@ class Article < ActiveRecord::Base
     joins(:series).where("series.id = ?", series) if series
   }
   scope :flagged_as, lambda { |flag| 
-    joins(:flags).where("flags.slug = ?", flag) if !flag.empty?
+    joins(:flags).where(:flags => {:slug => flag }) if !flag.empty?
   }
   scope :with_limit, lambda { |l|
     if l && l.is_a?(Integer) && l > 0 
