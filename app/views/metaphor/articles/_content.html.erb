@@ -11,7 +11,7 @@
         
         <% if @article.last_published_revision_id %>
             <span class="view-published-article">
-                // <%= link_to 'View Published Article »', frontend_url(@article.template, @article.slug), :target => '_blank' %>
+                // <%= link_to 'View Published Article »', "/show/#{@article.id}", :target => '_blank' %>
             </span>
         <% end %>
     </div>
