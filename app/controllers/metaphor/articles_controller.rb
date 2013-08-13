@@ -139,6 +139,31 @@ module Metaphor
         original_filename = params[:article][:default_image_original_filename]
         article.default_image = open(url)
         article.default_image.instance_write(:file_name, original_filename)
+        
+        # get the template and see if it has an image component in it. 
+        t = Template.find_by_slug(article.template)
+        position = t.get_first_component_position('image')
+
+        # if it does
+        if position != nil
+          
+          # if there arent' any images, create a new Image object
+          if article.images.length == 0
+            i = Image.new
+            i.image = open(url)
+            i.image.instance_write(:file_name, original_filename)
+            i.name = article.title
+            i.slug = "#{article.slug}-image"
+            i.save!
+      
+            # add the image object as a widget to the entity contents in the position saved above
+            widget = EntityContent.new
+            widget.entity = article
+            widget.content = i
+            widget.position = position
+            widget.save! 
+          end          
+        end
       end
       params[:article].delete :default_image
     

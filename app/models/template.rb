@@ -17,4 +17,15 @@ class Template < ActiveRecord::Base
   has_many :template_components, :dependent => :destroy
   has_many :components, :through => :template_components
   
+  def get_first_component_position(component_slug)
+    position = nil
+    self.template_components.each do |template_component|
+      if template_component.component.slug == component_slug
+        position = template_component.order
+        break
+      end
+    end
+    position
+  end
+  
 end

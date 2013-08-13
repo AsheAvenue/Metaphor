@@ -1,3 +1,5 @@
+require "open-uri"
+
 module Metaphor
   class ArticleEditorController < ApplicationController
 
@@ -70,6 +72,12 @@ module Metaphor
       #save the content widget and continue to the js.erb portion
       c.save!
     
+      #now create the article default image if it doesn't exist yet
+      if @article.default_image == nil || @article.default_image == '/default_images/original/missing.png'
+        @article.default_image = open(@image.image.url)
+        @article.default_image.instance_write(:file_name, @image.image.original_filename)
+        @article.save!
+      end
     end
   
     def select_gallery
