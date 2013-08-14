@@ -9,6 +9,19 @@ module Metaphor
       #call out to tumblr through a tumblr gem and get the latest tumblrs
       #make sure to keep the tumblr login info in Settings.yml, which is 
       #where everything is generalized.
+
+      #tumblr currently just pulls from an RSS feed
+      require 'feedzirra'
+      @rss_url = "http://" + Settings.socials.tumblr.url + "/rss"
+      @feed = Feedzirra::Feed.fetch_and_parse(@rss_url)
+      @response = []
+      @feed.entries.each do |f|
+        @response << { "title"    => f.title,
+                       "url"      => f.url,
+                       "summary"  => f.summary,
+                     }
+      end
+      render :json => { "tumblr" => @response }
     end
   
     def twitter
