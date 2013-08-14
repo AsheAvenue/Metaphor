@@ -80,12 +80,16 @@ module Metaphor
 
     def publish
       article = Article.find(params[:id])
-      version_id = params[:version_id].to_i
-      article.last_published_revision_id = version_id
-      article.next_published_revision_id = nil 
-      article.publish_next_revision_at = nil 
-      article.save!
-      render :nothing => true
+      if validate_before_publish(article)
+        version_id = params[:version_id].to_i
+        article.last_published_revision_id = version_id
+        article.next_published_revision_id = nil 
+        article.publish_next_revision_at = nil 
+        article.save!
+        render :text => "success"
+      else
+        render :text => "contents"
+      end
     end
 
     def unpublish
@@ -99,11 +103,15 @@ module Metaphor
 
     def schedule
       article = Article.find(params[:id])
-      version_id = params[:version_id].to_i
-      article.next_published_revision_id = version_id 
-      article.publish_next_revision_at = DateTime.parse("#{params[:date]} #{params[:time]}") 
-      article.save!
-      render :nothing => true
+      if validate_before_publish(article)
+        version_id = params[:version_id].to_i
+        article.next_published_revision_id = version_id 
+        article.publish_next_revision_at = DateTime.parse("#{params[:date]} #{params[:time]}") 
+        article.save!
+        render :text => "success"
+      else
+        render :text => "contents"
+      end
     end
 
     def unschedule
@@ -215,6 +223,31 @@ module Metaphor
         articles << article.current
       end
       articles
+    end
+    
+    def validate_before_publish(article)
+      # get the template
+      template_slugs = []
+      template = Template.find_by_slug(article.template)
+      template.components.each do |component|
+        slug = component.slug
+        if !['meta', 'body'].include? slug
+          template_slugs << slug
+        end
+      end
+      
+      # get the entity contents
+      entity_contents = article.entity_contents
+      entity_contents.each do |entity_content|
+        slug = entity_content.content_type.downcase
+        if template_slugs.include? slug
+          template_slugs.delete slug
+        end
+      end
+      
+      # return false if they don't match
+      return template_slugs.length == 0
+      
     end
     
   end

@@ -333,7 +333,7 @@ var articles = (function($) {
               $('#article-form').submit();
             });
 
-            $('#article-edit').click(function(e){
+            $('.article-edit').click(function(e){
               e.preventDefault();
               <% Settings.entities.types.each do |key, value| %>
                   var <%= key %>_ids = $('.<%= key %>_list li.tagit-choice').map(function () { return parseInt($(this).attr('data-id')); });
@@ -381,8 +381,13 @@ var articles = (function($) {
                 $.post(
                     '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/publish/version/' + $(this).data('revision-id'),
                     {}, 
-                    function() {
-                        window.location.href = '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/edit';
+                    function(message) {
+                        if(message == "contents") {
+                            $('#right-bar .publish .buttons.options, #right-bar .publish .buttons.schedule').hide();
+                            $('#right-bar .items .publish .failed-validation').show();
+                        } else if(message == "success") {
+                            window.location.href = '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/edit';
+                        }
                     }
                 );
             });
@@ -416,8 +421,13 @@ var articles = (function($) {
                             date: $(this).parent().parent().find('.datepicker').val(),
                             time: $(this).parent().parent().find('.timepicker').val()
                         }, 
-                        function() {
-                            window.location.href = '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/edit';
+                        function(message) {
+                            if(message == "contents") {
+                                $('#right-bar .publish .buttons.options, #right-bar .publish .buttons.schedule').hide();
+                                $('#right-bar .items .publish .failed-validation').show();
+                            } else if(message == "success") {
+                                window.location.href = '<%= Settings.site.root_url %>/articles/' + $("#article").data("id") + '/edit';
+                            }
                         }
                     );
                 }

@@ -122,7 +122,14 @@
                                 <a href="#" class="button schedule" data-revision-id="<%= version.id %>">Schedule</a> 
                                 <a href="#" class="button cancel">Don't Publish</a>
                             </div>
-                        </div>        
+                        </div>
+                        <div class="buttons failed-validation">
+                            <div class="message">
+                                This article can't be published because it's missing one or more of the content types required by the <%= @article.template.capitalize %> template.
+                            </div>
+                            <a href="#" class="button yellow article-edit">Edit Article Content</a> 
+                            
+                        </div>      
                     </div>
                 <% end %>
             <% end %>

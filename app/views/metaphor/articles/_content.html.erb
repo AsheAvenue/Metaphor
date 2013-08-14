@@ -231,7 +231,7 @@
             <%= link_to "Create #{Settings.articles.name} and Continue Editing", '#', :class => "button green", :id => 'article-submit' %>
         <% elsif action == 'update'%>
             <%= link_to "Save #{Settings.articles.name}", '#', :class => "button green", :id => 'article-submit' %>
-            <%= link_to "Edit #{Settings.articles.name} Content", '#', :class => "button yellow", :id => 'article-edit' %>
+            <%= link_to "Edit #{Settings.articles.name} Content", '#', :class => "button yellow article-edit", :id => 'article-edit' %>
         <% end %>
     </div>
     
