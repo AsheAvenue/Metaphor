@@ -73,10 +73,12 @@ module Metaphor
       c.save!
     
       #now create the article default image if it doesn't exist yet
-      if @article.default_image.url == '/default_images/original/missing.png' || @article.default_image == nil
-        @article.default_image = open(@image.image.url)
-        @article.default_image.instance_write(:file_name, @image.image.original_filename)
-        @article.save!
+      if Settings.articles.autoimage.enabled
+        if @article.default_image.url == '/default_images/original/missing.png' || @article.default_image == nil
+          @article.default_image = open(@image.image.url)
+          @article.default_image.instance_write(:file_name, @image.image.original_filename)
+          @article.save!
+        end
       end
     end
   
