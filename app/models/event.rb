@@ -29,6 +29,19 @@ class Event < ActiveRecord::Base
     end
   }
   
+  include PgSearch
+  pg_search_scope :search, 
+    against: [:title],
+    using: {tsearch: {dictionary: "english"}}
+
+  def self.text_search(query)
+    if query.present?
+      search(query)
+    else
+      scoped
+    end
+  end
+  
   # GETTING FROM THE FRONTEND
   def self.get(slug)
     event = Event.where(:slug => slug).first
