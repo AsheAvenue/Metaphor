@@ -112,6 +112,15 @@ class Article < ActiveRecord::Base
     self.series.collect{|c| c.name}.join(', ')
   end
   
+  def type_display
+    case self.template
+    when 'text'
+      'Article'
+    else
+      self.template.capitalize
+    end
+  end
+  
   # TODO: move the following three methods to a helper at some point
   def status 
     if last_published_revision_id
