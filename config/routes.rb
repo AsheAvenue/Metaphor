@@ -72,7 +72,4 @@ Metaphor::Engine.routes.draw do
   get "signout" => "sessions#destroy", :as => "signout"
   get "signin" => "sessions#new", :as => "signin"
   
-  # Glob for pages
-  get '/:id' => 'pages#show', :as => 'page'
-  
 end

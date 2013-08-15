@@ -1,8 +1,6 @@
 module Metaphor
   class PagesController < ApplicationController
   
-    skip_load_and_authorize_resource
-    
     layout 'metaphor/metaphor'
     
     def index
@@ -11,7 +9,7 @@ module Metaphor
     end
   
     def edit
-      @page = Page.find_by_slug!(params[:id])
+      @page = Page.find(params[:id])
       @pages = Page.all
     end
     
@@ -22,7 +20,7 @@ module Metaphor
     
     def create    
       @page = Page.create(params[:page])
-      @pages = Page.where(true)
+      @pages = Page.all
       if @page.save
         flash[:alert] = "#{Settings.pages.name} successfully created"
         redirect_to edit_page_path(@page)
@@ -33,10 +31,10 @@ module Metaphor
     end
   
     def update
-      @page = Page.find_by_slug!(params[:id])
+      @page = Page.find(params[:id])
       @page.update_attributes(params[:page])
       if @page.save
-        @pages = Page.where(true)
+        @pages = Page.all
         flash[:alert] = "#{Settings.pages.name} successfully updated"
         redirect_to edit_page_path(@page)
       else

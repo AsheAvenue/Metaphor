@@ -8,11 +8,6 @@ var pages = (function($) {
                 makeTargetReadonly: true
             });
             
-            $('#page-submit').click(function(e){
-              e.preventDefault();
-              $('#page-form').submit();
-            });
-            
             //fire up redactor
             $('#page-content').redactor({ 
                 convertImageLinks: true,
