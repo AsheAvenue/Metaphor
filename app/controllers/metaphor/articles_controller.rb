@@ -6,12 +6,7 @@ module Metaphor
     layout 'metaphor/metaphor'
     
     def index
-      all_articles = Article.where(true).recently_created.limit(100)
-      @articles = []
-      all_articles.each do |article|
-        @articles << article.current
-      end
-      
+      @articles = Article.recently_created.limit(100)
       @templates = Template.all
     end
     
@@ -36,7 +31,7 @@ module Metaphor
     end
   
     def edit
-      @articles = get_current_articles
+      @articles = Article.recently_created.limit(100)
       @article = Article.includes(:categories, :series).find(params[:id])
       
       # get the indexes
