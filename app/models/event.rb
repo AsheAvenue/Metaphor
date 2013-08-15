@@ -29,6 +29,10 @@ class Event < ActiveRecord::Base
     end
   }
   
+  def current
+    self
+  end
+  
   include PgSearch
   pg_search_scope :search, 
     against: [:title],

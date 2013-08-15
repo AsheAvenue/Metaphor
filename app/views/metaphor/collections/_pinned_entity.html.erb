@@ -1,8 +1,8 @@
 <div id="pinned_entities_<%= p.id %>" class="pinned-entity clearfix">
     <div class="title">
-        <%= p.article.title %>
+        <%= p.entity.title %>
     </div>
     <div class="meta">
-        <%= link_to "/#{p.article.slug}", p.article.slug %> | <%= link_to "Unpin", collection_remove_pinned_entity_path(@collection.id, p.id), :remote => true %>
+        <%= link_to "Unpin", collection_remove_pinned_entity_path(@collection.id, p.id), :remote => true %>
     </div>
 </div>
