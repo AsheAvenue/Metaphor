@@ -57,6 +57,9 @@ class Article < ActiveRecord::Base
       limit(l)
     end
   }
+  scope :without, lambda { |id| 
+    where("articles.id <> ? ", id) if id
+  }
   
   has_attached_file :default_image,
     :storage => :s3,
