@@ -1,8 +1,10 @@
 class Collection < ActiveRecord::Base
-  attr_accessible :name, :slug, :content_type, :article_type, :category, :series, :flag, :tag, :limit, :order, :pinned_articles_attributes
-  has_many :pinned_articles, :order => 'pinned_articles.order ASC'
-  has_many :articles, :through => :pinned_articles, :conditions => "articles.last_published_revision_id IS NOT NULL"
-  accepts_nested_attributes_for :pinned_articles
+  attr_accessible :name, :slug, :content_type, :article_type, :category, :series, :flag, :tag, :limit, :order, :pinned_entities_attributes
+  
+  has_many :pinned_entities, :order => 'pinned_entities.order ASC'
+  has_many :entities, :through => :pinned_entities
+  
+  accepts_nested_attributes_for :pinned_entities
   
   def self.get(slug)
     # get the collection defined by the slug
@@ -23,8 +25,12 @@ class Collection < ActiveRecord::Base
           generated << a.current
         end
       pinned = []
-      c.articles.each do |a|
-        pinned << a.current
+      c.pinned_entities.each do |e|
+        if e.entity_type == "article" && e.last_published_revision_id != nil
+          pinned << e.current
+        else
+          pinned << e
+        end
       end
       (pinned + generated).uniq
     else

@@ -858,10 +858,10 @@ header .navigation li a {
 
 /* ------- COLLECTION -------- */
 
-.pinned-articles {
+.pinned-entities {
     margin-bottom: 3px;
 }
-.pinned-article {
+.pinned-entity {
     width: 500px;
     height: 64px;
     background-color: #7f8c8d;
@@ -871,19 +871,19 @@ header .navigation li a {
     cursor: move;
 }
 
-.pinned-article .title {
+.pinned-entity .title {
     font-size: 36px;
     line-height: 36px;
     margin: 7px 7px 0px 7px;
 }
 
-.pinned-article .meta {
+.pinned-entity .meta {
     font-size: 12px;
     line-height: 12px;
     margin: 3px 0px 0px 7px;
 }
 
-.pinned-article .meta a {
+.pinned-entity .meta a {
     color: white;
 }
 

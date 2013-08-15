@@ -46,21 +46,22 @@ module Metaphor
     end
   
     def sort
-      params[:pinned_articles].each_with_index do |id, index|
-        PinnedArticle.update_all({order: index+1}, {id: id})
+      params[:pinned_entities].each_with_index do |id, index|
+        PinnedEntity.update_all({order: index+1}, {id: id})
       end 
       render nothing: true
     end
   
-    def add_pinned_article
+    def add_pinned_entity
       @collection = Collection.find(params[:id])
-      @p = @collection.pinned_articles.build
-      @p.article_id = params[:article_id]
+      @p = @collection.pinned_entities.build
+      @p.entity_id = params[:entity_id]
+      @p.entity_typ = params[:entity_type]
       @p.save!
     end
   
-    def remove_pinned_article
-      @p = PinnedArticle.find(params[:pinned_article_id])
+    def remove_pinned_entity
+      @p = PinnedEntity.find(params[:pinned_entity_id])
       @p.destroy
     end
   

@@ -9,7 +9,7 @@ Metaphor::Engine.routes.draw do
   resources :series
   resources :flags
   resources :collections
-  resources :pinned_articles
+  resources :pinned_entities
   resources :pages
   resources :templates
   resources :components
@@ -48,8 +48,8 @@ Metaphor::Engine.routes.draw do
   match 'galleries/image_info/:id' => 'gallery_editor#image_info', :as => 'gallery_editor_image_info'
   
   match 'collections/:id/sort' => 'collections#sort', :as => 'collection_sort'
-  match 'collections/:id/add_pinned_article' => 'collections#add_pinned_article', :as => 'collection_add_pinned_article'
-  match 'collections/:id/remove_pinned_article/:pinned_article_id' => 'collections#remove_pinned_article', :as => 'collection_remove_pinned_article'
+  match 'collections/:id/add_pinned_entity' => 'collections#add_pinned_entity', :as => 'collection_add_pinned_entity'
+  match 'collections/:id/remove_pinned_entity/:pinned_entity_id' => 'collections#remove_pinned_entity', :as => 'collection_remove_pinned_entity'
 
   match 'templates/:id/sort' => 'templates#sort', :as => 'template_sort'
   match 'templates/:id/add_component' => 'templates#add_component', :as => 'template_add_component'
