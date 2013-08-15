@@ -16,12 +16,13 @@ module Metaphor
       @feed = Feedzirra::Feed.fetch_and_parse(@rss_url)
       @response = []
       @feed.entries.each do |f|
-        @response << { "title"    => f.title,
-                       "url"      => f.url,
-                       "summary"  => f.summary,
+        @response << { "title"        => f.title,
+                       "url"          => f.url,
+                       "summary"      => f.summary,
+                       "first_image"  => Nokogiri::HTML.fragment(f.summary).at_css('img')['src']
                      }
       end
-      render :json => { "tumblr" => @response }
+      render :json => @response.to_json 
     end
   
     def twitter
@@ -45,7 +46,7 @@ module Metaphor
       photos = Instagram.tag_recent_media(Settings.socials.instagram.hashtag)
       @response = []
       photos.each do |p|
-        @response << { "caption" => p.caption.text, "images" => p.images }
+        @response << { "caption" => p.caption.text, "images" => p.images, "url" => p.link  }
       end
       render :json => @response.to_json
     end
