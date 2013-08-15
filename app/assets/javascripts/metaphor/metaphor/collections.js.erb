@@ -26,13 +26,16 @@ var collections = (function($) {
             });
         },
         
-        add_pinned_entity: function(entity) {
+        add_pinned_entity: function(returnedItem) {
+            
+            var entity = returnedItem.split("|");
             
             //post the new article
             $.post(
                 $('#add_pinned_entity').data('path'),
                 {
-                    article_id: article_id
+                    entity_type: entity[0],
+                    entity_id:   entity[1]
                 },
                 function() {
                     //Adding the new item to the list is handled by the 

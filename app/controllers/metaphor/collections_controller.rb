@@ -55,8 +55,8 @@ module Metaphor
     def add_pinned_entity
       @collection = Collection.find(params[:id])
       @p = @collection.pinned_entities.build
-      @p.entity_id = params[:entity_id]
-      @p.entity_typ = params[:entity_type]
+      @p.entity_type = params[:entity_type]
+      @p.entity_id = params[:entity_id].to_i
       @p.save!
     end
   
