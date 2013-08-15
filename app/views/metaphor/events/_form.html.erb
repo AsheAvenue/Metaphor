@@ -44,6 +44,41 @@
             </div>
         </div>
         
+        <% if @event.id != nil %>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                Image
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <div id="article-default-image">                        
+                        
+                        <div class="display">
+                            <% if !@event.default_image.blank? %>
+                                <%= image_tag @event.default_image.url(:medium) %>
+                            <% end %>
+                        </div>
+                
+                        <%= f.hidden_field :default_image, :id => "article-default-image-hidden-field" %>
+                        <%= f.hidden_field :default_image_selected, :id => "article-default-image-selected-field", :value => "false" %>
+                        <%= f.hidden_field :default_image_original_filename, :id => "article-default-image-original-filename-hidden-field" %>
+                        
+                        <input type="filepicker" 
+                                name="temp_default_image" 
+                                class="button" 
+                                data-fp-apikey="<%= Settings.filepicker.api_key %>" 
+                                data-fp-button-text="Select <% if !@event.default_image.blank? %>a different <% end %>image" 
+                                data-fp-extensions=".png,.jpg,.jpeg,.gif" 
+                                data-fp-multiple="false" 
+                                onchange="$('#article-default-image-hidden-field').val(event.fpfile.url); $('#article-default-image-selected-field').val('true'); $('#article-default-image-original-filename-hidden-field').val(event.fpfile.filename); $('#article-default-image .display').html('<img src=\'' + event.fpfile.url + '/convert?w=320&h=180\' />');" 
+                        />
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% end %>
+        
         <div class="form-section clearfix">
             <div class="form-section-left">
                 <%= Settings.flags.name.pluralize %>

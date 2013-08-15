@@ -7,6 +7,17 @@ class Event < ActiveRecord::Base
     :time, 
     :body
   
+  has_attached_file :default_image,
+    :storage => :s3,
+    :bucket => Settings.filepicker.s3.bucket,
+    :path => Settings.filepicker.s3.path,
+    :s3_credentials => {
+      :access_key_id => Settings.filepicker.s3.access_key_id,
+      :secret_access_key => Settings.filepicker.s3.secret_access_key
+    },
+    :styles => Settings.events.image.sizes.to_hash,
+    :convert_options => Settings.events.image.convert_options.to_hash
+  
   scope :recently_created, order("events.created_at desc")
   scope :recently_updated, order("events.updated_at desc")
     
