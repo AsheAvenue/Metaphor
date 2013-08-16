@@ -61,6 +61,10 @@ class Event < ActiveRecord::Base
     end
   end
   
+  def self.reprocess
+    Event.find_each { |entity| entity.default_image.reprocess! }
+  end
+  
   # GETTING FROM THE FRONTEND
   def self.get(slug)
     event = Event.where(:slug => slug).first

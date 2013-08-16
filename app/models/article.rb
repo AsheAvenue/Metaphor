@@ -136,6 +136,10 @@ class Article < ActiveRecord::Base
     self.current_version ? self.version_at(self.current_version.created_at) : self
   end
   
+  def self.reprocess
+    Article.find_each { |entity| entity.default_image.reprocess! }
+  end
+  
   # GETTING FROM THE FRONTEND
   def self.get(slug)
     article = Article.where(:slug => slug).published.first
