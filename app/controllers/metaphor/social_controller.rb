@@ -34,7 +34,7 @@ module Metaphor
       @tweets = Twitter.user_timeline(Settings.socials.twitter.handle)
       @response = []
       @tweets.each do |t|
-        @response << { "tweet" => Rinku.auto_link(t.text) }
+        @response << { "tweet" => Rinku.auto_link(t.text, :all, 'target="_blank"') }
       end
       render :json => @response.to_json
     end
