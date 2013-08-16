@@ -67,10 +67,10 @@ class Event < ActiveRecord::Base
   
   # GETTING FROM THE FRONTEND
   def self.get(slug)
-    event = Event.where(:slug => slug).first
-    return nil if !event
+    event = Rails.cache.fetch("event_#{slug}") { 
+      Event.where({:slug => slug}).first
+    }
     event
   end
-  
   
 end

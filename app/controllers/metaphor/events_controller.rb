@@ -52,6 +52,7 @@ module Metaphor
         @event.end_date = nil
         render :edit
       elsif @event.update_attributes(params[:event])
+        Rails.cache.delete("event_#{@event.slug}")
         flash[:alert] = "#{Settings.events.name} successfully updated"
         redirect_to edit_event_path(@event)
       else
