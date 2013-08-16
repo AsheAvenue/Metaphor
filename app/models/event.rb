@@ -4,8 +4,12 @@ class Event < ActiveRecord::Base
   
   attr_accessible :date, 
     :event_type, 
-    :time, 
+    :time,
+    :end_date,
+    :end_time,
     :body
+  
+  validates_presence_of :title, :slug, :date, :event_type
   
   has_attached_file :default_image,
     :storage => :s3,

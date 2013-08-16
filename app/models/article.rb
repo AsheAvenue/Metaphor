@@ -88,8 +88,6 @@ class Article < ActiveRecord::Base
     end
   end
   
-  
-  
   # convenience methods
   def author
     users.first
@@ -105,6 +103,14 @@ class Article < ActiveRecord::Base
         return ""
       end
     end
+  end
+  
+  def next
+    Article.where("id > ?", self.id).published.order("id ASC").first
+  end
+
+  def previous
+    Article.where("id < ?", self.id).published.order("id DESC").first
   end
   
   def category_names

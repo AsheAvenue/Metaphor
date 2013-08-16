@@ -31,7 +31,7 @@ module Metaphor
     end
   
     def edit
-      @articles = Article.recently_created.limit(100)
+      @articles = Article.recently_updated.limit(20)
       @article = Article.includes(:categories, :series).find(params[:id])
       
       # get the indexes

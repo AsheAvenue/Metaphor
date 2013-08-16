@@ -10,7 +10,7 @@ module Metaphor
   
     def edit
       @event = Event.find(params[:id])
-      @events = Event.all
+      @events = Event.recently_updated.all
     end
     
     def new
@@ -25,7 +25,7 @@ module Metaphor
         flash[:alert] = "#{Settings.events.name} successfully created"
         redirect_to edit_event_path(@event)
       else
-        flash[:alert] = "All fields are required"
+        flash[:alert] = "Please enter a Name, Slug, Type, and Date"
         render :new
       end
     end
@@ -43,9 +43,15 @@ module Metaphor
       end
       params[:event].delete :default_image
       
-      @event.update_attributes(params[:event])
-      if @event.save
-        @events = Event.where(true)
+      # get events
+      @events = Event.recently_updated.all
+      @event.end_date = params[:event][:end_date]
+      @event.date = params[:event][:date]
+      if @event.end_date && (@event.end_date.midnight < @event.date.midnight)
+        flash[:alert] = "End date must be greater than or equal to event date"
+        @event.end_date = nil
+        render :edit
+      elsif @event.update_attributes(params[:event])
         flash[:alert] = "#{Settings.events.name} successfully updated"
         redirect_to edit_event_path(@event)
       else

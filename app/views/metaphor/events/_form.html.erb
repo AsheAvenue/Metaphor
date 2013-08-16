@@ -43,8 +43,24 @@
                 </div>
             </div>
         </div>
-        
+
         <% if @event.id != nil %>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                End Date
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <div class="form-line">
+                        <%= f.text_field :end_date, :placeholder => "End Date", :id => 'event-end-date', :autocomplete=>"off", :class => 'form-text-field', :value => @event.end_date ? @event.end_date.strftime('%b %d, %Y') : '' %> (optional)
+                    </div>
+                    <div class="form-line">
+                        <%= f.text_field :end_time, :placeholder => "End Time", :id => 'event-end-time', :autocomplete=>"off", :class => 'form-text-field' %> (optional)
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <div class="form-section clearfix">
             <div class="form-section-left">
                 Image
