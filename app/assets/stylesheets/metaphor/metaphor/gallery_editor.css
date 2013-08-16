@@ -20,6 +20,10 @@
     padding: 10px 0px 50px 10px;
 }
 
+#gallery .gallery-stage {
+    margin-bottom: 210px;
+}
+
 #gallery .image-container {
     float: left;
     padding: 0px 10px 10px 0px;
