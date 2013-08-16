@@ -913,11 +913,11 @@ header .navigation li a {
 }
 
 #templates .template:hover {
-    border: 5px solid #16a085;
+    border: 5px solid #bdc3c7;
 }
 
 #templates .template.active {
-    border: 5px solid #16a085;
+    border: 5px solid #bdc3c7;
     color: #555;
 }
 
