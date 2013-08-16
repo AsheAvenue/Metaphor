@@ -28,4 +28,8 @@ class Image < ActiveRecord::Base
     end
   end
   
+  def self.reprocess
+    Image.find_each { |image| image.image.reprocess! }
+  end
+  
 end
