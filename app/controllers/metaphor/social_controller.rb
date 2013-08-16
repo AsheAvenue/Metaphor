@@ -30,10 +30,11 @@ module Metaphor
       #make sure to keep the twitter login info in Settings.yml, which is 
       #where everything is generalized.
 
+      require 'rinku'
       @tweets = Twitter.user_timeline(Settings.socials.twitter.handle)
       @response = []
       @tweets.each do |t|
-        @response << { "tweet" => t.text }
+        @response << { "tweet" => Rinku.auto_link(t.text) }
       end
       render :json => @response.to_json
     end
