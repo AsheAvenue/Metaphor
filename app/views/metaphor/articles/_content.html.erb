@@ -54,7 +54,7 @@
                         <div id="template-<%= template.slug %>" class="template" data-template="<%= template.slug %>">
                             <div>
                                 <% if !template.image.blank? %>
-                                    <%= image_tag template.image.url(:thumb) %>
+                                    <%= image_tag template.image.url(:large) %>
                                 <% end %>
                             </div>
                             <div>
