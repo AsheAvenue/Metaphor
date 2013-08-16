@@ -910,8 +910,8 @@ header .navigation li a {
 
 #templates .template img {
     margin-bottom: 5px;
-    width: 50%;
-    height: 50%;
+    width: 90px;
+    height: 90px;
 }
 
 #templates .template:hover {
