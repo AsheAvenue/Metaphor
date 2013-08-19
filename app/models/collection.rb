@@ -22,12 +22,15 @@ class Collection < ActiveRecord::Base
           .sort_by(c.order)
           .with_limit(c.limit)
           .published
-          .all.each do |a|
+          .each do |a|
             generated << a.current
           end
+          
         pinned = []
         c.pinned_entities.each do |e|
-          pinned << e.entity.current
+          if e.last_published_revision_id
+            pinned << e.entity.current
+          end
         end
         collection = (pinned + generated).uniq
       else
@@ -36,6 +39,7 @@ class Collection < ActiveRecord::Base
       end
       collection
     }
+    collection
   end 
   
 end
