@@ -37,6 +37,9 @@ module Metaphor
       @collection = Collection.find(params[:id])
       @collection.update_attributes(params[:collection])
       if @collection.save
+        
+        Rails.cache.delete("collection_#{@collection.slug}")
+
         @collections = Collection.where(true)
         redirect_to edit_collection_path(@collection)
       else
@@ -58,10 +61,13 @@ module Metaphor
       @p.entity_type = params[:entity_type]
       @p.entity_id = params[:entity_id].to_i
       @p.save!
+      Rails.cache.delete("collection_#{@collection.slug}")
     end
   
     def remove_pinned_entity
       @p = PinnedEntity.find(params[:pinned_entity_id])
+      collection = @p.collection
+      Rails.cache.delete("collection_#{collection.slug}")
       @p.destroy
     end
   

@@ -13,15 +13,17 @@ module Metaphor
       #tumblr currently just pulls from an RSS feed
       require 'feedzirra'
       @rss_url = "http://" + Settings.socials.tumblr.url + "/rss"
-      @feed = Feedzirra::Feed.fetch_and_parse(@rss_url)
-      @response = []
-      @feed.entries.each do |f|
-        @response << { "title"        => f.title,
-                       "url"          => f.url,
-                       "summary"      => f.summary,
-                       "first_image"  => Nokogiri::HTML.fragment(f.summary).at_css('img')['src']
-                     }
-      end
+      @response = Rails.cache.fetch("social_tumblr", :expires_in => 15.minutes) {
+        @feed = Feedzirra::Feed.fetch_and_parse(@rss_url)
+        @response = []
+        @feed.entries.each do |f|
+          @response << { "title"        => f.title,
+                         "url"          => f.url,
+                         "summary"      => f.summary,
+                         "first_image"  => Nokogiri::HTML.fragment(f.summary).at_css('img')['src']
+                       }
+        end
+      }
       render :json => @response.to_json 
     end
   
@@ -31,11 +33,13 @@ module Metaphor
       #where everything is generalized.
 
       require 'rinku'
-      @tweets = Twitter.user_timeline(Settings.socials.twitter.handle)
-      @response = []
-      @tweets.each do |t|
-        @response << { "tweet" => Rinku.auto_link(t.text, :all, 'target="_blank"') }
-      end
+      @response = Rails.cache.fetch("social_twitter", :expires_in => 15.minutes) {
+        @tweets = Twitter.user_timeline(Settings.socials.twitter.handle)
+        @response = []
+        @tweets.each do |t|
+          @response << { "tweet" => Rinku.auto_link(t.text, :all, 'target="_blank"') }
+        end
+      }
       render :json => @response.to_json
     end
   
@@ -44,11 +48,13 @@ module Metaphor
       #make sure to keep the instagram login info in Settings.yml, which is 
       #where everything is generalized.
 
-      photos = Instagram.tag_recent_media(Settings.socials.instagram.hashtag)
-      @response = []
-      photos.each do |p|
-        @response << { "caption" => p.caption.text, "images" => p.images, "url" => p.link  }
-      end
+      @response = Rails.cache.fetch("social_instagram", :expires_in => 15.minutes) {
+        photos = Instagram.tag_recent_media(Settings.socials.instagram.hashtag)
+        @response = []
+        photos.each do |p|
+          @response << { "images" => p.images, "url" => p.link  }
+        end
+      }
       render :json => @response.to_json
     end
   end

@@ -81,6 +81,9 @@ module Metaphor
         article.next_published_revision_id = nil 
         article.publish_next_revision_at = nil 
         article.save!
+        
+        update_article_cache(article)
+        
         render :text => "success"
       else
         render :text => "contents"
@@ -93,6 +96,9 @@ module Metaphor
       article.next_published_revision_id = nil 
       article.publish_next_revision_at = nil 
       article.save!
+      
+      update_article_cache(article)
+      
       render :nothing => true
     end
 
@@ -103,6 +109,9 @@ module Metaphor
         article.next_published_revision_id = version_id 
         article.publish_next_revision_at = DateTime.parse("#{params[:date]} #{params[:time]}") 
         article.save!
+        
+        update_article_cache(article)
+        
         render :text => "success"
       else
         render :text => "contents"
@@ -114,6 +123,9 @@ module Metaphor
       article.next_published_revision_id = nil 
       article.publish_next_revision_at = nil
       article.save!
+      
+      update_article_cache(article)
+      
       render :nothing => true
     end
 
@@ -128,6 +140,9 @@ module Metaphor
     def create
       article = Article.create(params[:article])
       article.save!
+      
+      update_article_cache(article)
+      
       redirect_to edit_article_path(article.id)
     end
   
@@ -175,6 +190,9 @@ module Metaphor
     
       # Proceed to update the object accordingly
       article.update_attributes(params[:article])
+      
+      # update the cache
+      update_article_cache(article)
       
       if(params["edit-content"] == "true")
         redirect_to article_editor_path(params[:id])
@@ -242,7 +260,16 @@ module Metaphor
       
       # return false if they don't match
       return template_slugs.length == 0
+    end
+    
+    def update_article_cache(article)
+      #remove this artist from the cache
+      Rails.cache.delete("article_#{article.slug}")
       
+      #remove the article collections from the cache
+      Collection.where(:content_type => 'article').all.each do |collection|
+        Rails.cache.delete("collection_#{collection.slug}")
+      end
     end
     
   end

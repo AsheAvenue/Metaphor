@@ -7,32 +7,35 @@ class Collection < ActiveRecord::Base
   accepts_nested_attributes_for :pinned_entities
   
   def self.get(slug)
-    # get the collection defined by the slug
-    c = Collection.find_by_slug(slug)
-    if c
-      # combine pinned articles with all articles... uniquify
-      generated = []
+    collection = Rails.cache.fetch("collection_#{slug}") { 
+      # get the collection defined by the slug
+      c = Collection.find_by_slug(slug)
+      if c
+        # combine pinned articles with all articles... uniquify
+        generated = []
       
-      c.content_type.capitalize.constantize
-        .with_type(c.article_type)
-        .with_category(c.category)
-        .with_series(c.series)
-        .flagged_as(c.flag)
-        .sort_by(c.order)
-        .with_limit(c.limit)
-        .published
-        .all.each do |a|
-          generated << a.current
+        c.content_type.capitalize.constantize
+          .with_type(c.article_type)
+          .with_category(c.category)
+          .with_series(c.series)
+          .flagged_as(c.flag)
+          .sort_by(c.order)
+          .with_limit(c.limit)
+          .published
+          .all.each do |a|
+            generated << a.current
+          end
+        pinned = []
+        c.pinned_entities.each do |e|
+          pinned << e.entity.current
         end
-      pinned = []
-      c.pinned_entities.each do |e|
-        pinned << e.entity.current
+        collection = (pinned + generated).uniq
+      else
+        # return nothing if the collection doesn't exist
+        collection = []
       end
-      (pinned + generated).uniq
-    else
-      # return nothing if the collection doesn't exist
-      []
-    end
+    }
+    collection
   end 
   
 end
