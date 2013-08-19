@@ -106,11 +106,15 @@ class Article < ActiveRecord::Base
   end
   
   def next
-    Article.where("id > ?", self.id).published.order("id ASC").limit(1).first
+    Rails.cache.fetch("article_#{slug}_next") {
+      Article.where("id > ?", self.id).published.order("id ASC").limit(1).first
+    }
   end
 
   def previous
-    Article.where("id < ?", self.id).published.order("id DESC").limit(1).first
+    Rails.cache.fetch("article_#{slug}_previous") {
+      Article.where("id < ?", self.id).published.order("id DESC").limit(1).first
+    }
   end
   
   def category_names

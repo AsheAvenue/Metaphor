@@ -265,6 +265,8 @@ module Metaphor
     def update_article_cache(article)
       #remove this artist from the cache
       Rails.cache.delete("article_#{article.slug}")
+      Rails.cache.delete("article_#{article.slug}_previous")
+      Rails.cache.delete("article_#{article.slug}_next")
       
       #remove the article collections from the cache
       Collection.where(:content_type => 'article').all.each do |collection|
