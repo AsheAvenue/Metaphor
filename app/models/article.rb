@@ -108,14 +108,14 @@ class Article < ActiveRecord::Base
   end
   
   def next
-    Rails.cache.fetch("article_#{self.slug}_next") {
+    Rails.cache.fetch("article_#{id}_next") {
       a = Article.where("id > ?", self.id).published.order("id ASC").limit(1).first
       a = a.current if a
     }
   end
 
   def previous
-    Rails.cache.fetch("article_#{self.slug}_previous") {
+    Rails.cache.fetch("article_#{id}_previous") {
       Article.where("id < ?", self.id).published.order("id DESC").limit(1).first
       a = a.current if a
     }
