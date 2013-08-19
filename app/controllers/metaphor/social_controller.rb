@@ -17,6 +17,7 @@ module Metaphor
         @feed = Feedzirra::Feed.fetch_and_parse(@rss_url)
         @response = []
         @feed.entries.each do |f|
+          image_src = Nokogiri::HTML.fragment(f.summary).at_css('img')['src'] unless f.summary == nil
           @response << { 
            "title"        => f.title,
            "url"          => f.url,
