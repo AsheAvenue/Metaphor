@@ -35,7 +35,7 @@ class Image < ActiveRecord::Base
   # GETTING FROM THE FRONTEND
   def self.get(slug)
     i = Rails.cache.fetch("image_#{slug}") { 
-      image = Image.find_by_slug(:slug => slug).all.first
+      image = Image.where(:slug => slug).all.first
       item = image || nil
       item
     }

@@ -20,7 +20,7 @@ class Gallery < ActiveRecord::Base
   # GETTING FROM THE FRONTEND
   def self.get(slug)
     g = Rails.cache.fetch("gallery_#{slug}") { 
-      gallery = Gallery.find_by_slug(:slug => slug).includes(:images).all.first
+      gallery = Gallery.where(:slug => slug).includes(:images).all.first
       item = gallery || nil
       item
     }
