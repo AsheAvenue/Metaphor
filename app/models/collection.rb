@@ -7,38 +7,34 @@ class Collection < ActiveRecord::Base
   accepts_nested_attributes_for :pinned_entities
   
   def self.get(slug)
-    collection = Rails.cache.fetch("collection_#{slug}") { 
-      # get the collection defined by the slug
-      c = Collection.find_by_slug(slug)
-      if c
-        # combine pinned articles with all articles... uniquify
-        generated = []
-      
-        c.content_type.capitalize.constantize
-          .with_type(c.article_type)
-          .with_category(c.category)
-          .with_series(c.series)
-          .flagged_as(c.flag)
-          .sort_by(c.order)
-          .with_limit(c.limit)
-          .published
-          .each do |a|
-            generated << a.current
-          end
-          
-        pinned = []
-        c.pinned_entities.each do |e|
-          if e.last_published_revision_id
-            pinned << e.entity.current
-          end
+   c = Collection.find_by_slug(slug)
+    if c
+      # combine pinned articles with all articles... uniquify
+      generated = []
+    
+      c.content_type.capitalize.constantize
+        .with_type(c.article_type)
+        .with_category(c.category)
+        .with_series(c.series)
+        .flagged_as(c.flag)
+        .sort_by(c.order)
+        .with_limit(c.limit)
+        .published
+        .each do |a|
+          generated << a.current
         end
-        collection = (pinned + generated).uniq
-      else
-        # return nothing if the collection doesn't exist
-        collection = []
+        
+      pinned = []
+      c.pinned_entities.each do |e|
+        if e.last_published_revision_id
+          pinned << e.entity.current
+        end
       end
-      collection
-    }
+      collection = (pinned + generated).uniq
+    else
+      # return nothing if the collection doesn't exist
+      collection = []
+    end
     collection
   end 
   
