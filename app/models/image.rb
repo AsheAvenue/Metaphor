@@ -32,4 +32,14 @@ class Image < ActiveRecord::Base
     Image.find_each { |image| image.image.reprocess! }
   end
   
+  # GETTING FROM THE FRONTEND
+  def self.get(slug)
+    i = Rails.cache.fetch("image_#{slug}") { 
+      image = Image.find_by_slug(:slug => slug).all.first
+      item = image || nil
+      item
+    }
+    i
+  end
+  
 end

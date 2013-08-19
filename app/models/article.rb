@@ -150,7 +150,8 @@ class Article < ActiveRecord::Base
   def self.get(slug)
     a = Rails.cache.fetch("article_#{slug}") { 
       article = Article.where(:slug => slug).includes(:artists, :producers, :directors, :images, :categories, :related_entities, :flags).published.first
-      a = (article == nil) ? nil : article.current
+      item = (article == nil) ? nil : article.current
+      item
     }
     a
   end
