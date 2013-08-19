@@ -13,18 +13,20 @@ module Metaphor
       #tumblr currently just pulls from an RSS feed
       require 'feedzirra'
       @rss_url = "http://" + Settings.socials.tumblr.url + "/rss"
-      @response = Rails.cache.fetch("social_tumblr", :expires_in => 15.minutes) {
+      @response = Rails.cache.fetch("social_tumblr") {
         @feed = Feedzirra::Feed.fetch_and_parse(@rss_url)
-        @response = []
+        items = []
         @feed.entries.each do |f|
-          image_src = Nokogiri::HTML.fragment(f.summary).at_css('img')['src'] unless f.summary == nil
-          @response << { 
-           "title"        => f.title,
-           "url"          => f.url,
-           "summary"      => f.summary,
-           "first_image"  => Nokogiri::HTML.fragment(f.summary).at_css('img')['src']
-         }
+          if f.summary.include? 'img'
+            items << { 
+              "title"        => f.title,
+              "url"          => f.url,
+              "summary"      => "yo",
+              "first_image"  => Nokogiri::HTML.fragment(f.summary).at_css('img')['src']
+            }
+          end
         end
+        items
       }
       render :json => @response.to_json 
     end
@@ -37,10 +39,11 @@ module Metaphor
       require 'rinku'
       @response = Rails.cache.fetch("social_twitter", :expires_in => 15.minutes) {
         @tweets = Twitter.user_timeline(Settings.socials.twitter.handle)
-        @response = []
+        items = []
         @tweets.each do |t|
-          @response << { "tweet" => Rinku.auto_link(t.text, :all, 'target="_blank"') }
+          items << { "tweet" => Rinku.auto_link(t.text, :all, 'target="_blank"') }
         end
+        items
       }
       render :json => @response.to_json
     end
@@ -52,10 +55,11 @@ module Metaphor
 
       @response = Rails.cache.fetch("social_instagram", :expires_in => 15.minutes) {
         photos = Instagram.tag_recent_media(Settings.socials.instagram.hashtag)
-        @response = []
+        items = []
         photos.each do |p|
-          @response << { "images" => p.images, "url" => p.link  }
+          items << { "images" => p.images, "url" => p.link  }
         end
+        items
       }
       render :json => @response.to_json
     end
