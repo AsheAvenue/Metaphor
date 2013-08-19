@@ -107,16 +107,18 @@ class Article < ActiveRecord::Base
     end
   end
   
-  def next
-    Rails.cache.fetch("article_#{id}_next") {
+  def next_article
+    Rails.cache.fetch("article_#{self.id}_next") {
       a = Article.where("id > ?", self.id).published.order("id ASC").limit(1).first
       a = a.current if a
     }
   end
 
   def previous
-    Article.where("id < ?", self.id).published.order("id DESC").limit(1).first
-    a = a.current if a
+    Rails.cache.fetch("article_#{self.id}_previous") {
+      a = Article.where("id < ?", self.id).published.order("id DESC").limit(1).first
+      a = a.current if a
+    }
   end
   
   def category_names
