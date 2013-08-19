@@ -149,7 +149,7 @@ class Article < ActiveRecord::Base
   # GETTING FROM THE FRONTEND
   def self.get(slug)
     a = Rails.cache.fetch("article_#{slug}") { 
-      article = Article.where(:slug => slug).includes(:artists, :producers, :directors, :images, :categories, :related_entities, :flags).published.first
+      article = Article.where(:slug => slug).includes(:artists, :producers, :directors, :images, :galleries, :sounds, :videos, :categories, :related_entities, :flags).published.all.first
       item = (article == nil) ? nil : article.current
       item
     }

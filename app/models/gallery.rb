@@ -17,4 +17,14 @@ class Gallery < ActiveRecord::Base
     end
   end
   
+  # GETTING FROM THE FRONTEND
+  def self.get(slug)
+    g = Rails.cache.fetch("gallery_#{slug}") { 
+      gallery = Gallery.find_by_slug(:slug => slug).includes(:images).all.first
+      item = gallery || nil
+      item
+    }
+    g
+  end
+  
 end
