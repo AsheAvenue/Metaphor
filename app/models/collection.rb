@@ -26,9 +26,7 @@ class Collection < ActiveRecord::Base
         
       pinned = []
       c.pinned_entities.each do |e|
-        if e.last_published_revision_id
-          pinned << e.entity.current
-        end
+        pinned << e.entity.current
       end
       collection = (pinned + generated).uniq
     else
