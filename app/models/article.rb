@@ -13,6 +13,8 @@ class Article < ActiveRecord::Base
     :author_other_name, 
     :template
     
+  default_scope includes(:categories, :series, :flags, :galleries, :videos, :sounds, :images)
+    
   has_many :article_categories, :dependent => :destroy
   has_many :categories, :through => :article_categories
 
@@ -44,13 +46,13 @@ class Article < ActiveRecord::Base
     where(:template => template) if template != "all_types"
   }
   scope :with_category, lambda { |category|
-    joins(:categories).where("categories.id = ?", category) if category
+    joins(:categories).where("categories.id = ?", category).includes(:categories) if category
   }
   scope :with_series, lambda { |series| 
-    joins(:series).where("series.id = ?", series) if series
+    joins(:series).where("series.id = ?", series).includes(:series) if series
   }
   scope :flagged_as, lambda { |flag| 
-    joins(:flags).where(:flags => {:slug => flag }) if !flag.empty?
+    joins(:flags).where(:flags => {:slug => flag }).includes(:flags) if !flag.empty?
   }
   scope :with_limit, lambda { |l|
     if l && l.is_a?(Integer) && l > 0 
