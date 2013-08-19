@@ -17,11 +17,12 @@ module Metaphor
         @feed = Feedzirra::Feed.fetch_and_parse(@rss_url)
         @response = []
         @feed.entries.each do |f|
-          @response << { "title"        => f.title,
-                         "url"          => f.url,
-                         "summary"      => f.summary,
-                         "first_image"  => Nokogiri::HTML.fragment(f.summary).at_css('img')['src']
-                       }
+          @response << { 
+           "title"        => f.title,
+           "url"          => f.url,
+           "summary"      => f.summary,
+           "first_image"  => Nokogiri::HTML.fragment(f.summary).at_css('img')['src']
+         }
         end
       }
       render :json => @response.to_json 

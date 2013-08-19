@@ -142,9 +142,11 @@ class Article < ActiveRecord::Base
   
   # GETTING FROM THE FRONTEND
   def self.get(slug)
-    article = Article.where(:slug => slug).published.first
-    return nil if !article
-    article.current
+    a = Rails.cache.fetch("article_#{slug}") { 
+      article = Article.where(:slug => slug).published.first
+      a = (article == nil) ? nil : article.current
+    }
+    a
   end
   
   # PUBLISHING

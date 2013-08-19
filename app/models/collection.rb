@@ -34,8 +34,8 @@ class Collection < ActiveRecord::Base
         # return nothing if the collection doesn't exist
         collection = []
       end
+      collection
     }
-    collection
   end 
   
 end
