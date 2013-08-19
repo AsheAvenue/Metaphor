@@ -21,7 +21,7 @@ module Metaphor
             items << { 
               "title"        => f.title,
               "url"          => f.url,
-              "summary"      => "yo",
+              "summary"      => f.summary,
               "first_image"  => Nokogiri::HTML.fragment(f.summary).at_css('img')['src']
             }
           end
