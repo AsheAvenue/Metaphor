@@ -63,6 +63,7 @@ module Metaphor
     
     def destroy
       event = Event.find_by_id(params[:id]).destroy
+      Rails.cache.delete("event_#{event.slug}")
       redirect_to events_path
     end
     
