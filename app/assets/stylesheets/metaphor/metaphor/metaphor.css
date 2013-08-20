@@ -84,6 +84,22 @@ html, body {
     background: #f39c12;
 }
 
+.button.red {
+    background: #e74c3c;
+    color: white;
+}
+.button.red:hover {
+    background: #c0392b;
+    color: white;
+}
+
+.button.delete {
+    margin-top: 10px;
+    height: 28px;
+    padding: 2px 15px 3px 15px !important;
+    line-height: 24px;
+}
+
 .label-success,
 .badge-success {
     background: #16a085;

@@ -153,6 +153,7 @@
                 <%= link_to "Create #{Settings.events.name}", '#', :class => "button green", :id => 'event-submit' %>
             <% elsif action == 'update'%>
                 <%= link_to "Save #{Settings.events.name}", '#', :class => "button green", :id => 'event-submit' %>
+                <%= link_to 'Delete Event', @event, :method => :delete, :data => { confirm: "Are you sure you want to delete this Event? This action cannot be undone." }, :class => 'button red' %>
             <% end %>
         </div>
     </div>

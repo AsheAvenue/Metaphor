@@ -10,12 +10,12 @@ module Metaphor
   
     def edit
       @event = Event.find(params[:id])
-      @events = Event.recently_updated.all
+      @events = Event.recently_updated.limit(10)
     end
     
     def new
       @event = Event.new
-      @events = Event.all
+      @events = Event.recently_update.limit(10)
     end
     
     def create    
@@ -59,6 +59,11 @@ module Metaphor
         flash[:alert] = "All fields are required"
         render :edit
       end
+    end  
+    
+    def destroy
+      event = Event.find_by_id(params[:id]).destroy
+      redirect_to events_path
     end
     
     def taglist
