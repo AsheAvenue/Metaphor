@@ -57,7 +57,7 @@
                 <div class="quarter last">
                     <%= link_to event.date.strftime('%b %d, %Y'), edit_event_path(event)%>
                     
-                    <% if !event.time.empty? %>
+                    <% if event.time %>
                         @ <%= link_to event.time, edit_event_path(event)%>
                     <% end %> 
                 </div>
