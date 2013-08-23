@@ -6,7 +6,7 @@ module Metaphor
     layout 'metaphor/picker'
 
     def article
-      @articles = Article.where(true).recently_updated
+      @articles = Article.where(true).recently_updated.limit(10)
     end
     
     def searchArticle
@@ -14,7 +14,7 @@ module Metaphor
     end
 
     def event
-      @events = Event.where(true).recently_updated
+      @events = Event.where(true).recently_updated.limit(10)
     end
     
     def searchEvent
@@ -22,8 +22,7 @@ module Metaphor
     end
 
     def gallery
-      puts "HERE!!!!!"
-      @galleries = Gallery.where(true).order('galleries.updated_at desc')
+      @galleries = Gallery.where(true).order('galleries.updated_at desc').limit(10)
       @gallery = Gallery.new
     end
 
@@ -43,7 +42,7 @@ module Metaphor
     end
 
     def video
-      @videos = Video.where(true).order('videos.updated_at desc')
+      @videos = Video.where(true).order('videos.updated_at desc').limit(10)
       @video = Video.new
     end
 
@@ -60,7 +59,7 @@ module Metaphor
     end
 
     def image
-      @images = Image.where(true).order('images.updated_at desc')
+      @images = Image.where(true).order('images.updated_at desc').limit(10)
       @image = Image.new
     end
 
@@ -90,7 +89,7 @@ module Metaphor
     end
   
     def sound
-      @sounds = Sound.all
+      @sounds = Sound.limit(10).all
     end
 
     def addSound
