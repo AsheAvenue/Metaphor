@@ -72,7 +72,8 @@ class Article < ActiveRecord::Base
       :secret_access_key => Settings.filepicker.s3.secret_access_key
     },
     :styles => Settings.articles.image.sizes.to_hash,
-    :convert_options => Settings.articles.image.convert_options.to_hash
+    :convert_options => Settings.articles.image.convert_options.to_hash, 
+    :default_url => "/assets/missing/articles/:style.png"
        
   has_paper_trail :only => [:title, :body, :summary, :slug],
                   :skip => [:last_published_revision_id, :next_published_revision_id, :publish_next_revision_at]
