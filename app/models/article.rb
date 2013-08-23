@@ -158,6 +158,11 @@ class Article < ActiveRecord::Base
     a
   end
   
+  def self.get_by_legacy_slug(legacy_slug)
+    article = Article.where(:legacy_slug => legacy_slug)
+    article
+  end
+  
   # PUBLISHING
   #
   # This is called by the cron job managed by the Whenever gem
