@@ -72,13 +72,16 @@
                     </div>
                     <div class="item-sub-title">
                         <% if version.index == 0 %>
-                            Created by
+                            Created
                         <% else %>
-                            Edited by
+                            Edited
                         <% end %>
-                        <span class="bold"><%= User.find(version.whodunnit).display_name %></span>
-                        <%= distance_of_time_in_words_to_now version.created_at %>
-                        ago
+                        
+                        <% if version.whodunnit%>
+                          by <span class="bold"><%= User.find(version.whodunnit).display_name %></span>
+                        <% end %>
+                        
+                        <%= distance_of_time_in_words_to_now version.created_at %> ago
                     </div>
                     <div>
                         <% if !current_revision %>
