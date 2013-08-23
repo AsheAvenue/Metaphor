@@ -885,7 +885,7 @@ header .navigation li a {
 }
 .pinned-entity {
     width: 500px;
-    height: 64px;
+    min-height: 64px;
     background-color: #7f8c8d;
     color: white;
     padding-left: 3px;
@@ -902,7 +902,7 @@ header .navigation li a {
 .pinned-entity .meta {
     font-size: 12px;
     line-height: 12px;
-    margin: 3px 0px 0px 7px;
+    margin: 3px 0px 7px 7px;
 }
 
 .pinned-entity .meta a {
