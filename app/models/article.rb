@@ -159,7 +159,7 @@ class Article < ActiveRecord::Base
   end
   
   def self.get_by_legacy_slug(legacy_slug)
-    article = Article.where(:legacy_slug => legacy_slug)
+    article = Article.where(:legacy_slug => legacy_slug).first
     article
   end
   
