@@ -36,6 +36,7 @@ module Metaphor
       if @page.save
         @pages = Page.all
         flash[:alert] = "#{Settings.pages.name} successfully updated"
+        Rails.cache.delete("page_#{@page.slug}")
         redirect_to edit_page_path(@page)
       else
         flash[:alert] = "All fields are required"

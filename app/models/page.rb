@@ -4,11 +4,16 @@ class Page < ActiveRecord::Base
   # GETTING FROM THE FRONTEND
   # Pass in a page slug, get the page
   def self.get(slug)
-    p = Page.find_by_slug(slug)
-    if p
-      p
+    if page = Rails.cache.read("page_#{slug}")
+      page
     else
-      nil
+      p = Page.find_by_slug(slug)
+      if p
+        Rails.cache.write "page_#{slug}", p
+        p
+      else
+        nil
+      end
     end
   end
   
