@@ -35,85 +35,99 @@
             </div>
         </div>
         
-        <% if @collection.content_type == "article" %>
-            <div class="form-section clearfix">
-                <div class="form-section-left">
-                    <%= Settings.articles.name %> Type
-                </div>
-                <div class="form-section-right">
-                    <div class="form-line">
-                        <%= f.collection_select :article_type, Settings.query.types, :first, :last  %>
-                    </div>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                Selection Type
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= select_tag 'collection[pinned_only]', options_for_select({ "Selected Items + Pinned Items" => false, "Only Pinned Items" => true }, @collection.pinned_only), :id => 'collection_pinned_only', :style => 'width: 300px;' %>
                 </div>
             </div>
+        </div>
         
-            <div class="form-section clearfix">
-                <div class="form-section-left">
-                    Category 
-                </div>
-                <div class="form-section-right">
-                    <div class="form-line">
-                        <%= f.collection_select :category, Category.all, :id, :name, {:include_blank => 'All'}  %>
-                    </div>
-                </div>
-            </div>
-            
-            <% if Settings.series.enabled %>
+        <% unless @collection.pinned_only %>
+            <% if @collection.content_type == "article" %>
                 <div class="form-section clearfix">
                     <div class="form-section-left">
-                        Series 
+                        <%= Settings.articles.name %> Type
                     </div>
                     <div class="form-section-right">
                         <div class="form-line">
-                            <%= f.collection_select :series, Series.all, :id, :name, {:include_blank => 'All'}  %>
+                            <%= f.collection_select :article_type, Settings.query.types, :first, :last  %>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="form-section clearfix">
+                    <div class="form-section-left">
+                        Category 
+                    </div>
+                    <div class="form-section-right">
+                        <div class="form-line">
+                            <%= f.collection_select :category, Category.all, :id, :name, {:include_blank => 'All'}  %>
+                        </div>
+                    </div>
+                </div>
+            
+                <% if Settings.series.enabled %>
+                    <div class="form-section clearfix">
+                        <div class="form-section-left">
+                            Series 
+                        </div>
+                        <div class="form-section-right">
+                            <div class="form-line">
+                                <%= f.collection_select :series, Series.all, :id, :name, {:include_blank => 'All'}  %>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            
+            <% elsif @collection.content_type == "event" %>
+                <div class="form-section clearfix">
+                    <div class="form-section-left">
+                        <%= Settings.events.name %> Type
+                    </div>
+                    <div class="form-section-right">
+                        <div class="form-line">
+                            <%= f.collection_select :article_type, Settings.events.types, :first, :last, {:include_blank => 'All'}  %>
                         </div>
                     </div>
                 </div>
             <% end %>
-            
-        <% elsif @collection.content_type == "event" %>
+
             <div class="form-section clearfix">
                 <div class="form-section-left">
-                    <%= Settings.events.name %> Type
+                    Flag 
                 </div>
                 <div class="form-section-right">
                     <div class="form-line">
-                        <%= f.collection_select :article_type, Settings.events.types, :first, :last, {:include_blank => 'All'}  %>
+                        <%= f.collection_select :flag, Flag.all, :slug, :name, {:include_blank => 'All'}  %>
+                    </div>
+                </div>
+            </div>
+            <div class="form-section clearfix">
+                <div class="form-section-left">
+                    Order 
+                </div>
+                <div class="form-section-right">
+                    <div class="form-line">
+                        <%= f.collection_select :order, Settings.query.order, :first, :last  %>
+                    </div>
+                </div>
+            </div>
+            <div class="form-section clearfix">
+                <div class="form-section-left">
+                    Limit 
+                </div>
+                <div class="form-section-right">
+                    <div class="form-line">
+                        <%= f.text_field :limit, :placeholder => "Limit", :id => 'collection-limit', :autocomplete=>"off", :class => 'form-text-field' %>
                     </div>
                 </div>
             </div>
         <% end %>
-
-        <div class="form-section clearfix">
-            <div class="form-section-left">
-                Flag 
-            </div>
-            <div class="form-section-right">
-                <div class="form-line">
-                    <%= f.collection_select :flag, Flag.all, :slug, :name, {:include_blank => 'All'}  %>
-                </div>
-            </div>
-        </div>
-        <div class="form-section clearfix">
-            <div class="form-section-left">
-                Order 
-            </div>
-            <div class="form-section-right">
-                <div class="form-line">
-                    <%= f.collection_select :order, Settings.query.order, :first, :last  %>
-                </div>
-            </div>
-        </div>
-        <div class="form-section clearfix">
-            <div class="form-section-left">
-                Limit 
-            </div>
-            <div class="form-section-right">
-                <div class="form-line">
-                    <%= f.text_field :limit, :placeholder => "Limit", :id => 'collection-limit', :autocomplete=>"off", :class => 'form-text-field' %>
-                </div>
-            </div>
-        </div>
+        
         <% if @collection.id != nil %>
             <div class="form-section clearfix">
                 <div class="form-section-left">
