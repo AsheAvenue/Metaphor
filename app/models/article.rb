@@ -37,9 +37,9 @@ class Article < ActiveRecord::Base
   scope :published, where('articles.last_published_revision_id IS NOT NULL')
   scope :sort_by, lambda { |order|
     if order == "newest"
-      joins(:current_version).order("versions.created_at DESC")
+      order("updated_at DESC")
     elsif order == "oldest"
-      joins(:current_version).order("versions.created_at ASC")
+      order("updated_at ASC")
     end
   }
   scope :with_type, lambda { |template|
