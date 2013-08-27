@@ -263,33 +263,7 @@ module Metaphor
     end
     
     def update_article_cache(article)
-      #remove this artist from the cache
-      Rails.cache.delete("article_#{article.slug}")
-      Rails.cache.delete("article_#{@article.slug}_related_articles")
-      Rails.cache.delete("article_#{article.slug}_previous")
-      Rails.cache.delete("article_#{article.slug}_next")
-      
-      loops = Article.published.count / Settings.site.pagination.default
-      loops.times do |i|
-        Rails.cache.delete("homepage_all_#{i}")
-        Rails.cache.delete("homepage_hottest_#{i}")
-        Rails.cache.delete("homepage_pagination_#{i}")
-        Rails.cache.delete("category_pagination_#{i}")
-        Rails.cache.delete("flag_pagination_#{i}")
-        
-        article.categories.each do |category|
-           Rails.cache.delete("category_index_#{category.slug}_#{i}")
-        end
-        
-        article.flags.each do |flag|
-           Rails.cache.delete("flag_index_#{flag.slug}_#{i}")
-        end
-      end
-      
-      #remove the article collections from the cache
-      Collection.where(:content_type => 'article').all.each do |collection|
-        Rails.cache.delete("collection_#{collection.slug}")
-      end
+      Rails.cache.clear
     end
     
   end

@@ -76,17 +76,7 @@ module Metaphor
     private 
     
     def update_collection_cache(collection)
-      Rails.cache.delete("collection_#{collection.slug}")
-      
-      loops = Article.published.count / Settings.site.pagination.default
-      loops.times do |i|
-        Rails.cache.delete("homepage_all_#{i}")
-        Rails.cache.delete("homepage_hottest_#{i}")
-        Rails.cache.delete("homepage_pagination_#{i}")
-        Rails.cache.delete("category_pagination_#{i}")
-        Rails.cache.delete("flag_pagination_#{i}")
-      end
-      
+      Rails.cache.clear      
     end
   
   end
