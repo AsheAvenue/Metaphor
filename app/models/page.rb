@@ -9,8 +9,9 @@ class Page < ActiveRecord::Base
     else
       p = Page.find_by_slug(slug)
       if p
-        Rails.cache.write "page_#{slug}", p
-        p
+        content = p.content
+        Rails.cache.write "page_#{slug}", content
+        content
       else
         nil
       end
