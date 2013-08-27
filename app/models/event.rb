@@ -20,7 +20,8 @@ class Event < ActiveRecord::Base
       :secret_access_key => Settings.filepicker.s3.secret_access_key
     },
     :styles => Settings.events.image.sizes.to_hash,
-    :convert_options => Settings.events.image.convert_options.to_hash
+    :convert_options => Settings.events.image.convert_options.to_hash,
+    :default_url => "/assets/missing/events/:style.png"
   
   scope :recently_created, order("events.created_at desc")
   scope :recently_updated, order("events.updated_at desc")
