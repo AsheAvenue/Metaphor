@@ -166,6 +166,7 @@ class Article < ActiveRecord::Base
           
           puts "instance write: #{:file_name}, #{original_filename}"
           article.default_image.instance_write(:file_name, original_filename)
+          article.save
         end
       end
     end
