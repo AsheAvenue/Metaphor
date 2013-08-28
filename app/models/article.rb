@@ -156,22 +156,14 @@ class Article < ActiveRecord::Base
     else
       articles.each do |article|
         if article.videos.count > 0
-          video = article.videos.first
-          puts "found video: #{video.slug}"
-          url = "http://img.youtube.com/vi/#{video.code}/0.jpg"
-          original_filename = "#{article.id}.jpg"
-          
           begin
-            puts "opening file"
-            article.default_image = open(url)
-          
-            puts "instance write: #{:file_name}, #{original_filename}"
-            article.default_image.instance_write(:file_name, original_filename)
+            video = article.videos.first
+            article.default_image = open("http://img.youtube.com/vi/#{video.code}/0.jpg")
+            article.default_image.instance_write(:file_name, "#{article.id}.jpg")
             article.save
           rescue
             next
           end
-          
         end
       end
     end
