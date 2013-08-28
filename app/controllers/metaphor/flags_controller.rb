@@ -1,5 +1,5 @@
 module Metaphor
-  class FlagsController < ApplicationController
+  class FlagsController < MetaphorController
   
     layout 'metaphor/metaphor'
     

@@ -1,5 +1,5 @@
 module Metaphor
-  class SocialController < ApplicationController
+  class SocialController < MetaphorController
     skip_before_filter :require_login 
     skip_load_and_authorize_resource
 

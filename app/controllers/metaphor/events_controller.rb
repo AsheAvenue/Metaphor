@@ -1,5 +1,5 @@
 module Metaphor
-  class EventsController < ApplicationController
+  class EventsController < MetaphorController
   
     layout 'metaphor/metaphor'
     

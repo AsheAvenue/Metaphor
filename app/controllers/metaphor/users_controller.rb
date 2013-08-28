@@ -1,5 +1,5 @@
 module Metaphor
-  class UsersController < ApplicationController
+  class UsersController < MetaphorController
   
     layout 'metaphor/metaphor'
     

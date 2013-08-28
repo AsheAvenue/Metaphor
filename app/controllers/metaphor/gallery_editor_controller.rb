@@ -1,5 +1,5 @@
 module Metaphor
-  class GalleryEditorController < ApplicationController
+  class GalleryEditorController < MetaphorController
     skip_load_and_authorize_resource #don't let cancan try and instantiate a non-existent "ArticleEditor" resource
   
     layout 'metaphor/gallery_editor'

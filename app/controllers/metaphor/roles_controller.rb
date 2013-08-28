@@ -1,5 +1,5 @@
 module Metaphor
-  class RolesController < ApplicationController
+  class RolesController < MetaphorController
 
     layout 'metaphor/metaphor'
     

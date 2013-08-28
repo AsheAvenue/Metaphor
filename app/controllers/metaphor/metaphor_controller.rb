@@ -1,5 +1,5 @@
 module Metaphor
-  class ApplicationController < ActionController::Base
+  class MetaphorController < ActionController::Base
     
     layout 'metaphor/metaphor'
     

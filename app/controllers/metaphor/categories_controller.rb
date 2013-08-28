@@ -1,5 +1,5 @@
 module Metaphor
-  class CategoriesController < ApplicationController
+  class CategoriesController < MetaphorController
   
     layout 'metaphor/metaphor'
     

@@ -1,7 +1,7 @@
 require "open-uri"
 
 module Metaphor
-  class ArticlesController < ApplicationController
+  class ArticlesController < MetaphorController
     
     layout 'metaphor/metaphor'
     

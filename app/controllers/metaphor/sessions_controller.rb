@@ -1,5 +1,5 @@
 module Metaphor
-  class SessionsController < ApplicationController
+  class SessionsController < MetaphorController
   
     skip_before_filter :require_login #otherwise we'd have an infinite loop
     skip_load_and_authorize_resource #don't let cancan try and instantiate a non-existent "Picker" resource

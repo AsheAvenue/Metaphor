@@ -1,5 +1,5 @@
 module Metaphor
-  class PickerController < ApplicationController
+  class PickerController < MetaphorController
 
     skip_load_and_authorize_resource #don't let cancan try and instantiate a non-existent "Picker" resource
   
