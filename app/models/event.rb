@@ -28,9 +28,9 @@ class Event < ActiveRecord::Base
     
   scope :sort_by, lambda { |order|
     if order == "newest"
-      order("events.created_at DESC")
+      order("events.date ASC").where("events.date > ?", Date.yesterday)
     elsif order == "oldest"
-      order("events.created_at ASC")
+      order("events.date DESC").where("events.date > ?", Date.yesterday)
     end
   }
   scope :with_type, lambda { |event_type|
