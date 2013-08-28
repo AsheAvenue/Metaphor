@@ -4,7 +4,7 @@
         <% if @article.last_published_revision_id %>
             <div id="status" class="published">
                 <% 
-                    if @article.last_published_revision_id == 0
+                    if @last_published_revision_index == 0
                         text = "Original"
                     else
                         text = "Revision #{@last_published_revision_index}"
