@@ -149,6 +149,26 @@ class Article < ActiveRecord::Base
     Article.find_each { |entity| entity.default_image.reprocess! }
   end
   
+  def self.add_video_images
+    articles = Article.unscoped.includes(:videos).where(:default_image_file_name => nil).sort_by('newest').limit(1000).all
+    if !articles
+      puts "All articles updated"
+    else
+      articles.each do |article|
+        if article.videos.count > 0
+          begin
+            video = article.videos.first
+            article.default_image = open("http://img.youtube.com/vi/#{video.code}/0.jpg")
+            article.default_image.instance_write(:file_name, "#{article.id}.jpg")
+            article.save
+          rescue
+            next
+          end
+        end
+      end
+    end
+  end
+  
   # GETTING FROM THE FRONTEND
   def self.get(slug)
     a = Rails.cache.fetch("article_#{slug}") { 
