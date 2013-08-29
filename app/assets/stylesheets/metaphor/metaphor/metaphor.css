@@ -464,6 +464,15 @@ header .navigation li a {
 #list .onetenth.last {
     width: 8%;
 }
+#list .threetenths {
+    float: left;
+    width: 30%;
+    box-sizing: border-box;
+    padding: 5px;
+}
+#list .threetenths.last {
+    width: 28%;
+}
 
 #list .item .published {
     color: white;
