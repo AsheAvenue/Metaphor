@@ -6,7 +6,8 @@ module Metaphor
         :slug, 
         :default_image,
         :default_image_selected,
-        :default_image_original_filename
+        :default_image_original_filename,
+        :upvotes
   
       base.has_many :related_entities, :as => :related
       base.has_many :articles, :through => :related_entities, :source => :entity, :source_type => 'Article'

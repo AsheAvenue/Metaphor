@@ -9,7 +9,8 @@ module Metaphor
         :default_image_selected,
         :default_image_original_filename,
         :tag_list,
-        :legacy_slug
+        :legacy_slug,
+        :upvotes
         
         base.has_many :entity_flags, :dependent => :destroy, :as => :entity
         base.has_many :flags, :through => :entity_flags
