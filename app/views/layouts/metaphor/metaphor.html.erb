@@ -36,7 +36,7 @@
                                 <li><%= link_to Settings.events.name.pluralize, metaphor.events_path %></li>
                             <% end %>
                             
-                            <% Settings.entities.types.each do |key, value| %>
+                            <% Settings.nav.entities.each do |key, value| %>
                                 <li><%= link_to value.pluralize, "#{Settings.site.root_url}/#{key}" %></li>
                             <% end %>
                         </ul>
