@@ -31,7 +31,6 @@ module Metaphor
         base.scope :with_series
         base.scope :flagged_as
         base.scope :with_limit
-        
     end
 
     attr_accessor :default_image_selected, :default_image_original_filename

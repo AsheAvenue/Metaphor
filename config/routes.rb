@@ -19,6 +19,7 @@ Metaphor::Engine.routes.draw do
   
   match 'articles/checkslug' => 'articles#checkslug'
   match 'articles/search' => 'articles#search', :as => 'article_search'
+  match 'articles/vote' => 'articles#vote', :as => 'article_vote'
   match 'articles/:id/version/:version_id' => 'articles#revision', :as => 'article_revision'
   match 'articles/:id/publish/version/:version_id' => 'articles#publish', :as => 'article_publish'
   match 'articles/:id/unpublish' => 'articles#unpublish', :as => 'article_unpublish'

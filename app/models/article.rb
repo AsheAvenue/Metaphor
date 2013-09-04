@@ -40,6 +40,8 @@ class Article < ActiveRecord::Base
       order("articles.created_at DESC")
     elsif order == "oldest"
       order("articles.created_at ASC")
+    elsif order == "hottest"
+      select("articles.*, (((articles.upvotes - 1) / POW(((EXTRACT(EPOCH FROM (now()-articles.created_at)) / 3600)::integer + 2), 1.5))) AS popularity").order("popularity DESC, articles.created_at DESC")
     end
   }
   scope :with_type, lambda { |template|

@@ -226,6 +226,20 @@ module Metaphor
                    .where("name ilike ?","%#{params[:term]}%")
                    .order("name ilike '%#{params[:term]}%' DESC, LENGTH(name) ASC, name ASC")
     end
+    
+    def vote
+      entity_type = params[:entity_type]
+      entity_id = params[:entity_id]
+      if entity_type == "article"
+        a = Article.find(entity_id)
+        a.upvotes = a.upvotes + 1
+        if a.save
+          render :text => a.upvotes
+        else
+          render :text => "Failure"
+        end
+      end
+    end
       
     private
     
