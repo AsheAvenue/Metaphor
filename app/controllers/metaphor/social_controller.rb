@@ -5,6 +5,8 @@ module Metaphor
 
     layout 'metaphor/metaphor'
     
+    caches_page :tumblr, :twitter, :instagram
+    
     def tumblr
       #call out to tumblr through a tumblr gem and get the latest tumblrs
       #make sure to keep the tumblr login info in Settings.yml, which is 
