@@ -130,7 +130,7 @@ module Metaphor
     end
 
     def new
-      @articles = Article.where(true).recently_created
+      @articles = Article.where(true).recently_created.limit(20)
       @article = Article.new
     
       #set up the templates
