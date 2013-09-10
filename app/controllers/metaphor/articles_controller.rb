@@ -187,6 +187,10 @@ module Metaphor
         
       end
       params[:article].delete :default_image
+      
+      # remove any superfluous "\n" and "\t" from the body
+      params[:article][:body].gsub!("\n", "")
+      params[:article][:body].gsub!("\t", "")
     
       # Proceed to update the object accordingly
       article.update_attributes(params[:article])
