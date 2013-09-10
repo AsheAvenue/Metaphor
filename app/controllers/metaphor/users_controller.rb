@@ -4,8 +4,7 @@ module Metaphor
     layout 'metaphor/metaphor'
     
     def index
-      @users = User.where(true)
-      @users = @users.alphabetical
+      @users = User.alphabetical
     end
   
     def show
@@ -15,14 +14,12 @@ module Metaphor
 
     def edit
       @user = User.find(params[:id])
-      @users = User.where(true)
-      @users = @users.alphabetical
+      @users = User.alphabetical
     end
   
     def new
       @user = User.new
-      @users = User.where(true)
-      @users = @users.alphabetical
+      @users = User.alphabetical
     end
 
     def create
@@ -34,22 +31,18 @@ module Metaphor
         redirect_to edit_user_path(@user)
       else
         flash[:alert] = "All fields are required"
-        render :new
+        redirect_to new_user_path
       end
     end
   
     def update
       @user = User.find(params[:id])
-      @user.update_attributes(params[:user])
-      if @user.save
-        @users = User.where(true)
-        @users = @users.alphabetical
+      if @user.update_attributes(params[:user])
         flash[:alert] = "User successfully updated"
-        redirect_to edit_user_path(@user)
       else
         flash[:alert] = "All fields are required"
-        render :edit
       end
+      redirect_to edit_user_path(@user)
     end
   
   end

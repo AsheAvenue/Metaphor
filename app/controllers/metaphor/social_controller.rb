@@ -3,8 +3,6 @@ module Metaphor
     skip_before_filter :require_login 
     skip_load_and_authorize_resource
 
-    layout 'metaphor/metaphor'
-    
     caches_page :tumblr, :twitter, :instagram
     
     def tumblr
