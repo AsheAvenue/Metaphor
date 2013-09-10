@@ -27,7 +27,7 @@ var article_editor = (function($) {
             $('.redactor').redactor({ 
                 convertImageLinks: true,
                 convertVideoLinks: true,
-                removeEmptyTags: false,
+                removeEmptyTags: true,
                 linkAnchor: false,
                 toolbarExternal: '#article-body-toolbar',
                 placeholder: 'Enter body text...',

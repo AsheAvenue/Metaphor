@@ -131,6 +131,11 @@ module Metaphor
     def update_body
       @article = Article.find(params[:id])
       body = params[:body]
+      
+      # remove any superfluous "\n" and "\t" from the body
+      body = body.gsub(/\n/, '')
+      body = body.gsub(/\t/, '')
+      
       @article.body = body
       @article.save!
       
