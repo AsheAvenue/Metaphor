@@ -222,6 +222,26 @@
                 </div>
             </div>
         </div>
+        <% end %>      
+          
+        <div class="header internal">
+            <%= Settings.extra_fields.article.name.pluralize.capitalize %>
+            <div class="tip">
+                <%= Settings.extra_fields.article.name.pluralize.capitalize %> will be parsed when displayed. To include a name for the url, use two pipe characters as a separator (<i>example: http://www.whatever.com||Whatever</i>)
+            </div>
+        </div>
+        
+        <% Settings.extra_fields.article.strings.each do |key,value| %>
+        <div class="form-section clearfix">
+            <div class="form-section-left">
+                <%= value %>
+            </div>
+            <div class="form-section-right">
+                <div class="form-line">
+                    <%= f.text_field key, :autocomplete=>"off", :id => "article-#{key}" %>
+                </div>
+            </div>
+        </div>
         <% end %>
 
     <% end %>
