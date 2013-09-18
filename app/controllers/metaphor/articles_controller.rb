@@ -5,6 +5,8 @@ module Metaphor
     
     layout 'metaphor/metaphor'
     
+    before_filter :require_login, :except => :vote
+    
     def index
       @articles = Article.recently_created.limit(100)
       @templates = Template.all
