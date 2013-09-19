@@ -262,6 +262,11 @@ module Metaphor
       template.components.each do |component|
         slug = component.slug
         if !['meta', 'body'].include? slug
+          if slug == "widevideo"
+            slug = "video"
+          elsif slug == "wideimage"
+            slug = "image"
+          end
           template_slugs << slug
         end
       end

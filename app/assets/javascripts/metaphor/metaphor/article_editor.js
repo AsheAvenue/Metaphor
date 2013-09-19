@@ -131,11 +131,51 @@ var article_editor = (function($) {
             );
         },
         
+        select_widevideo: function(video_id, position) {
+            
+            //post the new video to 
+            $.post(
+                $('#select_widevideo').data('path'),
+                {
+                    article_id: $('#article').data('id'),
+                    video_id: video_id,
+                    position: position
+                },
+                function() {
+                    //Adding the video to the video section is handled by the 
+                    //Rails select_video.js.erb template.
+                    //
+                    //Just close the picker.
+                    picker.close();
+                }
+            );
+        },
+        
         select_image: function(image_id, position) {
             
             //post the new video to 
             $.post(
                 $('#select_image').data('path'),
+                {
+                    article_id: $('#article').data('id'),
+                    image_id: image_id,
+                    position: position
+                },
+                function() {
+                    //Adding the image to the image section is handled by the 
+                    //Rails select_video.js.erb template.
+                    //
+                    //Just close the picker.
+                    picker.close();
+                }
+            );
+        },
+        
+        select_wideimage: function(image_id, position) {
+            
+            //post the new video to 
+            $.post(
+                $('#select_wideimage').data('path'),
                 {
                     article_id: $('#article').data('id'),
                     image_id: image_id,

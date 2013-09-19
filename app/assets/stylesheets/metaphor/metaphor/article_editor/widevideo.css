@@ -1,0 +1,28 @@
+#article_editor .widevideo {
+}
+
+#article_editor .widevideo .widevideo-container {
+    border: 1px solid white;
+    min-height: 367px;
+    background-color: #bdc3c7;
+    cursor: pointer;
+}
+
+#article_editor .widevideo .widevideo-container .select-widevideo {
+    font-size: 50px;
+    line-height: 50px;
+    font-weight: 200;
+    width: 50%;
+    text-align: center;
+    margin: 165px auto;
+    color: white;
+}
+
+#article_editor .widevideo .widevideo-container .selected-buttons {
+    padding: 10px;
+    text-align: right;
+    color: white;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 100;
+}

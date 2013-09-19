@@ -28,6 +28,8 @@ Metaphor::Engine.routes.draw do
   match 'articles/:id/editor' => 'article_editor#index', :as => 'article_editor'
   match 'articles/:id/editor/select_video' => 'article_editor#select_video', :as => 'article_editor_select_video'
   match 'articles/:id/editor/select_image' => 'article_editor#select_image', :as => 'article_editor_select_image'
+  match 'articles/:id/editor/select_wideimage' => 'article_editor#select_wideimage', :as => 'article_editor_select_wideimage'
+  match 'articles/:id/editor/select_widevideo' => 'article_editor#select_widevideo', :as => 'article_editor_select_widevideo'
   match 'articles/:id/editor/select_gallery' => 'article_editor#select_gallery', :as => 'article_editor_select_gallery'
   match 'articles/:id/editor/select_sound' => 'article_editor#select_sound', :as => 'article_editor_select_sound'
   match 'articles/:id/editor/update_body' => 'article_editor#update_body', :as => 'article_editor_update_body'

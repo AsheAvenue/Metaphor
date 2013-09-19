@@ -51,6 +51,29 @@ module Metaphor
     
     end  
   
+    def select_widevideo
+      # get the data
+      @article = Article.find(params[:article_id])
+      @widevideo = Video.find(params[:video_id])
+      @position = params[:position]
+    
+      # get the content widget if it already exists in that place and 
+      # update it... or create a new one
+      c = EntityContent.find_by_entity_id_and_entity_type_and_content_type_and_position(@article.id, 'Article', 'Widevideo', @position)
+      if c
+        c.content = @widevideo
+      else
+        c = EntityContent.new
+        c.entity = @article
+        c.content = @widevideo
+        c.position = @position
+      end
+    
+      #save the content widget and continue to the js.erb portion
+      c.save!
+    
+    end  
+  
     def select_image
       # get the data
       @article = Article.find(params[:article_id])
@@ -77,6 +100,37 @@ module Metaphor
         if @article.default_image.url == '/default_images/original/missing.png' || @article.default_image == nil
           @article.default_image = open(@image.image.url)
           @article.default_image.instance_write(:file_name, @image.image.original_filename)
+          @article.save!
+        end
+      end
+    end
+  
+    def select_wideimage
+      # get the data
+      @article = Article.find(params[:article_id])
+      @wideimage = Image.find(params[:image_id])
+      @position = params[:position]
+    
+      # get the content widget if it already exists in that place and 
+      # update it... or create a new one
+      c = EntityContent.find_by_entity_id_and_entity_type_and_content_type_and_position(@article.id, 'Article', 'Wideimage', @position)
+      if c
+        c.content = @wideimage
+      else
+        c = EntityContent.new
+        c.entity = @article
+        c.content = @wideimage
+        c.position = @position
+      end
+    
+      #save the content widget and continue to the js.erb portion
+      c.save!
+    
+      #now create the article default image if it doesn't exist yet
+      if Settings.articles.autoimage.enabled
+        if @article.default_image.url == '/default_images/original/missing.png' || @article.default_image == nil
+          @article.default_image = open(@wideimage.image.url)
+          @article.default_image.instance_write(:file_name, @wideimage.image.original_filename)
           @article.save!
         end
       end
