@@ -6,23 +6,23 @@ module Metaphor
     layout 'metaphor/picker'
 
     def article
-      @articles = Article.where(true).recently_updated.limit(10)
+      @articles = Article.where(true).recently_created.limit(10)
     end
     
     def searchArticle
-      @results = Article.text_search(params[:search_term]).order('articles.updated_at desc').limit(10)
+      @results = Article.text_search(params[:search_term]).order('articles.created_at desc').limit(10)
     end
 
     def event
-      @events = Event.where(true).recently_updated.limit(10)
+      @events = Event.where(true).recently_created.limit(10)
     end
     
     def searchEvent
-      @results = Event.text_search(params[:search_term]).order('events.updated_at desc').limit(10)
+      @results = Event.text_search(params[:search_term]).order('events.created_at desc').limit(10)
     end
 
     def gallery
-      @galleries = Gallery.where(true).order('galleries.updated_at desc').limit(10)
+      @galleries = Gallery.where(true).order('galleries.created_at desc').limit(10)
       @gallery = Gallery.new
     end
 
@@ -42,7 +42,7 @@ module Metaphor
     end
 
     def video
-      @videos = Video.where(true).order('videos.updated_at desc').limit(10)
+      @videos = Video.where(true).order('videos.created_at desc').limit(10)
       @video = Video.new
     end
 
@@ -59,7 +59,7 @@ module Metaphor
     end
 
     def image
-      @images = Image.where(true).order('images.updated_at desc').limit(10)
+      @images = Image.where(true).order('images.created_at desc').limit(10)
       @image = Image.new
     end
 
