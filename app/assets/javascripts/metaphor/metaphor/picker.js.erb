@@ -49,6 +49,12 @@ var picker = (function($) {
                 picker.addVideo();
             });
 
+            //enable the video add button
+            $('#paneslide').on('click', '#picker-add-vimeo', function(event){
+                event.preventDefault();
+                picker.addVimeo();
+            });
+
             //enable the image add button
             $('#paneslide').on('click', '#picker-add-image', function(event){
                 event.preventDefault();
@@ -204,6 +210,30 @@ var picker = (function($) {
                 },
                 function(data) {
                     //Adding the new video will return the id of the new Video object
+                    //now select it as if it hadn't been added
+                    picker.select(data);
+                }
+            );
+        },
+        
+        addVimeo: function() {
+            
+            //get the values
+            vimeo_name = $('#vimeo-name').val();
+            vimeo_slug = $('#vimeo-slug').val();
+            vimeo_code = $('#vimeo-code').val();
+            
+            //post to the picker's addVimeo method
+            //post the new article
+            $.post(
+                '<%= Settings.site.root_url %>/picker/addVimeo',
+                {
+                    vimeo_name: vimeo_name,
+                    vimeo_slug: vimeo_slug,
+                    vimeo_code: vimeo_code
+                },
+                function(data) {
+                    //Adding the new vimeo will return the id of the new Video object
                     //now select it as if it hadn't been added
                     picker.select(data);
                 }

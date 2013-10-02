@@ -266,6 +266,8 @@ module Metaphor
             slug = "video"
           elsif slug == "wideimage"
             slug = "image"
+          elsif slug == "widevimeo"
+            slug = "vimeo"
           end
           template_slugs << slug
         end

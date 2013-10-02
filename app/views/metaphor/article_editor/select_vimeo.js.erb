@@ -1,0 +1,1 @@
+$("#vimeo_<%= @position %> .vimeo-container").html('<%= escape_javascript(render(:partial => "vimeo-embed", :locals => {:vimeo => @vimeo})) %>');

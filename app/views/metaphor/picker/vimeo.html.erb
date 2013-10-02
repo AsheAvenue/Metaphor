@@ -2,7 +2,7 @@
     <header>
     	<div class="top clearfix">
             <div class="navigation-wrapper clearfix">
-                Videos
+                Vimeos
                 <div class="buttons">
                     <a id="picker-cancel" href="#" class="button small">X</a>
                 </div>
@@ -13,18 +13,18 @@
 
     <div class="tabs clearfix">
         <div class="tab" data-content="add">
-            Upload a Video
+            Upload a Vimeo
         </div>
         <div class="tab" data-content="recent">
-            Recent Videos
+            Recent Vimeos
         </div>
         <div class="tab" data-content="search">
-            Search for Video
+            Search for Vimeo
         </div>
     </div>
     <div class="content recent">    
-        <% @videos.each do |video| %>
-            <%= render :partial => 'video_item', :locals => {:video => video} %>
+        <% @vimeos.each do |vimeo| %>
+            <%= render :partial => 'vimeo_item', :locals => {:vimeo => vimeo} %>
         <% end %>
     </div>
     <div class="content search">
@@ -33,7 +33,7 @@
         </div>
         
         <div class="buttons">
-            <a href="" class="button" id="picker-search" data-type="Video">Search</a>
+            <a href="" class="button" id="picker-search" data-type="Vimeo">Search</a>
         </div>
         
         <div class="results"> 
@@ -42,16 +42,16 @@
     </div>
     <div class="content add">
         <div>
-            <%= text_field_tag :name, "", :placeholder => "Name", :id => 'video-name', :class => "picker-new-name", :autocomplete=>"off" %>
+            <%= text_field_tag :name, "", :placeholder => "Name", :id => 'vimeo-name', :class => "picker-new-name", :autocomplete=>"off" %>
         </div>
         <div>
-            <%= text_field_tag :slug, "", :placeholder => "Slug", :id => 'video-slug', :class => "picker-new-slug", :autocomplete=>"off" %>
+            <%= text_field_tag :slug, "", :placeholder => "Slug", :id => 'vimeo-slug', :class => "picker-new-slug", :autocomplete=>"off" %>
         </div>
         <div>
-            <%= text_field_tag :code, "", :placeholder => "Youtube ID", :id => 'video-code', :autocomplete=>"off" %>
+            <%= text_field_tag :code, "", :placeholder => "Vimeo ID", :id => 'vimeo-code', :autocomplete=>"off" %>
         </div>
         <div class="buttons">
-            <a href="" class="button" id="picker-add-video">Upload Youtube Video</a>
+            <a href="" class="button" id="picker-add-vimeo">Upload Vimeo video</a>
         </div>
     </div>
 

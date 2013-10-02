@@ -6,7 +6,7 @@ module Metaphor
     layout 'metaphor/picker'
 
     def article
-      @articles = Article.where(true).recently_created.limit(10)
+      @articles = Article.recently_created.limit(10)
     end
     
     def searchArticle
@@ -14,7 +14,7 @@ module Metaphor
     end
 
     def event
-      @events = Event.where(true).recently_created.limit(10)
+      @events = Event.recently_created.limit(10)
     end
     
     def searchEvent
@@ -22,7 +22,7 @@ module Metaphor
     end
 
     def gallery
-      @galleries = Gallery.where(true).order('galleries.created_at desc').limit(10)
+      @galleries = Gallery.order('galleries.created_at desc').limit(10)
       @gallery = Gallery.new
     end
 
@@ -42,7 +42,7 @@ module Metaphor
     end
 
     def video
-      @videos = Video.where(true).order('videos.created_at desc').limit(10)
+      @videos = Video.order('videos.created_at desc').limit(10)
       @video = Video.new
     end
 
@@ -58,8 +58,25 @@ module Metaphor
       @results = Video.text_search(params[:search_term]).order('videos.created_at desc').limit(10)
     end
 
+    def vimeo
+      @vimeos = Vimeo.order('vimeos.created_at desc').limit(10)
+      @vimeo = Vimeo.new
+    end
+
+    def addVimeo
+      @v = Vimeo.new
+      @v.name = params[:vimeo_name]
+      @v.slug = params[:vimeo_slug]
+      @v.code = params[:vimeo_code]
+      @v.save!
+    end
+    
+    def searchVimeo
+      @results = Vimeo.text_search(params[:search_term]).order('vimeos.created_at desc').limit(10)
+    end
+
     def image
-      @images = Image.where(true).order('images.created_at desc').limit(10)
+      @images = Image.order('images.created_at desc').limit(10)
       @image = Image.new
     end
 

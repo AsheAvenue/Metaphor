@@ -122,9 +122,6 @@ var article_editor = (function($) {
                     position: position
                 },
                 function() {
-                    //Adding the video to the video section is handled by the 
-                    //Rails select_video.js.erb template.
-                    //
                     //Just close the picker.
                     picker.close();
                 }
@@ -142,9 +139,40 @@ var article_editor = (function($) {
                     position: position
                 },
                 function() {
-                    //Adding the video to the video section is handled by the 
-                    //Rails select_video.js.erb template.
-                    //
+                    //Just close the picker.
+                    picker.close();
+                }
+            );
+        },
+        
+        select_vimeo: function(vimeo_id, position) {
+            
+            //post the new video to 
+            $.post(
+                $('#select_vimeo').data('path'),
+                {
+                    article_id: $('#article').data('id'),
+                    vimeo_id: vimeo_id,
+                    position: position
+                },
+                function() {
+                    //Just close the picker.
+                    picker.close();
+                }
+            );
+        },
+        
+        select_widevimeo: function(vimeo_id, position) {
+            
+            //post the new video to 
+            $.post(
+                $('#select_widevimeo').data('path'),
+                {
+                    article_id: $('#article').data('id'),
+                    vimeo_id: vimeo_id,
+                    position: position
+                },
+                function() {
                     //Just close the picker.
                     picker.close();
                 }
@@ -162,9 +190,6 @@ var article_editor = (function($) {
                     position: position
                 },
                 function() {
-                    //Adding the image to the image section is handled by the 
-                    //Rails select_video.js.erb template.
-                    //
                     //Just close the picker.
                     picker.close();
                 }
@@ -239,6 +264,10 @@ var article_editor = (function($) {
             picker.launchPicker('video', 'article_editor#select_video_for_body', -1);
         },
         
+        add_vimeo_to_body: function(obj) {
+            picker.launchPicker('vimeo', 'article_editor#select_vimeo_for_body', -1);
+        },
+        
         add_sound_to_body: function(obj) {
             picker.launchPicker('sound', 'article_editor#select_sound_for_body', -1);
         },
@@ -260,6 +289,18 @@ var article_editor = (function($) {
                 $('#get_video_for_body').data('path'),
                 {
                     video_id: obj
+                },
+                function() {
+                    picker.close();
+                }
+            );
+        },
+        
+        select_vimeo_for_body: function(obj) {
+            $.post(
+                $('#get_vimeo_for_body').data('path'),
+                {
+                    vimeo_id: obj
                 },
                 function() {
                     picker.close();

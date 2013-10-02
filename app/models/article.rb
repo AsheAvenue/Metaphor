@@ -26,6 +26,7 @@ class Article < ActiveRecord::Base
   
   has_many :entity_contents, :as => :entity
   has_many :videos, :through => :entity_contents, :source => :content, :source_type => "Video", :order => 'position ASC'
+  has_many :vimeos, :through => :entity_contents, :source => :content, :source_type => "Vimeo", :order => 'position ASC'
   has_many :sounds, :through => :entity_contents, :source => :content, :source_type => "Sound", :order => 'position ASC'
   has_many :images, :through => :entity_contents, :source => :content, :source_type => "Image", :order => 'position ASC'
   has_many :galleries, :through => :entity_contents, :source => :content, :source_type => "Gallery", :order => 'position ASC'

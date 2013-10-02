@@ -1,5 +1,5 @@
-class Video < ActiveRecord::Base
-  attr_accessible :autoplay, :code, :description, :height, :video_type, :width, :name, :slug
+class Vimeo < ActiveRecord::Base
+  attr_accessible :code, :name, :slug
   
   include PgSearch
   pg_search_scope :search, 
