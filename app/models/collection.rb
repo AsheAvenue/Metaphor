@@ -38,8 +38,8 @@ class Collection < ActiveRecord::Base
         collection = []
       end
       
-      Rails.cache.write "collection_#{slug}", collection, :expires_in => 10.minutes
-      Rails.cache.write "collection_#{slug}", collection, :expires_in => 10.minutes
+      Rails.cache.write "collection_#{slug}", collection
+      Rails.cache.write "collection_#{slug}", collection
       
       collection
       
