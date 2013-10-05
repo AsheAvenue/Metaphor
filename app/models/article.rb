@@ -79,7 +79,7 @@ class Article < ActiveRecord::Base
     :default_url => "/assets/missing/articles/:style.png"
        
   has_paper_trail :only => [:title, :body, :summary, :slug],
-                  :skip => [:last_published_revision_id, :next_published_revision_id, :publish_next_revision_at]
+                  :skip => [:last_published_revision_id, :next_published_revision_id, :publish_next_revision_at, :display_type]
   
   include PgSearch
   pg_search_scope :search, 
