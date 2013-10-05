@@ -59,23 +59,6 @@ module Metaphor
       @results = Video.text_search(params[:search_term]).order('videos.created_at desc').limit(10)
     end
 
-    def vimeo
-      @vimeos = Vimeo.order('vimeos.created_at desc').limit(10)
-      @vimeo = Vimeo.new
-    end
-
-    def addVimeo
-      @v = Vimeo.new
-      @v.name = params[:vimeo_name]
-      @v.slug = params[:vimeo_slug]
-      @v.code = params[:vimeo_code]
-      @v.save!
-    end
-    
-    def searchVimeo
-      @results = Vimeo.text_search(params[:search_term]).order('vimeos.created_at desc').limit(10)
-    end
-
     def image
       @images = Image.order('images.created_at desc').limit(10)
       @image = Image.new

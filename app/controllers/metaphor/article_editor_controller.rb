@@ -74,29 +74,6 @@ module Metaphor
     
     end  
   
-    def select_vimeo
-      # get the data
-      @article = Article.find(params[:article_id])
-      @vimeo = Vimeo.find(params[:vimeo_id])
-      @position = params[:position]
-    
-      # get the content widget if it already exists in that place and 
-      # update it... or create a new one
-      c = EntityContent.find_by_entity_id_and_entity_type_and_content_type_and_position(@article.id, 'Article', 'Vimeo', @position)
-      if c
-        c.content = @vimeo
-      else
-        c = EntityContent.new
-        c.entity = @article
-        c.content = @vimeo
-        c.position = @position
-      end
-    
-      #save the content widget and continue to the js.erb portion
-      c.save!
-    
-    end  
-  
     def select_widevimeo
       # get the data
       @article = Article.find(params[:article_id])
@@ -253,10 +230,6 @@ module Metaphor
 
     def get_video_for_body
       @video = Video.find(params[:video_id])
-    end 
-
-    def get_vimeo_for_body
-      @vimeo = Vimeo.find(params[:vimeo_id])
     end 
 
     def get_sound_for_body
