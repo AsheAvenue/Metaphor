@@ -48,10 +48,13 @@
             <%= text_field_tag :slug, "", :placeholder => "Slug", :id => 'video-slug', :class => "picker-new-slug", :autocomplete=>"off" %>
         </div>
         <div>
-            <%= text_field_tag :code, "", :placeholder => "Youtube ID", :id => 'video-code', :autocomplete=>"off" %>
+            <%= text_field_tag :code, "", :placeholder => "Video ID", :id => 'video-code', :autocomplete=>"off" %>
+        </div>
+        <div class="select-box-div">
+            Video Provider <%= collection_select nil, :provider, Settings.video.providers, :first, :last, {}, {:id => 'video-provider', :name => 'video-provider'}  %>
         </div>
         <div class="buttons">
-            <a href="" class="button" id="picker-add-video">Upload Youtube Video</a>
+            <a href="" class="button" id="picker-add-video">Upload Video</a>
         </div>
     </div>
 

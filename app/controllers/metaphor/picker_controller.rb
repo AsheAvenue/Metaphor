@@ -51,6 +51,7 @@ module Metaphor
       @v.name = params[:video_name]
       @v.slug = params[:video_slug]
       @v.code = params[:video_code]
+      @v.provider = params[:video_provider]
       @v.save!
     end
     

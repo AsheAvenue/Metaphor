@@ -1,6 +1,17 @@
 <div class="item clearfix">
     <div class="single">
-        <iframe width="380" height="214" src="//www.youtube.com/embed/<%= video.code %>" frameborder="0" allowfullscreen></iframe>
+        
+        <% if video.provider == "youtube" %>
+        
+            <iframe width="380" height="214" src="//www.youtube.com/embed/<%= video.code %>" frameborder="0" allowfullscreen></iframe>
+            
+        <% elsif video.provider == "vimeo" %>
+            
+            <iframe src="http://player.vimeo.com/video/<%= video.code %>?title=0&amp;byline=0&amp;portrait=0&amp;badge=0" width="380" height="175" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            
+        <% end %>
+
         <%= link_to video.name, "", 'data-picker-item' => video.id %>
+        
     </div>
 </div>

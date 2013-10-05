@@ -1,4 +1,9 @@
-<iframe width="647" height="364" src="//www.youtube.com/embed/<%= @video.code %>" frameborder="0" allowfullscreen></iframe>
+<% if @video.provider == "youtube"%>
+    <iframe width="647" height="364" src="//www.youtube.com/embed/<%= @video.code %>" frameborder="0" allowfullscreen></iframe>
+<% elsif @video.provider == "vimeo" %>
+    <iframe src="http://player.vimeo.com/video/<%= @video.code %>?title=0&amp;byline=0&amp;portrait=0&amp;badge=0" width="647" height="298" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<% end %>
+    
 <div class="selected-buttons">
     Select a different video
 </div>

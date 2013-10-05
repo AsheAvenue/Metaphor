@@ -198,6 +198,7 @@ var picker = (function($) {
             video_name = $('#video-name').val();
             video_slug = $('#video-slug').val();
             video_code = $('#video-code').val();
+            video_provider = $('#video-provider').val();
             
             //post to the picker's addVideo method
             //post the new article
@@ -206,7 +207,8 @@ var picker = (function($) {
                 {
                     video_name: video_name,
                     video_slug: video_slug,
-                    video_code: video_code
+                    video_code: video_code,
+                    video_provider: video_provider
                 },
                 function(data) {
                     //Adding the new video will return the id of the new Video object
