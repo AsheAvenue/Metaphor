@@ -11,7 +11,8 @@ class Article < ActiveRecord::Base
     :next_published_revision_id, 
     :publish_next_revision_at, 
     :author_other_name, 
-    :template
+    :template,
+    :display_type
     
   default_scope includes(:categories, :series, :flags, :galleries, :videos, :sounds, :images)
     
