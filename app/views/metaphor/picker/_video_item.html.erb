@@ -9,6 +9,10 @@
             
             <iframe src="http://player.vimeo.com/video/<%= video.code %>?title=0&amp;byline=0&amp;portrait=0&amp;badge=0" width="380" height="175" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             
+        <% elsif video.provider == "vimeo" %>
+        
+            <script width="380" height="215" src="http://player.ooyala.com/iframe.js#ec=9jdjJlZjoPue9PJiIEhX9pcPICZrU-45&pbid=695aba2fa0e6459797bb6076f4e03323"></script>
+            
         <% end %>
 
         <%= link_to video.name, "", 'data-picker-item' => video.id %>
