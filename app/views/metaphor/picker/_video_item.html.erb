@@ -11,7 +11,7 @@
             
         <% elsif video.provider == "vimeo" %>
         
-            <script width="380" height="215" src="http://player.ooyala.com/iframe.js#ec=9jdjJlZjoPue9PJiIEhX9pcPICZrU-45&pbid=695aba2fa0e6459797bb6076f4e03323"></script>
+            <script width="380" height="215" src="http://player.ooyala.com/iframe.js#ec=<%= @video.code %>&pbid=<%= Settings.video.player.ooyala %>"></script>
             
         <% end %>
 
