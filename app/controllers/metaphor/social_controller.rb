@@ -59,7 +59,7 @@ module Metaphor
           config.access_token = Settings.socials.instagram.access_token
         end
         
-        photos = Instagram.user_recent_media(Settings.socials.instagram.user_id, :count => 6 )
+        photos = Instagram.user_recent_media(Settings.socials.instagram.user_id)
         items = []
         photos.each do |p|
           items << { "images" => p.images, "url" => p.link  }
