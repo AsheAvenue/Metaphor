@@ -54,13 +54,13 @@ module Metaphor
       #where everything is generalized.
 
       @response = Rails.cache.fetch("social_instagram", :expires_in => 15.minutes) {
-        # Instagram.configure do |config|
-        #   config.client_id = Settings.socials.instagram.client_id
-        #   config.access_token = Settings.socials.instagram.access_token
-        # end
-        # 
-        # photos = Instagram.user_recent_media(Settings.socials.instagram.user_id)
-        photos = Instagram.tag_recent_media(Settings.socials.instagram.hashtag)
+        Instagram.configure do |config|
+          config.client_id = Settings.socials.instagram.client_id
+          config.access_token = Settings.socials.instagram.access_token
+        end
+        
+        photos = Instagram.user_recent_media(Settings.socials.instagram.user_id)
+        # photos = Instagram.tag_recent_media(Settings.socials.instagram.hashtag)
         items = []
         photos.each do |p|
           items << { "images" => p.images, "url" => p.link  }
