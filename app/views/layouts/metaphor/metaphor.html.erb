@@ -43,7 +43,7 @@
                     </div>
                     <div class="navigation">
                         <ul>
-                            <li><%= link_to "Visit #{Settings.site.visit_name}", "/", :target => '_blank' %></li>
+                            <li><%= link_to "Visit #{Settings.site.visit_name}", Settings.site.full_url, :target => '_blank' %></li>
                         </ul>
                     </div>
                 </div>

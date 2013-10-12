@@ -9,8 +9,12 @@ module Metaphor
     skip_authorize_resource :only => :vote
     
     def index
-      @articles = Article.recently_created.limit(100)
-      @templates = Template.all
+      if Rails.env.production? && Settings.admin.redirect_admin_to_separate_admin_app && request.subdomain != Settings.admin.subdomain
+        redirect_to Settings.admin.admin_url
+      else
+        @articles = Article.recently_created.limit(100)
+        @templates = Template.all
+      end
     end
     
     def search 
