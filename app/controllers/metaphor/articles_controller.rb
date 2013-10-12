@@ -9,6 +9,11 @@ module Metaphor
     skip_authorize_resource :only => :vote
     
     def index
+      
+      puts "|||"
+      puts "\"#{request.subdomains.first}\""
+      puts "\"#{Settings.admin.subdomain}\""
+      puts "|||"
       if Rails.env.production? && Settings.admin.redirect_admin_to_separate_admin_app && request.subdomains.first != Settings.admin.subdomain
         redirect_to Settings.admin.admin_url
       else
