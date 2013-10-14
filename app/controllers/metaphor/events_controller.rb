@@ -23,7 +23,6 @@ module Metaphor
       @events = Event.where(true)
       if @event.save
         flash[:alert] = "#{Settings.events.name} successfully created"
-        Rails.cache.clear
         redirect_to edit_event_path(@event)
       else
         flash[:alert] = "Please enter a Name, Slug, Type, and Date"
@@ -53,7 +52,7 @@ module Metaphor
         @event.end_date = nil
         render :edit
       elsif @event.update_attributes(params[:event])
-        Rails.cache.clear
+        Rails.cache.delete("event_#{@event.slug}")
         flash[:alert] = "#{Settings.events.name} successfully updated"
         redirect_to edit_event_path(@event)
       else
@@ -64,7 +63,7 @@ module Metaphor
     
     def destroy
       event = Event.find_by_id(params[:id]).destroy
-      Rails.cache.clear
+      Rails.cache.delete("event_#{event.slug}")
       redirect_to events_path
     end
     

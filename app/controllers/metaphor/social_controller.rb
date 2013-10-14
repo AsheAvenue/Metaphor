@@ -13,7 +13,7 @@ module Metaphor
       #tumblr currently just pulls from an RSS feed
       require 'feedzirra'
       @rss_url = "http://" + Settings.socials.tumblr.url + "/rss"
-      @response = Rails.cache.fetch("social_tumblr") {
+      @response = Rails.cache.fetch("social_tumblr", :expires_in => 15.minutes)) {
         @feed = Feedzirra::Feed.fetch_and_parse(@rss_url)
         items = []
         @feed.entries.each do |f|

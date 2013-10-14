@@ -76,7 +76,7 @@ module Metaphor
     private 
     
     def update_collection_cache(collection)
-      Rails.cache.clear      
+      Rails.cache.delete("collection_#{collection.slug}")    
     end
   
   end
