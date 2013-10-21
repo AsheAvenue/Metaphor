@@ -76,7 +76,8 @@ class Article < ActiveRecord::Base
     },
     :styles => Settings.articles.image.sizes.to_hash,
     :convert_options => Settings.articles.image.convert_options.to_hash, 
-    :default_url => "/assets/missing/articles/:style.png"
+    :default_url => "/assets/missing/articles/:style.png",
+    :keep_old_files => true
        
   has_paper_trail :only => [:title, :body, :summary, :slug],
                   :skip => [:last_published_revision_id, :next_published_revision_id, :publish_next_revision_at, :display_type]

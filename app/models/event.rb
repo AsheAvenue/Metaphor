@@ -21,7 +21,8 @@ class Event < ActiveRecord::Base
     },
     :styles => Settings.events.image.sizes.to_hash,
     :convert_options => Settings.events.image.convert_options.to_hash,
-    :default_url => "/assets/missing/events/:style.png"
+    :default_url => "/assets/missing/events/:style.png",
+    :keep_old_files => true
   
   scope :recently_created, order("events.created_at desc")
   scope :recently_updated, order("events.updated_at desc")

@@ -12,7 +12,8 @@ class Template < ActiveRecord::Base
         :secret_access_key => Settings.filepicker.s3.secret_access_key
       },
       :styles => Settings.templates.image.sizes.to_hash,
-      :convert_options => Settings.templates.image.convert_options.to_hash
+      :convert_options => Settings.templates.image.convert_options.to_hash,
+      :keep_old_files => true
       
   has_many :template_components, :dependent => :destroy
   has_many :components, :through => :template_components
