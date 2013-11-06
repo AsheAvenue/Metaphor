@@ -8,22 +8,32 @@
     </div>
     
     <div id="fields" class="fields clearfix">
-        <div class="half">
+        <div class="quarter">
             Name
         </div>
         <div class="quarter">
             Slug
+        </div>
+        <div class="half">
+            Image
         </div>
     </div>
 
     <ul id="items" class="items">
         <% @serieses.each do |series| %>
             <li class="item mix not_scheduled clearfix">
-                <div class="half">
+                <div class="quarter">
                     <%= link_to series.name, edit_series_path(series) %>
                 </div>
                 <div class="quarter">
                     <%= link_to series.slug, edit_series_path(series) %>
+                </div>
+                <div class="half">
+                    <% if !series.image.blank? %>
+                        <%= image_tag series.image.url(:thumb) %>
+                    <% else %>
+                        &nbsp;
+                    <% end %>
                 </div>
             </li>
         <% end %>

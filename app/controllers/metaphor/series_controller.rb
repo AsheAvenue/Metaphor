@@ -32,7 +32,17 @@ module Metaphor
   
     def update
       @series = Series.find(params[:id])
-      @serieses.update_attributes(params[:series])
+      
+      # Open the url that's been returned by Filepicker.
+      # Then remove the default image from params so it doesn't get updated 
+      # via update_attributes, which will cause a validation error
+      url = params[:series][:image]
+      original_filename = params[:series][:image_original_filename]
+      @series.image = open(url)
+      @series.image.instance_write(:file_name, original_filename)
+      params[:series].delete :image
+      
+      @series.update_attributes(params[:series])
       if @series.save
         @serieses = Series.where(true)
         flash[:alert] = "#{Settings.series.name} successfully updated"
