@@ -32,6 +32,10 @@ module Metaphor
         flash[:alert] = "Site successfully updated"
       end
       
+      # Clear the cache
+      Rails.cache.delete("site_info")
+      
+      # Redirect
       redirect_to site_path
     end
   
