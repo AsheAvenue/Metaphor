@@ -1,5 +1,13 @@
 <%= form_for @role, :html => {:autocomplete=>"off"} do |f| %>
     <div id="content">
+        <div class="header">
+            <% if action == "create" %>
+                New
+            <% elsif action == "update" %>
+                Edit
+            <% end %>
+            Role
+        </div>
         <% if flash[:alert] %>
             <div class="alert">
                 <%= flash[:alert] %>
@@ -7,7 +15,7 @@
         <% end %>
         <div class="form-section clearfix">
             <div class="form-section-left">
-                Role Info
+                Role Name
             </div>
             <div class="form-section-right">
                 <div class="form-line">

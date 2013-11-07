@@ -4,6 +4,9 @@
         
     <%= form_for @site, :html => {:autocomplete=>"off"} do |f| %>
         <div id="content">
+            <div class="header">
+                    Edit Site Info
+            </div>
             <% if flash[:alert] %>
                 <div class="alert">
                     <%= flash[:alert] %>

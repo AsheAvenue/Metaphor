@@ -6,6 +6,14 @@
 
 <%= form_for @collection, :html => {:autocomplete=>"off", :id => 'collection-form'} do |f| %>
     <div id="content">
+        <div class="header">
+            <% if action == "create" %>
+                New
+            <% elsif action == "update" %>
+                Edit
+            <% end %>
+            <%= Settings.collections.name %>
+        </div>
         <% if flash[:alert] %>
             <div class="alert">
                 <%= flash[:alert] %>

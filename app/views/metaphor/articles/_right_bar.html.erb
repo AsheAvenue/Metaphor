@@ -1,22 +1,17 @@
 <% if @article.id != nil %>
     <div id="right-bar">
-
-        <% if @article.last_published_revision_id %>
-            <div id="status" class="published">
-                <% 
-                    if @last_published_revision_index == 0
-                        text = "Original"
-                    else
-                        text = "Revision #{@last_published_revision_index}"
-                    end
-                %>
-                Currently Published: <%= link_to text, article_revision_path(@article, @article.last_published_revision_id) %>
-            </div>
-        <% else %>
-            <div id="status" class="unpublished">
-                Not Published
-            </div>
-        <% end %>
+        
+        <a href="<%= Settings.site.full_url%>/show/<%= @article.id%>" target="_blank">
+            <% if @article.last_published_revision_id %>
+                <div id="status" class="published">
+                    View Published Article »
+                </div>
+            <% else %>
+                <div id="status" class="unpublished">
+                    Preview Article »
+                </div>
+            <% end %>
+        </a>
         
         <% if @article.next_published_revision_id %>
             <div id="status" class="scheduled">
@@ -39,7 +34,7 @@
         <% end %>
         
         <div class="header">
-            History
+            History:
         </div>
 
         <div class="items">

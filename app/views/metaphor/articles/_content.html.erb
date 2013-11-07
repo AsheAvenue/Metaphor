@@ -8,12 +8,6 @@
             Edit
         <% end %>
         <%= Settings.articles.name %>
-        
-        <% if @article.last_published_revision_id %>
-            <span class="view-published-article">
-                // <%= link_to 'View Published Article »', "#{Settings.site.full_url}/show/#{@article.id}", :target => '_blank' %>
-            </span>
-        <% end %>
     </div>
     <div class="form-section clearfix">
         <div class="form-section-left">

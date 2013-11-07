@@ -1,5 +1,13 @@
 <%= form_for @event, :html => {:autocomplete=>"off", :id => 'event-form'} do |f| %>
     <div id="content">
+        <div class="header">
+            <% if action == "create" %>
+                New
+            <% elsif action == "update" %>
+                Edit
+            <% end %>
+            <%= Settings.events.name %>
+        </div>
         <% if flash[:alert] %>
             <div class="alert">
                 <%= flash[:alert] %>

@@ -633,18 +633,21 @@ header .navigation li a {
 #content {
     height: 100%;
     margin-left: 251px;
-    padding: 97px 30px 70px;
+    padding: 87px 30px 70px;
 }
 #content.has-right-bar {
     margin-right: 320px;
 }
 #content .header {
+    height: 44px;
     font-size: 24px;
     font-weight: 100;
-    border-bottom: 1px solid #fff;
-    line-height: 1;
+    line-height: 45px;
     margin: 0 -30px 20px;
     padding: 0 30px 10px;
+    background-color: #bdc3c7;
+    color: white;
+    box-sizing: border-box;
 }
 
 #content .header .view-published-article {

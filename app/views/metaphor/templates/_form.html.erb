@@ -6,6 +6,14 @@
 
 <%= form_for @template, :html => {:autocomplete=>"off"} do |f| %>
     <div id="content">
+        <div class="header">
+            <% if action == "create" %>
+                New
+            <% elsif action == "update" %>
+                Edit
+            <% end %>
+            <%= Settings.templates.name %>
+        </div>
         <% if flash[:alert] %>
             <div class="alert">
                 <%= flash[:alert] %>
