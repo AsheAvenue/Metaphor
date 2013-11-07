@@ -5,7 +5,7 @@
     
     <% if @articles.count > 0 %>
         <div class="header">
-            Recent <%= Settings.articles.name.pluralize %>:
+            Ten Most Recent <%= Settings.articles.name.pluralize %>:
         </div>
 
         <% @articles.each do |article| %>

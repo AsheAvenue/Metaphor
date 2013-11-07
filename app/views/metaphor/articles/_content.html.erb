@@ -9,6 +9,13 @@
         <% end %>
         <%= Settings.articles.name %>
     </div>
+    
+    <% if flash[:alert] %>
+        <div class="alert">
+            <%= flash[:alert] %>
+        </div>
+    <% end %>
+    
     <div class="form-section clearfix">
         <div class="form-section-left">
             Title

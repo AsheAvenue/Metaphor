@@ -13,7 +13,9 @@ class Article < ActiveRecord::Base
     :author_other_name, 
     :template,
     :display_type
-    
+  
+  validates :template, presence: true, allow_blank: false
+  
   default_scope includes(:categories, :series, :flags, :galleries, :videos, :sounds, :images)
     
   has_many :article_categories, :dependent => :destroy

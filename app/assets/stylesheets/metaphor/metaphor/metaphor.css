@@ -639,12 +639,12 @@ header .navigation li a {
     margin-right: 320px;
 }
 #content .header {
-    height: 44px;
+    min-height: 44px;
     font-size: 24px;
     font-weight: 100;
-    line-height: 45px;
+    line-height: 44px;
     margin: 0 -30px 20px;
-    padding: 0 30px 10px;
+    padding: 0 30px;
     background-color: #bdc3c7;
     color: white;
     box-sizing: border-box;
@@ -663,14 +663,13 @@ header .navigation li a {
     border-bottom: 0;
     border-top: 1px solid #fff;
     margin: 10px -30px 10px;
-    padding: 15px 30px 10px;
 }
 
 #content .header .tip {
     font-size: 12px;
     line-height: 12px;
-    margin-top: 5px;
-    margin-bottom: 0px;
+    margin-top: -5px;
+    padding-bottom: 10px;
 }
 
 #content select {
@@ -907,6 +906,7 @@ header .navigation li a {
     height: 25px;
     margin-left: -30px;
     margin-bottom: 0px;
+    border-top: 1px solid #fff;
     z-index: 30;
 }
 

@@ -38,7 +38,7 @@ module Metaphor
     end
   
     def edit
-      @articles = Article.recently_updated.limit(20)
+      @articles = Article.recently_updated.limit(10)
       @article = Article.includes(:categories, :series).find(params[:id])
       
       # get the indexes
@@ -137,20 +137,26 @@ module Metaphor
     end
 
     def new
-      @articles = Article.where(true).recently_created.limit(20)
+      @articles = Article.where(true).recently_created.limit(10)
       @article = Article.new
-    
-      #set up the templates
       @templates = Template.all
     end
   
     def create
-      article = Article.create(params[:article])
-      article.save!
-      
-      update_article_cache(article)
-      
-      redirect_to edit_article_path(article.id)
+      @article = Article.create(params[:article])
+      begin
+        if @article.save!
+          update_article_cache(@article)
+          redirect_to edit_article_path(@article.id)
+        else
+          raise "Error saving article"
+        end
+      rescue
+        flash[:alert] = "Please enter a title, ensure your slug is unique, and select a template"
+        @articles = Article.where(true).recently_created.limit(10)
+        @templates = Template.all
+        render :new
+      end
     end
   
     def update
