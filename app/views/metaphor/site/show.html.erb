@@ -1,0 +1,53 @@
+<div id="stage">
+    
+    <%= render "left_bar" %>
+        
+    <%= form_for @site, :html => {:autocomplete=>"off"} do |f| %>
+        <div id="content">
+            <% if flash[:alert] %>
+                <div class="alert">
+                    <%= flash[:alert] %>
+                </div>
+            <% end %>
+            <div class="form-section clearfix">
+                <div class="form-section-left">
+                    Header Image
+                </div>
+                <div class="form-section-right">
+                    <div class="form-line">
+                        <div id="site-header-image-display">
+                            <% if !@site.header_image.blank? %>
+                                <%= image_tag @site.header_image.url(:header_image) %>
+                            <% end %>
+                        </div>
+                    
+                        <%= f.hidden_field :header_image, :id => "site-header-image-hidden-field" %>
+                        <%= f.hidden_field :header_image_original_filename, :id => "site-header-image-original-filename-hidden-field" %>
+                    
+                        <input type="filepicker" 
+                                name="temp_image" 
+                                class="button" 
+                                data-fp-apikey="<%= Settings.filepicker.api_key %>" 
+                                data-fp-button-text="Select image" 
+                                data-fp-extensions=".png,.jpg,.jpeg" 
+                                data-fp-multiple="false" 
+                                onchange="$('#site-header-image-hidden-field').val(event.fpfile.url); $('#site-header-image-original-filename-hidden-field').val(event.fpfile.filename); $('#site-header-image-display').html('<img src=\'' + event.fpfile.url + '/convert?w=1056&h=232&fit=crop\' />');" 
+                        />
+                    
+                    </div>
+                </div>
+            </div>
+            <div class="form-section clearfix">
+                <div class="form-section-left"></div>
+                <div class="form-section-right">
+                    <div class="form-line">
+                      <%= f.submit "Save Site Info", :class => "button" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <% end %>
+    
+</div>
+

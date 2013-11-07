@@ -57,6 +57,7 @@
                                 <% if Settings.series.enabled %>
                                     <li><%= link_to Settings.series.name.pluralize, metaphor.series_index_path %></li>
                                 <% end %>
+                                <li><%= link_to "Site", metaphor.site_path %></li>
                                 <li><%= link_to Settings.templates.name.pluralize, metaphor.templates_path %></li>
                                 <li><%= link_to Settings.components.name.pluralize, metaphor.components_path %></li>
                                 <li><%= link_to Settings.flags.name.pluralize, metaphor.flags_path %></li>

@@ -16,6 +16,7 @@ Metaphor::Engine.routes.draw do
   resources :users
   resources :roles
   resources :sessions
+  resource  :site, controller: 'site'
   
   match 'articles/checkslug' => 'articles#checkslug'
   match 'articles/search' => 'articles#search', :as => 'article_search'
@@ -51,7 +52,7 @@ Metaphor::Engine.routes.draw do
   match 'collections/:id/sort' => 'collections#sort', :as => 'collection_sort'
   match 'collections/:id/add_pinned_entity' => 'collections#add_pinned_entity', :as => 'collection_add_pinned_entity'
   match 'collections/:id/remove_pinned_entity/:pinned_entity_id' => 'collections#remove_pinned_entity', :as => 'collection_remove_pinned_entity'
-
+  
   match 'templates/:id/sort' => 'templates#sort', :as => 'template_sort'
   match 'templates/:id/add_component' => 'templates#add_component', :as => 'template_add_component'
   match 'templates/:id/remove_component/:component_id' => 'templates#remove_component', :as => 'template_remove_component'
