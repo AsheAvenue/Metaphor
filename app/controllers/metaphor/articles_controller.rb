@@ -54,7 +54,7 @@ module Metaphor
     end
     
     def revision
-      @articles = get_current_articles
+      @articles = Article.recently_updated.limit(10)
       @original_article = Article.includes(:categories, :series).find(params[:id])
       
       # get the indexes
@@ -255,15 +255,6 @@ module Metaphor
     end
       
     private
-    
-    def get_current_articles
-      all_articles = Article.where(true).recently_updated
-      articles = []
-      all_articles.each do |article|
-        articles << article.current
-      end
-      articles
-    end
     
     def validate_before_publish(article)
       # get the template
