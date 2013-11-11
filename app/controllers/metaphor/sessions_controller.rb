@@ -2,7 +2,7 @@ module Metaphor
   class SessionsController < MetaphorController
   
     skip_before_filter :require_login #otherwise we'd have an infinite loop
-    skip_load_and_authorize_resource #don't let cancan try and instantiate a non-existent "Picker" resource
+    skip_load_and_authorize_resource #don't let cancan try and instantiate a non-existent "Sessions" resource
     
     layout 'metaphor/auth'
   
@@ -10,7 +10,7 @@ module Metaphor
     end
 
     def create
-      user = login(params[:username], params[:password], params[:remember_me])
+      user = login(params[:username], params[:password], true)
       if user
         redirect_back_or_to metaphor_path
       else

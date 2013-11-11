@@ -241,7 +241,7 @@ var article_editor = (function($) {
                 },
                 function() {
                     if(refresh) {
-                        window.location.reload();
+                        window.location.href = $('#content_editor').data('url');
                     }
                 }
             );

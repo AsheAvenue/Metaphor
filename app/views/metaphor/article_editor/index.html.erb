@@ -1,7 +1,8 @@
 <div id="stage">
     <div id="article_editor">
         <div id="article" data-id="<%= @article.id %>" />
-
+        <div id="content_editor" data-url="<%= article_editor_path(@article.id) %>" />
+            
         <% @template.components.order("template_components.order ASC").each_with_index do |component, index| %>
             <div id="<%= component.slug %>_<%= index %>" class="<%= component.slug %>" data-position="<%= index %>">
                 <%= render :partial => component.slug, :locals => {:position => index} %>

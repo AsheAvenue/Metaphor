@@ -339,7 +339,18 @@ var articles = (function($) {
                   var <%= key %>_ids = $('.<%= key %>_list li.tagit-choice').map(function () { return parseInt($(this).attr('data-id')); });
                   $('#article_<%= key %>_list').val($.makeArray(<%= key %>_ids));
               <% end %>
+              
+              //Add a revision number if we're currently viewing a revision. That'll kick off a specific
+              //revision to be viewed in the content editor without saving first (which would create 
+              //a new revision)
+              if($('#version').data('id') != ""){
+                  $('#article-form').append('<input type="hidden" name="version" value="' + $('#version').data('id') + '" />');
+              }
+              
+              //Make sure the controller knows we want to go edit the content after the update is complete
               $('#article-form').append('<input type="hidden" name="edit-content" value="true" />');
+              
+              //Submit the form
               $('#article-form').submit();
             });            
             

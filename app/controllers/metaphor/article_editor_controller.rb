@@ -11,7 +11,16 @@ module Metaphor
       # Get the article
       @article = Article.find(params[:id])
       session[:article_id] = @article.id
+      @version_id = params[:version_id] 
     
+      # get a specific version of the article if a version id is being passed in.
+      if @version_id && @version_id != ""
+        version = @article.versions.find(@version_id)
+        if version
+          @article = @article.version_at(version.created_at)
+        end
+      end
+      
       # Get the template if it's been defined
       if @article.template != ""
         @template = Template.find_by_slug(@article.template)
