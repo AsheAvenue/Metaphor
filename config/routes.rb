@@ -26,6 +26,7 @@ Metaphor::Engine.routes.draw do
   match 'articles/:id/schedule/version/:version_id' => 'articles#schedule', :as => 'article_schedule'
   match 'articles/:id/unschedule' => 'articles#unschedule', :as => 'article_unschedule'
   match 'articles/:id/editor' => 'article_editor#index', :as => 'article_editor'
+  match 'articles/:id/editor/version/:version_id' => 'article_editor#index', :as => 'article_editor_version'
   match 'articles/:id/editor/select_video' => 'article_editor#select_video', :as => 'article_editor_select_video'
   match 'articles/:id/editor/select_image' => 'article_editor#select_image', :as => 'article_editor_select_image'
   match 'articles/:id/editor/select_gallery' => 'article_editor#select_gallery', :as => 'article_editor_select_gallery'
