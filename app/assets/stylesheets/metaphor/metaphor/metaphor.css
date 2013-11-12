@@ -215,6 +215,13 @@ header .navigation li a {
 .form {
     padding-top: 20px;
 }
+.form-line .tip {
+    font-size: 12px;
+    line-height: 12px;
+    margin-top: 7px;
+    padding-bottom: 10px;
+}
+
 #article-title,
 #article-slug,
 #article-default-image,
