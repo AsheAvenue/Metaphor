@@ -8,8 +8,26 @@
 
 <% elsif @video.provider == "ooyala" %>
 
-    <script width="647" height="367" src="http://player.ooyala.com/iframe.js#ec=<%= @video.code %>&pbid=<%= Settings.video.player.ooyala %>"></script>
-    
+    <script src='http://player.ooyala.com/v3/51efea9115254af3a45f2da68a869ec9'></script>
+    <div id='ooyalaplayer<%= @video.code %>' style='width:647px;height:367px'></div>
+    <script type='text/javascript'>
+        var complextvadtag = (typeof(cmnvideotagdefault) === 'function') ? cmnvideotagdefault('') : null;        
+        OO.ready(function() {          
+            if ( complextvadtag === null) {            
+                OO.Player.create('ooyalaplayer<%= @video.code %>', '<%= @video.code %>', { 
+                    adSetCode: '48458cefa2a049adaa2f7d54c962dc2d'
+                });          
+            } else {            
+                OO.Player.create('ooyalaplayer<%= @video.code %>', '<%= @video.code %>', { 
+                    vast: { 
+                        tagUrl: complextvadtag 
+                    }, 
+                    adSetCode: '48458cefa2a049adaa2f7d54c962dc2d' 
+                });          
+            }        
+        });        
+    </script>
+    <noscript><div>Please enable Javascript to watch this video</div></noscript>
     
 <% end %>
     
