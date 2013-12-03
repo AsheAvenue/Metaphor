@@ -39,6 +39,20 @@ module Metaphor
       redirect_to site_path
     end
   
+    def clear_header_image
+      @site = Site.all.first
+      if !@site
+        @site = Site.new
+        @site.save!
+      end
+      
+      # remove the image
+      @site.header_image.destroy
+      
+      # redirect
+      redirect_to metaphor.site_path
+    end
+    
   end
 
 end
