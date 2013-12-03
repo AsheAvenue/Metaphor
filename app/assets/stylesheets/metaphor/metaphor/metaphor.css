@@ -1014,7 +1014,7 @@ header .navigation li a {
 }
 
 .site_clear_header_image_button {
-    color: white;
+    color: white !important;
     font-size: 12px;
     float: right;
     background-color: red;
