@@ -1012,3 +1012,12 @@ header .navigation li a {
     color: white !important;
     font-size: 14px;
 }
+
+.site_clear_header_image_button {
+    color: white;
+    font-size: 12px;
+    float: right;
+    background-color: red;
+    padding: 8px;
+    line-height: 12px;
+}

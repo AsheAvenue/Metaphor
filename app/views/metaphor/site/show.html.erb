@@ -37,7 +37,9 @@
                                 onchange="$('#site-header-image-hidden-field').val(event.fpfile.url); $('#site-header-image-original-filename-hidden-field').val(event.fpfile.filename); $('#site-header-image-display').html('<img src=\'' + event.fpfile.url + '/convert?w=1056&h=232&fit=crop\' />');" 
                         />
                         
-                        <%= link_to "Clear image", site_clear_header_image_path, :class => 'button' %>
+                        <% if @site.header_image %>
+                            <%= link_to "Clear image", site_clear_header_image_path, :class => 'site_clear_header_image_button' %>
+                        <% end %>
                         
                         <div class="tip">
                             Image will forcefully be displayed at 1056px wide by 232px tall. For best result, cut image to 1056x232 before uploading.
