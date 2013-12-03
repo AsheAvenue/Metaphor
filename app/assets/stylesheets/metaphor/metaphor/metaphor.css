@@ -296,6 +296,14 @@ header .navigation li a {
     margin-bottom: 10px;
 }
 
+#artist-image {
+    border: 0;
+    color: #95a5a6;
+    font-size: 16px;
+    line-height: 0;
+    height: auto;
+    margin: 4px 0 0;
+}
 
 /* ------ LIST ------- */
 
