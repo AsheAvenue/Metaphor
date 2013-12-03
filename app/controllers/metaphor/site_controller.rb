@@ -48,6 +48,7 @@ module Metaphor
       
       # remove the image
       @site.header_image.destroy
+      @site.save!
       
       # redirect
       redirect_to metaphor.site_path
