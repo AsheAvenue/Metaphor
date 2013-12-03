@@ -37,7 +37,7 @@
                                 onchange="$('#site-header-image-hidden-field').val(event.fpfile.url); $('#site-header-image-original-filename-hidden-field').val(event.fpfile.filename); $('#site-header-image-display').html('<img src=\'' + event.fpfile.url + '/convert?w=1056&h=232&fit=crop\' />');" 
                         />
                         
-                        <% if @site.header_image %>
+                        <% if !@site.header_image.blank? %>
                             <%= link_to "Clear image", site_clear_header_image_path, :class => 'site_clear_header_image_button' %>
                         <% end %>
                         
