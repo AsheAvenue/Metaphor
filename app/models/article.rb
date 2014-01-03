@@ -129,7 +129,13 @@ class Article < ActiveRecord::Base
   end
   
   def category_names
-    self.categories.collect{|c| c.name}.join(', ')
+    self.categories.collect{|c| 
+      if c.slug == "artist-submissions"
+        "Submissions"
+      else
+        c.name
+      end
+    }.join(', ')
   end
   
   def series_names
