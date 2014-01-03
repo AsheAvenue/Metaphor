@@ -10,10 +10,7 @@ module Metaphor
     end
 
     def create
-      puts "||user: #{params[:username]}||"
-      puts "||pass: #{params[:password]}||"
-      
-      user = login(params[:username], params[:password], true)
+      user = login(params[:username], params[:password])
       
       if user
         redirect_back_or_to metaphor_path
