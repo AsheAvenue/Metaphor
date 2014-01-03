@@ -8,7 +8,13 @@
                 <%= article.template.capitalize %>
             </div>
             <div class="onetenth">
-                <%= raw article.categories.map { |category| category.name }.join(", ") %>
+                <%= raw article.categories.map { |category| 
+                    if category.slug == 'artist-submissions'
+                        "Submissions"
+                    else
+                        category.name
+                    end 
+                }.join(", ") %>
             </div>
             <div class="onetenth">
                 <%= raw article.flags.map { |flag| flag.name }.join(", ") %>
