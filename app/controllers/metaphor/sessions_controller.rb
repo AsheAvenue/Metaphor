@@ -10,8 +10,8 @@ module Metaphor
     end
 
     def create
-      puts "user: #{params[:username]}"
-      puts "pass: #{params[:password]}"
+      puts "||user: #{params[:username]}||"
+      puts "||pass: #{params[:password]}||"
       
       user = login(params[:username], params[:password], true)
       
