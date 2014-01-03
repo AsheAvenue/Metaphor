@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '3.2.13'
   s.add_dependency 'pg'
   s.add_dependency 'rails_config'
-  s.add_dependency 'sorcery', '0.8.3'
+  s.add_dependency 'sorcery'
   s.add_dependency 'rmagick'
   s.add_dependency 'rolify'
   s.add_dependency 'cancan'
