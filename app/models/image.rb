@@ -29,8 +29,14 @@ class Image < ActiveRecord::Base
     end
   end
   
-  def self.reprocess
-    Image.find_each { |image| image.image.reprocess! }
+  def self.reprocess(size = nil)
+    Image.find_each { |image| 
+      if size
+        image.image.reprocess! size
+      else
+        image.image.reprocess!
+      end
+    }
   end
   
   # GETTING FROM THE FRONTEND
