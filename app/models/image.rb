@@ -29,6 +29,14 @@ class Image < ActiveRecord::Base
     end
   end
   
+  def reprocess(size = nil)
+    if size
+      self.image.reprocess! size
+    else
+      self.image.reprocess!
+    end
+  end
+  
   def self.reprocess(size = nil)
     Image.find_each { |image| 
       if size
