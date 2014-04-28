@@ -23,8 +23,6 @@ class Event < ActiveRecord::Base
     :convert_options => Settings.events.image.convert_options.to_hash,
     :default_url => "/assets/missing/events/:style.png",
     :keep_old_files => true
-  
-  do_not_validate_attachment_file_type :default_image
        
   scope :recently_created, order("events.created_at desc")
   scope :recently_updated, order("events.updated_at desc")

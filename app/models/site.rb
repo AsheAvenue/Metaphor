@@ -16,6 +16,4 @@ class Site < ActiveRecord::Base
     :default_url => "/assets/missing/site/bg-texture.jpg",
     :keep_old_files => true
   
-  do_not_validate_attachment_file_type :header_image
-  
 end

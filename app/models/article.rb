@@ -80,8 +80,6 @@ class Article < ActiveRecord::Base
     :convert_options => Settings.articles.image.convert_options.to_hash, 
     :default_url => "/assets/missing/articles/:style.png",
     :keep_old_files => true
-  
-  do_not_validate_attachment_file_type :default_image
        
   has_paper_trail :only => [:title, :body, :summary, :slug],
                   :skip => [:last_published_revision_id, :next_published_revision_id, :publish_next_revision_at, :display_type]

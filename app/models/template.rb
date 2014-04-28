@@ -14,8 +14,6 @@ class Template < ActiveRecord::Base
       :styles => Settings.templates.image.sizes.to_hash,
       :convert_options => Settings.templates.image.convert_options.to_hash,
       :keep_old_files => true
-
-  do_not_validate_attachment_file_type :image
       
   has_many :template_components, :dependent => :destroy
   has_many :components, :through => :template_components
