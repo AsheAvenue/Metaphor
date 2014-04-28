@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "metaphor"
-  s.version     = "0.5.2"
+  s.version     = "0.5.3"
   s.authors     = ["Tim Boisvert"]
   s.email       = ["tboisvert@asheavenue.com"]
   s.homepage    = "http://www.asheavenue.com"
