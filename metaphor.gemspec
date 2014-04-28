@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'cancan'
   s.add_dependency 'filepicker-rails'
   s.add_dependency 'aws-sdk'
-  s.add_dependency 'paperclip'
+  s.add_dependency 'paperclip', '3.5.3'
   s.add_dependency 'uglifier', '>= 1.0.3'
   s.add_dependency 'paper_trail'
   s.add_dependency 'instagram'
