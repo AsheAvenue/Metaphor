@@ -15,7 +15,8 @@ class Image < ActiveRecord::Base
     :convert_options => Settings.components.image.image.convert_options.to_hash,
     :keep_old_files => true
       
-
+  do_not_validate_attachment_file_type :image     
+  
   include PgSearch
   pg_search_scope :search, 
     against: [:name],

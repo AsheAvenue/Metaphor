@@ -19,5 +19,7 @@ class Series < ActiveRecord::Base
     :convert_options => Settings.series.image.convert_options.to_hash, 
     :default_url => "/assets/missing/series/:style.png",
     :keep_old_files => true
+ 
+  do_not_validate_attachment_file_type :image
        
 end

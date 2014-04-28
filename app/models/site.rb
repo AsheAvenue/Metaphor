@@ -15,4 +15,7 @@ class Site < ActiveRecord::Base
     :convert_options => Settings.site.image.convert_options.to_hash, 
     :default_url => "/assets/missing/site/bg-texture.jpg",
     :keep_old_files => true
+  
+  do_not_validate_attachment_file_type :header_image
+  
 end
