@@ -1,6 +1,9 @@
+<link rel="stylesheet" href="../../../assets/stylesheets/metaphor/metaphor/article_editor/gallery.css" type="text/css" media="screen" title="no title" charset="utf-8">
 <% @gallery.entity_contents.each_with_index do |cw, index| %>
     <% if index == 0 %>
-        <%= image_tag cw.content.image.url(:galleryheader), :class => "first" %>
+        <div class="first">
+            <%= image_tag cw.content.image.url(:galleryheader), :class => "first" %>
+        </div>
     <% elsif index < 5 %>
         <%= image_tag cw.content.image.url(:gallerythumb)%>
     <% end %>

@@ -6,8 +6,12 @@
     position: relative;
 }
 
-#article_editor .gallery .gallery-container img.first {
+#article_editor .gallery .gallery-container div.first {
     width: 646px;
+    display: inline-block;
+}
+
+#article_editor .gallery .gallery-container div.first img {
     height: 368px;
     margin-top: 0;
     margin-bottom: 0;
@@ -16,7 +20,6 @@
 #article_editor .gallery .gallery-container img {
     display: block;
     cursor: pointer;
-    width: 151px;
     height: 100px;
     float: left;
     margin: 14px 0px 10px 14px;
