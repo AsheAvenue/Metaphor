@@ -39,7 +39,7 @@ module Metaphor
   
     def edit
       @articles = Article.recently_updated.limit(10)
-      @article = Article.includes(:categories, :series).find(params[:id])
+      @article = Article.includes(:categories).find(params[:id])
       
       # get the indexes
       @last_published_revision_index = nil;
@@ -55,7 +55,7 @@ module Metaphor
     
     def revision
       @articles = Article.recently_updated.limit(10)
-      @original_article = Article.includes(:categories, :series).find(params[:id])
+      @original_article = Article.includes(:categories).find(params[:id])
       
       # get the indexes
       @last_published_revision_index = nil;

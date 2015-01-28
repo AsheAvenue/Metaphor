@@ -19,7 +19,6 @@ module Metaphor
       base.scope :sort_by
       base.scope :with_type
       base.scope :with_category
-      base.scope :with_series
       base.scope :flagged_as
       base.scope :with_limit
     

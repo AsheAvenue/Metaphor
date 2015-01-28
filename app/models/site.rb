@@ -1,6 +1,6 @@
 class Site < ActiveRecord::Base
   set_table_name "site"
-  attr_accessible :header_image, :header_image_original_filename
+  attr_accessible :header_image, :header_image_original_filename, :header_alert
   attr_accessor :header_image_selected, :header_image_original_filename
   
   has_attached_file :header_image,

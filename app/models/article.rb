@@ -5,7 +5,6 @@ class Article < ActiveRecord::Base
   attr_accessible :summary, 
     :body, 
     :category_ids, 
-    :series_ids, 
     :user_ids, 
     :last_published_revision_id,
     :next_published_revision_id, 
@@ -16,13 +15,10 @@ class Article < ActiveRecord::Base
   
   validates :template, presence: true, allow_blank: false
   
-  default_scope includes(:categories, :series, :flags, :galleries, :videos, :sounds, :images)
+  default_scope includes(:categories, :flags, :galleries, :videos, :sounds, :images)
     
   has_many :article_categories, :dependent => :destroy
   has_many :categories, :through => :article_categories
-
-  has_many :article_series, :dependent => :destroy
-  has_many :series, :through => :article_series
 
   has_many :article_users, :dependent => :destroy
   has_many :users, :through => :article_users
@@ -52,9 +48,6 @@ class Article < ActiveRecord::Base
   }
   scope :with_category, lambda { |category|
     joins(:categories).where("categories.id = ?", category) if category
-  }
-  scope :with_series, lambda { |series| 
-    joins(:series).where("series.id = ?", series) if series
   }
   scope :flagged_as, lambda { |flag| 
     joins(:flags).where(:flags => {:slug => flag }) if !flag.empty?
@@ -136,10 +129,6 @@ class Article < ActiveRecord::Base
         c.name
       end
     }.join(', ')
-  end
-  
-  def series_names
-    self.series.collect{|c| c.name}.join(', ')
   end
   
   # TODO: move the following three methods to a helper at some point

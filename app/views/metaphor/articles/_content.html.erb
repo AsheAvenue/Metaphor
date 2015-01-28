@@ -170,25 +170,7 @@
             </div>
         </div>
 
-        <% if Settings.series.enabled %>
-            <div class="form-section clearfix">
-                <div class="form-section-left">
-                    <%= Settings.series.name.pluralize %>
-                </div>
-                <div class="form-section-right">
-                    <div class="form-line">
-                        <%= hidden_field_tag "article[series_ids][]", nil%>
-                        <% Series.all.each do |series| %>
-                            <label class="checkbox">
-                                <%= check_box_tag "article[series_ids][]", series.id, @article.series_ids.include?(series.id) %>
-                                <label><%= series.name %></label>
-                            </label>
-                        <% end %>
-                    </div>
-                </div>
-            </div>
-        <% end %>
-         
+        
         <div class="form-section clearfix">
             <div class="form-section-left">
                 <%= Settings.flags.name.pluralize %>

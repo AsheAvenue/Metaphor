@@ -6,11 +6,9 @@ Metaphor::Engine.routes.draw do
   resources :articles
   resources :events
   resources :categories
-  resources :series
   resources :flags
   resources :collections
   resources :pinned_entities
-  resources :pages
   resources :templates
   resources :components
   resources :users
