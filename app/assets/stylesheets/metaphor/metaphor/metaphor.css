@@ -649,6 +649,9 @@ header .navigation li a {
     margin-left: 251px;
     padding: 87px 30px 70px;
 }
+#content.no-left-bar {
+    margin-left: 0;
+}
 #content.has-right-bar {
     margin-right: 320px;
 }
