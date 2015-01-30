@@ -36,10 +36,6 @@
                                 <li><%= link_to Settings.collections.name.pluralize, metaphor.edit_collection_path(1) %></li>
                             <% end %>
                             
-                            <% if Settings.events.enabled %>
-                                <li><%= link_to Settings.events.name.pluralize, metaphor.events_path %></li>
-                            <% end %>
-                            
                             <% Settings.nav.entities.each do |key, value| %>
                                 <li><%= link_to value.pluralize, "#{Settings.site.root_url}/#{key}" %></li>
                             <% end %>

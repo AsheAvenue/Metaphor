@@ -4,7 +4,6 @@ Metaphor::Engine.routes.draw do
   root :to => 'articles#index', :as => 'metaphor'
   
   resources :articles
-  resources :events
   resources :categories
   resources :flags
   resources :collections
@@ -36,9 +35,6 @@ Metaphor::Engine.routes.draw do
   match 'articles/:id/editor/get_sound_for_body' => 'article_editor#get_sound_for_body', :as => 'article_editor_get_sound_for_body'
   match 'articles/taglist/:term' => 'articles#taglist', :as => 'article_tag_list'
   match 'articles/related_entity_list/:related_entity/:term' => 'articles#related_entity_list'
-  
-  match 'events/taglist/:term' => 'events#taglist', :as => 'event_tag_list'
-  match 'events/related_entity_list/:related_entity/:term' => 'events#related_entity_list'
   
   match 'galleries/:id/editor' => 'gallery_editor#index', :as => 'gallery_editor'
   match 'galleries/:id/sort' => 'gallery_editor#sort', :as => 'gallery_sort'
