@@ -10,8 +10,7 @@ class Article < ActiveRecord::Base
     :next_published_revision_id, 
     :publish_next_revision_at, 
     :author_other_name, 
-    :template,
-    :display_type
+    :template
   
   validates :template, presence: true, allow_blank: false
   
@@ -75,7 +74,7 @@ class Article < ActiveRecord::Base
     :keep_old_files => true
        
   has_paper_trail :only => [:title, :body, :summary, :slug],
-                  :skip => [:last_published_revision_id, :next_published_revision_id, :publish_next_revision_at, :display_type]
+                  :skip => [:last_published_revision_id, :next_published_revision_id, :publish_next_revision_at]
   
   include PgSearch
   pg_search_scope :search, 

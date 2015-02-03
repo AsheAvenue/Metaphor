@@ -1,5 +1,5 @@
 class Collection < ActiveRecord::Base
-  attr_accessible :name, :slug, :content_type, :pinned_only, :article_type, :category, :flag, :tag, :limit, :order, :pinned_entities_attributes
+  attr_accessible :name, :slug, :content_type, :pinned_only, :category, :flag, :tag, :limit, :order, :pinned_entities_attributes
   
   has_many :pinned_entities, :order => 'pinned_entities.order ASC'
   has_many :entities, :through => :pinned_entities
