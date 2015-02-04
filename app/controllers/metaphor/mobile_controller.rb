@@ -26,8 +26,11 @@ module Metaphor
     
     def image_save
       @article = Article.new
-      @article.title = params[:article][:title]
-      if @article.title != ''
+      @article.template = 'simpleimage'
+      @article.body = params[:article][:body]
+      
+      if params[:article][:title] != ''
+        @article.title = params[:article][:title]
         @article.slug = ensure_valid_slug(params[:article][:slug])
       else
         @article.title = "image-#{Time.now.to_i}"
@@ -35,8 +38,6 @@ module Metaphor
       end
       
       if params[:article][:default_image]
-        @article.template = 'simpleimage'
-        @article.body = params[:article][:body]
         @article.default_image = params[:article][:default_image]
 
         if @article.save!
@@ -64,23 +65,25 @@ module Metaphor
       
     def sound_save
       @article = Article.new
-      @article.title = params[:article][:title]
-      if @article.title != ''
+      @article.template = 'simplesound'
+      @article.body = params[:article][:body]
+      
+      if params[:article][:title] != ''
+        @article.title = params[:article][:title]
         @article.slug = ensure_valid_slug(params[:article][:slug])
       else
-        @article.slug = "sound-#{Time.now.to_i}"
+        @article.title = "sound-#{Time.now.to_i}"
+        @article.slug = @article.title
       end
       
       if params[:soundcloud_url] != ''
-        @article.template = 'simplesound'
-        @article.body = params[:article][:body]
-
+        
         # Add the sound to the content
         t = Template.find_by_slug(@article.template)
         position = t.get_first_component_position('sound')
         if position != nil
           s = Sound.new
-          s.sound = 166699874
+          s.code = 166699874
           s.name = @article.title
           s.slug = "#{@article.slug}-sound"
           s.save!

@@ -67,6 +67,21 @@
         }
     }
     
+    .result,
+    .message {
+        padding: 10px;
+        margin: 5px;
+        background: #2ecc71;
+        color: white;
+        
+        &.failure { background: #e74c3c; }
+        &.error { background: #e67e22; }
+    }
+    
+    .message {
+        margin-top: 125px;
+    }
+    
     .content {
         padding: 140px 0;
         h1 {
@@ -74,17 +89,6 @@
             font-weight: bold;
             text-transform: uppercase;
             text-align: center;
-        }
-        
-        .result,
-        .message {
-            padding: 10px;
-            margin: 5px;
-            background: #2ecc71;
-            color: white;
-            
-            &.failure { background: #e74c3c; }
-            &.error { background: #e67e22; }
         }
         
         form {
