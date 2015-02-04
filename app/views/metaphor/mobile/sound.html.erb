@@ -1,0 +1,40 @@
+<div class="content">
+    <h1>Post a Sound</h1>
+
+    <% if @result %>
+        <div class="result <%= @result %>">
+            <% if @result == 'success' %>
+                Sound successfully posted.
+            <% elsif @result == 'failure' %>
+                Sound couldn't be posted.
+            <% elsif @result == 'error' %>
+                Please enter a sound URL and title.
+            <% end %>
+        </div>
+    <% end %>
+    
+    <%= form_for @article, :url => '/admin/mobile/sound', :method => :post, :html => { :multipart => true } do |f| %>
+        <div class="form-row">
+            <div class="title">
+                Soundcloud URL:
+            </div>
+            <%= text_field_tag :soundcloud_url %>
+        </div>
+        <div class="form-row">
+            <div class="title">
+                Title (optional):
+            </div>
+            <%= f.text_field :title %>
+            <%= f.hidden_field :slug %>
+        </div>
+        <div class="form-row">
+            <div class="title">
+                Text (optional):
+            </div>
+            <%= f.text_area :body %>
+        </div>
+        <div class="form-row">
+            <a class="submit">Publish now</a>
+        </div>
+    <% end %>
+</div>

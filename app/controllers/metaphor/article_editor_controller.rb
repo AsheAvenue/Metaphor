@@ -149,9 +149,6 @@ module Metaphor
       @article.save!
       
       Rails.cache.delete("article_#{@article.slug}")
-      Rails.cache.delete("article_#{@article.slug}_related_articles")
-      Rails.cache.delete("article_#{@article.slug}_previous")
-      Rails.cache.delete("article_#{@article.slug}_next")
       
       render :nothing => true
     end  

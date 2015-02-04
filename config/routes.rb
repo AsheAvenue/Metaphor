@@ -64,6 +64,12 @@ Metaphor::Engine.routes.draw do
   
   match 'site/clear_header_image' => 'site#clear_header_image', :as => 'site_clear_header_image'
   
+  match 'mobile'        => 'mobile#index'
+  get   'mobile/image'  => 'mobile#image'
+  post  'mobile/image'  => 'mobile#image_save'
+  get   'mobile/sound'  => 'mobile#sound'
+  post  'mobile/sound'  => 'mobile#sound_save'
+  
   get "signout" => "sessions#destroy", :as => "signout"
   get "signin" => "sessions#new", :as => "signin"
   

@@ -51,6 +51,19 @@ module Metaphor
       
       #set up the templates
       @templates = Template.all
+      
+      @templates = []
+      t = Template.all
+      
+      # Loop through and
+      t.each do |template|
+        if @article.template.starts_with?('simple') && template.name.starts_with?('Simple')
+          @templates << template
+        elsif !@article.template.starts_with?('simple') && !template.name.starts_with?('Simple')
+          @templates << template
+        end
+      end
+      
     end
     
     def revision
@@ -139,7 +152,16 @@ module Metaphor
     def new
       @articles = Article.where(true).recently_created.limit(10)
       @article = Article.new
-      @templates = Template.all
+      @templates = []
+      t = Template.all
+      
+      # Loop through and remove the simple items, since they should only be available when creating new articles in the mobile cms
+      t.each do |template|
+        if !template.name.starts_with?('Simple')
+          @templates << template
+        end
+      end
+      
     end
   
     def create
@@ -290,9 +312,6 @@ module Metaphor
     
     def update_article_cache(article)
       Rails.cache.delete("article_#{article.slug}")
-      Rails.cache.delete("article_#{article.slug}_related_articles")
-      Rails.cache.delete("article_#{article.slug}_previous")
-      Rails.cache.delete("article_#{article.slug}_next")
     end
     
   end

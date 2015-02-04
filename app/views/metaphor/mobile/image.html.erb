@@ -1,0 +1,40 @@
+<div class="content">
+    <h1>Post an Image</h1>
+
+    <% if @result %>
+        <div class="result <%= @result %>">
+            <% if @result == 'success' %>
+                Image successfully posted.
+            <% elsif @result == 'failure' %>
+                Image couldn't be posted.
+            <% elsif @result == 'error' %>
+                Please select an image and enter a title.
+            <% end %>
+        </div>
+    <% end %>
+    
+    <%= form_for @article, :url => '/admin/mobile/image', :method => :post, :html => { :multipart => true } do |f| %>
+        <div class="form-row">
+            <div class="title">
+                Image:
+            </div>
+            <%= f.file_field :default_image %>
+        </div>
+        <div class="form-row">
+            <div class="title">
+                Title (optional):
+            </div>
+            <%= f.text_field :title %>
+            <%= f.hidden_field :slug %>
+        </div>
+        <div class="form-row">
+            <div class="title">
+                Text (optional):
+            </div>
+            <%= f.text_area :body %>
+        </div>
+        <div class="form-row">
+            <a class="submit">Publish now</a>
+        </div>
+    <% end %>
+</div>

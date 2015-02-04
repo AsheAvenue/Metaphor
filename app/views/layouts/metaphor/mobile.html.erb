@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= Settings.site.name %></title>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700&subset=latin,greek' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "metaphor/metaphor/manifest", :media => "all" %>
+  <%= javascript_include_tag "metaphor/metaphor/manifest" %>
+  <%= filepicker_js_include_tag %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="mobile">
+	
+	<!-- BEGIN HEADER -->
+	
+	<header>
+		<div class="top clearfix">
+            <div class="navigation-wrapper clearfix">
+                <%= image_tag Settings.site.logo %>
+                <div class="pull-right">
+                    <%= link_to "Sign out", metaphor.signout_path, class: 'navigation-link' %>
+                </div>
+            </div>
+		</div>
+	</header>
+    
+    <section class="types">
+        <a href="/admin/mobile/image">
+            <div class="type">
+                <div class="icon">I</div>
+                <div class="name">Image</div>
+            </div>
+        </a>
+        <a href="/admin/mobile/sound">
+            <div class="type">
+                <div class="icon">S</div>
+                <div class="name">Sound</div>
+            </div>
+        </a>
+        <a href="">
+            <div class="type">
+                <div class="icon">V</div>
+                <div class="name">Video</div>
+            </div>
+        </a>
+        <a href="">
+            <div class="type">
+                <div class="icon">Q</div>
+                <div class="name">Quote</div>
+            </div>
+        </a>
+        <a href="">
+            <div class="type">
+                <div class="icon">L</div>
+                <div class="name">Link</div>
+            </div>
+        </a>
+    </section>
+
+    <%= yield %>
+
+</body>
+</html>
