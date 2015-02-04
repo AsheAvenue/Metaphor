@@ -33,7 +33,7 @@ module Metaphor
         @article.title = params[:article][:title]
         @article.slug = ensure_valid_slug(params[:article][:slug])
       else
-        @article.title = "image-#{Time.now.to_i}"
+        @article.title = "simple-image-#{Time.now.to_i}"
         @article.slug = @article.title
       end
       
@@ -72,41 +72,51 @@ module Metaphor
         @article.title = params[:article][:title]
         @article.slug = ensure_valid_slug(params[:article][:slug])
       else
-        @article.title = "sound-#{Time.now.to_i}"
+        @article.title = "simple-sound-#{Time.now.to_i}"
         @article.slug = @article.title
       end
       
       if params[:soundcloud_url] != ''
         
-        # Add the sound to the content
-        t = Template.find_by_slug(@article.template)
-        position = t.get_first_component_position('sound')
-        if position != nil
-          s = Sound.new
-          s.code = 166699874
-          s.name = @article.title
-          s.slug = "#{@article.slug}-sound"
-          s.save!
-
-          # add the sound object as a widget to the entity contents in the position saved above
-          widget = EntityContent.new
-          widget.entity = @article
-          widget.content = s
-          widget.position = position
-          widget.save!    
-        end
+        # Call the Soundcloud oEmbed service and get the code 
+        begin
+          json_as_text = open("http://soundcloud.com/oembed?url=#{params[:soundcloud_url]}").read
+          right_side = json_as_text.rpartition('tracks%2F').last
+          track_number = right_side.partition('&amp').first
         
-        if @article.save!
-          if publish(@article)
-            @result = 'success'
-            update_article_cache(@article)
-            redirect_to '/admin/mobile?message=Sound successfully posted.'
+          # Add the sound to the content
+          t = Template.find_by_slug(@article.template)
+          position = t.get_first_component_position('sound')
+          if position != nil
+            s = Sound.new
+            s.code = track_number
+            s.name = @article.title
+            s.slug = "#{@article.slug}-sound"
+            s.save!
+
+            # add the sound object as a widget to the entity contents in the position saved above
+            widget = EntityContent.new
+            widget.entity = @article
+            widget.content = s
+            widget.position = position
+            widget.save!    
+          end
+        
+          if @article.save!
+            if publish(@article)
+              @result = 'success'
+              update_article_cache(@article)
+              redirect_to '/admin/mobile?message=Sound successfully posted.'
+            else
+              @result = 'failure'
+              render :sound
+            end
           else
             @result = 'failure'
             render :sound
           end
-        else
-          @result = 'failure'
+        rescue
+          @result = 'error'
           render :sound
         end
       else
@@ -114,8 +124,126 @@ module Metaphor
         render :sound
       end  
     end
+       
+    def quote
+      @article = Article.new
+    end
+    
+    def quote_save
+      @article = Article.new
+      @article.template = 'simplequote'
       
+      @quote = params[:quote]
+      @source = params[:source]
+      @link = params[:link]
       
+      @article.body = "#{@quote}|||#{@source}|||#{@link}"
+      @article.title = "simple-quote-#{Time.now.to_i}"
+      @article.slug = @article.title
+      
+      if @quote
+        if @article.save!
+          if publish(@article)
+            @result = 'success'
+            update_article_cache(@article)
+            redirect_to '/admin/mobile?message=Quote successfully posted.'
+          else
+            @result = 'failure'
+            render :quote
+          end
+        else
+          @result = 'failure'
+          render :quote
+        end
+      else
+        @result = 'error'
+        render :quote
+      end  
+    end
+       
+    def link
+      @article = Article.new
+    end
+    
+    def link_save
+      @article = Article.new
+      @article.template = 'simplelink'
+      @article.title = "simple-link-#{Time.now.to_i}"
+      @article.slug = @article.title
+      
+      @text = params[:text]
+      @url = params[:url]
+      
+      @article.body = "#{@text}|||#{@url}"
+      
+      if @text && @text != '' && @url && @url != '' 
+        if @article.save!
+          if publish(@article)
+            @result = 'success'
+            update_article_cache(@article)
+            redirect_to '/admin/mobile?message=Link successfully posted.'
+          else
+            @result = 'failure'
+            render :link
+          end
+        else
+          @result = 'failure'
+          render :link
+        end
+      else
+        @result = 'error'
+        render :link
+      end  
+    end
+    
+    def tweet
+      @article = Article.new
+    end
+    
+    def tweet_save
+      @article = Article.new
+      @article.template = 'simpletweet'
+      @article.title = "simple-tweet-#{Time.now.to_i}"
+      @article.slug = @article.title
+      
+      # Call twitter and get an embed link
+      begin
+        @url = params[:url]
+        twitter_client = Twitter::REST::Client.new do |config|
+          config.consumer_key        = Settings.twitter.consumer_key
+          config.consumer_secret     = Settings.twitter.consumer_secret
+          config.access_token        = Settings.twitter.access_token
+          config.access_token_secret = Settings.twitter.access_token_secret
+        end
+        
+        oembed = twitter_client.oembed(@url)
+        @article.body = oembed.html
+      
+        if @article.body != '' 
+          if @article.save!
+            if publish(@article)
+              @result = 'success'
+              update_article_cache(@article)
+              redirect_to '/admin/mobile?message=Tweet successfully posted.'
+            else
+              @result = 'failure'
+              render :tweet
+            end
+          else
+            @result = 'failure'
+            render :tweet
+          end
+        else
+          @result = 'error'
+          render :tweet
+        end  
+      rescue
+        @result = 'error'
+        render :tweet
+      end
+    end
+    
+    
     private
     
       def update_article_cache(article)

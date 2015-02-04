@@ -1,0 +1,33 @@
+<div class="content">
+    <h1>Post a Link</h1>
+
+    <% if @result %>
+        <div class="result <%= @result %>">
+            <% if @result == 'success' %>
+                Link successfully posted.
+            <% elsif @result == 'failure' %>
+                Link couldn't be posted.
+            <% elsif @result == 'error' %>
+                Please enter text and a url.
+            <% end %>
+        </div>
+    <% end %>
+    
+    <%= form_for @article, :url => '/admin/mobile/link', :method => :post, :html => { :multipart => true } do |f| %>
+        <div class="form-row">
+            <div class="title">
+                Text:
+            </div>
+            <%= text_field_tag :text, @text %>
+        </div>
+        <div class="form-row">
+            <div class="title">
+                URL:
+            </div>
+            <%= text_field_tag :url, @url %>
+        </div>
+        <div class="form-row">
+            <a class="submit">Publish now</a>
+        </div>
+    <% end %>
+</div>

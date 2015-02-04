@@ -69,6 +69,12 @@ Metaphor::Engine.routes.draw do
   post  'mobile/image'  => 'mobile#image_save'
   get   'mobile/sound'  => 'mobile#sound'
   post  'mobile/sound'  => 'mobile#sound_save'
+  get   'mobile/quote'  => 'mobile#quote'
+  post  'mobile/quote'  => 'mobile#quote_save'
+  get   'mobile/link'   => 'mobile#link'
+  post  'mobile/link'   => 'mobile#link_save'
+  get   'mobile/tweet'  => 'mobile#tweet'
+  post  'mobile/tweet'  => 'mobile#tweet_save'
   
   get "signout" => "sessions#destroy", :as => "signout"
   get "signin" => "sessions#new", :as => "signin"

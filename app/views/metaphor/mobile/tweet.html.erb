@@ -1,0 +1,27 @@
+<div class="content">
+    <h1>Post a Tweet</h1>
+
+    <% if @result %>
+        <div class="result <%= @result %>">
+            <% if @result == 'success' %>
+                Tweet successfully posted.
+            <% elsif @result == 'failure' %>
+                Tweet couldn't be posted.
+            <% elsif @result == 'error' %>
+                Please enter a Tweet url.
+            <% end %>
+        </div>
+    <% end %>
+    
+    <%= form_for @article, :url => '/admin/mobile/tweet', :method => :post, :html => { :multipart => true } do |f| %>
+        <div class="form-row">
+            <div class="title">
+                Tweet URL:
+            </div>
+            <%= text_field_tag :url, @url %>
+        </div>
+        <div class="form-row">
+            <a class="submit">Publish now</a>
+        </div>
+    <% end %>
+</div>
