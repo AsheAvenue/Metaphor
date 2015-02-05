@@ -10,6 +10,7 @@ var mobile = new function() {
     this.submitForm = function() {
         $('.mobile .submit').on('click', function() {
             $('#article_slug').val(slugify($('#article_title').val()));
+            $(this).text('Publishing...');
             $(this).parents('form').submit();
         });
     };
