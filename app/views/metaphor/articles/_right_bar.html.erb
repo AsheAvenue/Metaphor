@@ -1,7 +1,7 @@
 <% if @article.id != nil %>
     <div id="right-bar">
         
-        <a href="<%= Settings.site.full_url%>/show/<%= @article.id%>" target="_blank">
+        <a href="<%= Settings.site.full_url%>/show/<%= @article.slug %>" target="_blank">
             <% if @article.last_published_revision_id %>
                 <div id="status" class="published">
                     View Published Article »

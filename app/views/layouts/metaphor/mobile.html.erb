@@ -16,7 +16,7 @@
 	<header>
 		<div class="top clearfix">
             <div class="navigation-wrapper clearfix">
-                <%= image_tag Settings.site.logo %>
+                <%= link_to image_tag(Settings.site.logo), "/admin/mobile" %>
                 <div class="pull-right">
                     <%= link_to "Sign out", metaphor.signout_path, class: 'navigation-link' %>
                 </div>
@@ -24,45 +24,47 @@
 		</div>
 	</header>
     
-    <section class="types">
-        <a href="/admin/mobile/image">
-            <div class="type">
-                <div class="icon"><span class="fa fa-camera-retro"></span></div>
-                <div class="name">Image</div>
-            </div>
-        </a>
-        <a href="/admin/mobile/tweet">
-            <div class="type">
-                <div class="icon"><span class="fa fa-twitter"></span></div>
-                <div class="name">Tweet</div>
-            </div>
-        </a>
-        <a href="/admin/mobile/sound">
-            <div class="type">
-                <div class="icon"><span class="fa fa-volume-up"></span></div>
-                <div class="name">Sound</div>
-            </div>
-        </a>
-        <a href="">
-            <div class="type">
-                <div class="icon"><span class="fa fa-film"></span></div>
-                <div class="name">Video</div>
-            </div>
-        </a>
-        <a href="/admin/mobile/quote">
-            <div class="type">
-                <div class="icon"><span class="fa fa-quote-left"></span></div>
-                <div class="name">Quote</div>
-            </div>
-        </a>
-        <a href="/admin/mobile/link">
-            <div class="type">
-                <div class="icon"><span class="fa fa-link"></span></div>
-                <div class="name">Link</div>
-            </div>
-        </a>
-    </section>
-
+    <% unless current_page?(:action => 'index') %>
+        <section class="types">
+            <a href="/admin/mobile/image">
+                <div class="type">
+                    <div class="icon"><span class="fa fa-camera-retro"></span></div>
+                    <div class="name">Image</div>
+                </div>
+            </a>
+            <a href="/admin/mobile/tweet">
+                <div class="type">
+                    <div class="icon"><span class="fa fa-twitter"></span></div>
+                    <div class="name">Tweet</div>
+                </div>
+            </a>
+            <a href="/admin/mobile/sound">
+                <div class="type">
+                    <div class="icon"><span class="fa fa-volume-up"></span></div>
+                    <div class="name">Sound</div>
+                </div>
+            </a>
+            <a href="">
+                <div class="type">
+                    <div class="icon"><span class="fa fa-film"></span></div>
+                    <div class="name">Video</div>
+                </div>
+            </a>
+            <a href="/admin/mobile/quote">
+                <div class="type">
+                    <div class="icon"><span class="fa fa-quote-left"></span></div>
+                    <div class="name">Quote</div>
+                </div>
+            </a>
+            <a href="/admin/mobile/link">
+                <div class="type">
+                    <div class="icon"><span class="fa fa-link"></span></div>
+                    <div class="name">Link</div>
+                </div>
+            </a>
+        </section>
+    <% end %>
+        
     <%= yield %>
 
 </body>
