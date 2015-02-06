@@ -17,7 +17,7 @@
         </div>
     <% end %>
     
-    <% unless @article.template.starts_with?('simple') %>
+    <% unless !@article.new_record? && @article.template.starts_with?('simple') %>
         <div class="form-section clearfix">
             <div class="form-section-left">
                 Title
@@ -38,7 +38,7 @@
             <div class="form-line">
                 <div id="article-slug-display"><%= @article.slug || "Enter a Title to populate this field" %></div>
                 
-                <% unless @article.template.starts_with?('simple') %>
+                <% unless !@article.new_record? && @article.template.starts_with?('simple') %>
                     <div id="article-slug-container">
                         <%= f.text_field :slug, :id => 'article-slug', :placeholder => 'Slug', :class => "input-xlarge", 'data-original-slug' => @article.slug %>
                     </div>
@@ -49,7 +49,7 @@
         </div>
     </div>
     
-    <% unless @article.template.starts_with?('simple') %>
+    <% unless !@article.new_record? && @article.template.starts_with?('simple') %>
         <div class="form-section clearfix">
             <div class="form-section-left">
                 Template

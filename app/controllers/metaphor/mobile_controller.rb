@@ -59,6 +59,113 @@ module Metaphor
       end  
     end
     
+    def tweet
+      @article = Article.new
+    end
+    
+    def tweet_save
+      @article = Article.new
+      @article.template = 'simpletweet'
+      @article.title = "simple-tweet-#{Time.now.to_i}"
+      @article.slug = @article.title
+      
+      # Call twitter and get an embed link
+      begin
+        @url = params[:url]
+        twitter_client = Twitter::REST::Client.new do |config|
+          config.consumer_key        = Settings.twitter.consumer_key
+          config.consumer_secret     = Settings.twitter.consumer_secret
+          config.access_token        = Settings.twitter.access_token
+          config.access_token_secret = Settings.twitter.access_token_secret
+        end
+        
+        oembed = twitter_client.oembed(@url)
+        @article.body = oembed.html
+      
+        if @article.body != '' 
+          if @article.save!
+            if publish(@article)
+              @result = 'success'
+              update_article_cache(@article)
+              redirect_to '/admin/mobile?message=Tweet successfully posted.'
+            else
+              @result = 'failure'
+              render :tweet
+            end
+          else
+            @result = 'failure'
+            render :tweet
+          end
+        else
+          @result = 'error'
+          render :tweet
+        end  
+      rescue
+        @result = 'error'
+        render :tweet
+      end
+    end
+    
+    def video
+      @article = Article.new
+    end
+    
+    def video_save
+      @article = Article.new
+      @article.template = 'simplevideo'
+      @article.title = "simple-video-#{Time.now.to_i}"
+      @article.slug = @article.title
+      
+      # Call twitter and get an embed link
+      begin
+        @url = params[:url]
+        @video_type = params[:video_type]
+        
+        # Get the code
+        if @video_type == 'vine'
+          code = @url.rpartition('/v/').last
+        elsif @video_type == 'youtube'
+          code = @url.rpartition('/').last
+        end
+        
+        # Get the template so we can get the position of the video object
+        t = Template.find_by_slug(@article.template)
+        position = t.get_first_component_position('video')
+        
+        # Create the video and the content
+        v = Video.new
+        v.name = @article.title
+        v.slug = @article.title
+        v.code = code
+        v.provider = @video_type
+        v.save!
+        
+        # add the video object as a widget to the entity contents in the position saved above
+        widget = EntityContent.new
+        widget.entity = @article
+        widget.content = v
+        widget.position = position
+        widget.save! 
+        
+        if @article.save!
+          if publish(@article)
+            @result = 'success'
+            update_article_cache(@article)
+            redirect_to '/admin/mobile?message=Video successfully posted.'
+          else
+            @result = 'failure'
+            render :video
+          end
+        else
+          @result = 'failure'
+          render :video
+        end
+      rescue
+        @result = 'error'
+        render :video
+      end
+    end
+    
     def sound
       @article = Article.new
     end
@@ -196,54 +303,7 @@ module Metaphor
       end  
     end
     
-    def tweet
-      @article = Article.new
-    end
-    
-    def tweet_save
-      @article = Article.new
-      @article.template = 'simpletweet'
-      @article.title = "simple-tweet-#{Time.now.to_i}"
-      @article.slug = @article.title
-      
-      # Call twitter and get an embed link
-      begin
-        @url = params[:url]
-        twitter_client = Twitter::REST::Client.new do |config|
-          config.consumer_key        = Settings.twitter.consumer_key
-          config.consumer_secret     = Settings.twitter.consumer_secret
-          config.access_token        = Settings.twitter.access_token
-          config.access_token_secret = Settings.twitter.access_token_secret
-        end
         
-        oembed = twitter_client.oembed(@url)
-        @article.body = oembed.html
-      
-        if @article.body != '' 
-          if @article.save!
-            if publish(@article)
-              @result = 'success'
-              update_article_cache(@article)
-              redirect_to '/admin/mobile?message=Tweet successfully posted.'
-            else
-              @result = 'failure'
-              render :tweet
-            end
-          else
-            @result = 'failure'
-            render :tweet
-          end
-        else
-          @result = 'error'
-          render :tweet
-        end  
-      rescue
-        @result = 'error'
-        render :tweet
-      end
-    end
-    
-    
     private
     
       def update_article_cache(article)

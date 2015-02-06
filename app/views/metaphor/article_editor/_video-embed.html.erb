@@ -1,4 +1,8 @@
-<% if @video.provider == "youtube"%>
+<% if @video.provider == "vine"%>
+
+    <iframe src="https://vine.co/v/<%= @video.code %>/embed/simple" width="649" height="649" frameborder="0"></iframe><script src="https://platform.vine.co/static/scripts/embed.js"></script>
+
+<% elsif @video.provider == "youtube"%>
 
     <iframe width="647" height="364" src="//www.youtube.com/embed/<%= @video.code %>" frameborder="0" allowfullscreen></iframe>
 
