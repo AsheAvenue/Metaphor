@@ -21,6 +21,7 @@
     
         img {
             height: 40px;
+            margin-left: 10px;
         }
     
         .navigation-wrapper {
@@ -44,7 +45,10 @@
         top: 50px;
         width: 100%;
         
-        &:after { clear: both; }
+        &:after { 
+            clear: both; 
+            content: "";
+        }
         
         .type {
             float: left;
