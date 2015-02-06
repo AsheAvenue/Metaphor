@@ -8,7 +8,6 @@ PATH
       carrierwave
       feedzirra
       filepicker-rails
-      font-awesome-rails
       mini_magick
       paper_trail
       paperclip (= 3.5.3)
@@ -98,8 +97,6 @@ GEM
     feedzirra (0.8.0)
     filepicker-rails (1.3.0)
       rails (>= 3.2)
-    font-awesome-rails (4.3.0.0)
-      railties (>= 3.2, < 5.0)
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
