@@ -30,6 +30,7 @@ class Article < ActiveRecord::Base
   
   belongs_to :current_version, :class_name => 'Version', :foreign_key => :last_published_revision_id
   
+  scope :randomize, order('random()')
   scope :recently_created, order("articles.created_at desc")
   scope :recently_updated, order("articles.updated_at desc")
   scope :published, where('articles.last_published_revision_id IS NOT NULL')
