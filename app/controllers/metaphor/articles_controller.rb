@@ -6,6 +6,8 @@ module Metaphor
     layout 'metaphor/metaphor'
     
     before_filter :require_login, :except => :vote
+    before_filter :redirect_to_mobile_if_necessary
+    
     skip_authorize_resource :only => :vote
     
     def index
@@ -312,6 +314,12 @@ module Metaphor
     
     def update_article_cache(article)
       Rails.cache.delete("article_#{article.slug}")
+    end
+    
+    def redirect_to_mobile_if_necessary
+      if request.user_agent =~ /Mobile|webOS/
+        redirect_to "/admin/mobile"
+      end
     end
     
   end
