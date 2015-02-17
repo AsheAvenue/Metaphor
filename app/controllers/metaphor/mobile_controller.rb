@@ -50,6 +50,9 @@ module Metaphor
             render :image
           end
         else
+          puts "|||||||||||||||||||||||||"
+          puts @article.errors
+          puts "|||||||||||||||||||||||||"
           @result = 'failure'
           render :image
         end
