@@ -11,7 +11,13 @@
                 Please enter a valid Soundcloud Track URL.
             <% end %>
         </div>
-        <div><div>Errors:</div><%= @article.errors %></div>
+        <div>
+            <div>Errors:</div>
+            <% @article.errors.each do |attribute, error| %>
+                <%= attribute %>: <%= error %>
+            <% end %>
+            
+        </div>
     <% end %>
     
     <%= form_for @article, :url => '/admin/mobile/sound', :method => :post, :html => { :multipart => true } do |f| %>
