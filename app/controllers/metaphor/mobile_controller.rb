@@ -219,9 +219,6 @@ module Metaphor
               render :sound
             end
           else
-            puts "|||||||||||||||||||||||||"
-            puts @article.errors
-            puts "|||||||||||||||||||||||||"
             @result = 'failure'
             render :sound
           end
