@@ -78,10 +78,11 @@
     
     <% if @article.id != nil %>
     
-        <% unless @article.template.starts_with?('simple') %>
+        <% if !@article.template.starts_with?('simple') || @article.template.starts_with?('simpleimage') %>
             <div class="form-section clearfix">
                 <div class="form-section-left">
-                    List Image
+                    <% unless @article.template.starts_with?('simpleimage') %>List<% end %> 
+                    Image
                 </div>
                 <div class="form-section-right">
                     <div class="form-line">
@@ -101,7 +102,7 @@
                                     name="temp_default_image" 
                                     class="button article-select-image" 
                                     data-fp-apikey="<%= Settings.filepicker.api_key %>" 
-                                    data-fp-button-text="Select a<% if !@article.default_image.blank? %> different <% end %> list image" 
+                                    data-fp-button-text="Select a<% if !@article.default_image.blank? %> different <% end %> image" 
                                     data-fp-extensions=".png,.jpg,.jpeg,.gif" 
                                     data-fp-multiple="false" 
                                     onchange="$('#article-default-image-hidden-field').val(event.fpfile.url); $('#article-default-image-selected-field').val('true'); $('#article-default-image-original-filename-hidden-field').val(event.fpfile.filename); $('#article-default-image .display').html('<img src=\'' + event.fpfile.url + '/convert?w=457&h=310&fit=crop\' />'); " 
