@@ -13,10 +13,7 @@
         </div>
         <div>
             <div>Errors:</div>
-            <% @article.errors.each do |attribute, error| %>
-                <%= attribute %>: <%= error %>
-            <% end %>
-            
+            <%= @article.errors.full_messages %>
         </div>
     <% end %>
     
